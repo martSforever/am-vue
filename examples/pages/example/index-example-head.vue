@@ -1,6 +1,9 @@
 <template>
     <div class="index-example-head">
-        Welcome to am-vue
+        <span>Welcome to Am-vue</span>
+        <a href="https://github.com/martSforever/am-vue" target="_blank">
+            <am-icon icon="fab-github" size="30px" color="black"/>
+        </a>
     </div>
 </template>
 
@@ -16,6 +19,6 @@
         display: flex;
         align-items: center;
         justify-content: space-between;
-        padding-left: @padding;
+        padding: 0 @padding;
     }
 </style>

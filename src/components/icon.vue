@@ -1,5 +1,5 @@
 <template>
-    <span :class="classes" :is="targetComponent" :icon="targetIcon"></span>
+    <span :class="classes" :is="targetComponent" :icon="targetIcon" :style="styles"></span>
 </template>
 
 <script>
@@ -18,17 +18,19 @@
                 type: Boolean,
                 default: false
             },
+            size: null,
+            color: null,
         },
         computed: {
             targetComponent() {
-                if (/(fas-|far-)/.test(this.icon)) {
+                if (/(fas-|far-|fab-)/.test(this.icon)) {
                     return 'IconFontAwesome';
                 } else {
                     return 'Iconfont';
                 }
             },
             targetIcon() {
-                if (/(fas-|far-)/.test(this.icon)) {
+                if (/(fas-|far-|fab-)/.test(this.icon)) {
                     let sperateIndex = this.icon.indexOf('-');
                     return [this.icon.slice(0, sperateIndex), this.icon.slice(sperateIndex + 1)];
                 } else {
@@ -42,6 +44,12 @@
                         [`${this.$amvue.$options.ComponentPrefix}-icon-loading`]: this.loading,
                     }
                 ];
+            },
+            styles() {
+                let ret = {};
+                !!this.size && (ret.fontSize = this.size);
+                !!this.color && (ret.color = this.color);
+                return ret;
             },
         },
     };
