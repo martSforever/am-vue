@@ -1,11 +1,19 @@
 <template>
-    <div class="app">
+    <div class="app" :style="{fontFamily:PFFontFamily}">
         <router-view/>
     </div>
 </template>
 <script>
+    import PFFontFamily from 'examples/styles/library/PingFang Medium.ttf';
+
+
     export default {
-        name: 'app'
+        name: 'app',
+        data() {
+            return {
+                PFFontFamily
+            };
+        },
     };
 </script>
 

@@ -4,13 +4,16 @@
         <am-icon icon="far-check-square"/>
         <am-icon icon="fas-check-square"/>
         <am-icon icon="work"/>
-        平等 公正 方方正正的字体
+        <div>平等 方正 方方正正的字体</div>
     </div>
 </template>
 
 <script>
     export default {
-        name: 'index-page'
+        name: 'index-page',
+        data() {
+            return {};
+        },
     };
 </script>
 

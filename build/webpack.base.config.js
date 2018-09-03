@@ -5,7 +5,7 @@ const path = require('path');
 const webpack = require('webpack');
 const pkg = require('../package.json');
 
-function resolve (dir) {
+function resolve(dir) {
     return path.join(__dirname, '..', dir);
 }
 
@@ -126,8 +126,19 @@ module.exports = {
                 ]
             },
             {
-                test: /\.(gif|jpg|png|woff|svg|eot|ttf)\??.*$/,
+                test: /\.(gif|jpg|png|woff|svg|eot)\??.*$/,
                 loader: 'url-loader?limit=8192'
+            },
+            {
+                test: /\.ttf$/,
+                use: [
+                    {
+                        loader: 'ttf-loader',
+                        options: {
+                            name: './font/[hash].[ext]',
+                        },
+                    },
+                ]
             },
             {
                 test: /\.(html|tpl)$/,
