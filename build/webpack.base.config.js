@@ -151,7 +151,11 @@ module.exports = {
             {
                 test: /\.(html|tpl)$/,
                 loader: 'html-loader'
-            }
+            },
+            {
+                test: /.md$/,
+                loader: 'text-loader'
+            },
         ]
     },
     resolve: {
