@@ -13,6 +13,8 @@
 <style lang="less">
     .index-example-head {
         height: 8vh;
-
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
     }
 </style>
