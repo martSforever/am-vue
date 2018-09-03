@@ -25,7 +25,7 @@
         width: 100vw;
         height: 100vh;
         .body {
-            height: 92vh;
+            height: 94vh;
             display: flex;
             flex-direction: row;
             .example-wrapper {
