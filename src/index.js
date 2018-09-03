@@ -1,3 +1,5 @@
+import './styles/index.less';
+
 import icon from 'src/components/icon';
 
 const components = {

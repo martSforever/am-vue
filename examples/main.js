@@ -6,6 +6,7 @@ import Vue from 'vue';
 import App from './app.vue';
 import Amvue from 'src';
 import router from './router';
+import './styles/index.less';
 
 Vue.use(Amvue, {ComponentPrefix: 'am', IconfontPrefix: 'ali-icon'});
 // 开启debug模式
