@@ -8,7 +8,7 @@ import App from './app.vue';
 import Amvue from 'src';
 
 Vue.use(VueRouter);
-Vue.use(Amvue, {ComponentPrefix: 'am'});
+Vue.use(Amvue, {ComponentPrefix: 'am', IconfontPrefix: 'ali-icon'});
 // 开启debug模式
 Vue.config.debug = true;
 

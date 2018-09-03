@@ -1,7 +1,8 @@
 <template>
     <div class="container">
         this is app
-        <am-icon/>
+        <am-icon icon="far-check-square"/>
+        <am-icon icon="work"/>
     </div>
 </template>
 <script>
@@ -19,6 +20,6 @@
     };
 </script>
 
-<style lang="less" scoped>
+<style lang="less">
 
 </style>
