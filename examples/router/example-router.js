@@ -1,6 +1,5 @@
 export default {
     path: '/example',
-    name: 'example',
     component: resolve => require(['examples/pages/example/index-example.vue'], resolve),
     children: [
         {
@@ -10,7 +9,7 @@ export default {
         {
             path: '/icon',
             name: 'icon',
-            component: resolve => require(['examples/pages/icon-example.vue'], resolve),
+            component: resolve => require(['examples/pages/example/components/icon-example.vue'], resolve),
         },
     ]
 };
