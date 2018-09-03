@@ -1,2 +1,7 @@
-.@{prefix}-icon {
+@icon-prefix: ~"@{prefix}-icon";
+
+.@{icon-prefix} {
+    &.@{icon-prefix}-loading {
+        animation: am-rotating @animation-duration linear infinite;
+    }
 }

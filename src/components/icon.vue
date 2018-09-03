@@ -1,5 +1,5 @@
 <template>
-    <span :class="[`${$amvue.$options.ComponentPrefix}-icon`]" :is="targetComponent" :icon="targetIcon"></span>
+    <span :class="classes" :is="targetComponent" :icon="targetIcon"></span>
 </template>
 
 <script>
@@ -13,6 +13,10 @@
             icon: {
                 type: String,
                 required: true
+            },
+            loading: {
+                type: Boolean,
+                default: false
             },
         },
         computed: {
@@ -31,10 +35,14 @@
                     return this.icon;
                 }
             },
+            classes() {
+                return [
+                    `${this.$amvue.$options.ComponentPrefix}-icon`,
+                    {
+                        [`${this.$amvue.$options.ComponentPrefix}-icon-loading`]: this.loading,
+                    }
+                ];
+            },
         },
     };
 </script>
-
-<style lang="less">
-
-</style>

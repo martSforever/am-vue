@@ -4,6 +4,7 @@
         <am-icon icon="far-check-square"/>
         <am-icon icon="fas-check-square"/>
         <am-icon icon="work"/>
+        <am-icon icon="far-check-circle" :loading="true"/>
         <div>平等 方正 方方正正的字体</div>
     </div>
 </template>
