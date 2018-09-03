@@ -1,22 +1,11 @@
 <template>
-    <div class="container">
-        this is app
-        <am-icon icon="far-check-square"/>
-        <am-icon icon="work"/>
+    <div class="app">
+        <router-view/>
     </div>
 </template>
 <script>
-    module.exports = {
-        data: function () {
-            return {};
-        },
-        mounted: function () {
-
-        },
-        beforeDestroy: function () {
-
-        },
-        methods: {}
+    export default {
+        name: 'app'
     };
 </script>
 
