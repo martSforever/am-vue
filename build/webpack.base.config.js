@@ -43,6 +43,14 @@ module.exports = {
                                     sourceMap: true,
                                 },
                             },
+                            {
+                                loader: 'sass-resources-loader',
+                                options: {
+                                    resources: [
+                                        resolve('src/styles/variables.less'),
+                                    ]
+                                }
+                            },
                         ],
                     },
                     postLoaders: {
