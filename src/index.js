@@ -1,4 +1,4 @@
-import icon from 'src/components/icon';
+import icon from 'src/components/am-icon';
 
 const components = {
     icon,
@@ -16,7 +16,7 @@ function install(vue, options) {
     /*@formatter:off*/
     $amvue.$options = Object.assign({},defaultInstallOptions , options);
     Object.defineProperty(vue.prototype, '$amvue', {writable: false, enumerable: false, configurable: true, value: $amvue})
-    Object.keys(components).forEach((key) => vue.component(`${$amvue.$options.ComponentPrefix}-${key}`, icon))
+    Object.keys(components).forEach((key) => vue.component(`${$amvue.$options.ComponentPrefix}-${key}`, components[key]))
     /*@formatter:on*/
 }
 

@@ -1,13 +1,13 @@
 <template>
-    <span :class="classes" :is="targetComponent" :icon="targetIcon" :style="styles"></span>
+    <span class="am-icon" :class="classes" :is="targetComponent" :icon="targetIcon" :style="styles"></span>
 </template>
 
 <script>
-    import IconFontAwesome from './icon-font-awesome';
-    import Iconfont from './iconfont';
+    import IconFontAwesome from './am-fontawesome';
+    import Iconfont from './am-iconfont';
 
     export default {
-        name: 'icon',
+        name: 'am-icon',
         components: {Iconfont, IconFontAwesome},
         props: {
             icon: {
@@ -39,9 +39,8 @@
             },
             classes() {
                 return [
-                    `${this.$amvue.$options.ComponentPrefix}-icon`,
                     {
-                        [`${this.$amvue.$options.ComponentPrefix}-icon-loading`]: this.loading,
+                        [`am-icon-loading`]: this.loading,
                     }
                 ];
             },
