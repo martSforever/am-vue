@@ -16,14 +16,14 @@
             </div>
         </div>
         <div class="desc">
-            <div class="desc-title">2、使用font regular icon</div>
+            <div class="desc-title">2、使用font awesome的 regular icon</div>
             <div>
                 <am-highlight html='<am-icon icon="far-sun"/>'/>
                 <am-icon icon="far-sun"/>
             </div>
         </div>
         <div class="desc">
-            <div class="desc-title">3、使用font solid icon</div>
+            <div class="desc-title">3、使用font awesome的 solid icon</div>
             <div>
                 <am-highlight html='<am-icon icon="fas-font"/>'/>
                 <am-icon icon="fas-font"/>
@@ -37,9 +37,13 @@
             </div>
         </div>
 
+        <div class="desc">
+            <div class="desc-title">4、因为是使用的免费的icon，所以不能使用font awesome的light icon</div>
+        </div>
+
         <div class="title">阿里巴巴Iconfont</div>
         <div class="desc">
-            am-vue默认支持阿里巴巴的iconfont，只需要一下几步即可在am-icon中使用阿里巴巴iconfont
+            am-vue默认支持阿里巴巴的iconfont，只需要一下几步即可在am-icon中使用阿里巴巴iconfont，官网地址 <a href="http://www.iconfont.cn/">http://www.iconfont.cn/</a>
         </div>
 
         <div class="desc">
@@ -55,6 +59,24 @@
                 <am-icon icon="color-drink"/>
             </div>
         </div>
+
+        <div class="title"></div>
+        <div class="desc-title">icon的loading状态</div>
+        <div>
+            <am-highlight html='<am-icon icon="fas-font" :loading="true"/>'/>
+            <am-icon icon="fas-font" :loading="true"/>
+        </div>
+        <div class="desc-title">快速设置大小</div>
+        <div>
+            <am-highlight html='<am-icon icon="fas-font" size="36px"/>'/>
+            <am-icon icon="fas-font" size="36px"/>
+        </div>
+        <div class="desc-title">快速设置颜色</div>
+        <div>
+            <am-highlight html='<am-icon icon="fas-font" color="blue"/>'/>
+            <am-icon icon="fas-font" color="blue"/>
+        </div>
+
 
 
     </div>
