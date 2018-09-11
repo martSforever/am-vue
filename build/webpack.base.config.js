@@ -84,7 +84,7 @@ module.exports = {
                         },
                     },
                     {
-                        loader: '\'autoprefixer-loader\'',
+                        loader: 'autoprefixer-loader',
                     },
                 ]
             },
@@ -166,6 +166,7 @@ module.exports = {
             '@': resolve('src'),
             'src': resolve('src'),
             'examples': resolve('examples'),
+            'dist': resolve('dist'),
         }
     },
     plugins: [

@@ -24,7 +24,7 @@ module.exports = {
         path: path.resolve(__dirname, '../dist/locale'),
         publicPath: '/dist/locale/',
         filename: '[name].js',
-        library: 'iview/locale',
+        library: 'amvue/locale',
         libraryTarget: 'umd',
         umdNamedDefine: true
     },
