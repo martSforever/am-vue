@@ -1,7 +1,13 @@
 <template>
     <div class="index-example-head">
 
-        <div class="title"><h3>Welcome to Am-vue, </h3><h5>Am-vue is a component library based on vue2.0, enjoy yourself!</h5></div>
+        <div class="title">
+            <img :src="logo">
+            <div>
+                <h3>Welcome to Am-vue</h3>
+                <h5>Am-vue is a component library based on vue2.0, enjoy yourself!</h5>
+            </div>
+        </div>
         <div class="nav">
             <div class="nav-item">
                 <am-icon icon="fas-compass"/>
@@ -36,8 +42,15 @@
 </template>
 
 <script>
+    const logo = require('examples/assets/logo.png');
+
     export default {
-        name: 'index-example-head'
+        name: 'index-example-head',
+        data() {
+            return {
+                logo
+            };
+        },
     };
 </script>
 
@@ -50,8 +63,15 @@
         padding: 0 @padding;
         box-shadow: 0px 0px 5px 0px #999;
         background-color: @color-normal-background;
-        title {
+        .title {
+            height: 100%;
             color: @color-normal-title;
+            display: inline-flex;
+            align-items: center;
+            img {
+                height: 70%;
+                margin-right: 24px;
+            }
         }
         .nav {
             height: 100%;
@@ -60,19 +80,19 @@
             justify-content: space-between;
             .nav-item {
                 padding: 0 12px;
-                color: #999;
+                color: @color-normal-sub-color;
                 height: 100%;
                 display: flex;
                 align-items: center;
                 cursor: pointer;
                 border-bottom: solid 2px transparent;
-
+                .transition-all();
                 .am-icon {
                     margin-right: 12px;
                 }
                 &:hover {
-                    color: black;
-                    border-bottom: solid 2px black;
+                    color: @color-primary;
+                    border-bottom: solid 2px @color-primary;
                 }
             }
         }

@@ -62,7 +62,7 @@
         width: 220px;
         overflow-y: auto;
         border-right: solid 1px #ddd;
-        padding-top: 24px;
+        padding: 24px 0;
         .menu-item {
             width: 100%;
             padding: 0 12px;
