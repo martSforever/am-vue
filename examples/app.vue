@@ -1,22 +1,21 @@
 <template>
-    <div class="app" :style="{fontFamily:PFFontFamily}">
-        <router-view/>
+    <div class="app">
+        app vue
     </div>
 </template>
 <script>
-    import PFFontFamily from 'examples/styles/library/PingFang Medium.ttf';
 
 
     export default {
         name: 'app',
         data() {
-            return {
-                PFFontFamily
-            };
+            return {};
         },
     };
 </script>
 
-<style lang="less">
-
+<style lang="scss">
+    div {
+        color: $color-red;
+    }
 </style>

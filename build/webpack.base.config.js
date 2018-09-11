@@ -29,7 +29,7 @@ module.exports = {
                                 },
                             },
                         ],
-                        less: [
+                        scss: [
                             'vue-style-loader',
                             {
                                 loader: 'css-loader',
@@ -38,7 +38,7 @@ module.exports = {
                                 },
                             },
                             {
-                                loader: 'less-loader',
+                                loader: 'sass-loader',
                                 options: {
                                     sourceMap: true,
                                 },
@@ -47,8 +47,7 @@ module.exports = {
                                 loader: 'sass-resources-loader',
                                 options: {
                                     resources: [
-                                        resolve('src/styles/variables.less'),
-                                        resolve('src/styles/mixins/transition.less'),
+                                        resolve('src/styles/variables.scss'),
                                     ]
                                 }
                             },
