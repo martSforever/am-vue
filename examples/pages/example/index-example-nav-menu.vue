@@ -33,7 +33,7 @@
                         children: [
                             {name: 'color', icon: 'color-board', url: 'color'},
                             {name: 'icon', icon: 'color-drink', url: 'icon'},
-                            {name: 'button', icon: 'color-play', url: ''},
+                            {name: 'button', icon: 'color-play', url: 'button'},
                             {name: 'i18n', icon: 'color-net', url: ''},
 
                         ]

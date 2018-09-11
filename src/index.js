@@ -1,7 +1,9 @@
 import icon from 'src/components/am-icon';
+import button from 'src/components/am-button';
 
 const components = {
     icon,
+    button
 };
 
 let $amvue = {};

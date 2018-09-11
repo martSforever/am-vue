@@ -17,6 +17,11 @@ export default {
             component: resolve => require(['examples/pages/example/components/color-example.vue'], resolve),
         },
         {
+            path: '/button',
+            name: 'button',
+            component: resolve => require(['examples/pages/example/components/button-example.vue'], resolve),
+        },
+        {
             path: '/input',
             name: 'input',
             component: resolve => require(['examples/pages/example/components/input-example.vue'], resolve),
