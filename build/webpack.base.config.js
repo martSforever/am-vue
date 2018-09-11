@@ -48,6 +48,7 @@ module.exports = {
                                 options: {
                                     resources: [
                                         resolve('src/styles/variables.scss'),
+                                        resolve('src/styles/mixins/index.scss'),
                                     ]
                                 }
                             },
