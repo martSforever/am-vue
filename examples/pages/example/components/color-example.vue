@@ -1,5 +1,5 @@
 <template>
-    <div class="color-example">
+    <div class="color-example example-page">
         <div class="color-group"
              v-for="(colorGroup,groupIndex) in colorGroups"
              :key="groupIndex">
@@ -71,21 +71,7 @@
 
 <style lang="less">
     .color-example {
-        padding-left: 24px;
-        .title {
-            font-size: 18px;
-            color: @color-normal-title;
-            height: 64px;
-            line-height: 64px;
-        }
         .content {
-            padding-left: 24px;
-            .desc {
-                font-size: 16px;
-                height: 48px;
-                line-height: 48px;
-                color: @color-normal-content;
-            }
             .color-item {
                 height: 64px;
                 width: 200px;
