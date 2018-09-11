@@ -1,7 +1,7 @@
 <template>
     <div class="index-example-head">
-        <h3>Welcome to Am-vue, Am-vue is a component library based on vue2.0, enjoy yourself!</h3>
 
+        <div class="title"><h3>Welcome to Am-vue, </h3><h5>Am-vue is a component library based on vue2.0, enjoy yourself!</h5></div>
         <div class="nav">
             <div class="nav-item">
                 <am-icon icon="fas-compass"/>
@@ -49,7 +49,10 @@
         justify-content: space-between;
         padding: 0 @padding;
         box-shadow: 0px 0px 5px 0px #999;
-
+        background-color: @color-normal-background;
+        title {
+            color: @color-normal-title;
+        }
         .nav {
             height: 100%;
             display: flex;
