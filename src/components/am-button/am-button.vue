@@ -1,5 +1,6 @@
 <template>
     <button class="am-button"
+            v-effect
             :class="[`am-button-${type}`,`am-button-color-${color}`,`am-button-${size}`]">
         <slot></slot>
     </button>
@@ -7,9 +8,13 @@
 
 <script>
     import {oneOf} from '../../script/utils';
+    import Effect from '../../directives/effect'
 
     export default {
         name: 'am-button',
+        directives: {
+            Effect
+        },
         props: {
             type: {
                 type: String,
