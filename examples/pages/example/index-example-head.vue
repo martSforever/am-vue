@@ -43,7 +43,7 @@
 
 <style lang="less">
     .index-example-head {
-        height: 6vh;
+        height: 64px;
         display: flex;
         align-items: center;
         justify-content: space-between;
