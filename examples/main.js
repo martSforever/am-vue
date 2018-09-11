@@ -12,7 +12,7 @@ import router from './router';
 import Amvue from 'src';
 import './styles/index.less';
 
-Vue.use(Amvue, {ComponentPrefix: 'am', IconfontPrefix: 'ali-icon'});
+Vue.use(Amvue, {IconfontPrefix: 'ali-icon'});
 // 开启debug模式
 Vue.config.debug = true;
 
