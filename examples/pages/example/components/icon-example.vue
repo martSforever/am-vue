@@ -9,22 +9,58 @@
 
         </div>
         <div class="desc">
-
+            <div class="desc-title">1、使用font awesome的brand icon</div>
+            <div>
+                <am-icon icon="fab-fort-awesome"/>
+                <am-highlight html='<am-icon icon="fas-heart"/>'/>
+            </div>
+        </div>
+        <div class="desc">
+            <div class="desc-title">2、使用font regular icon</div>
+            <div>
+                <am-icon icon="far-sun"/>
+                <am-highlight html='<am-icon icon="far-sun"/>'/>
+            </div>
+        </div>
+        <div class="desc">
+            <div class="desc-title">3、使用font solid icon</div>
+            <div>
+                <am-icon icon="fas-font"/>
+                <am-highlight html='<am-icon icon="fas-font"/>'/>
+            </div>
         </div>
 
-        <am-icon icon="fas-heart"/>
-        <am-icon icon="fas-heart" :loading="true"/>
-        <am-icon icon="fas-heart" size="20px"/>
-        <am-icon icon="fas-heart" color="red"/>
+        <div class="desc">
+            <div class="desc-title">font-awesome官方的使用方法本来是传入一个数组，经过amvue封装之后，只需要传入对应字符串即可</div>
+            <div>
+                <am-highlight html='<font-awesome-icon :icon="["fas","user"]"/>'/>
+            </div>
+        </div>
+
+
     </div>
 </template>
 
 <script>
+    import AmHighlight from '../../../../src/components/am-highlight/am-highlight';
+
     export default {
-        name: 'icon-example'
+        name: 'icon-example',
+        components: {AmHighlight},
+        data() {
+            return {};
+        },
     };
 </script>
 
 <style lang="less">
-
+    .icon-example {
+        .desc {
+            .desc-title {
+                height: 36px;
+                line-height: 36px;
+                display: inline-block;
+            }
+        }
+    }
 </style>
