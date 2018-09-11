@@ -1,12 +1,6 @@
-@icon-prefix: ~"@{prefix}-icon";
-
-.@{icon-prefix} {
-    &.@{icon-prefix}-loading {
-        animation: am-rotating @animation-duration linear infinite;
-    }
-}
-
 .am-icon {
+
+    /*阿里巴巴icon设置*/
     &.am-iconfont {
         width: 1em;
         height: 1em;
@@ -14,4 +8,10 @@
         fill: currentColor;
         overflow: hidden;
     }
+
+    /*旋转按钮*/
+    &.am-icon-loading {
+        animation: am-rotating @animation-duration linear infinite;
+    }
+
 }
