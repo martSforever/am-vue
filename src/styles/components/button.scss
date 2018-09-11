@@ -1,0 +1,19 @@
+.am-button {
+    border: none;
+    background: none;
+    outline: none;
+    padding: 0 $padding;
+    cursor: pointer;
+
+    &.am-button-default {
+        height: $size-default;
+        font-size: $size-default/2;
+    }
+
+    &.am-button-fill {
+        &.am-button-color-primary {
+            background-color: $color-primary;
+            color: white;
+        }
+    }
+}

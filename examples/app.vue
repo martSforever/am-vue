@@ -16,6 +16,5 @@
 
 <style lang="scss">
     div {
-        color: $color-red;
     }
 </style>
