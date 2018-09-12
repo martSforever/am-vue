@@ -20,6 +20,7 @@
             },
             size: null,
             color: null,
+            className: {},
         },
         computed: {
             targetComponent() {
@@ -38,11 +39,13 @@
                 }
             },
             classes() {
-                return [
+                let ret = [
                     {
                         [`am-icon-loading`]: this.loading,
                     }
                 ];
+                !!this.className && (ret.push(this.className));
+                return ret;
             },
             styles() {
                 let ret = {};

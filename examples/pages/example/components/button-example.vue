@@ -59,6 +59,20 @@
             <am-button shape="none">none</am-button>
         </div>
 
+        <div class="title">快速设置文字（当存在默认插槽，label属性不起作用）</div>
+        <div>
+            <am-button label="label"/>
+        </div>
+
+        <div class="title">图标按钮（当存在默认插槽，icon属性不起作用）</div>
+        <div>
+            <am-button label='icon="fas-plus"' icon="fas-plus"/>
+            <am-button label="icon-loading" icon="fas-spinner" icon-loading/>
+            <am-button label='icon-position="left"(default)' icon="fas-plus" icon-position="left"/>
+            <am-button label='icon-position="right"' icon="fas-plus" icon-position="right"/>
+            <am-button icon="fas-plus" icon-only/>
+        </div>
+
     </div>
 </template>
 

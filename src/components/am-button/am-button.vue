@@ -2,7 +2,13 @@
     <button class="am-button"
             v-effect
             :class="classes">
-        <slot></slot>
+        <slot>
+            <am-icon :icon="icon" v-if="!!icon && iconPosition === 'left'" :loading="iconLoading"
+                     class="am-button-icon"/>
+            <span class="am-button-label">{{label}}</span>
+            <am-icon :icon="icon" v-if="!!icon && iconPosition === 'right'" :loading="iconLoading"
+                     class="am-button-icon"/>
+        </slot>
     </button>
 </template>
 
@@ -47,6 +53,20 @@
             dashed: {
                 type: Boolean,
             },
+            label: {},
+            icon: {
+                type: String,
+            },
+            iconLoading: {
+                type: Boolean,
+            },
+            iconPosition: {
+                type: String,
+                default: 'left',
+            },
+            iconOnly: {
+                type: Boolean,
+            },
         },
         computed: {
             classes() {
@@ -54,9 +74,10 @@
                     `am-button-${this.type}`,
                     `am-button-color-${this.color}`,
                     `am-button-${this.size}`,
-                    `am-button-${this.shape}`,
+                    `am-button-${!!this.iconOnly ? 'round' : this.shape}`,
                     {
                         'am-button-dashed': !!this.dashed,
+                        [`am-button-icon-only-${this.size}`]: !!this.iconOnly,
                     }
                 ];
             },
