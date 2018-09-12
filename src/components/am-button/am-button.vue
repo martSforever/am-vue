@@ -15,9 +15,13 @@
 <script>
     import Effect from '../../directives/effect';
     import {oneOf} from '../../scripts/utils';
+    import AmIcon from '../am-icon';
 
     export default {
         name: 'am-button',
+        components: {
+            AmIcon
+        },
         directives: {
             Effect
         },
