@@ -1,0 +1,95 @@
+/*---------------------------------------variables-------------------------------------------*/
+
+$cell-num: 24;
+
+/*屏幕大小*/
+/*$screen-xs*/
+$screen-sm: 768px;
+$screen-md: 992px;
+$screen-lg: 1200px;
+$screen-xl: 1920px;
+
+$screens: (
+    xs:(max-width:$screen-sm),
+    sm:(min-width:$screen-sm),
+    md:(min-width:$screen-md),
+    lg:(min-width:$screen-lg),
+    xl:(min-width:$screen-xl),
+);
+
+$flexs: (
+    start:(justify-content:flex-start),
+    center:(justify-content:center),
+    end:(justify-content:flex-end),
+    space-between:(justify-content:space-between),
+    space-around:(justify-content:space-around),
+    top:(align-items:flex-start),
+    middle:(align-items:center),
+    bottom:(align-items:flex-end),
+);
+
+/*---------------------------------------grid styles-------------------------------------------*/
+
+.am-row {
+    height: auto;
+    position: relative;
+    display: block;
+    @include clear-fix;
+    &, & * {
+        box-sizing: border-box;
+    }
+
+    /*flex布局*/
+    &.am-row-flex {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        &:before,
+        &:after {
+            display: flex;
+        }
+        /*flex布局*/
+        @each $flexType, $flexValue in $flexs {
+            &.am-row-flex-#{$flexType} {
+                @each $key, $value in $flexValue {
+                    #{$key}: #{$value}
+                }
+            }
+        }
+    }
+    /*响应式*/
+    .am-col {
+        display: block;
+        float: left;
+
+        @for $i from 1 through $cell-num {
+            &.am-col-span-#{$i} {
+                width: (1 / $cell-num * $i * 100) * 1%;
+            }
+            &.am-col-offset-#{$i} {
+                margin-left: (1 / $cell-num * $i * 100) * 1%;
+            }
+            &.am-col-pull-#{$i} {
+                position: relative;
+                right: (1 / $cell-num * $i * 100) * 1%;
+            }
+            &.am-col-push-#{$i} {
+                position: relative;
+                left: (1 / $cell-num * $i * 100) * 1%;
+            }
+            &.am-col-order-#{$i} {
+                order: $i;
+            }
+        }
+
+        @each $size, $px in $screens {
+            @include res(inspect($size)) {
+                @for $i from 1 through $cell-num {
+                    &.am-col-#{$size}-#{$i} {
+                        width: (1 / $cell-num * $i * 100) * 1%;
+                    }
+                }
+            }
+        }
+    }
+}

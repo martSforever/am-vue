@@ -41,7 +41,7 @@
                     {
                         name: 'layout',
                         children: [
-                            {name: 'grid', icon: 'color-grid', url: ''},
+                            {name: 'grid', icon: 'color-grid', url: 'grid'},
                             {name: 'carousel', icon: 'color-window', url: ''},
                             {name: 'tree', icon: 'color-tree', url: ''},
 

@@ -3,11 +3,16 @@ import './styles/index.scss';
 import icon from './components/am-icon';
 import button from './components/am-button';
 import buttonGroup from './components/am-button/am-button-group';
+import col from './components/am-grid/am-col';
+import row from './components/am-grid/am-row';
 
 const components = {
     icon,
     button,
     'button-group': buttonGroup,
+    col,
+    row,
+
 };
 
 let $amvue = {};

@@ -26,5 +26,10 @@ export default {
             name: 'input',
             component: resolve => require(['examples/pages/example/components/input-example.vue'], resolve),
         },
+        {
+            path: '/grid',
+            name: 'grid',
+            component: resolve => require(['examples/pages/example/components/grid-example.vue'], resolve),
+        },
     ]
 };
