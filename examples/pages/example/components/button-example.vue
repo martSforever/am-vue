@@ -72,6 +72,10 @@
             <am-button label='icon-position="right"' icon="fas-plus" icon-position="right"/>
             <am-button icon="fas-plus" icon-only/>
         </div>
+        <div class="title">长按钮</div>
+        <div>
+            <am-button label='long' long/>
+        </div>
 
     </div>
 </template>

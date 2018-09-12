@@ -67,6 +67,9 @@
             iconOnly: {
                 type: Boolean,
             },
+            long: {
+                type: Boolean
+            },
         },
         computed: {
             classes() {
@@ -77,6 +80,7 @@
                     `am-button-${!!this.iconOnly ? 'round ' : this.shape}`,
                     {
                         'am-button-dashed': !!this.dashed,
+                        'am-button-long': !!this.long,
                         [`am-button-icon-only-${this.size}`]: !!this.iconOnly,
                     }
                 ];
