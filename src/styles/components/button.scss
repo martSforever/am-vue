@@ -7,10 +7,6 @@
     box-sizing: border-box;
     display: flex;
 
-    &.am-button-long {
-        width: 100%;
-    }
-
     /*size*/
     @each $key, $value in $list-size {
         &.am-button-#{$key} {
@@ -71,4 +67,16 @@
         top: 1px;
         left: 1px;
     }
+
+    &.am-button-long {
+        width: 100%;
+    }
+
+    &.am-button-disabled {
+        background-color: $color-normal-disabled !important;
+        color: $color-normal-sub-color !important;;
+        border-color: $color-normal-disabled !important;;
+        cursor: not-allowed;
+    }
+
 }

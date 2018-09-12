@@ -6,7 +6,7 @@ import {oneOf} from "../scripts/utils";
 export default {
     inserted(el, binding, vnode) {
         let classes = binding.arg;
-        let allClass = ['light', 'deep', 'float', 'circle', 'button', 'ripple'];
+        let allClass = ['deep', 'light', 'float', 'circle', 'button', 'ripple'];
         if (!(oneOf(classes, allClass))) {
             classes = allClass[0];
         }

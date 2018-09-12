@@ -2,7 +2,8 @@
     <button class="am-button"
             v-effect
             :disabled="disabled"
-            :class="classes">
+            :class="classes"
+            @click="handleClick">
         <slot>
             <am-icon :icon="icon" v-if="!!icon && iconPosition === 'left'" :loading="iconLoading"
                      class="am-button-icon"/>
@@ -85,9 +86,15 @@
                     {
                         'am-button-dashed': !!this.dashed,
                         'am-button-long': !!this.long,
+                        'am-button-disabled': !!this.disabled,
                         [`am-button-icon-only-${this.size}`]: !!this.iconOnly,
                     }
                 ];
+            },
+        },
+        methods: {
+            handleClick(e) {
+                if (!this.disabled) this.$emit('click', e);
             },
         },
     };

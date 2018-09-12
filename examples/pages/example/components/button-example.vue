@@ -78,6 +78,7 @@
         </div>
         <div class="title">禁用按钮</div>
         <div>
+            <am-button label='not disabled' @click="sayHello"/>
             <am-button label='disabled' disabled/>
         </div>
 
@@ -86,7 +87,12 @@
 
 <script>
     export default {
-        name: 'button-example'
+        name: 'button-example',
+        methods:{
+            sayHello(){
+                alert('hello');
+            },
+        },
     };
 </script>
 
