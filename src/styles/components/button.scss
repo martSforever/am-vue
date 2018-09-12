@@ -6,7 +6,6 @@
     cursor: pointer;
     box-sizing: border-box;
     display: flex;
-
     /*size*/
     @each $key, $value in $list-size {
         &.am-button-#{$key} {
@@ -18,14 +17,12 @@
             padding: 0;
         }
     }
-
     /*shape*/
     @each $key, $value in $list-shape {
         &.am-button-shape-#{$key} {
             border-radius: $value;
         }
     }
-
     /*fill type*/
     &.am-button-fill {
         @each $key, $value in $list-color {
@@ -36,7 +33,6 @@
             }
         }
     }
-
     /*line type*/
     &.am-button-line {
         @each $key, $value in $list-color {
@@ -60,23 +56,19 @@
             }
         }
     }
-
     /*tap style*/
     &:active {
         position: relative;
         top: 1px;
         left: 1px;
     }
-
     &.am-button-long {
         width: 100%;
     }
-
     &.am-button-disabled {
         background-color: $color-normal-disabled !important;
         color: $color-normal-sub-color !important;;
         border-color: $color-normal-disabled !important;;
         cursor: not-allowed;
     }
-
 }
