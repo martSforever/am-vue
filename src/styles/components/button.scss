@@ -4,7 +4,9 @@
     outline: none;
     padding: 0 $padding;
     cursor: pointer;
+    box-sizing: border-box;
 
+    /*size*/
     @each $key, $value in $list-size {
         &.am-button-#{$key} {
             height: $value;
@@ -12,18 +14,49 @@
         }
     }
 
+    /*shape*/
     @each $key, $value in $list-shape {
         &.am-button-#{$key} {
             border-radius: $value;
         }
     }
 
+    /*fill type*/
     &.am-button-fill {
         @each $key, $value in $list-color {
             &.am-button-color-#{$key} {
                 background-color: $value;
+                border: solid 1px $value;
                 color: white;
             }
         }
+    }
+
+    /*line type*/
+    &.am-button-line {
+        @each $key, $value in $list-color {
+            &.am-button-color-#{$key} {
+                border: solid 1px $value;
+                background: transparent;
+                color: $value;
+            }
+        }
+    }
+    /*none type*/
+    &.am-button-none {
+        @each $key, $value in $list-color {
+            &.am-button-color-#{$key} {
+                border: solid 1px transparent;
+                background: transparent;
+                color: $value;
+            }
+        }
+    }
+
+    /*tap style*/
+    &:active {
+        position: relative;
+        top: 1px;
+        left: 1px;
     }
 }
