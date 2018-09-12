@@ -81,7 +81,7 @@
         <div class="title">禁用按钮</div>
         <div>
             <am-button label='not disabled' @click="sayHello"/>
-            <am-button label='disabled' disabled/>
+            <am-button label='disabled' disabled icon="fas-spinner" icon-loading/>
         </div>
 
     </div>
