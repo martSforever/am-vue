@@ -21,7 +21,7 @@
 
     /*shape*/
     @each $key, $value in $list-shape {
-        &.am-button-#{$key} {
+        &.am-button-shape-#{$key} {
             border-radius: $value;
         }
     }

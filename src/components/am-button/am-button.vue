@@ -82,7 +82,7 @@
                     `am-button-${this.type}`,
                     `am-button-color-${this.color}`,
                     `am-button-${this.size}`,
-                    `am-button-${!!this.iconOnly ? 'round ' : this.shape}`,
+                    `am-button-shape-${!!this.iconOnly ? 'round ' : this.shape}`,
                     {
                         'am-button-dashed': !!this.dashed,
                         'am-button-long': !!this.long,
