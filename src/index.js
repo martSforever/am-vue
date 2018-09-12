@@ -1,3 +1,5 @@
+import './styles/index.scss'
+
 import icon from 'src/components/am-icon';
 import button from 'src/components/am-button';
 
