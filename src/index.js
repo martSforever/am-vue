@@ -1,8 +1,8 @@
 import './styles/index.scss';
 
-import icon from 'src/components/am-icon';
-import button from 'src/components/am-button';
-import buttonGroup from 'src/components/am-button/am-button-group';
+import icon from './components/am-icon';
+import button from './components/am-button';
+import buttonGroup from './components/am-button/am-button-group';
 
 const components = {
     icon,
