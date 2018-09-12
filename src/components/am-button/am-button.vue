@@ -1,6 +1,7 @@
 <template>
     <button class="am-button"
             v-effect
+            :disabled="disabled"
             :class="classes">
         <slot>
             <am-icon :icon="icon" v-if="!!icon && iconPosition === 'left'" :loading="iconLoading"
@@ -69,6 +70,9 @@
             },
             long: {
                 type: Boolean
+            },
+            disabled: {
+                type: Boolean,
             },
         },
         computed: {

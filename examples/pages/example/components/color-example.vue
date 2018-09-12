@@ -44,7 +44,7 @@
                         name: '辅助色',
                         desc: '辅助色是具有代表性的颜色，常用于信息提示，比如成功、警告和失败。',
                         children: [
-                            {name: 'Info', color: '#61CCFA'},
+                            {name: 'Info', color: '#808695'},
                             {name: 'Success', color: '#43B973'},
                             {name: 'Warning', color: '#FFEE00'},
                             {name: 'Error', color: '#ED4114'},

@@ -76,6 +76,10 @@
         <div>
             <am-button label='long' long/>
         </div>
+        <div class="title">禁用按钮</div>
+        <div>
+            <am-button label='disabled' disabled/>
+        </div>
 
     </div>
 </template>
