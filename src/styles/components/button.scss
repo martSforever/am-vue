@@ -41,6 +41,9 @@
                 color: $value;
             }
         }
+        &.am-button-dashed {
+            border-style: dashed;
+        }
     }
     /*none type*/
     &.am-button-none {

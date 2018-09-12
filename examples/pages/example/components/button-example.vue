@@ -36,6 +36,15 @@
             <am-button color="error" type="none">error</am-button>
         </div>
 
+        <div class="title">按钮虚线边框</div>
+        <div style="margin-bottom: 12px">
+            <am-button color="primary" type="line" dashed>primary(default)</am-button>
+            <am-button color="info" type="line" dashed>info</am-button>
+            <am-button color="success" type="line" dashed>success</am-button>
+            <am-button color="warn" type="line" dashed>warn</am-button>
+            <am-button color="error" type="line" dashed>error</am-button>
+        </div>
+
         <div class="title">按钮大小</div>
         <div>
             <am-button size="large">large</am-button>

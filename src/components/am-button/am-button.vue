@@ -44,6 +44,9 @@
                     return oneOf(val, ['fillet', 'round', 'none']);
                 },
             },
+            dashed: {
+                type: Boolean,
+            },
         },
         computed: {
             classes() {
@@ -52,6 +55,9 @@
                     `am-button-color-${this.color}`,
                     `am-button-${this.size}`,
                     `am-button-${this.shape}`,
+                    {
+                        'am-button-dashed': !!this.dashed,
+                    }
                 ];
             },
         },
