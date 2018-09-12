@@ -5,9 +5,11 @@
     padding: 0 $padding;
     cursor: pointer;
 
-    &.am-button-default {
-        height: $size-default;
-        font-size: $size-default/2;
+    @each $key, $value in $list-size {
+        &.am-button-#{$key} {
+            height: $value;
+            font-size: $value/2;
+        }
     }
 
     &.am-button-fill {
