@@ -1,11 +1,13 @@
-import './styles/index.scss'
+import './styles/index.scss';
 
 import icon from 'src/components/am-icon';
 import button from 'src/components/am-button';
+import buttonGroup from 'src/components/am-button/am-button-group';
 
 const components = {
     icon,
-    button
+    button,
+    'button-group': buttonGroup,
 };
 
 let $amvue = {};

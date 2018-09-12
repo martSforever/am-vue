@@ -84,6 +84,67 @@
             <am-button label='disabled' disabled icon="fas-spinner" icon-loading/>
         </div>
 
+        <div class="title">按钮组</div>
+        <div style="margin-bottom: 12px">
+            <am-button-group>
+                <am-button>position</am-button>
+                <am-button color="success">dashed</am-button>
+                <am-button>organization</am-button>
+                <am-button dashed>dashed</am-button>
+            </am-button-group>
+        </div>
+
+        <div style="margin-bottom: 12px">
+            <am-button-group>
+                <am-button dashed>position</am-button>
+                <am-button dashed>dashed</am-button>
+                <am-button dashed>organization</am-button>
+                <am-button dashed>dashed</am-button>
+            </am-button-group>
+        </div>
+        <div style="margin-bottom: 12px">
+            <am-button-group>
+                <am-button type="line">position</am-button>
+                <am-button type="line">dashed</am-button>
+                <am-button type="line">organization</am-button>
+                <am-button type="line">dashed</am-button>
+            </am-button-group>
+        </div>
+        <div style="margin-bottom: 12px">
+            <am-button-group size="large">
+                <am-button type="line">position</am-button>
+                <am-button type="line">dashed</am-button>
+                <am-button type="line">organization</am-button>
+                <am-button type="line">dashed</am-button>
+            </am-button-group>
+            <am-button-group size="default">
+                <am-button type="line">position</am-button>
+                <am-button type="line">dashed</am-button>
+                <am-button type="line">organization</am-button>
+                <am-button type="line">dashed</am-button>
+            </am-button-group>
+            <am-button-group size="small">
+                <am-button type="line">position</am-button>
+                <am-button type="line">dashed</am-button>
+                <am-button type="line">organization</am-button>
+                <am-button type="line">dashed</am-button>
+            </am-button-group>
+        </div>
+        <div style="margin-bottom: 12px">
+            <am-button-group vertical>
+                <am-button type="line">position</am-button>
+                <am-button type="line">dashed</am-button>
+                <am-button type="line">organization</am-button>
+                <am-button type="line">dashed</am-button>
+            </am-button-group>
+            <am-button-group vertical>
+                <am-button dashed>position</am-button>
+                <am-button dashed>dashed</am-button>
+                <am-button dashed>organization</am-button>
+                <am-button dashed>dashed</am-button>
+            </am-button-group>
+        </div>
+
     </div>
 </template>
 

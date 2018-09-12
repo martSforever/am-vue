@@ -79,9 +79,9 @@
         computed: {
             classes() {
                 return [
-                    `am-button-${this.type}`,
+                    `am-button-${!!this.dashed ? 'line' : this.type}`,
                     `am-button-color-${this.color}`,
-                    `am-button-${this.size}`,
+                    `am-button-${!!this.groupSize ? this.groupSize : this.size}`,
                     `am-button-shape-${!!this.iconOnly ? 'round ' : this.shape}`,
                     {
                         'am-button-dashed': !!this.dashed,
@@ -90,6 +90,9 @@
                         [`am-button-icon-only-${this.size}`]: !!this.iconOnly,
                     }
                 ];
+            },
+            groupSize() {
+                return (this.$parent.$options.name === 'am-button-group') ? this.$parent.size : null;
             },
         },
         methods: {
