@@ -17,7 +17,7 @@ $color-primary-dark:#0F549C;                    //主色调：重
 
 $color-info:#61CCFA;                            //提示
 $color-success:#43B973;                         //成功
-$color-warn:#FFEE00;                         //警告
+$color-warn:#ffc41d;                            //警告
 $color-error:#ED4114;                           //失败
 
 $color-normal-title:#17233d;                    //标题
@@ -30,10 +30,10 @@ $color-normal-background:#f8f8f9;               //背景色
 
 $list-color:(
     primary:$color-primary,
-    info:$color-primary,
-    success:$color-primary,
-    warn:$color-primary,
-    error:$color-primary,
+    info:$color-info,
+    success:$color-success,
+    warn:$color-warn,
+    error:$color-error,
 );
 
 /*---------------------------------------size-------------------------------------------*/
@@ -46,5 +46,14 @@ $list-size:(
     default:$size-default,
     small:$size-small,
 );
+/*---------------------------------------shape-------------------------------------------*/
+$shape-fillet:4px;
+$shape-round:3000px;
+$shape-none:0;
 
+$list-shape:(
+    fillet:$shape-fillet,
+    round:$shape-round,
+    none:$shape-none,
+);
 /*@formatter:on*/

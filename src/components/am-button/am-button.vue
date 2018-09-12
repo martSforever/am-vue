@@ -1,14 +1,14 @@
 <template>
     <button class="am-button"
             v-effect
-            :class="[`am-button-${type}`,`am-button-color-${color}`,`am-button-${size}`]">
+            :class="classes">
         <slot></slot>
     </button>
 </template>
 
 <script>
-    import Effect from '../../directives/effect'
-    import {oneOf} from "../../scripts/utils";
+    import Effect from '../../directives/effect';
+    import {oneOf} from '../../scripts/utils';
 
     export default {
         name: 'am-button',
@@ -36,6 +36,23 @@
                 validator(val) {
                     return oneOf(val, ['default', 'large', 'small']);
                 },
+            },
+            shape: {
+                type: String,
+                default: 'fillet',
+                validator(val) {
+                    return oneOf(val, ['fillet', 'round', 'none']);
+                },
+            },
+        },
+        computed: {
+            classes() {
+                return [
+                    `am-button-${this.type}`,
+                    `am-button-color-${this.color}`,
+                    `am-button-${this.size}`,
+                    `am-button-${this.shape}`,
+                ];
             },
         },
     };

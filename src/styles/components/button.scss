@@ -12,10 +12,18 @@
         }
     }
 
+    @each $key, $value in $list-shape {
+        &.am-button-#{$key} {
+            border-radius: $value;
+        }
+    }
+
     &.am-button-fill {
-        &.am-button-color-primary {
-            background-color: $color-primary;
-            color: white;
+        @each $key, $value in $list-color {
+            &.am-button-color-#{$key} {
+                background-color: $value;
+                color: white;
+            }
         }
     }
 }
