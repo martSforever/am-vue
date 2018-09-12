@@ -64,9 +64,10 @@
             <am-button label="label"/>
         </div>
 
-        <div class="title">图标按钮（当存在默认插槽，icon属性不起作用）</div>
+        <div class="title">图标按钮（当存在默认插槽，icon属性还是会起作用的）</div>
         <div>
             <am-button label='icon="fas-plus"' icon="fas-plus"/>
+            <am-button label='icon="fas-plus"' icon="fas-plus">this is slot</am-button>
             <am-button label="icon-loading" icon="fas-spinner" icon-loading/>
             <am-button label='icon-position="left"(default)' icon="fas-plus" icon-position="left"/>
             <am-button label='icon-position="right"' icon="fas-plus" icon-position="right"/>
