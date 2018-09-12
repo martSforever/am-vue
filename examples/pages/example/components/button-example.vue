@@ -71,6 +71,8 @@
             <am-button label='icon-position="left"(default)' icon="fas-plus" icon-position="left"/>
             <am-button label='icon-position="right"' icon="fas-plus" icon-position="right"/>
             <am-button icon="fas-plus" icon-only/>
+            <am-button icon="fas-check" icon-only color="success"/>
+            <am-button icon="fas-times" icon-only color="error"/>
         </div>
         <div class="title">长按钮</div>
         <div>
@@ -88,8 +90,8 @@
 <script>
     export default {
         name: 'button-example',
-        methods:{
-            sayHello(){
+        methods: {
+            sayHello() {
                 alert('hello');
             },
         },
