@@ -28,13 +28,13 @@ module.exports = merge(webpackBaseConfig, {
     },
     resolve: {
         alias: {
-            amvue: '../../src/index',
-            vue: 'vue/dist/vue.esm.js'
+            vue: 'vue/dist/vue.esm.js',
+            amvue: path.join(__dirname, '../src/index.js'),
             // vue: 'vue/dist/vue.runtime.js'
         }
     },
     plugins: [
-        new webpack.optimize.CommonsChunkPlugin({ name: 'vendors', filename: 'vendor.bundle.js' }),
+        new webpack.optimize.CommonsChunkPlugin({name: 'vendors', filename: 'vendor.bundle.js'}),
         new HtmlWebpackPlugin({
             inject: true,
             filename: path.join(__dirname, '../examples/dist/index.html'),

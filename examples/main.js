@@ -6,8 +6,8 @@ import Vue from 'vue';
 import App from './app.vue';
 import router from './router';
 
-// import Amvue from 'dist/amvue.min';
-import Amvue from 'src';
+import Amvue from 'amvue';
+// import Amvue from 'src';
 
 import './styles/index.scss';
 

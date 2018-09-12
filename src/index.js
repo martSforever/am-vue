@@ -26,6 +26,6 @@ function install(vue, options) {
     /*@formatter:on*/
 }
 
-export default {
+module.exports.default = module.exports = {
     install,
 };
