@@ -24,11 +24,11 @@
     vertical-align: bottom;
     .am-input-wrapper {
         display: inline-block;
-        flex: 1;
         height: 100%;
+        width: 150px;
         input {
             height: 100%;
-            width: 150px;
+            width: 100%;
             outline: none;
             border: none;
             display: inline-block;
@@ -113,8 +113,11 @@
     }
     &.am-input-long {
         width: 100%;
-        input {
-            width: 100%;
+        .am-input-wrapper {
+            flex: 1;
+            input {
+                width: 100%;
+            }
         }
     }
 }

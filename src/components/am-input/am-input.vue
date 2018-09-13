@@ -71,7 +71,7 @@
         },
         data() {
             return {
-                currentValue: this.value
+                currentValue: this.value,
             };
         },
         computed: {
