@@ -9,12 +9,10 @@
 
         <am-input color="error" v-model="val1" long>
             <div slot="prepend">
-                <am-icon icon="fas-times" />
-                <span>this is prepend content:</span>
+                <span>this is prepend content</span>
             </div>
             <div slot="append">
-                <am-icon icon="fas-times" />
-                <span>this is append content:</span>
+                <span>this is append content</span>
             </div>
         </am-input>
 

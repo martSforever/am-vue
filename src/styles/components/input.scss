@@ -26,10 +26,12 @@
         align-items: center;
     }
     .am-input-prefix-icon, .am-input-suffix-icon {
-        @include transition-all;
-        cursor: pointer;
-        &:hover {
-            transform: rotate(180deg);
+        .am-icon {
+            @include transition-all;
+            cursor: pointer;
+            &:hover {
+                transform: rotate(180deg);
+            }
         }
     }
 

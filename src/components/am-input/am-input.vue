@@ -3,11 +3,15 @@
         <div class="am-input-prepend" v-if="!!$slots.prepend">
             <slot name="prepend"></slot>
         </div>
-        <div class="am-input-prefix-icon"><am-icon icon="fas-plus"/></div>
+        <div class="am-input-prefix-icon">
+            <am-icon icon="fas-plus"/>
+        </div>
         <div class="am-input-wrapper">
             <input v-model="currentValue"/>
         </div>
-        <div class="am-input-suffix-icon"><am-icon icon="fas-plus"/></div>
+        <div class="am-input-suffix-icon">
+            <am-icon icon="fas-times"/>
+        </div>
         <div class="am-input-append" v-if="!!$slots.append">
             <slot name="append"></slot>
         </div>
