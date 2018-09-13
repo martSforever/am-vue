@@ -7,7 +7,8 @@
         <div class="am-input-wrapper">
             <input v-model="currentValue"
                    :placeholder="!!disabled?'':placeholder"
-                   :disabled="disabled"/>
+                   :disabled="disabled"
+            />
         </div>
         <div class="am-input-clear-icon" v-show="clearable" @click="currentValue = null">
             <am-icon icon="fas-times"/>
@@ -67,6 +68,7 @@
             placeholder: {type: String, default: '点击输入内容...'},
             disabled: {type: Boolean},
             clearable: {type: Boolean},
+            regexp: {type: RegExp},
         },
         watch: {
             value(val) {
@@ -75,12 +77,17 @@
                 }
             },
             currentValue(val) {
-                this.$emit('input', val);
+                if (this.currentValue !== this.value) {
+                    this.$emit('input', val);
+                    this.$emit('change', val);
+                    !!this.regexp && (this._replaceByRegexp());
+                }
             },
         },
         data() {
             return {
                 currentValue: this.value,
+                timer: null,
             };
         },
         computed: {
@@ -96,6 +103,19 @@
                         'am-input-dashed': !!this.dashed
                     },
                 ];
+            },
+        },
+        methods: {
+            _replaceByRegexp() {
+                if (!!this.timer) {
+                    clearTimeout(this.timer);
+                    this.timer = null;
+                }
+                this.timer = setTimeout(() => {
+                    clearTimeout(this.timer);
+                    this.timer = null;
+                    this.currentValue = this.currentValue.replace(this.regexp, '');
+                }, 300);
             },
         },
     };

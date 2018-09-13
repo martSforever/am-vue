@@ -126,6 +126,10 @@
             <am-input clearable v-model="val1"/>
             <span>{{val1}}</span>
         </div>
+        <div class="title">通过正则表达式限制输入的文本，比如这里通过:[regexp="/[^0-9.]/g"]限制只能输入数字以及小数点</div>
+        <div class="example-row">
+            <am-input clearable @change="handleChange" :regexp="/[^0-9.]/g"/>
+        </div>
 
     </div>
 </template>
@@ -140,6 +144,11 @@
             return {
                 val1: '输入框内容...',
             };
+        },
+        methods: {
+            handleChange(e) {
+                // console.log(e);
+            },
         },
     };
 </script>
