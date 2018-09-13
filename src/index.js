@@ -5,6 +5,7 @@ import button from './components/am-button';
 import buttonGroup from './components/am-button/am-button-group';
 import col from './components/am-grid/am-col';
 import row from './components/am-grid/am-row';
+import input from './components/am-input';
 
 const components = {
     icon,
@@ -12,7 +13,7 @@ const components = {
     'button-group': buttonGroup,
     col,
     row,
-
+    input,
 };
 
 let $amvue = {};

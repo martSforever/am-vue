@@ -1,0 +1,83 @@
+.am-input {
+    display: inline-flex;
+    align-items: center;
+    width: 150px;
+    box-sizing: border-box;
+
+    .am-input-wrapper {
+        display: inline-block;
+        flex: 1;
+        height: 100%;
+        input {
+            height: 100%;
+            width: 100%;
+            outline: none;
+            border: none;
+            display: inline-block;
+            padding: 0 0.5em;
+            box-sizing: border-box;
+        }
+    }
+
+    .am-input-prepend, .am-input-append, .am-input-prefix-icon, .am-input-suffix-icon {
+        padding: 0 0.5em;
+        height: 100%;
+        display: flex;
+        align-items: center;
+    }
+    .am-input-prefix-icon, .am-input-suffix-icon {
+        @include transition-all;
+        cursor: pointer;
+        &:hover {
+            transform: rotate(180deg);
+        }
+    }
+
+    @each $key, $value in $list-size {
+        &.am-input-size-#{$key} {
+            height: $value;
+            &, & input {
+                font-size: $value/2.5;
+            }
+        }
+    }
+
+    /*fill type*/
+    &.am-input-fill {
+        @each $key, $value in $list-color {
+            &.am-input-color-#{$key} {
+                border: solid 1px $value;
+                &, & input {
+                    background-color: $value;
+                    color: white;
+                }
+            }
+        }
+    }
+    /*line type*/
+    &.am-input-line {
+        @each $key, $value in $list-color {
+            &.am-input-color-#{$key} {
+                border: solid 1px $value;
+                background: transparent;
+                color: $value;
+            }
+        }
+        &.am-input-dashed {
+            border-style: dashed;
+        }
+    }
+    /*none type*/
+    &.am-input-none {
+        @each $key, $value in $list-color {
+            &.am-input-color-#{$key} {
+                border: solid 1px transparent;
+                background: transparent;
+                color: $value;
+            }
+        }
+    }
+    &.am-input-long {
+        width: 100%;
+    }
+}
