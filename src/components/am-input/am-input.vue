@@ -3,14 +3,10 @@
         <div class="am-input-prepend" v-if="!!$slots.prepend">
             <slot name="prepend"></slot>
         </div>
-        <div class="am-input-prefix-icon">
-            <am-icon icon="fas-plus"/>
-        </div>
-        <div class="am-input-wrapper">
-            <input v-model="currentValue"/>
-        </div>
-        <div class="am-input-suffix-icon">
-            <am-icon icon="fas-times"/>
+        <span class="am-input-prefix-icon" v-if="!!prefixIcon"><am-icon :icon="prefixIcon"/></span>
+        <div class="am-input-wrapper"><input v-model="currentValue" :placeholder="placeholder"/></div>
+        <div class="am-input-suffix-icon" v-if="!!suffixIcon">
+            <am-icon :icon="suffixIcon"/>
         </div>
         <div class="am-input-append" v-if="!!$slots.append">
             <slot name="append"></slot>
@@ -31,14 +27,14 @@
             value: {},
             type: {
                 type: String,
-                default: 'fill',
+                default: 'line',
                 validator(val) {
                     return oneOf(val, ['fill', 'line', 'none']);
                 },
             },
             color: {
                 type: String,
-                default: 'primary',
+                default: 'info',
                 validator(val) {
                     return oneOf(val, ['primary', 'info', 'success', 'warn', 'error', 'none']);
                 },
@@ -57,12 +53,11 @@
                     return oneOf(val, ['fillet', 'round', 'none']);
                 },
             },
-            dashed: {
-                type: Boolean,
-            },
-            long: {
-                type: Boolean,
-            },
+            dashed: {type: Boolean,},
+            long: {type: Boolean,},
+            prefixIcon: {type: String},
+            suffixIcon: {type: String},
+            placeholder: {type: String, default: '点击输入内容...'}
         },
         watch: {
             value(val) {

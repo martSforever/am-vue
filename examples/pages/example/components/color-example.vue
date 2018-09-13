@@ -46,7 +46,7 @@
                         children: [
                             {name: 'Info', color: '#808695'},
                             {name: 'Success', color: '#43B973'},
-                            {name: 'Warning', color: '#FFEE00'},
+                            {name: 'Warning', color: '#ffb020'},
                             {name: 'Error', color: '#ED4114'},
                         ]
                     },

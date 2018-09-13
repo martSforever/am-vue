@@ -1,16 +1,34 @@
+/*设置placeholder的颜色值*/
+@mixin input-placeholder-color($value,$darken:0.45) {
+    $place-holder-color: lighten($value, 30);
+
+    ::-webkit-input-placeholder { /* WebKit browsers */
+        color: $place-holder-color;
+    }
+    :-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+        color: $place-holder-color;
+    }
+    ::-moz-placeholder { /* Mozilla Firefox 19+ */
+        color: $place-holder-color;
+    }
+    :-ms-input-placeholder { /* Internet Explorer 10+ */
+        color: $place-holder-color;
+    }
+}
+
 .am-input {
     display: inline-flex;
     align-items: center;
-    width: 150px;
+    min-width: 150px;
     box-sizing: border-box;
-
+    vertical-align: bottom;
     .am-input-wrapper {
         display: inline-block;
         flex: 1;
         height: 100%;
         input {
             height: 100%;
-            width: 100%;
+            width: 150px;
             outline: none;
             border: none;
             display: inline-block;
@@ -35,6 +53,13 @@
         }
     }
 
+    /*shape*/
+    @each $key, $value in $list-shape {
+        &.am-input-shape-#{$key} {
+            border-radius: $value;
+        }
+    }
+
     @each $key, $value in $list-size {
         &.am-input-size-#{$key} {
             height: $value;
@@ -48,9 +73,10 @@
     &.am-input-fill {
         @each $key, $value in $list-color {
             &.am-input-color-#{$key} {
-                border: solid 1px $value;
+                border: solid $border-size $value;
+                @include input-placeholder-color($value, 0.8);
                 &, & input {
-                    background-color: $value;
+                    background: $value;
                     color: white;
                 }
             }
@@ -60,9 +86,12 @@
     &.am-input-line {
         @each $key, $value in $list-color {
             &.am-input-color-#{$key} {
-                border: solid 1px $value;
-                background: transparent;
-                color: $value;
+                border: solid $border-size $value;
+                @include input-placeholder-color($value);
+                &, & input {
+                    background: transparent;
+                    color: $value;
+                }
             }
         }
         &.am-input-dashed {
@@ -73,13 +102,19 @@
     &.am-input-none {
         @each $key, $value in $list-color {
             &.am-input-color-#{$key} {
-                border: solid 1px transparent;
-                background: transparent;
-                color: $value;
+                border: solid $border-size transparent;
+                @include input-placeholder-color($value);
+                &, & input {
+                    background: transparent;
+                    color: $value;
+                }
             }
         }
     }
     &.am-input-long {
         width: 100%;
+        input {
+            width: 100%;
+        }
     }
 }

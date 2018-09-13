@@ -6,6 +6,7 @@
     cursor: pointer;
     box-sizing: border-box;
     display: flex;
+    vertical-align: bottom;
     /*size*/
     @each $key, $value in $list-size {
         &.am-button-#{$key} {
@@ -28,7 +29,7 @@
         @each $key, $value in $list-color {
             &.am-button-color-#{$key} {
                 background-color: $value;
-                border: solid 1px $value;
+                border: solid $border-size $value;
                 color: white;
             }
         }
@@ -37,7 +38,7 @@
     &.am-button-line {
         @each $key, $value in $list-color {
             &.am-button-color-#{$key} {
-                border: solid 1px $value;
+                border: solid $border-size $value;
                 background: transparent;
                 color: $value;
             }
@@ -50,7 +51,7 @@
     &.am-button-none {
         @each $key, $value in $list-color {
             &.am-button-color-#{$key} {
-                border: solid 1px transparent;
+                border: solid $border-size transparent;
                 background: transparent;
                 color: $value;
             }

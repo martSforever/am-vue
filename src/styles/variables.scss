@@ -9,6 +9,7 @@ $animation-loop-time:1.5s;                      //css动画循环时长
 $transition-time:0.15s;                         //transition过渡动画时长
 $padding:1em;                                   //默认padding大小
 $margin:1em;                                    //默认margin大小
+$border-size:2px;                               //默认border大小,因为1px在不同浏览器下有不同的显示差别，这里使用2px
 
 /*---------------------------------------color-------------------------------------------*/
 $color-primary:#2D8DF0;                         //主色调
@@ -17,7 +18,7 @@ $color-primary-dark:#0F549C;                    //主色调：重
 
 $color-info:#808695;                            //提示
 $color-success:#43B973;                         //成功
-$color-warn:#ffc41d;                            //警告
+$color-warn:#ffb020;                            //警告
 $color-error:#ED4114;                           //失败
 
 $color-normal-title:#17233d;                    //标题

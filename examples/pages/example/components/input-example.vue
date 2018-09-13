@@ -1,13 +1,68 @@
 <template>
     <div class="input-example example-page">
-        <am-input color="primary" v-model="val1"/>
-        <am-input color="info" v-model="val1"/>
-        <am-input color="success" v-model="val1"/>
-        <am-input color="warn" v-model="val1"/>
-        <am-input color="error" v-model="val1"/>
-        <am-button>test button</am-button>
 
-        <am-input color="error" v-model="val1" long>
+        <div class="title">基础用法</div>
+        <div class="example-row">
+            <am-input/>
+        </div>
+        <div class="title">颜色</div>
+        <div class="example-row">
+            <am-input color="info"/>
+            <am-input color="primary"/>
+            <am-input color="success"/>
+            <am-input color="warn"/>
+            <am-input color="error"/>
+            <am-button type="line">这是个按钮</am-button>
+        </div>
+
+        <div class="title">样式</div>
+        <div class="example-row">
+            <am-input color="info"/>
+            <am-input color="primary"/>
+            <am-input color="success"/>
+            <am-input color="warn"/>
+            <am-input color="error"/>
+            <am-button type="line">这是个按钮</am-button>
+        </div>
+        <div class="example-row">
+            <am-input color="info" type="fill"/>
+            <am-input color="primary" type="fill"/>
+            <am-input color="success" type="fill"/>
+            <am-input color="warn" type="fill"/>
+            <am-input color="error" type="fill"/>
+            <am-button>这是个按钮</am-button>
+        </div>
+        <div class="example-row">
+            <am-input color="info" type="none"/>
+            <am-input color="primary" type="none"/>
+            <am-input color="success" type="none"/>
+            <am-input color="warn" type="none"/>
+            <am-input color="error" type="none"/>
+            <am-button type="none">这是个按钮</am-button>
+        </div>
+
+
+        <div class="example-row">
+            <am-input prefix-icon="fas-plus" suffix-icon="fas-times"/>
+            <am-input>
+                <span slot="prepend">prepend content</span>
+                <span slot="append">append content</span>
+            </am-input>
+        </div>
+
+        <div class="example-row">
+            <am-input color="info"/>
+            <am-input color="primary"/>
+            <am-input color="success"/>
+            <am-input color="warn"/>
+            <am-input color="error"/>
+            <am-button type="line">test button</am-button>
+        </div>
+
+
+        <div class="title">长输入框</div>
+
+        <am-input color="error" long>
             <div slot="prepend">
                 <span>this is prepend content</span>
             </div>
@@ -27,7 +82,7 @@
         components: {},
         data() {
             return {
-                val1: 'hello world',
+                val1: '输入框内容...',
             };
         },
     };
