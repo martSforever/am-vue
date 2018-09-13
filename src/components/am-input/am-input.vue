@@ -4,7 +4,11 @@
             <slot name="prepend"></slot>
         </div>
         <span class="am-input-prefix-icon" v-if="!!prefixIcon"><am-icon :icon="prefixIcon"/></span>
-        <div class="am-input-wrapper"><input v-model="currentValue" :placeholder="placeholder"/></div>
+        <div class="am-input-wrapper">
+            <input v-model="currentValue"
+                   :placeholder="!!disabled?'':placeholder"
+                   :disabled="disabled"/>
+        </div>
         <div class="am-input-suffix-icon" v-if="!!suffixIcon">
             <am-icon :icon="suffixIcon"/>
         </div>
@@ -57,7 +61,8 @@
             long: {type: Boolean,},
             prefixIcon: {type: String},
             suffixIcon: {type: String},
-            placeholder: {type: String, default: '点击输入内容...'}
+            placeholder: {type: String, default: '点击输入内容...'},
+            disabled: {type: Boolean},
         },
         watch: {
             value(val) {
@@ -82,7 +87,9 @@
                     `am-input-shape-${this.shape}`,
                     `am-input-size-${this.size}`,
                     {
-                        'am-input-long': !!this.long
+                        'am-input-long': !!this.long,
+                        'am-input-disabled': !!this.disabled,
+                        'am-input-dashed': !!this.dashed
                     },
                 ];
             },

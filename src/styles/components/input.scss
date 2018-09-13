@@ -120,4 +120,13 @@
             }
         }
     }
+
+    &.am-input-disabled {
+        &, & input {
+            background-color: $color-normal-disabled !important;
+            color: $color-normal-sub-color !important;;
+            border-color: $color-normal-disabled !important;;
+            cursor: not-allowed;
+        }
+    }
 }

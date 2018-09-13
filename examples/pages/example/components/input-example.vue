@@ -107,6 +107,20 @@
             <span slot="prepend"><am-button label="email"/></span>
             <span slot="append"><am-button label="aliyun.com"/></span>
         </am-input>
+        <div class="title">虚线输入框</div>
+        <div class="example-row">
+            <am-input color="info" dashed/>
+            <am-input color="primary" dashed/>
+            <am-input color="success" dashed/>
+            <am-input color="warn" dashed/>
+            <am-input color="error" dashed/>
+            <am-button>这是个按钮</am-button>
+        </div>
+        <div class="title">禁用状态</div>
+        <div class="example-row">
+            <am-input disabled value="内容文本"/>
+            <am-button disabled>这是个按钮</am-button>
+        </div>
 
     </div>
 </template>
