@@ -128,7 +128,11 @@
         </div>
         <div class="title">通过正则表达式限制输入的文本，比如这里通过:[regexp="/[^0-9.]/g"]限制只能输入数字以及小数点</div>
         <div class="example-row">
-            <am-input clearable @change="handleChange" :regexp="/[^0-9.]/g"/>
+            <am-input clearable
+                      @change="handleChange"
+                      @focus="handleFocus"
+                      @enter="handleKeyupEnter"
+                      :regexp="/[^0-9.]/g"/>
         </div>
 
     </div>
@@ -148,6 +152,12 @@
         methods: {
             handleChange(e) {
                 // console.log(e);
+            },
+            handleFocus() {
+                console.log('focus');
+            },
+            handleKeyupEnter(e) {
+                console.log('handleKeyupEnter', e);
             },
         },
     };

@@ -8,6 +8,10 @@
             <input v-model="currentValue"
                    :placeholder="!!disabled?'':placeholder"
                    :disabled="disabled"
+                   @focus="e=>$emit('focus', e)"
+                   @blur="e=>$emit('blur', e)"
+                   @click="e=>$emit('click', e)"
+                   @keyup.enter="e=>$emit('enter', e)"
             />
         </div>
         <div class="am-input-clear-icon" v-show="clearable" @click="currentValue = null">
