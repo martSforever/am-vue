@@ -21,7 +21,7 @@
             <am-input color="success" size="large"/>
             <am-input color="warn" size="large"/>
             <am-input color="error" size="large"/>
-            <am-button type="line"  size="large">这是个按钮</am-button>
+            <am-button type="line" size="large">这是个按钮</am-button>
         </div>
         <div class="example-row">
             <am-input color="info" size="default"/>
@@ -29,7 +29,7 @@
             <am-input color="success" size="default"/>
             <am-input color="warn" size="default"/>
             <am-input color="error" size="default"/>
-            <am-button type="line"  size="default">这是个按钮</am-button>
+            <am-button type="line" size="default">这是个按钮</am-button>
         </div>
         <div class="example-row">
             <am-input color="info" size="small"/>
@@ -37,7 +37,32 @@
             <am-input color="success" size="small"/>
             <am-input color="warn" size="small"/>
             <am-input color="error" size="small"/>
-            <am-button type="line"  size="small">这是个按钮</am-button>
+            <am-button type="line" size="small">这是个按钮</am-button>
+        </div>
+        <div class="title">形状</div>
+        <div class="example-row">
+            <am-input color="info"/>
+            <am-input color="primary"/>
+            <am-input color="success"/>
+            <am-input color="warn"/>
+            <am-input color="error"/>
+            <am-button type="line">这是个按钮</am-button>
+        </div>
+        <div class="example-row">
+            <am-input color="info" shape="round"/>
+            <am-input color="primary" shape="round"/>
+            <am-input color="success" shape="round"/>
+            <am-input color="warn" shape="round"/>
+            <am-input color="error" shape="round"/>
+            <am-button type="line" shape="round">这是个按钮</am-button>
+        </div>
+        <div class="example-row">
+            <am-input color="info" shape="none"/>
+            <am-input color="primary" shape="none"/>
+            <am-input color="success" shape="none"/>
+            <am-input color="warn" shape="none"/>
+            <am-input color="error" shape="none"/>
+            <am-button type="line" shape="none">这是个按钮</am-button>
         </div>
 
         <div class="title">样式</div>
