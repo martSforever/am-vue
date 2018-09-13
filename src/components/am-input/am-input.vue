@@ -9,6 +9,9 @@
                    :placeholder="!!disabled?'':placeholder"
                    :disabled="disabled"/>
         </div>
+        <div class="am-input-clear-icon" v-show="clearable" @click="currentValue = null">
+            <am-icon icon="fas-times"/>
+        </div>
         <div class="am-input-suffix-icon" v-if="!!suffixIcon">
             <am-icon :icon="suffixIcon"/>
         </div>
@@ -63,6 +66,7 @@
             suffixIcon: {type: String},
             placeholder: {type: String, default: '点击输入内容...'},
             disabled: {type: Boolean},
+            clearable: {type: Boolean},
         },
         watch: {
             value(val) {

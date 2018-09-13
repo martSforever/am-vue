@@ -121,6 +121,11 @@
             <am-input disabled value="内容文本"/>
             <am-button disabled>这是个按钮</am-button>
         </div>
+        <div class="title">清除按钮</div>
+        <div class="example-row">
+            <am-input clearable v-model="val1"/>
+            <span>{{val1}}</span>
+        </div>
 
     </div>
 </template>

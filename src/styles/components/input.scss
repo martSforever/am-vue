@@ -37,12 +37,12 @@
         }
     }
 
-    .am-input-prepend, .am-input-append, .am-input-prefix-icon, .am-input-suffix-icon {
+    .am-input-prepend, .am-input-append, .am-input-prefix-icon, .am-input-suffix-icon, .am-input-clear-icon {
         height: 100%;
         display: flex;
         align-items: center;
     }
-    .am-input-prefix-icon, .am-input-suffix-icon {
+    .am-input-prefix-icon, .am-input-suffix-icon, .am-input-clear-icon {
         padding: 0 0.5em;
         .am-icon {
             @include transition-all;
