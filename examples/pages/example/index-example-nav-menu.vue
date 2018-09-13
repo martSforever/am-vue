@@ -59,7 +59,7 @@
                         children: [
                             {name: 'input', icon: 'color-keyboard', url: 'input'},
                             {name: 'textarea', icon: 'color-textarea', url: ''},
-                            {name: 'switch', icon: 'color-switch', url: ''},
+                            {name: 'switch', icon: 'color-switch', url: 'switch'},
                             {name: 'modal', icon: 'color-modal', url: ''},
                             {name: 'radio', icon: 'color-checked', url: ''},
                             {name: 'select', icon: 'color-select', url: ''},

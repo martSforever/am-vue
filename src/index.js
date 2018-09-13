@@ -6,6 +6,7 @@ import buttonGroup from './components/am-button/am-button-group';
 import col from './components/am-grid/am-col';
 import row from './components/am-grid/am-row';
 import input from './components/am-input';
+import AmSwitch from './components/am-switch';
 
 const components = {
     icon,
@@ -14,6 +15,7 @@ const components = {
     col,
     row,
     input,
+    switch: AmSwitch,
 };
 
 let $amvue = {};
