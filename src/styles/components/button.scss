@@ -11,7 +11,7 @@
     @each $key, $value in $list-size {
         &.am-button-#{$key} {
             height: $value;
-            font-size: $value/2;
+            font-size: $value/2.5;
         }
         &.am-button-icon-only-#{$key} {
             width: $value;

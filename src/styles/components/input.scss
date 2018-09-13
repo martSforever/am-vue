@@ -38,12 +38,12 @@
     }
 
     .am-input-prepend, .am-input-append, .am-input-prefix-icon, .am-input-suffix-icon {
-        padding: 0 0.5em;
         height: 100%;
         display: flex;
         align-items: center;
     }
     .am-input-prefix-icon, .am-input-suffix-icon {
+        padding: 0 0.5em;
         .am-icon {
             @include transition-all;
             cursor: pointer;

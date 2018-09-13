@@ -14,6 +14,31 @@
             <am-input color="error"/>
             <am-button type="line">这是个按钮</am-button>
         </div>
+        <div class="title">大小</div>
+        <div class="example-row">
+            <am-input color="info" size="large"/>
+            <am-input color="primary" size="large"/>
+            <am-input color="success" size="large"/>
+            <am-input color="warn" size="large"/>
+            <am-input color="error" size="large"/>
+            <am-button type="line"  size="large">这是个按钮</am-button>
+        </div>
+        <div class="example-row">
+            <am-input color="info" size="default"/>
+            <am-input color="primary" size="default"/>
+            <am-input color="success" size="default"/>
+            <am-input color="warn" size="default"/>
+            <am-input color="error" size="default"/>
+            <am-button type="line"  size="default">这是个按钮</am-button>
+        </div>
+        <div class="example-row">
+            <am-input color="info" size="small"/>
+            <am-input color="primary" size="small"/>
+            <am-input color="success" size="small"/>
+            <am-input color="warn" size="small"/>
+            <am-input color="error" size="small"/>
+            <am-button type="line"  size="small">这是个按钮</am-button>
+        </div>
 
         <div class="title">样式</div>
         <div class="example-row">
@@ -41,34 +66,21 @@
             <am-button type="none">这是个按钮</am-button>
         </div>
 
-
+        <div class="title">前置图标以及后置图标</div>
         <div class="example-row">
             <am-input prefix-icon="fas-plus" suffix-icon="fas-times"/>
-            <am-input>
-                <span slot="prepend">prepend content</span>
-                <span slot="append">append content</span>
+        </div>
+        <div class="title">前置内容以及后置内容</div>
+        <div class="example-row">
+            <am-input prefix-icon="fas-globe" suffix-icon="fas-at" color="primary" value="www.baidu.com">
+                <span slot="prepend"><am-button label="email"/></span>
+                <span slot="append"><am-button label="aliyun.com"/></span>
             </am-input>
         </div>
-
-        <div class="example-row">
-            <am-input color="info"/>
-            <am-input color="primary"/>
-            <am-input color="success"/>
-            <am-input color="warn"/>
-            <am-input color="error"/>
-            <am-button type="line">test button</am-button>
-        </div>
-
-
         <div class="title">长输入框</div>
-
-        <am-input color="error" long>
-            <div slot="prepend">
-                <span>this is prepend content</span>
-            </div>
-            <div slot="append">
-                <span>this is append content</span>
-            </div>
+        <am-input prefix-icon="fas-globe" suffix-icon="fas-at" color="primary" value="www.baidu.com" long>
+            <span slot="prepend"><am-button label="email"/></span>
+            <span slot="append"><am-button label="aliyun.com"/></span>
         </am-input>
 
     </div>
