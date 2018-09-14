@@ -1,0 +1,34 @@
+.am-radio {
+    cursor: pointer;
+    box-sizing: border-box;
+    display: inline-flex;
+    vertical-align: bottom;
+    border: none;
+    background: none;
+    align-items: center;
+    @each $key, $value in $list-color {
+        &.am-radio-color-#{$key} {
+            .am-icon {
+                color: $value;
+            }
+        }
+    }
+
+    .am-radio-wrapper {
+        position: relative;
+        display: inline-flex;
+        align-items: center;
+        width: 1em;
+        height: 1em;
+        user-select: none;
+        .am-radio-active-icon, .am-radio-inactive-icon {
+            position: absolute;
+        }
+        .am-radio-active-icon {
+
+        }
+        .am-radio-inactive-icon {
+
+        }
+    }
+}

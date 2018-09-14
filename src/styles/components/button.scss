@@ -5,7 +5,7 @@
     padding: 0 $padding;
     cursor: pointer;
     box-sizing: border-box;
-    display: flex;
+    display: inline-flex;
     vertical-align: bottom;
     /*size*/
     @each $key, $value in $list-size {
