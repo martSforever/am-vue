@@ -1,0 +1,50 @@
+.am-switch {
+    display: inline-flex;
+    vertical-align: bottom;
+    box-sizing: border-box;
+    align-items: center;
+    .am-switch-wrapper {
+        cursor: pointer;
+        display: inline-flex;
+        align-items: center;
+        .am-switch-indicator-wrapper {
+            box-sizing: content-box;
+            .am-switch-indicator {
+                display: inline-block;
+            }
+        }
+    }
+
+    /*size*/
+    @each $key, $value in $list-size {
+        $length: $value - $border-size*2;
+        &.am-switch-size-#{$key} {
+            .am-switch-indicator-wrapper {
+                height: $length;
+                width: 2*$length;
+                font-size: $length/2.5;
+                border-radius: $length;
+                .am-switch-indicator {
+                    height: $length;
+                    width: $length;
+                    border-radius: $length;
+                }
+            }
+
+        }
+    }
+
+    /*fill type*/
+    @each $key, $value in $list-color {
+        &.am-switch-color-#{$key} {
+            .am-switch-indicator-wrapper {
+                background-color: $value;
+                border: solid $border-size $value;
+                .am-switch-indicator {
+                    background-color: lighten($value, 50);
+                    box-shadow: 0 3px 12px lighten($value, 10), 0 3px 1px lighten($value, 10);
+                }
+            }
+        }
+    }
+}

@@ -1,6 +1,10 @@
 <template>
     <div class="switch-example example-page">
-        <am-switch/>
+        <am-switch color="primary"/>
+        <am-switch color="info"/>
+        <am-switch color="success"/>
+        <am-switch color="warn"/>
+        <am-switch color="error"/>
     </div>
 </template>
 
