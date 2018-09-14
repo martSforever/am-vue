@@ -62,7 +62,7 @@
                             {name: 'textarea', icon: 'color-textarea', url: ''},
                             {name: 'switch', icon: 'color-switch', url: 'switch'},
                             {name: 'modal', icon: 'color-modal', url: ''},
-                            {name: 'radio', icon: 'color-checked', url: ''},
+                            {name: 'radio', icon: 'color-checked', url: 'radio'},
                             {name: 'select', icon: 'color-select', url: ''},
                             {name: 'timepicker', icon: 'color-time', url: ''},
                             {name: 'datepicker', icon: 'color-date', url: ''},

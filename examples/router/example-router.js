@@ -37,6 +37,11 @@ export default {
             component: resolve => require(['examples/pages/example/components/switch-example.vue'], resolve),
         },
         {
+            path: '/radio',
+            name: 'switch',
+            component: resolve => require(['examples/pages/example/components/radio-example.vue'], resolve),
+        },
+        {
             path: '/grid',
             name: 'grid',
             component: resolve => require(['examples/pages/example/components/grid-example.vue'], resolve),

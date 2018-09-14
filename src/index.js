@@ -8,6 +8,7 @@ import row from './components/am-grid/am-row';
 import input from './components/am-input';
 import AmSwitch from './components/am-switch';
 import NumberInput from './components/am-number-input';
+import radio from './components/am-radio';
 
 const components = {
     icon,
@@ -17,7 +18,8 @@ const components = {
     row,
     input,
     switch: AmSwitch,
-    'number-input': NumberInput
+    'number-input': NumberInput,
+    radio,
 };
 
 let $amvue = {};
