@@ -91,4 +91,13 @@
         }
     }
 
+    &.am-switch-disabled {
+        .am-switch-wrapper {
+            cursor: not-allowed;
+            .am-switch-indicator-wrapper{
+                background-color: #999 !important;
+            }
+        }
+    }
+
 }

@@ -38,6 +38,10 @@
             <am-button size="small" label="这是个按钮"/>
         </div>
 
+        <div class="title">禁用</div>
+        <am-switch :value="true" disabled/>
+        <am-switch :value="false" disabled/>
+
     </div>
 </template>
 

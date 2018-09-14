@@ -64,7 +64,7 @@
         },
         methods: {
             _handleClickIndicator() {
-                this.currentValue = !this.currentValue;
+                !this.disabled && (this.currentValue = !this.currentValue);
             },
         },
     };
