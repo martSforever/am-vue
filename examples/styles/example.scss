@@ -11,6 +11,10 @@
     }
     .example-row {
         margin-bottom: 12px;
+        &.align-center {
+            display: flex;
+            align-items: center;
+        }
     }
     .content {
         padding-left: 24px;

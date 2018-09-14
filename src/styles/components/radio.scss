@@ -1,7 +1,7 @@
 .am-radio {
     cursor: pointer;
     box-sizing: border-box;
-    display: inline-flex;
+    display: inline-flex !important;
     vertical-align: bottom;
     border: none;
     background: none;
@@ -23,12 +23,9 @@
         user-select: none;
         .am-radio-active-icon, .am-radio-inactive-icon {
             position: absolute;
-        }
-        .am-radio-active-icon {
-
-        }
-        .am-radio-inactive-icon {
-
+            top: 0;
+            left: 0;
+            @include transition-all;
         }
     }
 }

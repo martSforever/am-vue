@@ -1,10 +1,12 @@
 <template>
-    <div class="am-radio" :class="classes" :style="styles">
+    <div class="am-radio" :class="classes" :style="styles" @click="currentValue = !currentValue" v-effect="!!label">
         <div class="am-radio-wrapper">
-            <am-icon :icon="activeIcon" class="am-radio-active-icon"/>
-            <am-icon :icon="inactiveIcon" class="am-radio-inactive-icon"/>
+            <transition name="am-transition-scale" mode="out-in">
+                <am-icon :icon="activeIcon" class="am-radio-active-icon" v-if="currentValue" key="active"/>
+                <am-icon :icon="inactiveIcon" class="am-radio-inactive-icon" v-if="!currentValue" key="inactive"/>
+            </transition>
         </div>
-        <span>label for radio</span>
+        <span v-if="!!label">{{label}}</span>
     </div>
 </template>
 
@@ -12,10 +14,12 @@
 
     import AmIcon from '../am-icon';
     import {oneOf} from '../../scripts/utils';
+    import Effect from '../../directives/effect';
 
     export default {
         name: 'am-radio',
         components: {AmIcon},
+        directives: {Effect},
         props: {
             value: {},
             size: {},
@@ -32,10 +36,11 @@
             },
             inactiveIcon: {
                 type: String,
-                default: 'fas-square'
+                default: 'far-square'
             },
             activeColor: {type: String,},
             inactiveColor: {type: String},
+            label: {type: String},
         },
         computed: {
             classes() {
@@ -45,9 +50,22 @@
             },
             styles() {
                 let styles = {};
-                !!this.size && (styles.fontSize = `${this.size}px`);
+                !!this.size && (styles.fontSize = styles.height = `${this.size}px`);
                 return styles;
             },
+        },
+        watch: {
+            value(val) {
+                if (this.currentValue !== val) this.currentValue = val;
+            },
+            currentValue(val) {
+                this.$emit('input', val);
+            },
+        },
+        data() {
+            return {
+                currentValue: this.value
+            };
         },
     };
 </script>

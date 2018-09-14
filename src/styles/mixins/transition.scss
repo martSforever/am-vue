@@ -1,3 +1,15 @@
 @mixin transition-all {
     transition: all $transition-time;
 }
+
+.am-transition-scale-enter-active, .am-transition-scale-leave-active {
+    transform-origin: center;
+    transform: scale(1);
+}
+
+.am-transition-scale-enter, .am-transition-scale-leave-to /* .fade-leave-active below version 2.1.8 */
+{
+    transform-origin: center;
+    transform: scale(0.6);
+    opacity: 0;
+}
