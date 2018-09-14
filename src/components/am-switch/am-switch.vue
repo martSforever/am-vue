@@ -1,6 +1,6 @@
 <template>
     <div class="am-switch" :class="classes">
-        <am-button :label="label" type="none" v-if="!!label"/>
+        <am-button :label="label" type="none" v-if="!!label" @click="_handleClickIndicator" shape="round" :size="size"/>
         <div class="am-switch-wrapper" @click="_handleClickIndicator">
             <div class="am-switch-indicator-wrapper">
                 <div class="am-switch-indicator">

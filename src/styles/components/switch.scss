@@ -14,6 +14,7 @@
         user-select: none;
         box-sizing: content-box;
         position: relative;
+        overflow: hidden;
         .am-switch-indicator-wrapper {
             top: 0;
             position: absolute;
@@ -62,7 +63,6 @@
             &.am-switch-inactive {
                 .am-switch-wrapper {
                     background-color: $color-normal-disabled;
-                    color: white;
                     border: solid $border-size $color-normal-disabled;
                     .am-switch-indicator-wrapper {
                         left: 0;
@@ -76,7 +76,6 @@
                 .am-switch-wrapper {
                     background-color: $value;
                     border: solid $border-size $value;
-                    color: black;
                     .am-switch-indicator-wrapper {
                         right: 0;
                         background-color: white;
