@@ -1,10 +1,18 @@
 <template>
     <div class="am-radio" :class="classes" :style="styles" @click="currentValue = !currentValue" v-effect="!!label">
         <div class="am-radio-wrapper">
-            <transition name="am-transition-scale" mode="out-in">
-                <am-icon :icon="activeIcon" class="am-radio-active-icon" v-if="currentValue" key="active"/>
-                <am-icon :icon="inactiveIcon" class="am-radio-inactive-icon" v-if="!currentValue" key="inactive"/>
-            </transition>
+            <transition-group name="am-transition-scale" mode="in-out">
+                <div class="am-radio-active-icon" v-if="currentValue" key="active">
+                    <slot name="active">
+                        <am-icon :icon="activeIcon"/>
+                    </slot>
+                </div>
+                <div class="am-radio-inactive-icon" v-if="!currentValue" key="inactive">
+                    <slot name="inactive">
+                        <am-icon :icon="inactiveIcon"/>
+                    </slot>
+                </div>
+            </transition-group>
         </div>
         <span v-if="!!label" :style="labelStyles" class="am-radio-label">{{label}}</span>
     </div>

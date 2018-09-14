@@ -23,11 +23,21 @@
         width: 1em;
         height: 1em;
         user-select: none;
-        .am-radio-active-icon, .am-radio-inactive-icon {
-            position: absolute;
-            top: 0;
-            left: 0;
-            @include transition-all;
+        span[mode=in-out] {
+            height: 100%;
+            display: block;
+            width: 1em;
+            .am-radio-active-icon, .am-radio-inactive-icon {
+                height: 100%;
+                position: absolute;
+                top: 0;
+                left: 0;
+                transition: all $transition-time*2;
+                &, & > * {
+                    display: flex;
+                    align-items: center;
+                }
+            }
         }
     }
 }

@@ -44,27 +44,57 @@
             <am-button size="small" label="small button"/>
             <am-radio :value="true" label="我已经阅读授权协议" size="28"/>
         </div>
+        <div class="example-row">
+            <am-button size="default" label="small button"/>
+            <am-radio :value="true" label="我已经阅读授权协议" size="36"/>
+        </div>
+        <div class="example-row">
+            <am-button size="large" label="small button"/>
+            <am-radio :value="true" label="我已经阅读授权协议" size="44"/>
+        </div>
 
-        <div class="title">设置icon</div>
+        <div class="title">设置[active/inactive]icon</div>
         <div class="example-row">
             <am-radio :value="true" label="我已经阅读授权协议" v-model="val1"/>
-            <am-radio :value="true" label="我已经阅读授权协议" v-model="val1" active-icon="fas-thumbs-up"
-                      inactive-icon="far-thumbs-up"/>
+            <am-radio :value="true" label="我已经阅读授权协议" v-model="val1"
+                      active-icon="fas-star"
+                      inactive-icon="far-star"/>
+            <am-radio :value="true" label="我已经阅读授权协议" v-model="val1"
+                      active-icon="fas-check-circle"
+                      inactive-icon="far-circle"/>
         </div>
-        <div class="title">设置active/inactive 颜色</div>
+        <div class="title">设置[active/inactive]颜色</div>
         <div class="example-row">
-            <am-radio :value="true" label="我已经阅读授权协议" active-color="#43B973" inactive-color="#ffb020"/>
+            <am-radio :value="true" label="我已经阅读授权协议" active-color="#43B973" inactive-color="#808695"/>
         </div>
+
+        <div class="title">设置[active/inactive]插槽</div>
+        <div class="example-row">
+            <am-radio :value="true" label="我已经阅读授权协议">
+                <div slot="active">
+                    <img :src="CONST.avatar" style="height: 28px;width: 28px;border-radius: 28px"/>
+                </div>
+                <div slot="inactive">
+                    <img
+                        :src="'https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=1406845658,3964070478&fm=26&gp=0.jpg'"
+                        style="height: 28px;width: 28px;border-radius: 28px"/>
+                </div>
+            </am-radio>
+        </div>
+
 
     </div>
 </template>
 
 <script>
+    import CONST from '../../../scripts/const';
+
     export default {
         name: 'radio-example',
         data() {
             return {
                 val1: true,
+                CONST,
             };
         },
     };
