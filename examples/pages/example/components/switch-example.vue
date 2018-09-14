@@ -45,9 +45,8 @@
         </div>
         <div class="title">文本</div>
         <div class="example-row" style="display: flex;align-items: center">
-            <am-switch :value="true" label="自动保存"/>
-            <am-switch :value="false" label="自动下载"/>
             <am-switch :value="false" label="自动下载" size="large"/>
+            <am-switch :value="false" label="自动下载"/>
             <am-switch :value="false" label="自动下载" size="small"/>
         </div>
         <div class="title">指示器插槽</div>
