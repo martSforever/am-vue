@@ -1,6 +1,6 @@
 <template>
     <div class="am-switch" :class="classes">
-        <am-button label="自动保存：" type="none"/>
+        <am-button :label="label" type="none" v-if="!!label"/>
         <div class="am-switch-wrapper" @click="_handleClickIndicator">
             <div class="am-switch-indicator-wrapper">
                 <div class="am-switch-indicator">
@@ -18,6 +18,7 @@
         name: 'am-switch',
         props: {
             value: {},
+            label: {},
             color: {
                 type: String,
                 default: 'success',

@@ -4,7 +4,9 @@
             :disabled="disabled"
             :class="classes"
             @click="handleClick">
-        <am-icon :icon="icon" v-if="!!icon && iconPosition === 'left'" :loading="iconLoading"
+        <am-icon :icon="icon"
+                 v-if="!!icon && iconPosition === 'left'"
+                 :loading="iconLoading"
                  class="am-button-icon"/>
         <slot><span class="am-button-label">{{label}}</span></slot>
         <am-icon :icon="icon" v-if="!!icon && iconPosition === 'right'" :loading="iconLoading"
