@@ -27,6 +27,11 @@ export default {
             component: resolve => require(['examples/pages/example/components/input-example.vue'], resolve),
         },
         {
+            path: '/number-input',
+            name: 'input',
+            component: resolve => require(['examples/pages/example/components/number-input-example.vue'], resolve),
+        },
+        {
             path: '/switch',
             name: 'switch',
             component: resolve => require(['examples/pages/example/components/switch-example.vue'], resolve),

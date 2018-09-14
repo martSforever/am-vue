@@ -44,6 +44,7 @@
     }
     .am-input-prefix-icon, .am-input-suffix-icon, .am-input-clear-icon {
         padding: 0 0.5em;
+        user-select: none;
         .am-icon {
             @include transition-all;
             cursor: pointer;

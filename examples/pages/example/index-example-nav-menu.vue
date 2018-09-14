@@ -58,6 +58,7 @@
                         name: 'form',
                         children: [
                             {name: 'input', icon: 'color-keyboard', url: 'input'},
+                            {name: 'number input', icon: 'color-keyboard', url: 'number-input'},
                             {name: 'textarea', icon: 'color-textarea', url: ''},
                             {name: 'switch', icon: 'color-switch', url: 'switch'},
                             {name: 'modal', icon: 'color-modal', url: ''},

@@ -7,6 +7,7 @@ import col from './components/am-grid/am-col';
 import row from './components/am-grid/am-row';
 import input from './components/am-input';
 import AmSwitch from './components/am-switch';
+import NumberInput from './components/am-number-input';
 
 const components = {
     icon,
@@ -16,6 +17,7 @@ const components = {
     row,
     input,
     switch: AmSwitch,
+    'number-input': NumberInput
 };
 
 let $amvue = {};

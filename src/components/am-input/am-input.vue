@@ -3,7 +3,9 @@
         <div class="am-input-prepend" v-if="!!$slots.prepend">
             <slot name="prepend"></slot>
         </div>
-        <span class="am-input-prefix-icon" v-if="!!prefixIcon"><am-icon :icon="prefixIcon"/></span>
+        <span class="am-input-prefix-icon" v-if="!!prefixIcon" @click="e=>$emit('click-prefix-icon',e)">
+            <am-icon :icon="prefixIcon"/>
+        </span>
         <div class="am-input-wrapper">
             <input v-model="currentValue"
                    :placeholder="!!disabled?'':placeholder"
@@ -17,7 +19,7 @@
         <div class="am-input-clear-icon" v-show="clearable" @click="currentValue = null">
             <am-icon icon="fas-times"/>
         </div>
-        <div class="am-input-suffix-icon" v-if="!!suffixIcon">
+        <div class="am-input-suffix-icon" v-if="!!suffixIcon" @click="e=>$emit('click-suffix-icon',e)">
             <am-icon :icon="suffixIcon"/>
         </div>
         <div class="am-input-append" v-if="!!$slots.append">
@@ -119,6 +121,7 @@
                     clearTimeout(this.timer);
                     this.timer = null;
                     this.currentValue = this.currentValue.replace(this.regexp, '');
+                    this.$emit('replace-done')
                 }, 300);
             },
         },
