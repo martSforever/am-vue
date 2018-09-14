@@ -4,9 +4,7 @@
         <div class="am-switch-wrapper" @click="_handleClickIndicator">
             <div class="am-switch-indicator-wrapper">
                 <div class="am-switch-indicator">
-                    <slot name="indicator">
-                        渣
-                    </slot>
+                    <slot></slot>
                 </div>
             </div>
         </div>
@@ -22,7 +20,7 @@
             value: {},
             color: {
                 type: String,
-                default: 'primary',
+                default: 'success',
                 validator(val) {
                     return oneOf(val, ['primary', 'info', 'success', 'warn', 'error', 'none']);
                 },

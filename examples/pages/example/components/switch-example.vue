@@ -1,10 +1,7 @@
 <template>
     <div class="switch-example example-page">
-        <am-switch color="primary" :value="true"/>
-        <am-switch color="info"/>
-        <am-switch color="success"/>
-        <am-switch color="warn"/>
-        <am-switch color="error"/>
+        <div class="title">基本用法</div>
+        <am-switch :value="true"/>
     </div>
 </template>
 

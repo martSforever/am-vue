@@ -11,6 +11,7 @@
         box-sizing: content-box;
         position: relative;
         .am-switch-indicator-wrapper {
+            top: 0;
             position: absolute;
             display: inline-flex;
             align-items: center;
