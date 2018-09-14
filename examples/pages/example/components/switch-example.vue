@@ -58,10 +58,15 @@
                      style="width: 100%;height: 32px;border-radius: 32px;display: block"/>
             </am-switch>
             <am-switch :value="true" color="primary" label="图标">
-                <div><am-icon icon="fab-apple" size="32"/></div>
+                <am-icon icon="fab-apple" size="32"/>
             </am-switch>
         </div>
-
+        <div class="title">内容插槽</div>
+        <am-switch :value="true" label="自定义背景内容">
+            帅
+            <span slot="left" style="padding-left: 0.5em;color: white">是</span>
+            <span slot="right" style="padding-right: 0.5em;color: white">否</span>
+        </am-switch>
 
     </div>
 </template>

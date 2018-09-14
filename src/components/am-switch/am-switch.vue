@@ -2,6 +2,12 @@
     <div class="am-switch" :class="classes">
         <am-button :label="label" type="none" v-if="!!label" @click="_handleClickIndicator" shape="round" :size="size"/>
         <div class="am-switch-wrapper" @click="_handleClickIndicator">
+            <div class="am-switch-wrapper-left-side" v-if="!!$slots.left && !!currentValue">
+                <slot name="left"></slot>
+            </div>
+            <div class="am-switch-wrapper-right-side" v-if="!!$slots.right && !currentValue">
+                <slot name="right"></slot>
+            </div>
             <div class="am-switch-indicator-wrapper">
                 <div class="am-switch-indicator">
                     <slot></slot>

@@ -26,6 +26,21 @@
                 @include transition-all;
             }
         }
+
+        .am-switch-wrapper-left-side, .am-switch-wrapper-right-side {
+            position: absolute;
+            top: 0;
+            display: flex;
+            align-items: center;
+            height: 100%;
+        }
+
+        .am-switch-wrapper-left-side {
+            left: 0;
+        }
+        .am-switch-wrapper-right-side {
+            right: 0;
+        }
     }
 
     /*size*/
@@ -93,7 +108,7 @@
     &.am-switch-disabled {
         .am-switch-wrapper {
             cursor: not-allowed;
-            .am-switch-indicator-wrapper{
+            .am-switch-indicator-wrapper {
                 background-color: #999 !important;
             }
         }
