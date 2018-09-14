@@ -1,6 +1,6 @@
 <template>
     <div class="switch-example example-page">
-        <am-switch color="primary"/>
+        <am-switch color="primary" :value="true"/>
         <am-switch color="info"/>
         <am-switch color="success"/>
         <am-switch color="warn"/>

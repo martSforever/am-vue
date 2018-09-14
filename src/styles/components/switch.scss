@@ -7,10 +7,17 @@
         cursor: pointer;
         display: inline-flex;
         align-items: center;
+        user-select: none;
+        box-sizing: content-box;
+        position: relative;
         .am-switch-indicator-wrapper {
-            box-sizing: content-box;
+            position: absolute;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            @include transition-all;
             .am-switch-indicator {
-                display: inline-block;
+                @include transition-all;
             }
         }
     }
@@ -19,30 +26,60 @@
     @each $key, $value in $list-size {
         $length: $value - $border-size*2;
         &.am-switch-size-#{$key} {
-            .am-switch-indicator-wrapper {
+            .am-switch-wrapper {
                 height: $length;
                 width: 2*$length;
                 font-size: $length/2.5;
                 border-radius: $length;
-                .am-switch-indicator {
+                .am-switch-indicator-wrapper {
                     height: $length;
                     width: $length;
                     border-radius: $length;
                 }
             }
+        }
 
+        &:active {
+            &.am-switch-size-#{$key} {
+                .am-switch-wrapper {
+                    .am-switch-indicator-wrapper {
+                        width: $length*2;
+                    }
+                }
+            }
         }
     }
 
     /*fill type*/
     @each $key, $value in $list-color {
         &.am-switch-color-#{$key} {
-            .am-switch-indicator-wrapper {
-                background-color: $value;
-                border: solid $border-size $value;
-                .am-switch-indicator {
-                    background-color: lighten($value, 50);
-                    box-shadow: 0 3px 12px lighten($value, 10), 0 3px 1px lighten($value, 10);
+            &.am-switch-inactive {
+                .am-switch-wrapper {
+                    background-color: $color-normal-disabled;
+                    color: white;
+                    border: solid $border-size $color-normal-disabled;
+                    .am-switch-indicator-wrapper {
+                        left: 0;
+                        background-color: $value;
+                        transform-origin: left;
+                        box-shadow: 0 3px 12px lighten($color-normal-disabled, 10), 0 3px 1px lighten($color-normal-disabled, 10);
+                    }
+                }
+            }
+            &.am-switch-active {
+                .am-switch-wrapper {
+                    background-color: $value;
+                    border: solid $border-size $value;
+                    color: black;
+                    .am-switch-indicator-wrapper {
+                        right: 0;
+                        background-color: lighten($value, 50);
+                        box-shadow: 0 3px 12px lighten($value, 10), 0 3px 1px lighten($value, 10);
+                        transform-origin: right;
+                        .am-switch-indicator {
+                            transform: rotate(180deg);
+                        }
+                    }
                 }
             }
         }
