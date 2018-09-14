@@ -6,7 +6,7 @@
                 <am-icon :icon="inactiveIcon" class="am-radio-inactive-icon" v-if="!currentValue" key="inactive"/>
             </transition>
         </div>
-        <span v-if="!!label">{{label}}</span>
+        <span v-if="!!label" :style="labelStyles" class="am-radio-label">{{label}}</span>
     </div>
 </template>
 
@@ -22,7 +22,7 @@
         directives: {Effect},
         props: {
             value: {},
-            size: {},
+            size: {default: 28},
             color: {
                 type: String,
                 default: 'primary',
@@ -51,6 +51,15 @@
             styles() {
                 let styles = {};
                 !!this.size && (styles.fontSize = styles.height = `${this.size}px`);
+
+                !!this.inactiveColor && (!this.currentValue) && (styles.color = `${this.inactiveColor} !important`);
+                !!this.activeColor && (!!this.currentValue) && (styles.color = `${this.activeColor} !important`);
+
+                return styles;
+            },
+            labelStyles() {
+                let styles = {};
+                !!this.size && (styles.fontSize = styles.height = `${this.size / 1.618}px`);
                 return styles;
             },
         },

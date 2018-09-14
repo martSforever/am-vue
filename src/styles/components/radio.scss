@@ -6,14 +6,16 @@
     border: none;
     background: none;
     align-items: center;
+    border-radius: $shape-fillet;
     @each $key, $value in $list-color {
         &.am-radio-color-#{$key} {
-            .am-icon {
-                color: $value;
-            }
+            color: $value;
         }
     }
-
+    .am-radio-label {
+        display: inline-flex;
+        align-items: center;
+    }
     .am-radio-wrapper {
         position: relative;
         display: inline-flex;

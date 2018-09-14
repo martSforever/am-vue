@@ -42,7 +42,18 @@
         <div class="title">设置文本</div>
         <div class="example-row">
             <am-button size="small" label="small button"/>
-            <am-radio :value="true" label="同意官方协议" size="28"/>
+            <am-radio :value="true" label="我已经阅读授权协议" size="28"/>
+        </div>
+
+        <div class="title">设置icon</div>
+        <div class="example-row">
+            <am-radio :value="true" label="我已经阅读授权协议" v-model="val1"/>
+            <am-radio :value="true" label="我已经阅读授权协议" v-model="val1" active-icon="fas-thumbs-up"
+                      inactive-icon="far-thumbs-up"/>
+        </div>
+        <div class="title">设置active/inactive 颜色</div>
+        <div class="example-row">
+            <am-radio :value="true" label="我已经阅读授权协议" active-color="#43B973" inactive-color="#ffb020"/>
         </div>
 
     </div>
@@ -50,6 +61,11 @@
 
 <script>
     export default {
-        name: 'radio-example'
+        name: 'radio-example',
+        data() {
+            return {
+                val1: true,
+            };
+        },
     };
 </script>
