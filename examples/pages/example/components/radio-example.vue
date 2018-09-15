@@ -93,6 +93,30 @@
             </am-radio-group>
         </div>
 
+        <div class="title">单选</div>
+        <div class="example-row">
+            <am-radio-group v-model="groupVal2">
+                <am-radio label="饼干" radio-key="binggan"/>
+                <am-radio label="牛奶" radio-key="niunai"/>
+                <am-radio label="鸡蛋" radio-key="jidan"/>
+                <am-button>{{groupVal2}}</am-button>
+            </am-radio-group>
+        </div>
+        <div class="title">多选</div>
+        <div class="example-row">
+            <am-radio-group multiple v-model="groupVal1">
+                <am-radio label="饼干" radio-key="binggan"/>
+                <am-radio label="牛奶" radio-key="niunai"/>
+                <am-radio label="鸡蛋" radio-key="jidan"/>
+                <am-button>{{groupVal1}}</am-button>
+            </am-radio-group>
+            <am-radio-group multiple v-model="groupVal1">
+                <am-radio label="饼干" radio-key="binggan"/>
+                <am-radio label="牛奶" radio-key="niunai"/>
+                <am-radio label="鸡蛋" radio-key="jidan"/>
+                <am-button>{{groupVal1}}</am-button>
+            </am-radio-group>
+        </div>
     </div>
 </template>
 
@@ -105,6 +129,8 @@
             return {
                 val1: true,
                 CONST,
+                groupVal1: ['jidan'],
+                groupVal2: 'niunai'
             };
         },
     };

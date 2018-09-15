@@ -1,5 +1,5 @@
 <template>
-    <div class="am-radio" :class="classes" :style="styles" @click="currentValue = !currentValue" v-effect="!!label">
+    <div class="am-radio" :class="classes" :style="styles" @click="_handleClick" v-effect="!!label">
         <div class="am-radio-wrapper">
             <transition-group name="am-transition-scale" mode="in-out">
                 <div class="am-radio-active-icon" v-if="currentValue" key="active">
@@ -14,14 +14,14 @@
                 </div>
             </transition-group>
         </div>
-        <span v-if="!!label" :style="labelStyles" class="am-radio-label">{{label}}</span>
+        <span v-if="!!label" :style="labelStyles" class="am-radio-label">{{label}}--{{radioKey}}</span>
     </div>
 </template>
 
 <script>
 
     import AmIcon from '../am-icon';
-    import {oneOf} from '../../scripts/utils';
+    import {oneOf, removeFromArray} from '../../scripts/utils';
     import Effect from '../../directives/effect';
     import {findComponentUpward} from '../../scripts/dom';
 
@@ -50,6 +50,7 @@
             activeColor: {type: String,},
             inactiveColor: {type: String},
             label: {type: String},
+            radioKey: {type: [String, Number]},
         },
         computed: {
             radioSize() {
@@ -105,6 +106,39 @@
                 currentValue: this.value,
                 radioGroup,
             };
+        },
+        methods: {
+            _handleClick() {
+                this.currentValue = !this.currentValue;
+                if (!!this.radioGroup) {
+                    if (!this.radioGroup.multiple) {
+                        this.radioGroup.radios.forEach(radio => {
+                            if (radio !== this) radio.currentValue = false;
+                        });
+                        this.radioGroup.singleValue = !!this.currentValue ? this.radioKey : null;
+                    } else {
+                        if (!!this.currentValue) this.radioGroup.multipleValue.push(this.radioKey);
+                        else removeFromArray(this.radioGroup.multipleValue, this.radioKey);
+                    }
+                }
+            },
+        },
+        mounted() {
+            !!this.radioGroup && (this.radioGroup.addRadio(this));
+            if (!!this.radioGroup) {
+                if (!!this.radioGroup.multiple) {
+                    if (!this.radioKey) {
+                        console.error(`radio must have radio-key when radio-group's multiple is true!`);
+                        return;
+                    }
+                    this.currentValue = oneOf(this.radioKey, this.radioGroup.multipleValue);
+                } else {
+                    this.currentValue = this.radioGroup.singleValue === this.radioKey;
+                }
+            }
+        },
+        destroyed() {
+            !!this.radioGroup && (this.radioGroup.removeRadio(this));
         },
     };
 </script>

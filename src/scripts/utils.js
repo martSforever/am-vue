@@ -112,3 +112,13 @@ export function uuid() {
 export function randomIndex(array) {
     return (!!array && array.length > 0) ? Math.floor(Math.random() * array.length) : 0;
 }
+
+export function removeFromArray(array, target) {
+    for (let i = 0; i < array.length; i++) {
+        const item = array[i];
+        if (item === target) {
+            array.splice(i, 1);
+            return;
+        }
+    }
+}
