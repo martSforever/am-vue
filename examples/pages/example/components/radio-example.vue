@@ -84,6 +84,11 @@
         <div class="title">单选/多选按钮组，当radio
             group指定size、color、active-icon、inactive-icon、active-color、inactive-color的时候，插槽中的radio会默认使用radio-group的值
         </div>
+        <div>
+            当radio-group指定了active-icon、inactive-icon的时候，其radio会优先使用radio-group的icon，然后是自己的icon，如果两者都没有指定，
+            当不存在radio-group的时候，默认使用多选的icon，当存在并且radio-group为单选（默认单选），则使用单选的icon
+        </div>
+        <br/>
         <div class="example-row">
             <am-radio-group size="30" color="error" active-icon="fas-plus" inactive-icon="fas-minus"
                             active-color="#43B973" inactive-color="#808695">

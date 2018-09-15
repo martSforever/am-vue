@@ -41,11 +41,9 @@
             },
             activeIcon: {
                 type: String,
-                default: 'fas-check-square'
             },
             inactiveIcon: {
                 type: String,
-                default: 'far-square'
             },
             activeColor: {type: String,},
             inactiveColor: {type: String},
@@ -60,10 +58,16 @@
                 return (!!this.radioGroup && !!this.radioGroup.color) ? this.radioGroup.color : this.color;
             },
             radioActiveIcon() {
-                return (!!this.radioGroup && !!this.radioGroup.activeIcon) ? this.radioGroup.activeIcon : this.activeIcon;
+                if (!this.radioGroup) return this.activeIcon || 'fas-check-square';
+                else {
+                    return this.radioGroup.activeIcon || this.activeIcon || (!!this.radioGroup.multiple ? 'fas-check-square' : 'fas-check-circle');
+                }
             },
             radioInactiveIcon() {
-                return (!!this.radioGroup && !!this.radioGroup.inactiveIcon) ? this.radioGroup.inactiveIcon : this.inactiveIcon;
+                if (!this.radioGroup) return this.inactiveIcon || 'fas-square';
+                else {
+                    return this.radioGroup.inactiveIcon || this.inactiveIcon || (!!this.radioGroup.multiple ? 'far-square' : 'far-circle');
+                }
             },
             radioActiveColor() {
                 return (!!this.radioGroup && !!this.radioGroup.activeColor) ? this.radioGroup.activeColor : this.activeColor;
