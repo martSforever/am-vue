@@ -28,7 +28,7 @@ export default {
         },
         {
             path: '/number-input',
-            name: 'input',
+            name: 'number-input',
             component: resolve => require(['examples/pages/example/components/number-input-example.vue'], resolve),
         },
         {
@@ -38,7 +38,7 @@ export default {
         },
         {
             path: '/radio',
-            name: 'switch',
+            name: 'radio',
             component: resolve => require(['examples/pages/example/components/radio-example.vue'], resolve),
         },
         {

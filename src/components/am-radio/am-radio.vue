@@ -4,12 +4,12 @@
             <transition-group name="am-transition-scale" mode="in-out">
                 <div class="am-radio-active-icon" v-if="currentValue" key="active">
                     <slot name="active">
-                        <am-icon :icon="activeIcon"/>
+                        <am-icon :icon="radioActiveIcon"/>
                     </slot>
                 </div>
                 <div class="am-radio-inactive-icon" v-if="!currentValue" key="inactive">
                     <slot name="inactive">
-                        <am-icon :icon="inactiveIcon"/>
+                        <am-icon :icon="radioInactiveIcon"/>
                     </slot>
                 </div>
             </transition-group>
@@ -23,6 +23,7 @@
     import AmIcon from '../am-icon';
     import {oneOf} from '../../scripts/utils';
     import Effect from '../../directives/effect';
+    import {findComponentUpward} from '../../scripts/dom';
 
     export default {
         name: 'am-radio',
@@ -51,23 +52,42 @@
             label: {type: String},
         },
         computed: {
+            radioSize() {
+                return (!!this.radioGroup && !!this.radioGroup.size) ? this.radioGroup.size : this.size;
+            },
+            radioColor() {
+                return (!!this.radioGroup && !!this.radioGroup.color) ? this.radioGroup.color : this.color;
+            },
+            radioActiveIcon() {
+                return (!!this.radioGroup && !!this.radioGroup.activeIcon) ? this.radioGroup.activeIcon : this.activeIcon;
+            },
+            radioInactiveIcon() {
+                return (!!this.radioGroup && !!this.radioGroup.inactiveIcon) ? this.radioGroup.inactiveIcon : this.inactiveIcon;
+            },
+            radioActiveColor() {
+                return (!!this.radioGroup && !!this.radioGroup.activeColor) ? this.radioGroup.activeColor : this.activeColor;
+            },
+            radioInactiveColor() {
+                return (!!this.radioGroup && !!this.radioGroup.inactiveColor) ? this.radioGroup.inactiveColor : this.inactiveColor;
+            },
+
             classes() {
                 return [
-                    `am-radio-color-${this.color}`,
+                    `am-radio-color-${this.radioColor}`,
                 ];
             },
             styles() {
                 let styles = {};
-                !!this.size && (styles.fontSize = styles.height = `${this.size}px`);
+                !!this.radioSize && (styles.fontSize = styles.height = `${this.radioSize}px`);
 
-                !!this.inactiveColor && (!this.currentValue) && (styles.color = `${this.inactiveColor} !important`);
-                !!this.activeColor && (!!this.currentValue) && (styles.color = `${this.activeColor} !important`);
+                !!this.radioInactiveColor && (!this.currentValue) && (styles.color = `${this.radioInactiveColor} !important`);
+                !!this.radioActiveColor && (!!this.currentValue) && (styles.color = `${this.radioActiveColor} !important`);
 
                 return styles;
             },
             labelStyles() {
                 let styles = {};
-                !!this.size && (styles.fontSize = styles.height = `${this.size / 1.618}px`);
+                !!this.radioSize && (styles.fontSize = styles.height = `${this.radioSize / 1.618}px`);
                 return styles;
             },
         },
@@ -80,8 +100,10 @@
             },
         },
         data() {
+            let radioGroup = findComponentUpward(this, 'am-radio-group');
             return {
-                currentValue: this.value
+                currentValue: this.value,
+                radioGroup,
             };
         },
     };

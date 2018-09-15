@@ -81,7 +81,17 @@
                 </div>
             </am-radio>
         </div>
-
+        <div class="title">单选/多选按钮组，当radio
+            group指定size、color、active-icon、inactive-icon、active-color、inactive-color的时候，插槽中的radio会默认使用radio-group的值
+        </div>
+        <div class="example-row">
+            <am-radio-group size="30" color="error" active-icon="fas-plus" inactive-icon="fas-minus"
+                            active-color="#43B973" inactive-color="#808695">
+                <am-radio label="饼干" size="20" color="error"/>
+                <am-radio label="牛奶" size="30" color="success"/>
+                <am-radio label="鸡蛋" size="40" color="warn"/>
+            </am-radio-group>
+        </div>
 
     </div>
 </template>

@@ -41,3 +41,15 @@
         }
     }
 }
+
+.am-radio-group {
+    box-sizing: border-box;
+    display: inline-flex;
+    vertical-align: bottom;
+    border: none;
+    background: none;
+    align-items: center;
+    .am-radio:not(:last-child) {
+        margin-right: 1em;
+    }
+}

@@ -9,6 +9,7 @@ import input from './components/am-input';
 import AmSwitch from './components/am-switch';
 import NumberInput from './components/am-number-input';
 import radio from './components/am-radio';
+import radioGroup from './components/am-radio-group';
 
 const components = {
     icon,
@@ -20,6 +21,7 @@ const components = {
     switch: AmSwitch,
     'number-input': NumberInput,
     radio,
+    'radio-group': radioGroup,
 };
 
 let $amvue = {};
