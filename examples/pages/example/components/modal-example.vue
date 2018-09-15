@@ -1,14 +1,23 @@
 <template>
     <div class="modal-example example-page">
-        <am-modal>
-
+        <div class="title">基本用法</div>
+        <div class="example-row">
+            <am-button @click="show1 = !show1">toggle[{{show1}}]</am-button>
+        </div>
+        <am-modal v-modal="show1">
+            this is modal content
         </am-modal>
     </div>
 </template>
 
 <script>
     export default {
-        name: 'modal-example'
+        name: 'modal-example',
+        data() {
+            return {
+                show1: false
+            };
+        },
     };
 </script>
 
