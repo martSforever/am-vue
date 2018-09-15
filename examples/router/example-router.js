@@ -42,6 +42,11 @@ export default {
             component: resolve => require(['examples/pages/example/components/radio-example.vue'], resolve),
         },
         {
+            path: '/modal',
+            name: 'modal',
+            component: resolve => require(['examples/pages/example/components/modal-example.vue'], resolve),
+        },
+        {
             path: '/grid',
             name: 'grid',
             component: resolve => require(['examples/pages/example/components/grid-example.vue'], resolve),

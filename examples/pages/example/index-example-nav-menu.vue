@@ -61,7 +61,7 @@
                             {name: 'number input', icon: 'number-nine', url: 'number-input'},
                             {name: 'textarea', icon: 'color-textarea', url: ''},
                             {name: 'switch', icon: 'color-switch', url: 'switch'},
-                            {name: 'modal', icon: 'color-modal', url: ''},
+                            {name: 'modal', icon: 'color-modal', url: 'modal'},
                             {name: 'radio', icon: 'color-checked', url: 'radio'},
                             {name: 'select', icon: 'color-select', url: ''},
                             {name: 'timepicker', icon: 'color-time', url: ''},
