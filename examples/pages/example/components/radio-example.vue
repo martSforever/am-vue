@@ -95,28 +95,44 @@
 
         <div class="title">单选</div>
         <div class="example-row">
+            <div class="example-row">
+                <am-button>{{groupVal2}}</am-button>
+            </div>
             <am-radio-group v-model="groupVal2">
+                <am-radio label="单选" radio-key="single"/>
                 <am-radio label="饼干" radio-key="binggan"/>
                 <am-radio label="牛奶" radio-key="niunai"/>
                 <am-radio label="鸡蛋" radio-key="jidan"/>
-                <am-button>{{groupVal2}}</am-button>
             </am-radio-group>
         </div>
         <div class="title">多选</div>
         <div class="example-row">
+            <div class="example-row">
+                <am-button>{{groupVal1}}</am-button>
+            </div>
             <am-radio-group multiple v-model="groupVal1">
+                <am-radio label="多选" radio-key="multiple"/>
                 <am-radio label="饼干" radio-key="binggan"/>
                 <am-radio label="牛奶" radio-key="niunai"/>
                 <am-radio label="鸡蛋" radio-key="jidan"/>
-                <am-button>{{groupVal1}}</am-button>
-            </am-radio-group>
-            <am-radio-group multiple v-model="groupVal1">
-                <am-radio label="饼干" radio-key="binggan"/>
-                <am-radio label="牛奶" radio-key="niunai"/>
-                <am-radio label="鸡蛋" radio-key="jidan"/>
-                <am-button>{{groupVal1}}</am-button>
             </am-radio-group>
         </div>
+        <div class="title">纵向</div>
+        <div class="example-row">
+            <am-radio-group vertical v-model="groupVal2">
+                <am-radio label="单选" radio-key="single"/>
+                <am-radio label="饼干" radio-key="binggan"/>
+                <am-radio label="牛奶" radio-key="niunai"/>
+                <am-radio label="鸡蛋" radio-key="jidan"/>
+            </am-radio-group>
+            <am-radio-group vertical multiple v-model="groupVal1">
+                <am-radio label="多选" radio-key="multiple"/>
+                <am-radio label="饼干" radio-key="binggan"/>
+                <am-radio label="牛奶" radio-key="niunai"/>
+                <am-radio label="鸡蛋" radio-key="jidan"/>
+            </am-radio-group>
+        </div>
+
     </div>
 </template>
 

@@ -1,5 +1,5 @@
 <template>
-    <div class="am-radio-group">
+    <div class="am-radio-group" :class="classes">
         <slot></slot>
     </div>
 </template>
@@ -20,6 +20,7 @@
             inactiveColor: {},
 
             multiple: {type: Boolean},
+            vertical: {type: Boolean},
         },
         data() {
             return {
@@ -63,7 +64,13 @@
                 });
             },
         },
-        computed: {},
+        computed: {
+            classes() {
+                return [
+                    `am-radio-group-${!!this.vertical ? 'vertical' : 'horizontal'}`
+                ];
+            },
+        },
         mounted() {
             if (!!this.multiple && !!this.value && typeOf(this.value) !== 'array') {
                 console.error('[radio-group]value must be instance of array when multiple is true!');

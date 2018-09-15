@@ -14,7 +14,7 @@
                 </div>
             </transition-group>
         </div>
-        <span v-if="!!label" :style="labelStyles" class="am-radio-label">{{label}}--{{radioKey}}</span>
+        <span v-if="!!label" :style="labelStyles" class="am-radio-label">{{label}}</span>
     </div>
 </template>
 
