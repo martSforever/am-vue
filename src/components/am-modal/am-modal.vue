@@ -22,10 +22,13 @@
                                     <am-icon :icon="types[type].icon" :color="types[type].color"/>
                                     <label>{{title}}</label>
                                 </div>
-                                <am-icon icon="fas-times"
-                                         v-if="closeIcon"
-                                         class="am-modal-body-head-default-close-icon"
-                                         @click="currentValue = false"/>
+                                <div class="am-modal-body-head-default-icon-bar">
+                                    <am-icon icon="fas-window-maximize"/>
+                                    <am-icon icon="fas-times"
+                                             v-if="closeIcon"
+                                             class="am-modal-body-head-default-close-icon"
+                                             @click="currentValue = false"/>
+                                </div>
                             </div>
                         </slot>
                     </div>
@@ -54,7 +57,6 @@
 </template>
 
 <script>
-
     import {deepCopy, oneOf} from "../../scripts/utils";
     import AmSegmentLine from '../../components/am-segment-line'
     import AmIcon from '../../components/am-icon'

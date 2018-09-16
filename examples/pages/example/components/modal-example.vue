@@ -21,9 +21,9 @@
                   confirm-button
                   cancel-button
                   :close-icon="true"
-                  vertical="center"
-                  horizontal="center"
-                  full
+                  vertical="end"
+                  horizontal="end"
+                  :full="false"
         >
 
         </am-modal>
