@@ -18,13 +18,11 @@ body {
         left: 50%;
         top: 0;
         z-index: 2;
+        @include transition-all;
         .am-modal-body {
             background-color: white;
             left: -50%;
             position: relative;
-            min-width: 520px;
-            min-height: 200px;
-
             @each $key, $value in $list-shape {
                 &.am-modal-body-shape-#{$key} {
                     border-radius: $value;

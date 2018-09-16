@@ -7,11 +7,12 @@
                  v-show="!!shadow && !!currentValue"
                  v-dom-portal></div>
         </transition>
-        <transition>
+        <transition :name="transitionName">
             <div class="am-modal-body-wrapper"
                  v-show="!!currentValue"
                  v-dom-portal>
                 <div class="am-modal-body"
+                     :style="bodyStyles"
                      :class="bodyClasses">
                     <div class="am-modal-body-head">
                         <slot name="head">modal head</slot>
@@ -45,6 +46,13 @@
                     return oneOf(val, ['fillet', 'round', 'none']);
                 },
             },
+            transitionName: {type: String, default: 'am-transition-from-bottom'},
+            marginTop: {
+                default: '10%'
+            },
+            height: {default: '200px'},
+            width: {default: '520px'},
+            full: {type: Boolean},
         },
         watch: {
             value(val) {
@@ -69,6 +77,12 @@
                 return [
                     `am-modal-body-shape-${this.shape}`
                 ]
+            },
+            bodyStyles() {
+                let styles = {}
+                styles.width = !!this.full ? '100vw' : this.width
+                styles.height = !!this.full ? '100vh' : this.height
+                return styles
             },
         },
     };

@@ -2,23 +2,35 @@
     transition: all $transition-time;
 }
 
+/*缩放*/
 .am-transition-scale-enter-active, .am-transition-scale-leave-active {
     transform-origin: center;
     transform: scale(1);
 }
 
-.am-transition-scale-enter, .am-transition-scale-leave-to /* .fade-leave-active below version 2.1.8 */
+.am-transition-scale-enter, .am-transition-scale-leave-to
 {
     transform-origin: center;
     transform: scale(0.6);
     opacity: 0;
 }
 
+/*透明度*/
 .am-transition-fade-enter-active, .am-transition-fade-leave-active {
     opacity: 1;
 }
 
-.am-transition-fade-enter, .am-transition-fade-leave-to /* .fade-leave-active below version 2.1.8 */
+.am-transition-fade-enter, .am-transition-fade-leave-to
 {
+    opacity: 0;
+}
+
+/*移动*/
+.am-transition-from-bottom-enter-active, .am-transition-from-bottom-leave-active {
+}
+
+.am-transition-from-bottom-enter, .am-transition-from-bottom-leave-to
+{
+    transform: translateY(10%);
     opacity: 0;
 }
