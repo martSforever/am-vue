@@ -13,3 +13,12 @@
     transform: scale(0.6);
     opacity: 0;
 }
+
+.am-transition-fade-enter-active, .am-transition-fade-leave-active {
+    opacity: 1;
+}
+
+.am-transition-fade-enter, .am-transition-fade-leave-to /* .fade-leave-active below version 2.1.8 */
+{
+    opacity: 0;
+}

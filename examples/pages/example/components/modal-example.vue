@@ -4,7 +4,7 @@
         <div class="example-row">
             <am-button @click="show1 = !show1">toggle[{{show1}}]</am-button>
         </div>
-        <am-modal v-modal="show1">
+        <am-modal v-model="show1" :shadow="true">
             this is modal content
         </am-modal>
     </div>
