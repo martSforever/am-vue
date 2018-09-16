@@ -18,8 +18,8 @@
                         <slot name="head">
                             <div class="am-modal-body-head-default">
                                 <div>
-                                    <am-icon icon="fas-plus"/>
-                                    <label>title</label>
+                                    <am-icon :icon="types[type].icon" :color="types[type].color"/>
+                                    <label>{{title}}</label>
                                 </div>
                                 <am-icon icon="fas-times"
                                          class="am-modal-body-head-default-close-icon"
@@ -29,13 +29,17 @@
                     </div>
                     <am-segment-line/>
                     <div class="am-modal-body-content">
-                        <slot>modal content</slot>
+                        <slot>
+                            <div class="am-modal-body-content-default">{{message}}</div>
+                        </slot>
                     </div>
-                    <am-segment-line/>
                     <div class="am-modal-body-foot">
                         <slot name="foot">
                             <div class="am-modal-body-foot-default">
-                                modal foot
+                                <am-button-group size="small">
+                                    <am-button color="success" @click="_handleConfirm">确认</am-button>
+                                    <am-button color="error" @click="_handleCancel">取消</am-button>
+                                </am-button-group>
                             </div>
                         </slot>
                     </div>
@@ -50,12 +54,16 @@
     import {oneOf} from "../../scripts/utils";
     import AmSegmentLine from '../../components/am-segment-line'
     import AmIcon from '../../components/am-icon'
+    import AmButtonGroup from '../../components/am-button/am-button-group'
+    import AmButton from '../../components/am-button/am-button'
 
     export default {
         name: 'am-modal',
         components: {
             AmSegmentLine,
             AmIcon,
+            AmButton,
+            AmButtonGroup,
         },
         props: {
             value: {type: Boolean},
@@ -75,6 +83,15 @@
             height: {default: '200px'},
             width: {default: '520px'},
             full: {type: Boolean},
+            type: {
+                type: String,
+                default: 'info',
+                validator(val) {
+                    return oneOf(val, ['info', 'success', 'warn', 'error'])
+                },
+            },
+            title: {type: String},
+            message: {type: String},
         },
         watch: {
             value(val) {
@@ -87,6 +104,12 @@
         data() {
             return {
                 currentValue: this.value,
+                types: {
+                    info: {icon: 'fas-info-circle', color: '#808695'},
+                    success: {icon: 'fas-check-circle', color: '#43B973'},
+                    warn: {icon: 'fas-exclamation-circle', color: '#ffb020'},
+                    error: {icon: 'fas-times-circle', color: '#ED4114'},
+                }
             }
         },
         computed: {
@@ -105,6 +128,14 @@
                 styles.width = !!this.full ? '100vw' : this.width
                 styles.height = !!this.full ? '100vh' : this.height
                 return styles
+            },
+        },
+        methods: {
+            _handleConfirm() {
+                this.$emit('confirm')
+            },
+            _handleCancel() {
+                this.$emit('cancel')
             },
         },
     };

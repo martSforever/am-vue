@@ -31,21 +31,27 @@ body {
                     border-radius: $value;
                 }
             }
-
             .am-modal-body-head, .am-modal-body-content, .am-modal-body-foot {
                 background-color: white;
+                box-sizing: border-box;
             }
             .am-modal-body-content {
                 flex: 1;
             }
             .am-modal-body-head-default, .am-modal-body-foot-default {
                 min-height: 44px;
+            }
+            .am-modal-body-foot-default {
                 display: flex;
                 align-items: center;
-                padding: 0 1em;
+                justify-content: flex-end;
+                padding: 0 0.5em;
             }
             .am-modal-body-content, .am-modal-body-foot {
                 color: $color-normal-content;
+            }
+            .am-modal-body-content-default {
+                padding: 1em;
             }
             .am-modal-body-head-default {
                 font-size: 18px;
@@ -53,6 +59,7 @@ body {
                 align-items: center;
                 justify-content: space-between;
                 color: $color-normal-sub-color;
+                padding: 0 1em;
                 .am-modal-body-head-default-close-icon {
                     @include transition-all;
                     cursor: pointer;
