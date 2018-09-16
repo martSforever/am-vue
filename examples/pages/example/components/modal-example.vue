@@ -6,6 +6,7 @@
         </div>
         <div class="example-row">
             <am-button-group>
+                <am-button label="primary" @click="(type='primary') && (show1 = true)" color="primary"/>
                 <am-button label="info" @click="(type='info') && (show1 = true)" color="info"/>
                 <am-button label="success" @click="(type='success') && (show1 = true)" color="success"/>
                 <am-button label="warn" @click="(type='warn') && (show1 = true)" color="warn"/>
@@ -22,6 +23,7 @@
                   :close-icon="true"
                   vertical="center"
                   horizontal="center"
+                  full
         >
 
         </am-modal>

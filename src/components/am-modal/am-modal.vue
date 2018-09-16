@@ -86,9 +86,9 @@
             full: {type: Boolean},
             type: {
                 type: String,
-                default: 'info',
+                default: 'primary',
                 validator(val) {
-                    return oneOf(val, ['info', 'success', 'warn', 'error'])
+                    return oneOf(val, ['primary', 'info', 'success', 'warn', 'error'])
                 },
             },
             title: {type: String},
@@ -120,6 +120,7 @@
             return {
                 currentValue: this.value,
                 types: {
+                    primary: {icon: 'fas-comment-alt', color: '#2D8DF0'},
                     info: {icon: 'fas-info-circle', color: '#808695'},
                     success: {icon: 'fas-check-circle', color: '#43B973'},
                     warn: {icon: 'fas-exclamation-circle', color: '#ffb020'},
@@ -140,11 +141,9 @@
             },
             bodyStyles() {
                 let styles = {}
-                styles.minWidth = !!this.full ? '99vw' : this.width
-                styles.minHeight = !!this.full ? '99vh' : this.height
-
+                styles.minWidth = !!this.full ? '100vw' : this.width
+                styles.minHeight = !!this.full ? '100vh' : this.height
                 styles.transform = `translate(${this.horizontal === 'center' ? '-50%' : '0'},${this.vertical === 'center' ? '-50%' : '0'})`
-
                 return styles
             },
             wrapperStyles() {
