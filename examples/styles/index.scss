@@ -2,3 +2,12 @@
 @import "../../src/styles/mixins/index";
 @import "reset";
 @import "example";
+
+@font-face {
+    font-family: 'pf';
+    src: url('../assets/PingFang Medium.ttf') format('truetype')
+}
+
+body {
+    font-family: pf;
+}
