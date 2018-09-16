@@ -22,6 +22,7 @@
                                     <label>{{title}}</label>
                                 </div>
                                 <am-icon icon="fas-times"
+                                         v-if="closeIcon"
                                          class="am-modal-body-head-default-close-icon"
                                          @click="currentValue = false"/>
                             </div>
@@ -35,10 +36,12 @@
                     </div>
                     <div class="am-modal-body-foot">
                         <slot name="foot">
-                            <div class="am-modal-body-foot-default">
+                            <div class="am-modal-body-foot-default" v-if="!!confirmButton || !!cancelButton">
                                 <am-button-group size="small">
-                                    <am-button color="success" @click="_handleConfirm">确认</am-button>
-                                    <am-button color="error" @click="_handleCancel">取消</am-button>
+                                    <am-button color="success" @click="_handleConfirm" v-if="!!confirmButton">
+                                        确认
+                                    </am-button>
+                                    <am-button color="error" @click="_handleCancel" v-if="!!cancelButton">取消</am-button>
                                 </am-button-group>
                             </div>
                         </slot>
@@ -92,6 +95,9 @@
             },
             title: {type: String},
             message: {type: String},
+            confirmButton: {type: Boolean},
+            cancelButton: {type: Boolean},
+            closeIcon: {type: Boolean, default: true},
         },
         watch: {
             value(val) {
@@ -125,17 +131,19 @@
             },
             bodyStyles() {
                 let styles = {}
-                styles.width = !!this.full ? '100vw' : this.width
-                styles.height = !!this.full ? '100vh' : this.height
+                styles.minWidth = !!this.full ? '100vw' : this.width
+                styles.minHeight = !!this.full ? '100vh' : this.height
                 return styles
             },
         },
         methods: {
             _handleConfirm() {
                 this.$emit('confirm')
+                this.currentValue = false
             },
             _handleCancel() {
                 this.$emit('cancel')
+                this.currentValue = false
             },
         },
     };

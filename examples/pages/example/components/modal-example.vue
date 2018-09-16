@@ -12,7 +12,16 @@
                 <am-button label="error" @click="(type='error') && (show1 = true)" color="error"/>
             </am-button-group>
         </div>
-        <am-modal v-model="show1" :shadow="true" :type="type" title="操作提示" message="通知内容">
+        <am-modal v-model="show1"
+                  :shadow="true"
+                  :type="type"
+                  title="操作提示"
+                  message="通知内容"
+                  confirm-button
+                  cancel-button
+                  :close-icon="true"
+        >
+
         </am-modal>
     </div>
 </template>
