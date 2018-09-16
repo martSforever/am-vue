@@ -4,6 +4,7 @@
 const path = require('path');
 const webpack = require('webpack');
 const pkg = require('../package.json');
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 function resolve(dir) {
     return path.join(__dirname, '..', dir);
@@ -113,26 +114,14 @@ module.exports = {
             },
             {
                 test: /\.scss$/,
-                use: [
-                    {
-                        loader: 'style-loader',
-                        options: {
-                            sourceMap: true,
-                        },
-                    },
-                    {
-                        loader: 'css-loader',
-                        options: {
-                            sourceMap: true,
-                        },
-                    },
-                    {
-                        loader: 'sass-loader',
-                        options: {
-                            sourceMap: true,
-                        },
-                    },
-                ]
+                use: ExtractTextPlugin.extract({
+                    use: [{
+                        loader: "css-loader"
+                    }, {
+                        loader: 'sass-loader'
+                    }],
+                    fallback: "style-loader"
+                }),
             },
             {
                 test: /\.(gif|jpg|png|woff|svg|eot|ttf)\??.*$/,
@@ -163,5 +152,11 @@ module.exports = {
         new webpack.DefinePlugin({
             'process.env.VERSION': `'${pkg.version}'`
         }),
+        new ExtractTextPlugin({
+            filename: (getPath) => {
+                return getPath('css/[name].css').replace('css/js', 'css')
+            },
+            allChunks: true
+        })
     ]
 };
