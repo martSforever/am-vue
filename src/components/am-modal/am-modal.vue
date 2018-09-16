@@ -120,7 +120,7 @@
             return {
                 currentValue: this.value,
                 types: {
-                    primary: {icon: 'fas-comment-alt', color: '#2D8DF0'},
+                    primary: {icon: 'fas-desktop', color: '#2D8DF0'},
                     info: {icon: 'fas-info-circle', color: '#808695'},
                     success: {icon: 'fas-check-circle', color: '#43B973'},
                     warn: {icon: 'fas-exclamation-circle', color: '#ffb020'},
