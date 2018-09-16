@@ -12,6 +12,7 @@ import NumberInput from './components/am-number-input';
 import radio from './components/am-radio';
 import radioGroup from './components/am-radio-group';
 import modal from './components/am-modal';
+import segmentLine from './components/am-segment-line';
 
 const components = {
     icon,
@@ -25,6 +26,7 @@ const components = {
     radio,
     'radio-group': radioGroup,
     modal,
+    'segment-line': segmentLine
 };
 
 let $amvue = {};

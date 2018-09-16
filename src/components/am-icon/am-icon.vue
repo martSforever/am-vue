@@ -1,5 +1,10 @@
 <template>
-    <span class="am-icon" :class="classes" :is="targetComponent" :icon="targetIcon" :style="styles"></span>
+    <span class="am-icon"
+          :class="classes"
+          :is="targetComponent"
+          :icon="targetIcon"
+          :style="styles"
+          @click.native="e=>$emit('click',e)"></span>
 </template>
 
 <script>

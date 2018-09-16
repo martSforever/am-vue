@@ -20,12 +20,45 @@ body {
         z-index: 2;
         @include transition-all;
         .am-modal-body {
-            background-color: white;
             left: -50%;
             position: relative;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+
             @each $key, $value in $list-shape {
                 &.am-modal-body-shape-#{$key} {
                     border-radius: $value;
+                }
+            }
+
+            .am-modal-body-head, .am-modal-body-content, .am-modal-body-foot {
+                background-color: white;
+            }
+            .am-modal-body-content {
+                flex: 1;
+            }
+            .am-modal-body-head-default, .am-modal-body-foot-default {
+                min-height: 44px;
+                display: flex;
+                align-items: center;
+                padding: 0 1em;
+            }
+            .am-modal-body-content, .am-modal-body-foot {
+                color: $color-normal-content;
+            }
+            .am-modal-body-head-default {
+                font-size: 18px;
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                color: $color-normal-sub-color;
+                .am-modal-body-head-default-close-icon {
+                    @include transition-all;
+                    cursor: pointer;
+                    &:hover {
+                        transform: rotate(180deg);
+                    }
                 }
             }
         }
