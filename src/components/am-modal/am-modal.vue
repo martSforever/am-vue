@@ -10,6 +10,7 @@
         <transition :name="transitionName">
             <div class="am-modal-body-wrapper"
                  v-show="!!currentValue"
+                 :style="wrapperStyles"
                  v-dom-portal>
                 <div class="am-modal-body"
                      :style="bodyStyles"
@@ -54,7 +55,7 @@
 
 <script>
 
-    import {oneOf} from "../../scripts/utils";
+    import {deepCopy, oneOf} from "../../scripts/utils";
     import AmSegmentLine from '../../components/am-segment-line'
     import AmIcon from '../../components/am-icon'
     import AmButtonGroup from '../../components/am-button/am-button-group'
@@ -80,9 +81,6 @@
                 },
             },
             transitionName: {type: String, default: 'am-transition-from-bottom'},
-            marginTop: {
-                default: '10%'
-            },
             height: {default: '200px'},
             width: {default: '520px'},
             full: {type: Boolean},
@@ -98,6 +96,17 @@
             confirmButton: {type: Boolean},
             cancelButton: {type: Boolean},
             closeIcon: {type: Boolean, default: true},
+            marginTop: {
+                default: '10%'
+            },
+            vertical: {
+                type: String,
+                default: 'top'
+            },
+            horizontal: {
+                type: String,
+                default: 'center'
+            },
         },
         watch: {
             value(val) {
@@ -131,9 +140,18 @@
             },
             bodyStyles() {
                 let styles = {}
-                styles.minWidth = !!this.full ? '100vw' : this.width
-                styles.minHeight = !!this.full ? '100vh' : this.height
+                styles.minWidth = !!this.full ? '99vw' : this.width
+                styles.minHeight = !!this.full ? '99vh' : this.height
+
+                styles.transform = `translate(${this.horizontal === 'center' ? '-50%' : '0'},${this.vertical === 'center' ? '-50%' : '0'})`
+
                 return styles
+            },
+            wrapperStyles() {
+                return {
+                    [this.horizontal === 'end' ? 'right' : 'left']: `${this.horizontal === 'center' ? 50 : 0}%`,
+                    [this.vertical === 'end' ? 'bottom' : 'top']: `${this.vertical === 'center' ? 50 : 0}%`,
+                }
             },
         },
         methods: {
