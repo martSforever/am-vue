@@ -23,7 +23,8 @@
                                     <label>{{title}}</label>
                                 </div>
                                 <div class="am-modal-body-head-default-icon-bar">
-                                    <am-icon icon="fas-window-maximize"/>
+                                    <am-icon :icon="!!max?'fas-window-maximize':'far-window-maximize'"
+                                             @click="max = !max"/>
                                     <am-icon icon="fas-times"
                                              v-if="closeIcon"
                                              class="am-modal-body-head-default-close-icon"
@@ -121,6 +122,7 @@
         data() {
             return {
                 currentValue: this.value,
+                max: false,
                 types: {
                     primary: {icon: 'fas-desktop', color: '#2D8DF0'},
                     info: {icon: 'fas-info-circle', color: '#808695'},
@@ -143,8 +145,8 @@
             },
             bodyStyles() {
                 let styles = {}
-                styles.minWidth = !!this.full ? '100vw' : this.width
-                styles.minHeight = !!this.full ? '100vh' : this.height
+                styles.minWidth = (!!this.full || !!this.max) ? '100vw' : this.width
+                styles.minHeight = (!!this.full || !!this.max) ? '100vh' : this.height
                 styles.transform = `translate(${this.horizontal === 'center' ? '-50%' : '0'},${this.vertical === 'center' ? '-50%' : '0'})`
                 return styles
             },

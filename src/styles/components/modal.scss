@@ -18,6 +18,7 @@ body {
             display: flex;
             flex-direction: column;
             overflow: hidden;
+            @include transition-all;
 
             @each $key, $value in $list-shape {
                 &.am-modal-body-shape-#{$key} {
@@ -58,7 +59,7 @@ body {
                         @include transition-all;
                         cursor: pointer;
                         &:hover {
-                            transform: rotate(180deg);
+                            transform: rotate(360deg);
                         }
                         &:not(:last-child) {
                             margin-right: 1em;

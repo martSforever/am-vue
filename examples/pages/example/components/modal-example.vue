@@ -21,8 +21,8 @@
                   confirm-button
                   cancel-button
                   :close-icon="true"
-                  vertical="end"
-                  horizontal="end"
+                  vertical="center"
+                  horizontal="center"
                   :full="false"
         >
 
