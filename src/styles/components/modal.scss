@@ -18,6 +18,8 @@ body {
             display: flex;
             flex-direction: column;
             overflow: hidden;
+            box-shadow: 0 0 10px #ddd;
+
             @include transition-all;
 
             @each $key, $value in $list-shape {
