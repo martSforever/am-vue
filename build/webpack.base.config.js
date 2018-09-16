@@ -113,7 +113,7 @@ module.exports = {
             },
             {
                 test: /\.scss$/,
-                loaders: [
+                use: [
                     {
                         loader: 'style-loader',
                         options: {
@@ -135,19 +135,8 @@ module.exports = {
                 ]
             },
             {
-                test: /\.(gif|jpg|png|woff|svg|eot)\??.*$/,
+                test: /\.(gif|jpg|png|woff|svg|eot|ttf)\??.*$/,
                 loader: 'url-loader?limit=8192'
-            },
-            {
-                test: /\.ttf$/,
-                use: [
-                    {
-                        loader: 'ttf-loader',
-                        options: {
-                            name: './font/[hash].[ext]',
-                        },
-                    },
-                ]
             },
             {
                 test: /\.(html|tpl)$/,
