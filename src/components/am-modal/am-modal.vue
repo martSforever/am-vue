@@ -99,9 +99,6 @@
             confirmButton: {type: Boolean},
             cancelButton: {type: Boolean},
             closeIcon: {type: Boolean, default: true},
-            marginTop: {
-                default: '10%'
-            },
             vertical: {
                 type: String,
                 default: 'top'
@@ -110,6 +107,24 @@
                 type: String,
                 default: 'center'
             },
+
+            top: {
+                type: String,
+                default: '0'
+            },
+            left: {
+                type: String,
+                default: '0'
+            },
+            bottom: {
+                type: String,
+                default: '0'
+            },
+            right: {
+                type: String,
+                default: '0'
+            },
+
         },
         watch: {
             value(val) {
@@ -148,6 +163,10 @@
                 styles.minWidth = (!!this.full || !!this.max) ? '100vw' : this.width
                 styles.minHeight = (!!this.full || !!this.max) ? '100vh' : this.height
                 styles.transform = `translate(${this.horizontal === 'center' ? '-50%' : '0'},${this.vertical === 'center' ? '-50%' : '0'})`
+                styles.left = this.left
+                styles.right = this.right
+                styles.bottom = this.bottom
+                styles.top = this.top
                 return styles
             },
             wrapperStyles() {
