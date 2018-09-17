@@ -61,5 +61,10 @@ export default {
             name: 'move',
             component: resolve => require(['examples/pages/example/components/move-example.vue'], resolve),
         },
+        {
+            path: '/collapse',
+            name: 'collapse',
+            component: resolve => require(['examples/pages/example/components/collapse-example.vue'], resolve),
+        },
     ]
 };

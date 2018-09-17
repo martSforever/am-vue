@@ -8,8 +8,7 @@
     transform: scale(1);
 }
 
-.am-transition-scale-enter, .am-transition-scale-leave-to
-{
+.am-transition-scale-enter, .am-transition-scale-leave-to {
     transform-origin: center;
     transform: scale(0.6);
     opacity: 0;
@@ -20,8 +19,7 @@
     opacity: 1;
 }
 
-.am-transition-fade-enter, .am-transition-fade-leave-to
-{
+.am-transition-fade-enter, .am-transition-fade-leave-to {
     opacity: 0;
 }
 
@@ -29,8 +27,13 @@
 .am-transition-from-bottom-enter-active, .am-transition-from-bottom-leave-active {
 }
 
-.am-transition-from-bottom-enter, .am-transition-from-bottom-leave-to
-{
+.am-transition-from-bottom-enter, .am-transition-from-bottom-leave-to {
     transform: translateY(10%);
     opacity: 0;
+}
+
+/*折叠动画*/
+
+.collapse-transition {
+    transition: $transition-time height ease-in-out, $transition-time padding-top ease-in-out, $transition-time padding-bottom ease-in-out;
 }

@@ -1,3 +1,6 @@
+
+
+
 /*
 *  向下查找组件
 */
@@ -142,29 +145,6 @@ export function addClass(el, cls) {
     }
 }
 
-/* istanbul ignore next */
-export function removeClass(el, cls) {
-    if (!el || !cls) return;
-    const classes = cls.split(' ');
-    let curClass = ' ' + el.className + ' ';
-
-    for (let i = 0, j = classes.length; i < j; i++) {
-        const clsName = classes[i];
-        if (!clsName) continue;
-
-        if (el.classList) {
-            el.classList.remove(clsName);
-        } else {
-            if (hasClass(el, clsName)) {
-                curClass = curClass.replace(' ' + clsName + ' ', ' ');
-            }
-        }
-    }
-    if (!el.classList) {
-        el.className = trim(curClass);
-    }
-}
-
 /*----------------------------------------------------------------------------------*/
 /*检测浏览器使用的是哪一种前缀*/
 let elementStyle = document.createElement('div').style;
@@ -225,5 +205,28 @@ export function insertAfter(newEl, targetEl) {
     } else {
         //如果不是，则插入在目标元素的下一个兄弟节点 的前面。也就是目标元素的后面
         parentEl.insertBefore(newEl, targetEl.nextSibling);
+    }
+}
+
+/* istanbul ignore next */
+export function removeClass(el, cls) {
+    if (!el || !cls) return;
+    const classes = cls.split(' ');
+    let curClass = ' ' + el.className + ' ';
+
+    for (let i = 0, j = classes.length; i < j; i++) {
+        const clsName = classes[i];
+        if (!clsName) continue;
+
+        if (el.classList) {
+            el.classList.remove(clsName);
+        } else {
+            if (hasClass(el, clsName)) {
+                curClass = curClass.replace(' ' + clsName + ' ', ' ');
+            }
+        }
+    }
+    if (!el.classList) {
+        el.className = trim(curClass);
     }
 }

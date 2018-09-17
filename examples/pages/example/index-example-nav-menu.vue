@@ -72,7 +72,7 @@
                         children: [
                             {name: 'popover', icon: 'color-popover', url: ''},
                             {name: 'dropdown', icon: 'color-droplet', url: ''},
-                            {name: 'collapse', icon: 'color-collapse', url: ''},
+                            {name: 'collapse', icon: 'color-collapse', url: 'collapse'},
                             {name: 'tag', icon: 'color-tag', url: ''},
                             {name: 'move', icon: 'color-run', url: 'move'},
                             {name: 'notice', icon: 'color-notice', url: ''},
