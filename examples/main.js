@@ -11,6 +11,7 @@ import Amvue from 'amvue';
 
 import './styles/index.scss';
 
+window._ = require('lodash')
 Vue.use(Amvue, {IconfontPrefix: 'ali-icon'});
 // 开启debug模式
 Vue.config.debug = true;

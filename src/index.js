@@ -14,6 +14,8 @@ import radioGroup from './components/am-radio-group';
 import modal from './components/am-modal';
 import segmentLine from './components/am-segment-line';
 import avatar from './components/am-avatar';
+import moveItem from './components/am-move/am-move-item';
+import moveContainer from './components/am-move/am-move-container';
 
 const components = {
     icon,
@@ -29,6 +31,8 @@ const components = {
     modal,
     'segment-line': segmentLine,
     avatar,
+    'move-item': moveItem,
+    'move-container': moveContainer,
 };
 
 let $amvue = {};

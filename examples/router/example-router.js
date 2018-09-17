@@ -56,5 +56,10 @@ export default {
             name: 'avatar',
             component: resolve => require(['examples/pages/example/components/avatar-example.vue'], resolve),
         },
+        {
+            path: '/move',
+            name: 'move',
+            component: resolve => require(['examples/pages/example/components/move-example.vue'], resolve),
+        },
     ]
 };

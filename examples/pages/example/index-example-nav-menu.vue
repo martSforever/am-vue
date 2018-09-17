@@ -74,7 +74,7 @@
                             {name: 'dropdown', icon: 'color-droplet', url: ''},
                             {name: 'collapse', icon: 'color-collapse', url: ''},
                             {name: 'tag', icon: 'color-tag', url: ''},
-                            {name: 'move', icon: 'color-run', url: ''},
+                            {name: 'move', icon: 'color-run', url: 'move'},
                             {name: 'notice', icon: 'color-notice', url: ''},
                             {name: 'modal', icon: 'color-modal', url: 'modal'},
                             {name: 'avatar', icon: 'color-avatar', url: 'avatar'},
