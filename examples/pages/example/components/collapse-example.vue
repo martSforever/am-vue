@@ -5,13 +5,25 @@
             <am-button label="toggle" @click="val1 = !val1"/>
             <am-button label="add" @click="list.push(list.length)"/>
             <am-button label="remove" @click="list.pop()"/>
-            <am-collapse v-model="val1">
-                <div class="test-collapse-item"
-                     v-for="item in list">
-                    {{item}}
+        </div>
+        <div class="example-row" style="width: 500px">
+            <am-collapse v-model="val1" icon-color="white">
+                <div slot="head"
+                     style="background-color: blueviolet;height: 44px;line-height: 44px;padding: 0 1em;color: white">
+                    this is head
+                </div>
+                <div style="background-color: salmon;height: 300px">
+                    this is content
                 </div>
             </am-collapse>
         </div>
+
+        <!--
+             <div class="test-collapse-item"
+                     v-for="item in list">
+                    {{item}}
+                </div>
+            -->
     </div>
 </template>
 

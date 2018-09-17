@@ -1,0 +1,25 @@
+.am-collapse {
+    display: block;
+    vertical-align: bottom;
+
+    &.am-collapse-active {
+        .am-collapse-head-icon-wrapper .am-icon {
+            transform: rotate(180deg);
+        }
+    }
+
+    .am-collapse-head {
+        position: relative;
+        .am-collapse-head-icon-wrapper {
+            position: absolute;
+            top: 0;
+            right: 0.5em;
+            bottom: 0;
+            display: inline-flex;
+            align-items: center;
+            .am-icon {
+                @include transition-all;
+            }
+        }
+    }
+}
