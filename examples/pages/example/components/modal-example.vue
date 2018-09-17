@@ -212,9 +212,9 @@
             },
             showInput() {
                 this.$modal.show({
-                    title: '请输入您的通行证号码',
+                    title: '输入提示标题',
                     type: 'warn',
-                    message: '提示：只有VIP用户才拥有通行证号码，请先开通会员信息！',
+                    message: '提示：输入提示信息',
                     hasInput: true,
                     onConfirm(input) {
                         console.log('confirm input:', input);
