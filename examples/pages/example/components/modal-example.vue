@@ -29,6 +29,29 @@
             <am-modal v-model="show5" title="transition-name" message="快捷消息内容" transition-name="cst-scale"/>
         </div>
 
+        <div class="title">自定义宽度以及高度</div>
+        <div class="example-row">
+            <am-button @click="show6 = !show6">width/height</am-button>
+            <am-modal v-model="show6" title="width/height" message="快捷消息内容" width="600px" height="600px"/>
+        </div>
+        <div class="title">全屏大小</div>
+        <div class="example-row">
+            <am-button @click="show7 = !show7">full</am-button>
+            <am-modal v-model="show7" title="full" message="快捷消息内容" full/>
+        </div>
+        <div class="title">显示消息级别</div>
+        <div class="example-row">
+            <am-button-group>
+                <am-button @click="(type = 'primary') && (show8 = !show8)" color="primary">type="primary"</am-button>
+                <am-button @click="(type = 'info') && (show8 = !show8)" color="info">type="info"</am-button>
+                <am-button @click="(type = 'success') && (show8 = !show8)" color="success">type="success"</am-button>
+                <am-button @click="(type = 'warn') && (show8 = !show8)" color="warn">type="warn"</am-button>
+                <am-button @click="(type = 'error') && (show8 = !show8)" color="error">type="error"</am-button>
+            </am-button-group>
+
+            <am-modal v-model="show8" title="type" message="快捷消息内容" :type="type"/>
+        </div>
+
         <!--<div class="example-row">
             <am-button-group>
                 <am-button label="primary" @click="(type='primary') && (show1 = true)" color="primary"/>
@@ -77,8 +100,8 @@
                 show10: false,
 
 
-                type: 'info',
-                shape: 'fillet'
+                type: 'primary',
+                shape: 'fillet',
             };
         },
     };

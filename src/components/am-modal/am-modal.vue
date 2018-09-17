@@ -166,7 +166,7 @@
                 styles.minWidth = (!!this.full || !!this.max) ? '100vw' : this.width;
                 styles.minHeight = (!!this.full || !!this.max) ? '100vh' : this.height;
                 styles.transform = `translate(${this.horizontal === 'center' ? '-50%' : '0'},${this.vertical === 'center' ? '-50%' : '0'})`;
-                if (!this.max) {
+                if (!(!!this.full || !!this.max)) {
                     styles.left = this.left;
                     styles.right = this.right;
                     styles.bottom = this.bottom;
