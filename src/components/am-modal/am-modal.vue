@@ -94,6 +94,7 @@
                     return oneOf(val, ['fillet', 'none']);
                 },
             },
+            hideOnClickOutside: {type: Boolean, default: true},
             transitionName: {type: String, default: 'am-transition-from-bottom'},
             height: {default: '200px'},
             width: {default: '520px'},
@@ -211,7 +212,7 @@
                 this.currentValue = false;
             },
             _handleClickOutside() {
-                if (!!this.currentValue) {
+                if (!!this.currentValue && !!this.hideOnClickOutside) {
                     this._handleCancel();
                 }
             },
