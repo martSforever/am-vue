@@ -52,6 +52,14 @@
             <am-modal v-model="show8" title="type" message="快捷消息内容" :type="type"/>
         </div>
 
+        <div class="title">确认按钮以及取消按钮</div>
+        <div class="example-row">
+            <am-button @click="show9 = !show9">foot button</am-button>
+            <am-modal v-model="show9" title="确认按钮以及取消按钮" message="快捷消息内容" confirm-button cancel-button
+                      @on-confirm="e=>log('confirm')" @on-cancel="e=>log('cancel')"/>
+        </div>
+
+
         <!--<div class="example-row">
             <am-button-group>
                 <am-button label="primary" @click="(type='primary') && (show1 = true)" color="primary"/>
@@ -103,6 +111,11 @@
                 type: 'primary',
                 shape: 'fillet',
             };
+        },
+        methods: {
+            log(msg) {
+                alert(msg);
+            },
         },
     };
 </script>

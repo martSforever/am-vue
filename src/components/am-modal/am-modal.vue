@@ -188,15 +188,17 @@
         },
         methods: {
             _handleConfirm() {
-                this.$emit('confirm');
+                this.$emit('on-confirm');
                 this.currentValue = false;
             },
             _handleCancel() {
-                this.$emit('cancel');
+                this.$emit('on-cancel');
                 this.currentValue = false;
             },
             _handleClickOutside() {
-                this._handleCancel();
+                if(!!this.currentValue){
+                    this._handleCancel();
+                }
             },
         },
     };
