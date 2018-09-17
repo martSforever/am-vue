@@ -51,12 +51,12 @@
         </div>
         <div class="title">指示器插槽</div>
         <div class="example-row" style="display: flex;align-items: center">
-            <am-switch :value="true" label="纯文本">帅</am-switch>
-            <am-switch :value="true" color="error" label="图片">
+            <am-switch :value="true" label="纯文本" color="primary">帅</am-switch>
+            <am-switch :value="true" color="success" label="图片">
                 <img src="https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=876967200,2230768406&fm=27&gp=0.jpg"
                      style="width: 100%;height: 32px;border-radius: 32px;display: block"/>
             </am-switch>
-            <am-switch :value="true" color="primary" label="图标">
+            <am-switch :value="true" color="error" label="图标">
                 <am-icon icon="fab-apple" size="32"/>
             </am-switch>
         </div>
