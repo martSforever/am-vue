@@ -87,6 +87,7 @@ AmModal.newInstance = (props = {}) => {
     document.body.appendChild(instance.$el);
     return {
         show(props) {
+            if (instance.currentValue) console.warn('[amvue]$modal.show只会展示一个窗口，后面出现的窗口会替换掉原来的窗口');
             instance.currentValue = false;
             instance.$nextTick(() => {
                 Object.keys(props).forEach((key) => instance[key] = props[key]);

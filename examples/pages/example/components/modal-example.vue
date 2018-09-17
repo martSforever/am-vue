@@ -202,8 +202,11 @@
             },
             showConfirm() {
                 this.$modal.show({
+                    hideOnClickOutside: false,
+                    shadow: false,
                     confirmButton: true,
                     cancelButton: true,
+                    maxable:true,
                     onConfirm() {
                         console.log('confirm callback');
                     },
