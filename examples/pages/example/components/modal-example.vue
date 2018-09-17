@@ -1,6 +1,6 @@
 <template>
     <div class="modal-example example-page">
-        <!-- <div class="title">基本用法</div>
+         <div class="title">基本用法</div>
          <div class="example-row">
              <am-button @click="show1 = !show1">normal</am-button>
              <am-modal v-model="show1" title="基本用法" message="快捷消息内容"/>
@@ -151,7 +151,7 @@
          <div class="title">通过渲染函数自定义渲染内容</div>
          <div class="example-row">
              <am-button @click="showRender">$modal.show:render</am-button>
-         </div>-->
+         </div>
 
         <h3>
             窗口最小化，窗口最小化有一个前提，首先是，无论是使用插槽或者render渲染函数，其内容都有可能与当前页面组件的数据进行绑定，
@@ -166,7 +166,9 @@
                 <am-button :label="show16+'->>minimize'" @click="show16 = !show16"/>
             </am-button-group>
 
-            <am-modal v-model="show16" title="最小化窗口标题" message="最小化窗口内容" minable maxable/>
+            <am-modal v-model="show16" title="最小化窗口标题" message="最小化窗口内容" minable maxable>
+                自定义内容
+            </am-modal>
         </div>
 
         <div class="example-row">
@@ -177,6 +179,15 @@
                 <am-button label="warn" @click="newModal('warn')" color="warn"/>
                 <am-button label="error" @click="newModal('error')" color="error"/>
             </am-button-group>
+        </div>
+
+        <div class="title">窗口最小化</div>
+        <div class="example-row">
+
+            <am-button label="new modal" @click="getNewModal"/>
+            <am-button label="toggle new modal" @click="toggloNewDialog"/>
+            <am-button label="destroyed new modal" @click="destroyNewDialog"/>
+
         </div>
 
 
@@ -220,7 +231,9 @@
                 left: 0,
                 right: 0,
                 top: 0,
-                bottom: 0
+                bottom: 0,
+
+                newDialog: null,
             };
         },
         methods: {
@@ -286,8 +299,6 @@
                     <div>top:{this.top}</div>
                 );
             },
-
-
             newModal(type) {
                 this.$modal.new({
                     type,
@@ -296,6 +307,24 @@
                     title: '窗口标题' + (new Date().getMinutes() + new Date().getSeconds()),
                     message: type,
                 });
+            },
+            getNewModal() {
+                this.newDialog = this.$modal.new({
+                    type: 'primary',
+                    minable: true,
+                    maxable: true,
+                    title: '窗口标题' + (new Date().getMinutes() + new Date().getSeconds()),
+                    message: '自定义内容',
+                    currentValue: false,
+                    contentRender: this.contentRender,
+                    footRender: this.footRender,
+                });
+            },
+            toggloNewDialog() {
+                this.newDialog.instance.currentValue = !this.newDialog.instance.currentValue;
+            },
+            destroyNewDialog() {
+                this.newDialog.instance.destroy();
             },
         },
     };

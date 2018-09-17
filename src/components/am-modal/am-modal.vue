@@ -3,11 +3,13 @@
         <transition name="am-transition-fade">
             <div class="am-modal-shadow"
                  :style="shadowStyles"
+                 ref="shadow"
                  v-show="!!shadow && !!currentValue"
                  v-dom-portal></div>
         </transition>
         <transition :name="transitionName">
             <div class="am-modal-body-wrapper"
+                 ref="wrapper"
                  v-show="!!currentValue"
                  :style="wrapperStyles"
                  v-click-outside="_handleClickOutside"
@@ -31,7 +33,7 @@
                                     <am-icon icon="fas-times"
                                              v-if="closeIcon"
                                              class="am-modal-body-head-default-close-icon"
-                                             @click="currentValue = false"/>
+                                             @click="_handleClose"/>
                                 </div>
                             </div>
                         </slot>
@@ -220,9 +222,23 @@
                 this.currentValue = false;
                 handler.add(this);
             },
+            _handleClose() {
+                this.destroy();
+            },
+            destroy() {
+                if (!!this.removeable) {
+                    this.$emit('destroy-modal-service');
+                } else {
+                    this.currentValue = false;
+                }
+            },
         },
-        destroyed(){
-            console.log('modal destroyed')
+        beforeDestroy() {
+            document.body.removeChild(this.$refs.shadow);
+            document.body.removeChild(this.$refs.wrapper);
+        },
+        destroyed() {
+            console.log('modal destroyed');
         },
     };
 </script>

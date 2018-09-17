@@ -84,8 +84,8 @@ AmModal.newService = (props = {}) => {
                 this.onRemove();
             },
             remove() {
-                console.log('remove');
-                setTimeout(() => this.destroy(), 300);
+                this.currentValue = false;
+                this.$nextTick(() => setTimeout(() => this.destroy(), 300));
             },
             handleConfirm() {
                 !!this.onConfirm && this.onConfirm(this.input);
@@ -106,7 +106,6 @@ AmModal.newService = (props = {}) => {
             instance.currentValue = false;
             instance.$nextTick(() => {
                 Object.keys(props).forEach((key) => instance[key] = props[key]);
-                instance.currentValue = true;
             });
         },
         remove() {
@@ -161,6 +160,7 @@ function showModal(props, newModal) {
                 noHeader: false,
                 noFooter: false,
                 removeable: false,
+                currentValue: true,
 
             }, props, {removeable: newModal})
     );
