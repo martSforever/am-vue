@@ -24,6 +24,7 @@
                                     <label>{{title}}</label>
                                 </div>
                                 <div class="am-modal-body-head-default-icon-bar">
+                                    <am-icon icon="fas-window-minimize" v-if="!!minable" @click="_handleMinimize"/>
                                     <am-icon :icon="!!max?'fas-window-maximize':'far-window-maximize'"
                                              v-if="!!maxable"
                                              @click="max = !max"/>
@@ -71,6 +72,7 @@
     import * as vClickOutside from 'v-click-outside-x';
     import RenderingRenderFunc from '../am-render/rendering-render-func';
     import {MODAL_TYPES} from './index';
+    import handler from './am-modal-handler';
 
     export default {
         name: 'am-modal',
@@ -138,13 +140,15 @@
             },
 
             maxable: {type: Boolean},
+            minable: {type: Boolean},
+
             contentRender: {type: Function},
             headRender: {type: Function},
             footRender: {type: Function},
 
             noHeader: {type: Boolean},
             noFooter: {type: Boolean},
-
+            removeable: {type: Boolean},
         },
         watch: {
             value(val) {
@@ -158,7 +162,8 @@
             return {
                 currentValue: this.value,
                 max: false,
-                types: MODAL_TYPES
+                types: MODAL_TYPES,
+                minimize: false,
             };
         },
         computed: {
@@ -207,10 +212,17 @@
                 this.currentValue = false;
             },
             _handleClickOutside() {
-                if (!!this.currentValue && !!this.hideOnClickOutside) {
+                if (!!this.currentValue && !!this.hideOnClickOutside && !this.minimize) {
                     this._handleCancel();
                 }
             },
+            _handleMinimize() {
+                this.currentValue = false;
+                handler.add(this);
+            },
+        },
+        destroyed(){
+            console.log('modal destroyed')
         },
     };
 </script>

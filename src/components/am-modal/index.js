@@ -12,7 +12,7 @@ export const MODAL_TYPES = {
     error: {icon: 'fas-times-circle', color: '#ED4114'},
 };
 
-AmModal.newInstance = (props = {}) => {
+AmModal.newService = (props = {}) => {
     const component = new Vue({
         components: {
             AmModal,
@@ -52,6 +52,7 @@ AmModal.newInstance = (props = {}) => {
                     bottom={this.bottom}
                     right={this.right}
                     maxable={this.maxable}
+                    minable={this.minable}
                     hideOnClickOutside={this.hideOnClickOutside}
 
                     confirmButton={!!this.confirmButton}
@@ -63,6 +64,9 @@ AmModal.newInstance = (props = {}) => {
 
                     noHeader={this.noHeader}
                     noFooter={this.noFooter}
+
+                    onDestroy-modal-service={this.remove}
+                    removeable={this.removeable}
                 >
                     <div class="am-modal-service-content-wrapper">
                         <div v-show={!!this.message} class="am-modal-service-content-message">{this.message}</div>
@@ -80,6 +84,7 @@ AmModal.newInstance = (props = {}) => {
                 this.onRemove();
             },
             remove() {
+                console.log('remove');
                 setTimeout(() => this.destroy(), 300);
             },
             handleConfirm() {
@@ -108,19 +113,21 @@ AmModal.newInstance = (props = {}) => {
             instance.currentValue = false;
             instance.remove();
         },
+        instance: instance,
     };
 };
 
-let instance;
+let modalService;
 
-function getInstance() {
-    return instance || AmModal.newInstance({});
+function getModalService() {
+    modalService = modalService || AmModal.newService({});
+    return modalService;
 }
 
-function showModal(props) {
-    instance = getInstance();
-    props.onRemove = () => instance = null;
-    instance.show(
+function showModal(props, newModal) {
+    let service = !!newModal ? AmModal.newService({}) : getModalService();
+    props.onRemove = () => service = null;
+    service.show(
         Object.assign({},
             {
                 input: '',
@@ -131,11 +138,9 @@ function showModal(props) {
                 message: '消息内容',
                 confirmButton: true,
                 cancelButton: false,
-
                 contentRender: null,
                 headRender: null,
                 footRender: null,
-
                 shadow: true,
                 shadowColor: 'rgba(0,0,0,0.25)',
                 shape: 'fillet',
@@ -151,13 +156,16 @@ function showModal(props) {
                 bottom: null,
                 right: null,
                 maxable: false,
+                minable: false,
                 hideOnClickOutside: true,
-
                 noHeader: false,
                 noFooter: false,
+                removeable: false,
 
-            }, props)
+            }, props, {removeable: newModal})
     );
+
+    return service;
 }
 
 const types = ['primary', 'info', 'success', 'warn', 'error'];
@@ -173,9 +181,8 @@ AmModal.show = (props) => {
     return showModal(props);
 };
 
-AmModal.new = (param) => {
-    param.modalId = uuid();
-    handler.add(param);
+AmModal.new = (props) => {
+    return showModal(props, true);
 };
 
 export default AmModal;

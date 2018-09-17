@@ -160,6 +160,15 @@
             一个静态页面或者与vuex中的状态进行绑定，则可以无视上面几句话
         </h3>
         <div class="title">窗口最小化</div>
+
+        <div class="example-row">
+            <am-button-group>
+                <am-button :label="show16+'->>minimize'" @click="show16 = !show16"/>
+            </am-button-group>
+
+            <am-modal v-model="show16" title="最小化窗口标题" message="最小化窗口内容" minable maxable/>
+        </div>
+
         <div class="example-row">
             <am-button-group>
                 <am-button label="primary" @click="newModal('primary')" color="primary"/>
@@ -200,6 +209,7 @@
                 show13: false,
                 show14: false,
                 show15: false,
+                show16: false,
 
 
                 type: 'primary',
@@ -281,7 +291,10 @@
             newModal(type) {
                 this.$modal.new({
                     type,
-                    title: '窗口标题' + (new Date().getMinutes() + new Date().getSeconds())
+                    minable: true,
+                    maxable: true,
+                    title: '窗口标题' + (new Date().getMinutes() + new Date().getSeconds()),
+                    message: type,
                 });
             },
         },

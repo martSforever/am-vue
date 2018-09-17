@@ -2,11 +2,11 @@
     <div class="am-modal-handler">
         <am-move-container>
             <am-move-item class="am-modal-handler-item" v-for="(instance) in instances" :key="instance.modalId"
-                          :class="[`am-modal-handler-item-color-${instance.type}`]">
+                          :class="[`am-modal-handler-item-color-${instance.type}`]"
+                          @click.native="handleClickItem(instance)">
                 <am-icon :icon="types[instance.type].icon"/>
                 <span>{{instance.title}}</span>
-                <am-icon icon="fas-window-restore"/>
-                <am-icon icon="fas-times"/>
+                <am-icon icon="fas-times" @click.stop="handleRemoveItem(instance)"/>
             </am-move-item>
         </am-move-container>
     </div>
@@ -18,6 +18,7 @@
     import {MODAL_TYPES} from './index';
     import AmMoveContainer from '../am-move/am-move-container';
     import AmMoveItem from '../am-move/am-move-item';
+    import {uuid} from '../../scripts/utils';
 
     const AmModalHandler = {
         name: 'am-modal-handler',
@@ -35,6 +36,21 @@
         data() {
             return {types: MODAL_TYPES};
         },
+        methods: {
+            handleClickItem(modal) {
+                modal.minimize = true;
+                modal.currentValue = true;
+                this.instances.splice(this.instances.indexOf(modal), 1);
+            },
+            handleRemoveItem(modal) {
+                if (modal.removeable) {
+                    modal.$emit('destroy-modal-service');
+                } else {
+                    modal.minimize = false;
+                }
+                this.instances.splice(this.instances.indexOf(modal), 1);
+            },
+        },
     };
 
     AmModalHandler.newInstance = (props = {}) => {
@@ -43,10 +59,9 @@
                 AmModalHandler,
             },
             data() {
-                return Object.assign(
-                    {instances: []},
-                    props,
-                );
+                return {
+                    instances: []
+                };
             },
             render(h) {
                 return (
@@ -75,6 +90,7 @@
     }
 
     AmModalHandler.add = (modal) => {
+        modal.modalId = uuid();
         getInstance().add(modal);
     };
 
