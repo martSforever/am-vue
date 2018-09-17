@@ -235,6 +235,9 @@
             showRender() {
                 this.$modal.show({
                     shape: 'none',
+                    // shadow: false,
+                    // hideOnClickOutside: false,
+
                     headRender: this.headRender,
                     contentRender: this.contentRender,
                     footRender: this.footRender,

@@ -4,7 +4,9 @@
         <div class="body">
             <index-example-nav-menu/>
             <div class="example-wrapper">
-                <router-view/>
+                <keep-alive>
+                    <router-view/>
+                </keep-alive>
             </div>
         </div>
     </div>
