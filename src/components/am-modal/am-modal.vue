@@ -3,7 +3,6 @@
         <transition name="am-transition-fade">
             <div class="am-modal-shadow"
                  :style="shadowStyles"
-                 @click="currentValue = false"
                  v-show="!!shadow && !!currentValue"
                  v-dom-portal></div>
         </transition>
@@ -11,6 +10,7 @@
             <div class="am-modal-body-wrapper"
                  v-show="!!currentValue"
                  :style="wrapperStyles"
+                 v-click-outside="_handleClickOutside"
                  v-dom-portal>
                 <div class="am-modal-body"
                      :style="bodyStyles"
@@ -58,14 +58,18 @@
 </template>
 
 <script>
-    import {deepCopy, oneOf} from "../../scripts/utils";
-    import AmSegmentLine from '../../components/am-segment-line'
-    import AmIcon from '../../components/am-icon'
-    import AmButtonGroup from '../../components/am-button/am-button-group'
-    import AmButton from '../../components/am-button/am-button'
+    import {oneOf} from '../../scripts/utils';
+    import AmSegmentLine from '../../components/am-segment-line';
+    import AmIcon from '../../components/am-icon';
+    import AmButtonGroup from '../../components/am-button/am-button-group';
+    import AmButton from '../../components/am-button/am-button';
+    import * as vClickOutside from 'v-click-outside-x';
 
     export default {
         name: 'am-modal',
+        directives: {
+            clickOutside: vClickOutside.directive
+        },
         components: {
             AmSegmentLine,
             AmIcon,
@@ -91,7 +95,7 @@
                 type: String,
                 default: 'primary',
                 validator(val) {
-                    return oneOf(val, ['primary', 'info', 'success', 'warn', 'error'])
+                    return oneOf(val, ['primary', 'info', 'success', 'warn', 'error']);
                 },
             },
             title: {type: String},
@@ -128,10 +132,10 @@
         },
         watch: {
             value(val) {
-                if (this.currentValue !== val) this.currentValue = val
+                if (this.currentValue !== val) this.currentValue = val;
             },
             currentValue(val) {
-                this.$emit('input', val)
+                this.$emit('input', val);
             },
         },
         data() {
@@ -145,45 +149,48 @@
                     warn: {icon: 'fas-exclamation-circle', color: '#ffb020'},
                     error: {icon: 'fas-times-circle', color: '#ED4114'},
                 }
-            }
+            };
         },
         computed: {
             shadowStyles() {
-                let styles = {}
-                !!this.shadowColor && (styles.backgroundColor = this.shadowColor)
-                return styles
+                let styles = {};
+                !!this.shadowColor && (styles.backgroundColor = this.shadowColor);
+                return styles;
             },
             bodyClasses() {
                 return [
                     `am-modal-body-shape-${this.shape}`
-                ]
+                ];
             },
             bodyStyles() {
-                let styles = {}
-                styles.minWidth = (!!this.full || !!this.max) ? '100vw' : this.width
-                styles.minHeight = (!!this.full || !!this.max) ? '100vh' : this.height
-                styles.transform = `translate(${this.horizontal === 'center' ? '-50%' : '0'},${this.vertical === 'center' ? '-50%' : '0'})`
-                styles.left = this.left
-                styles.right = this.right
-                styles.bottom = this.bottom
-                styles.top = this.top
-                return styles
+                let styles = {};
+                styles.minWidth = (!!this.full || !!this.max) ? '100vw' : this.width;
+                styles.minHeight = (!!this.full || !!this.max) ? '100vh' : this.height;
+                styles.transform = `translate(${this.horizontal === 'center' ? '-50%' : '0'},${this.vertical === 'center' ? '-50%' : '0'})`;
+                styles.left = this.left;
+                styles.right = this.right;
+                styles.bottom = this.bottom;
+                styles.top = this.top;
+                return styles;
             },
             wrapperStyles() {
                 return {
                     [this.horizontal === 'end' ? 'right' : 'left']: `${this.horizontal === 'center' ? 50 : 0}%`,
                     [this.vertical === 'end' ? 'bottom' : 'top']: `${this.vertical === 'center' ? 50 : 0}%`,
-                }
+                };
             },
         },
         methods: {
             _handleConfirm() {
-                this.$emit('confirm')
-                this.currentValue = false
+                this.$emit('confirm');
+                this.currentValue = false;
             },
             _handleCancel() {
-                this.$emit('cancel')
-                this.currentValue = false
+                this.$emit('cancel');
+                this.currentValue = false;
+            },
+            _handleClickOutside() {
+                this._handleCancel();
             },
         },
     };
