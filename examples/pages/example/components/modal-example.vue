@@ -100,6 +100,17 @@
                       :bottom="bottom+'vh'"/>
         </div>
 
+        <div class="title">自定义内容插槽，标题栏插槽以及底部栏插槽</div>
+        <am-button @click="show12 = !show12">toggle</am-button>
+        <am-modal v-model="show12" shape="none">
+            <div>
+                自定义内容
+            </div>
+            <div slot="head">自定义顶部栏</div>
+            <div slot="foot">自定义底部栏</div>
+        </am-modal>
+
+
         <!--<div class="example-row">
             <am-button-group>
                 <am-button label="primary" @click="(type='primary') && (show1 = true)" color="primary"/>
