@@ -98,4 +98,42 @@ body {
             padding: 1em;
         }
     }
+
+    .am-modal-handler {
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        right: 0;
+        overflow: hidden;
+        .am-move-container {
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            flex-wrap: wrap-reverse;
+        }
+        .am-modal-handler-item {
+            height: 28px;
+            align-items: center;
+            font-size: 18px;
+            padding: 1em 1em;
+            display: inline-flex;
+            margin-bottom: 1em;
+            margin-right: 1em;
+            border-radius: $shape-fillet;
+            cursor: pointer;
+
+            span, .am-icon {
+                color: white;
+            }
+            & > *:not(:last-child) {
+                margin-right: 0.5em;
+            }
+
+            @each $key, $value in $list-color {
+                &.am-modal-handler-item-color-#{$key} {
+                    background-color: $value;
+                }
+            }
+        }
+    }
 }

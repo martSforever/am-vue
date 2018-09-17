@@ -70,6 +70,7 @@
     import AmButton from '../../components/am-button/am-button';
     import * as vClickOutside from 'v-click-outside-x';
     import RenderingRenderFunc from '../am-render/rendering-render-func';
+    import {MODAL_TYPES} from './index';
 
     export default {
         name: 'am-modal',
@@ -157,13 +158,7 @@
             return {
                 currentValue: this.value,
                 max: false,
-                types: {
-                    primary: {icon: 'fas-desktop', color: '#2D8DF0'},
-                    info: {icon: 'fas-info-circle', color: '#808695'},
-                    success: {icon: 'fas-check-circle', color: '#43B973'},
-                    warn: {icon: 'fas-exclamation-circle', color: '#ffb020'},
-                    error: {icon: 'fas-times-circle', color: '#ED4114'},
-                }
+                types: MODAL_TYPES
             };
         },
         computed: {

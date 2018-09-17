@@ -1,6 +1,16 @@
 import AmModal from './am-modal';
 import AmInput from '../am-input';
 import Vue from 'vue';
+import handler from './am-modal-handler';
+import {uuid} from '../../scripts/utils';
+
+export const MODAL_TYPES = {
+    primary: {icon: 'fas-desktop', color: '#2D8DF0'},
+    info: {icon: 'fas-info-circle', color: '#808695'},
+    success: {icon: 'fas-check-circle', color: '#43B973'},
+    warn: {icon: 'fas-exclamation-circle', color: '#ffb020'},
+    error: {icon: 'fas-times-circle', color: '#ED4114'},
+};
 
 AmModal.newInstance = (props = {}) => {
     const component = new Vue({
@@ -161,6 +171,11 @@ types.forEach((type) => {
 
 AmModal.show = (props) => {
     return showModal(props);
+};
+
+AmModal.new = (param) => {
+    param.modalId = uuid();
+    handler.add(param);
 };
 
 export default AmModal;
