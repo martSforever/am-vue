@@ -70,5 +70,12 @@ body {
                 }
             }
         }
+
+        .am-modal-service-content-wrapper {
+            .am-modal-service-content-message {
+                margin-bottom: 1em;
+            }
+            padding: 1em;
+        }
     }
 }

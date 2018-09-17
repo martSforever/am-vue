@@ -1,5 +1,5 @@
 import './styles/index.scss';
-import AmVueDomPortal from './directives/vue-dom-portal'
+import AmVueDomPortal from './directives/vue-dom-portal';
 
 import icon from './components/am-icon';
 import button from './components/am-button';
@@ -44,7 +44,8 @@ function install(vue, options) {
     Object.keys(components).forEach((key) => vue.component(`${$amvue.$options.ComponentPrefix}-${key}`, components[key]))
     /*@formatter:on*/
 
-    vue.use(AmVueDomPortal)
+    vue.use(AmVueDomPortal);
+    vue.prototype.$modal = modal;
 }
 
 module.exports.default = module.exports = {

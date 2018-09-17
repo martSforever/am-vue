@@ -116,6 +116,26 @@
             <am-button @click="show13 = !show13">maxable</am-button>
             <am-modal v-model="show13" title="maxable" message="快捷消息内容" maxable confirm-button cancel-button/>
         </div>
+
+        <h3>以服务的形式调用对话框提示信息</h3>
+        <div class="title">消息级别</div>
+        <div class="example-row">
+            <am-button @click="$modal.primary({title:'modal title',message:'modal message'})">$modal primary</am-button>
+            <am-button @click="$modal.info({title:'modal title',message:'modal message'})">$modal info</am-button>
+            <am-button @click="$modal.success({title:'modal title',message:'modal message'})">$modal success</am-button>
+            <am-button @click="$modal.warn({title:'modal title',message:'modal message'})">$modal warn</am-button>
+            <am-button @click="$modal.error({title:'modal title',message:'modal message'})">$modal error</am-button>
+        </div>
+        <div class="title">确认按钮以及取消按钮</div>
+        <div class="example-row">
+            <am-button @click="showConfirm">$modal.show:onConfirm+onCancel</am-button>
+        </div>
+        <div class="title">输入对话框</div>
+        <div class="example-row">
+            <am-button @click="showInput">$modal.show:hasInput</am-button>
+        </div>
+
+
     </div>
 </template>
 
@@ -159,6 +179,30 @@
         methods: {
             log(msg) {
                 alert(msg);
+            },
+            showConfirm() {
+                this.$modal.show({
+                    onConfirm() {
+                        console.log('confirm callback');
+                    },
+                    onCancel() {
+                        console.log('cancel callback');
+                    },
+                });
+            },
+            showInput() {
+                this.$modal.show({
+                    title: '请输入您的通行证号码',
+                    type:'warn',
+                    message: '提示：只有VIP用户才拥有通行证号码，请先开通会员信息！',
+                    hasInput: true,
+                    onConfirm(input) {
+                        console.log('confirm input:', input);
+                    },
+                    onCancel() {
+                        console.log('cancel input');
+                    },
+                });
             },
         },
     };
