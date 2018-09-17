@@ -111,6 +111,14 @@
                 <div slot="foot">自定义底部栏</div>
             </am-modal>
         </div>
+
+        <div class="title">通过渲染函数自定义内容、标题栏、底部栏的渲染内容</div>
+        <am-button @click="show14 = !show14">toggle</am-button>
+        <am-modal v-model="show14" shape="none"
+                  :head-render="headRender"
+                  :content-render="contentRender"
+                  :foot-render="footRender"/>
+
         <div class="title">最大化按钮</div>
         <div class="example-row">
             <am-button @click="show13 = !show13">maxable</am-button>
@@ -163,6 +171,7 @@
                 show11: false,
                 show12: false,
                 show13: false,
+                show14: false,
 
 
                 type: 'primary',
@@ -193,7 +202,7 @@
             showInput() {
                 this.$modal.show({
                     title: '请输入您的通行证号码',
-                    type:'warn',
+                    type: 'warn',
                     message: '提示：只有VIP用户才拥有通行证号码，请先开通会员信息！',
                     hasInput: true,
                     onConfirm(input) {
@@ -203,6 +212,22 @@
                         console.log('cancel input');
                     },
                 });
+            },
+
+            headRender(h) {
+                return (
+                    <div>left:{this.left}</div>
+                );
+            },
+            contentRender(h) {
+                return (
+                    <div>right:{this.right}</div>
+                );
+            },
+            footRender(h) {
+                return (
+                    <div>top:{this.top}</div>
+                );
             },
         },
     };

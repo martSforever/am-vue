@@ -16,7 +16,8 @@
                      :style="bodyStyles"
                      :class="bodyClasses">
                     <div class="am-modal-body-head">
-                        <slot name="head">
+                        <am-rendering-render-func :render-func="headRender" v-if="!!headRender"/>
+                        <slot name="head" v-if="!headRender">
                             <div class="am-modal-body-head-default">
                                 <div>
                                     <am-icon :icon="types[type].icon" :color="types[type].color"/>
@@ -36,12 +37,14 @@
                     </div>
                     <am-segment-line/>
                     <div class="am-modal-body-content">
-                        <slot>
+                        <am-rendering-render-func :render-func="contentRender" v-if="!!contentRender"/>
+                        <slot v-if="!contentRender">
                             <div class="am-modal-body-content-default">{{message}}</div>
                         </slot>
                     </div>
                     <div class="am-modal-body-foot">
-                        <slot name="foot">
+                        <am-rendering-render-func :render-func="footRender" v-if="!!footRender"/>
+                        <slot name="foot" v-if="!footRender">
                             <div class="am-modal-body-foot-default" v-if="!!confirmButton || !!cancelButton">
                                 <am-button-group size="small">
                                     <am-button color="success" @click="_handleConfirm" v-if="!!confirmButton">
@@ -65,6 +68,7 @@
     import AmButtonGroup from '../../components/am-button/am-button-group';
     import AmButton from '../../components/am-button/am-button';
     import * as vClickOutside from 'v-click-outside-x';
+    import RenderingRenderFunc from '../am-render/rendering-render-func';
 
     export default {
         name: 'am-modal',
@@ -76,6 +80,7 @@
             AmIcon,
             AmButton,
             AmButtonGroup,
+            AmRenderingRenderFunc: RenderingRenderFunc
         },
         props: {
             value: {type: Boolean},
@@ -130,6 +135,9 @@
             },
 
             maxable: {type: Boolean},
+            contentRender: {type: Function},
+            headRender: {type: Function},
+            footRender: {type: Function},
 
         },
         watch: {
