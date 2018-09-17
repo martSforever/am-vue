@@ -101,40 +101,21 @@
         </div>
 
         <div class="title">自定义内容插槽，标题栏插槽以及底部栏插槽</div>
-        <am-button @click="show12 = !show12">toggle</am-button>
-        <am-modal v-model="show12" shape="none">
-            <div>
-                自定义内容
-            </div>
-            <div slot="head">自定义顶部栏</div>
-            <div slot="foot">自定义底部栏</div>
-        </am-modal>
-
-
-        <!--<div class="example-row">
-            <am-button-group>
-                <am-button label="primary" @click="(type='primary') && (show1 = true)" color="primary"/>
-                <am-button label="info" @click="(type='info') && (show1 = true)" color="info"/>
-                <am-button label="success" @click="(type='success') && (show1 = true)" color="success"/>
-                <am-button label="warn" @click="(type='warn') && (show1 = true)" color="warn"/>
-                <am-button label="error" @click="(type='error') && (show1 = true)" color="error"/>
-            </am-button-group>
+        <div class="example-row">
+            <am-button @click="show12 = !show12">toggle</am-button>
+            <am-modal v-model="show12" shape="none">
+                <div>
+                    自定义内容
+                </div>
+                <div slot="head">自定义顶部栏</div>
+                <div slot="foot">自定义底部栏</div>
+            </am-modal>
         </div>
-        <am-modal v-model="show1"
-                  :shadow="true"
-                  :type="type"
-                  title="操作提示"
-                  message="通知内容"
-                  confirm-button
-                  cancel-button
-                  :close-icon="true"
-                  vertical="start"
-                  horizontal="center"
-                  :full="false"
-                  top="10vh"
-        >
-
-        </am-modal>-->
+        <div class="title">最大化按钮</div>
+        <div class="example-row">
+            <am-button @click="show13 = !show13">maxable</am-button>
+            <am-modal v-model="show13" title="maxable" message="快捷消息内容" maxable confirm-button cancel-button/>
+        </div>
     </div>
 </template>
 

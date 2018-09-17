@@ -24,6 +24,7 @@
                                 </div>
                                 <div class="am-modal-body-head-default-icon-bar">
                                     <am-icon :icon="!!max?'fas-window-maximize':'far-window-maximize'"
+                                             v-if="!!maxable"
                                              @click="max = !max"/>
                                     <am-icon icon="fas-times"
                                              v-if="closeIcon"
@@ -128,6 +129,8 @@
                 default: '0'
             },
 
+            maxable: {type: Boolean},
+
         },
         watch: {
             value(val) {
@@ -196,7 +199,7 @@
                 this.currentValue = false;
             },
             _handleClickOutside() {
-                if(!!this.currentValue){
+                if (!!this.currentValue) {
                     this._handleCancel();
                 }
             },
