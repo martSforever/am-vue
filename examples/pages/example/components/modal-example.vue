@@ -5,7 +5,7 @@
             <am-button @click="show1 = !show1">normal</am-button>
             <am-modal v-model="show1" title="通知标题" message="通知内容"/>
         </div>
-        <div class="title">无遮罩，方方正正</div>
+        <div class="title">无遮罩</div>
         <div class="example-row">
             <am-button @click="show2 = !show2">toggle[{{show2}}]</am-button>
             <am-modal v-model="show2" title="通知标题" message="通知内容" :shadow="false"/>

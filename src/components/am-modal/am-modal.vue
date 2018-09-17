@@ -105,7 +105,7 @@
             closeIcon: {type: Boolean, default: true},
             vertical: {
                 type: String,
-                default: 'top'
+                default: 'start'
             },
             horizontal: {
                 type: String,
@@ -114,7 +114,6 @@
 
             top: {
                 type: String,
-                default: '0'
             },
             left: {
                 type: String,
@@ -167,10 +166,12 @@
                 styles.minWidth = (!!this.full || !!this.max) ? '100vw' : this.width;
                 styles.minHeight = (!!this.full || !!this.max) ? '100vh' : this.height;
                 styles.transform = `translate(${this.horizontal === 'center' ? '-50%' : '0'},${this.vertical === 'center' ? '-50%' : '0'})`;
-                styles.left = this.left;
-                styles.right = this.right;
-                styles.bottom = this.bottom;
-                styles.top = this.top;
+                if (!this.max) {
+                    styles.left = this.left;
+                    styles.right = this.right;
+                    styles.bottom = this.bottom;
+                    styles.top = this.calTop;
+                }
                 return styles;
             },
             wrapperStyles() {
@@ -178,6 +179,11 @@
                     [this.horizontal === 'end' ? 'right' : 'left']: `${this.horizontal === 'center' ? 50 : 0}%`,
                     [this.vertical === 'end' ? 'bottom' : 'top']: `${this.vertical === 'center' ? 50 : 0}%`,
                 };
+            },
+            calTop() {
+                if (!!this.top) return this.top;
+                if (this.vertical === 'start' && this.horizontal === 'center') return '10vh';
+                return '0';
             },
         },
         methods: {
