@@ -84,7 +84,7 @@
                 type: String,
                 default: 'fillet',
                 validator(val) {
-                    return oneOf(val, ['fillet', 'round', 'none']);
+                    return oneOf(val, ['fillet', 'none']);
                 },
             },
             transitionName: {type: String, default: 'am-transition-from-bottom'},

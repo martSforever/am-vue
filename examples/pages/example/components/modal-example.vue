@@ -3,12 +3,24 @@
         <div class="title">基本用法</div>
         <div class="example-row">
             <am-button @click="show1 = !show1">normal</am-button>
-            <am-modal v-model="show1" title="通知标题" message="通知内容"/>
+            <am-modal v-model="show1" title="基本用法" message="快捷消息内容"/>
         </div>
         <div class="title">无遮罩</div>
         <div class="example-row">
-            <am-button @click="show2 = !show2">toggle[{{show2}}]</am-button>
-            <am-modal v-model="show2" title="通知标题" message="通知内容" :shadow="false"/>
+            <am-button @click="show2 = !show2">shadow="false"</am-button>
+            <am-modal v-model="show2" title="无遮罩" message="快捷消息内容" :shadow="false"/>
+        </div>
+        <div class="title">遮罩颜色</div>
+        <div class="example-row">
+            <am-button @click="show3 = !show3">shadow-color="black"</am-button>
+            <am-modal v-model="show3" title="遮罩颜色" message="快捷消息内容" shadow-color="black"/>
+        </div>
+
+        <div class="title">对话框形状</div>
+        <div class="example-row">
+            <am-button @click="(shape = 'fillet') && (show4 = !show4)">shape="fillet"</am-button>
+            <am-button @click="(shape = 'none') && (show4 = !show4)">shape="none"</am-button>
+            <am-modal v-model="show4" title="对话框形状" message="快捷消息内容" :shape="shape"/>
         </div>
 
         <!--<div class="example-row">
@@ -59,7 +71,8 @@
                 show10: false,
 
 
-                type: 'info'
+                type: 'info',
+                shape: 'fillet'
             };
         },
     };
