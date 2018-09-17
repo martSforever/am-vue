@@ -51,5 +51,10 @@ export default {
             name: 'grid',
             component: resolve => require(['examples/pages/example/components/grid-example.vue'], resolve),
         },
+        {
+            path: '/avatar',
+            name: 'avatar',
+            component: resolve => require(['examples/pages/example/components/avatar-example.vue'], resolve),
+        },
     ]
 };
