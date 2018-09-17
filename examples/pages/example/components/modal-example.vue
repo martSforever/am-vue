@@ -59,6 +59,46 @@
                       @on-confirm="e=>log('confirm')" @on-cancel="e=>log('cancel')"/>
         </div>
 
+        <div class="title">对话框位置</div>
+        <div class="example-row">
+            <am-radio-group v-model="vertical">
+                <am-button>vertical:{{vertical}}</am-button>
+                <am-radio radio-key="start" label="start"/>
+                <am-radio radio-key="center" label="center"/>
+                <am-radio radio-key="end" label="end"/>
+            </am-radio-group>
+            <am-radio-group v-model="horizontal">
+                <am-button>horizontal:{{horizontal}}</am-button>
+                <am-radio radio-key="start" label="start"/>
+                <am-radio radio-key="center" label="center"/>
+                <am-radio radio-key="end" label="end"/>
+            </am-radio-group>
+        </div>
+        <div class="example-row">
+            <am-button @click="show10 = !show10">toggle</am-button>
+            <am-modal v-model="show10" title="vertical/horizontal" message="快捷消息内容" :vertical="vertical"
+                      :horizontal="horizontal"/>
+        </div>
+
+        <div class="title">通过left/right/top/bottom调整对话框位置</div>
+        <div class="example-row">
+            <am-button>left:</am-button>
+            <am-number-input v-model="left"/>
+            <am-button>right:</am-button>
+            <am-number-input v-model="right"/>
+            <am-button>top:</am-button>
+            <am-number-input v-model="top"/>
+            <am-button>bottom:</am-button>
+            <am-number-input v-model="bottom"/>
+        </div>
+        <div class="example-row">
+            <am-button @click="show11 = !show11">toggle</am-button>
+            <am-modal v-model="show11" title="position" message="快捷消息内容"
+                      :left="left+'vw'"
+                      :right="right+'vw'"
+                      :top="top+'vh'"
+                      :bottom="bottom+'vh'"/>
+        </div>
 
         <!--<div class="example-row">
             <am-button-group>
@@ -90,10 +130,12 @@
 <script>
     import AmButtonGroup from '../../../../src/components/am-button/am-button-group';
     import AmModal from '../../../../src/components/am-modal/am-modal';
+    import AmRadioGroup from '../../../../src/components/am-radio-group/am-radio-group';
+    import AmNumberInput from '../../../../src/components/am-number-input/am-number-input';
 
     export default {
         name: 'modal-example',
-        components: {AmModal, AmButtonGroup},
+        components: {AmNumberInput, AmRadioGroup, AmModal, AmButtonGroup},
         data() {
             return {
                 show1: false,
@@ -106,10 +148,20 @@
                 show8: false,
                 show9: false,
                 show10: false,
+                show11: false,
+                show12: false,
+                show13: false,
 
 
                 type: 'primary',
                 shape: 'fillet',
+                vertical: 'start',
+                horizontal: 'center',
+
+                left: 0,
+                right: 0,
+                top: 0,
+                bottom: 0
             };
         },
         methods: {
