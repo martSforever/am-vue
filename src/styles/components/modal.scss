@@ -30,26 +30,43 @@ body {
             .am-modal-body-head, .am-modal-body-content, .am-modal-body-foot {
                 background-color: white;
                 box-sizing: border-box;
+                position: absolute;
+                left: 0;
+                right: 0;
+            }
+            .am-modal-body-content, .am-modal-body-foot {
+                color: $color-normal-content;
+            }
+
+            .am-modal-body-head, .am-modal-body-foot {
+                height: 44px;
+            }
+            .am-modal-body-head {
+                top: 0;
+            }
+            .am-modal-body-foot {
+                bottom: 0;
             }
             .am-modal-body-content {
-                flex: 1;
+                top: 44px;
+                bottom: 44px;
+                &.am-modal-body-content-no-header {
+                    top: 0;
+                }
+                &.am-modal-body-content-no-footer {
+                    bottom: 0;
+                }
             }
-            .am-modal-body-head-default, .am-modal-body-foot-default {
-                min-height: 44px;
-            }
+
             .am-modal-body-foot-default {
+                height: 100%;
                 display: flex;
                 align-items: center;
                 justify-content: flex-end;
                 padding: 0 0.5em;
             }
-            .am-modal-body-content, .am-modal-body-foot {
-                color: $color-normal-content;
-            }
-            .am-modal-body-content-default {
-                padding: 1em;
-            }
             .am-modal-body-head-default {
+                height: 100%;
                 font-size: 18px;
                 display: flex;
                 align-items: center;
@@ -68,6 +85,9 @@ body {
                         }
                     }
                 }
+            }
+            .am-modal-body-content-default {
+                padding: 1em;
             }
         }
 

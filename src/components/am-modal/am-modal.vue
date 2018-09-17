@@ -15,7 +15,7 @@
                 <div class="am-modal-body"
                      :style="bodyStyles"
                      :class="bodyClasses">
-                    <div class="am-modal-body-head">
+                    <div class="am-modal-body-head" v-if="!noHeader">
                         <am-rendering-render-func :render-func="headRender" v-if="!!headRender"/>
                         <slot name="head" v-if="!headRender">
                             <div class="am-modal-body-head-default">
@@ -35,14 +35,15 @@
                             </div>
                         </slot>
                     </div>
-                    <am-segment-line/>
-                    <div class="am-modal-body-content">
+                    <am-segment-line v-if="!noHeader"/>
+                    <div class="am-modal-body-content"
+                         :class="{'am-modal-body-content-no-header':!!noHeader,'am-modal-body-content-no-footer':!!noFooter}">
                         <am-rendering-render-func :render-func="contentRender" v-if="!!contentRender"/>
                         <slot v-if="!contentRender">
                             <div class="am-modal-body-content-default">{{message}}</div>
                         </slot>
                     </div>
-                    <div class="am-modal-body-foot">
+                    <div class="am-modal-body-foot" v-if="!noFooter">
                         <am-rendering-render-func :render-func="footRender" v-if="!!footRender"/>
                         <slot name="foot" v-if="!footRender">
                             <div class="am-modal-body-foot-default" v-if="!!confirmButton || !!cancelButton">
@@ -138,6 +139,9 @@
             contentRender: {type: Function},
             headRender: {type: Function},
             footRender: {type: Function},
+
+            noHeader: {type: Boolean},
+            noFooter: {type: Boolean},
 
         },
         watch: {

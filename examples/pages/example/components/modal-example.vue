@@ -23,6 +23,12 @@
             <am-modal v-model="show4" title="对话框形状" message="快捷消息内容" :shape="shape"/>
         </div>
 
+        <div class="title">没有标题栏以及底部栏（默认两者都是存在并且会占用空间的）</div>
+        <div class="example-row">
+            <am-button @click="show15 = !show15">no-header no-footer</am-button>
+            <am-modal v-model="show15" title="没有标题栏以及底部栏" message="快捷消息内容" no-header no-footer/>
+        </div>
+
         <div class="title">自定义对话框展示动画transition-name</div>
         <div class="example-row">
             <am-button @click="show5 = !show5">transition-name</am-button>
@@ -176,6 +182,7 @@
                 show12: false,
                 show13: false,
                 show14: false,
+                show15: false,
 
 
                 type: 'primary',
