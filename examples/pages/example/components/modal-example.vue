@@ -112,7 +112,7 @@
             </am-modal>
         </div>
 
-        <div class="title">通过渲染函数自定义内容、标题栏、底部栏的渲染内容</div>
+        <div class="title">通过渲染函数自定义内容、标题栏、底部栏的渲染内容（注意：渲染函数渲染的内容与插槽内容不能共存，这里渲染函数优先显示）</div>
         <am-button @click="show14 = !show14">toggle</am-button>
         <am-modal v-model="show14" shape="none"
                   :head-render="headRender"
@@ -141,6 +141,10 @@
         <div class="title">输入对话框</div>
         <div class="example-row">
             <am-button @click="showInput">$modal.show:hasInput</am-button>
+        </div>
+        <div class="title">通过渲染函数自定义渲染内容</div>
+        <div class="example-row">
+            <am-button @click="showRender">$modal.show:render</am-button>
         </div>
 
 
@@ -211,6 +215,14 @@
                     onCancel() {
                         console.log('cancel input');
                     },
+                });
+            },
+
+            showRender() {
+                this.$modal.show({
+                    headRender: this.headRender,
+                    contentRender: this.contentRender,
+                    footRender: this.footRender,
                 });
             },
 

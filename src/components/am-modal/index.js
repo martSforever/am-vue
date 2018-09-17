@@ -34,6 +34,9 @@ AmModal.newInstance = (props = {}) => {
                     cancelButton={!!this.onCancel}
                     onOn-confirm={this.handleConfirm}
                     onOn-cancel={this.handleCancel}
+                    contentRender={this.contentRender}
+                    headRender={this.headRender}
+                    footRender={this.footRender}
                 >
                     <div class="am-modal-service-content-wrapper">
                         <div v-show={!!this.message} class="am-modal-service-content-message">{this.message}</div>
