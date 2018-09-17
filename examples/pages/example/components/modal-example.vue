@@ -23,6 +23,12 @@
             <am-modal v-model="show4" title="对话框形状" message="快捷消息内容" :shape="shape"/>
         </div>
 
+        <div class="title">自定义对话框展示动画transition-name</div>
+        <div class="example-row">
+            <am-button @click="show5 = !show5">transition-name</am-button>
+            <am-modal v-model="show5" title="transition-name" message="快捷消息内容" transition-name="cst-scale"/>
+        </div>
+
         <!--<div class="example-row">
             <am-button-group>
                 <am-button label="primary" @click="(type='primary') && (show1 = true)" color="primary"/>
@@ -81,5 +87,14 @@
 <style lang="scss">
     .modal-example {
 
+    }
+
+    .cst-scale-enter-active, .cst-scale-leave-active {
+        transform-origin: left;
+        @include transition-all;
+    }
+
+    .cst-scale-enter, .cst-scale-leave-to {
+        transform: scale(1.2);
     }
 </style>
