@@ -153,6 +153,17 @@
             <am-button @click="showRender">$modal.show:render</am-button>
         </div>
 
+        <h3>
+            窗口最小化，窗口最小化有一个前提，首先是，无论是使用插槽或者render渲染函数，其内容都有可能与当前页面组件的数据进行绑定，
+            窗口最小化之后，用户可能会通过路由跳转到其他页面，如果是普通的路由，当前的页面数据就会消失，为了确保窗口数据绑定正确，也就是为了
+            确保当前页面数据不会丢失，当前页面所在路由应该使用keep-alive包裹起来，进行页面缓存，如果窗口不与当前页面数据进行绑定，而是
+            一个静态页面或者与vuex中的状态进行绑定，则可以无视上面几句话
+        </h3>
+        <div class="title">窗口最小化</div>
+        <div class="example-row">
+            <am-button label="toggle"/>
+        </div>
+
 
     </div>
 </template>
