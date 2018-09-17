@@ -97,8 +97,13 @@
 
 <style lang="scss">
     .index-example-nav-menu {
-        height: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+        bottom: 0;
         width: 220px;
+        box-sizing: border-box;
+
         overflow-y: auto;
         border-right: solid 1px #ddd;
         padding: 24px 0;

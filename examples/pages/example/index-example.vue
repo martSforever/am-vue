@@ -25,14 +25,19 @@
         width: 100vw;
         height: 100vh;
         overflow: hidden;
-        display: flex;
-        flex-direction: column;
+        position: relative;
         .body {
-            flex: 1;
-            display: flex;
-            flex-direction: row;
+            position: absolute;
+            top: 64px;
+            bottom: 0;
+            left: 0;
+            right: 0;
             .example-wrapper {
-                flex: 1;
+                position: absolute;
+                top: 0;
+                left: 220px;
+                bottom: 0;
+                right: 0;
             }
         }
     }
