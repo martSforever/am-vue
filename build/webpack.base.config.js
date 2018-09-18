@@ -116,11 +116,11 @@ module.exports = {
                 test: /\.scss$/,
                 use: ExtractTextPlugin.extract({
                     use: [{
-                        loader: "css-loader"
+                        loader: 'css-loader'
                     }, {
                         loader: 'sass-loader'
                     }],
-                    fallback: "style-loader"
+                    fallback: 'style-loader'
                 }),
             },
             {
@@ -154,7 +154,7 @@ module.exports = {
         }),
         new ExtractTextPlugin({
             filename: (getPath) => {
-                return getPath('css/[name].css').replace('css/js', 'css')
+                return getPath('css/amvue.[name].css');
             },
             allChunks: true
         })
