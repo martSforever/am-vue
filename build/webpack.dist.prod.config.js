@@ -1,11 +1,11 @@
 const path = require('path');
 const webpack = require('webpack');
 const merge = require('webpack-merge');
-const webpackBaseConfig = require('./webpack.base.config.js');
-const CompressionPlugin = require('compression-webpack-plugin');
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 process.env.NODE_ENV = 'production';
+const webpackBaseConfig = require('./webpack.base.config.js');
 
 module.exports = merge(webpackBaseConfig, {
     devtool: 'source-map',
@@ -28,6 +28,7 @@ module.exports = merge(webpackBaseConfig, {
             amd: 'vue'
         }
     },
+
     plugins: [
         // @todo
         new webpack.DefinePlugin({
@@ -37,12 +38,11 @@ module.exports = merge(webpackBaseConfig, {
             parallel: true,
             sourceMap: true,
         }),
-        new CompressionPlugin({
-            asset: '[path].gz[query]',
-            algorithm: 'gzip',
-            test: /\.(js|css)$/,
-            threshold: 10240,
-            minRatio: 0.8
-        })
+        new ExtractTextPlugin({
+            filename: (getPath) => {
+                return getPath('amvue.min.css');
+            },
+            allChunks: true
+        }),
     ]
 });

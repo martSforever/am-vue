@@ -114,14 +114,30 @@ module.exports = {
             },
             {
                 test: /\.scss$/,
-                use: ExtractTextPlugin.extract({
-                    use: [{
-                        loader: 'css-loader'
+                use: process.env.NODE_ENV === 'production' ?
+                    ExtractTextPlugin.extract({
+                        use: 'css-loader?minimize!sass-loader', // 压缩css
+                        fallback: 'style-loader',
+                    })
+                    :
+                    [{
+                        loader: 'style-loader',
+                        options: {
+                            sourceMap: true,
+                        },
                     }, {
-                        loader: 'sass-loader'
-                    }],
-                    fallback: 'style-loader'
-                }),
+                        loader: 'css-loader',
+                        options: {
+                            sourceMap: true,
+                        },
+                    }, {
+                        loader: 'autoprefixer-loader',
+                    }, {
+                        loader: 'sass-loader',
+                        options: {
+                            sourceMap: true,
+                        },
+                    }]
             },
             {
                 test: /\.(gif|jpg|png|woff|svg|eot|ttf)\??.*$/,
@@ -152,11 +168,5 @@ module.exports = {
         new webpack.DefinePlugin({
             'process.env.VERSION': `'${pkg.version}'`
         }),
-        new ExtractTextPlugin({
-            filename: (getPath) => {
-                return getPath('css/amvue.[name].css');
-            },
-            allChunks: true
-        })
     ]
 };

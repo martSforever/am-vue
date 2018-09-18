@@ -1,6 +1,6 @@
 {
     "name": "@martsforever/am-vue",
-    "version": "1.0.3",
+    "version": "1.0.4",
     "title": "amvue",
     "description": "A components Library based on Vue.js",
     "keywords": [
@@ -11,7 +11,7 @@
         "ui",
         "framework"
     ],
-    "main": "src/index.js",
+    "main": "dist/amvue.miin.js",
     "files": [
         "dist",
         "src"
