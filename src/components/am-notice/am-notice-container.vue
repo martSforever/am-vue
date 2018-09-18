@@ -10,6 +10,8 @@
                         :auto-close="option.autoClose"
                         :duration="option.duration"
                         :render-func="option.renderFunc"
+                        :shape="option.shape"
+                        :closable="option.closable"
                         @close="_handleClose(option)"/>
                 </am-move-item>
             </am-move-container>
@@ -32,7 +34,7 @@
             AmMoveContainer,
             AmMoveItem,
         },
-        props:{
+        props: {
             horizontal: {
                 type: String,
                 default: 'end',
@@ -67,7 +69,7 @@
                 };
             },
             _handleClose(option) {
-                // this.noticeOptions.splice(this.noticeOptions.indexOf(option), 1);
+                this.noticeOptions.splice(this.noticeOptions.indexOf(option), 1);
             },
         },
         computed: {
@@ -83,7 +85,6 @@
             },
         },
         newInstance(props) {
-            console.log('props',props)
             const component = new Vue({
                 render(h) {
                     return h(NoticeContainer, {props});
@@ -91,7 +92,6 @@
             });
             const instance = component.$mount();
             document.body.appendChild(instance.$el);
-            console.log('instance',instance)
             return instance.$children[0];
         }
     };

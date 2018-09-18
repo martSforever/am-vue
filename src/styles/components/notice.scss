@@ -5,4 +5,38 @@
         position: relative;
         overflow: hidden;
     }
+
+    .am-notice {
+        background-color: $color-normal-background;
+        min-width: 256px;
+        min-height: 100px;
+        margin-bottom: 0.5em;
+        margin-right: 0.5em;
+        /*shape*/
+        @each $key, $value in $list-shape {
+            &.am-notice-shape-#{$key} {
+                border-radius: $value;
+                overflow: hidden;
+            }
+        }
+        .am-notice-default {
+            box-sizing: border-box;
+            .am-notice-default-content-title {
+                padding: 0.5em;
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                .am-notice-default-content-close-icon {
+                    @include transition-all;
+                    &:hover {
+                        transform: rotate(180deg);
+                    }
+                }
+            }
+            .am-notice-default-content-message {
+                padding: 0.5em;
+            }
+        }
+    }
+
 }

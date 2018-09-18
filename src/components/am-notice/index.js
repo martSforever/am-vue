@@ -6,7 +6,9 @@ const defaultOptions = {
     vertical: 'end',
     horizontal: 'end',
     type: 'primary',
-    message: 'this is notice message'
+    message: 'this is notice message',
+    title: '通知',
+    closable: true,
 };
 
 export default {
@@ -15,7 +17,6 @@ export default {
         let container = containers[`${o.horizontal}-${o.vertical}`];
         if (!container) {
             container = NoticeContainer.newInstance({horizontal: o.horizontal, vertical: o.vertical});
-            console.log(container.horizontal,container.vertical)
             containers[`${o.horizontal}-${o.vertical}`] = container;
         }
         return container.addNotice(o);

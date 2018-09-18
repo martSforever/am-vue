@@ -1,8 +1,6 @@
 import AmModal from './am-modal';
 import AmInput from '../am-input';
 import Vue from 'vue';
-import handler from './am-modal-handler';
-import {uuid} from '../../scripts/utils';
 
 export const MODAL_TYPES = {
     primary: {icon: 'fas-desktop', color: '#2D8DF0'},
