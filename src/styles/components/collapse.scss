@@ -20,6 +20,7 @@
             align-items: center;
             .am-icon {
                 @include transition-all;
+                color: white;
             }
         }
     }
