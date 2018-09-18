@@ -14,7 +14,7 @@ module.exports = merge(webpackBaseConfig, {
     },
     output: {
         path: path.resolve(__dirname, '../dist'),
-        publicPath: '/dist/',
+        publicPath: './',
         filename: 'amvue.min.js',
         library: 'amvue',
         libraryTarget: 'umd',
