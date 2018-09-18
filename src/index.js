@@ -61,6 +61,8 @@ function install(vue, options) {
     vue.prototype.$notice = notice;
 }
 
-module.exports.default = module.exports = {
+window.Amvue = {
     install,
 };
+
+module.exports.default = module.exports = window.Amvue;
