@@ -66,5 +66,10 @@ export default {
             name: 'collapse',
             component: resolve => require(['examples/pages/example/components/collapse-example.vue'], resolve),
         },
+        {
+            path: '/notice',
+            name: 'notice',
+            component: resolve => require(['examples/pages/example/components/notice-example.vue'], resolve),
+        },
     ]
 };

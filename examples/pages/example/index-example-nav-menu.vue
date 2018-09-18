@@ -75,7 +75,7 @@
                             {name: 'collapse', icon: 'color-collapse', url: 'collapse'},
                             {name: 'tag', icon: 'color-tag', url: ''},
                             {name: 'move', icon: 'color-run', url: 'move'},
-                            {name: 'notice', icon: 'color-notice', url: ''},
+                            {name: 'notice', icon: 'color-notice', url: 'notice'},
                             {name: 'modal', icon: 'color-modal', url: 'modal'},
                             {name: 'avatar', icon: 'color-avatar', url: 'avatar'},
                         ]

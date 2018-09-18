@@ -18,6 +18,7 @@ import moveItem from './components/am-move/am-move-item';
 import moveContainer from './components/am-move/am-move-container';
 import collapse from './components/am-collapse/am-collapse';
 import collapseGroup from './components/am-collapse/am-collapse-group';
+import notice from './components/am-notice';
 
 
 const components = {
@@ -57,6 +58,7 @@ function install(vue, options) {
 
     vue.use(AmVueDomPortal);
     vue.prototype.$modal = modal;
+    vue.prototype.$notice = notice;
 }
 
 module.exports.default = module.exports = {

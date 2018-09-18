@@ -1,0 +1,8 @@
+.am-notice-container {
+    position: absolute;
+    z-index: 1;
+    .am-notice-wrapper {
+        position: relative;
+        overflow: hidden;
+    }
+}
