@@ -1,5 +1,5 @@
-import 'src/libs/waves/waves.min.css';
-import 'src/libs/waves/waves.min.js';
+import '../libs/waves/waves.min.css';
+import '../libs/waves/waves.min.js';
 import {oneOf} from '../scripts/utils';
 
 /*一般情况下，只需要用light、deep以及circle三种效果就可以了，默认是light*/
