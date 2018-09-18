@@ -10,6 +10,7 @@
 
     .am-collapse-head {
         position: relative;
+        background-color: $color-normal-divider;
         .am-collapse-head-icon-wrapper {
             position: absolute;
             top: 0;
@@ -20,6 +21,28 @@
             .am-icon {
                 @include transition-all;
             }
+        }
+    }
+    .am-collapse-body {
+        background-color: $color-normal-background;
+    }
+}
+
+.am-collapse-group {
+    display: block;
+    vertical-align: top;
+    .am-collapse:not(:last-child) {
+        .am-collapse-head {
+            border-bottom: solid 1px $color-normal-background;
+            box-sizing: border-box;
+        }
+    }
+
+    /*shape*/
+    @each $key, $value in $list-shape {
+        &.am-collapse-group-shape-#{$key} {
+            border-radius: $value;
+            overflow: hidden;
         }
     }
 }

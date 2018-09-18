@@ -16,7 +16,9 @@ import segmentLine from './components/am-segment-line';
 import avatar from './components/am-avatar';
 import moveItem from './components/am-move/am-move-item';
 import moveContainer from './components/am-move/am-move-container';
-import collapse from './components/am-collapse/am-collapse'
+import collapse from './components/am-collapse/am-collapse';
+import collapseGroup from './components/am-collapse/am-collapse-group';
+
 
 const components = {
     icon,
@@ -35,6 +37,7 @@ const components = {
     'move-item': moveItem,
     'move-container': moveContainer,
     collapse,
+    'collapse-group': collapseGroup,
 };
 
 let $amvue = {};

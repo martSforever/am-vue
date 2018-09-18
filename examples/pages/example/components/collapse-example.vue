@@ -5,9 +5,9 @@
             <am-button label="toggle" @click="val1 = !val1"/>
         </div>
         <div class="example-row" style="width: 500px">
-            <am-collapse v-model="val1" icon-color="white">
+            <am-collapse v-model="val1">
                 <div slot="head"
-                     style="background-color: blueviolet;height: 44px;line-height: 44px;padding: 0 1em;color: white">
+                     style="height: 44px;line-height: 44px;">
                     this is head
                 </div>
                 <div style="background-color: salmon;height: 300px">
@@ -24,12 +24,12 @@
             </div>
         </div>
         <div class="example-row" style="width: 500px">
-            <am-collapse v-model="val2" icon-color="white">
+            <am-collapse v-model="val2">
                 <div slot="head"
-                     style="background-color: blueviolet;height: 44px;line-height: 44px;padding: 0 1em;color: white">
+                     style="height: 44px;line-height: 44px;padding: 0 1em;">
                     this is head
                 </div>
-                <div style="background-color: salmon">
+                <div>
                     <div class="test-collapse-item"
                          v-for="item in list">
                         {{item}}
@@ -37,6 +37,117 @@
                 </div>
             </am-collapse>
         </div>
+
+        <div class="title">手风琴模式 limit，形状 shape</div>
+        <div style="width: 500px;display: inline-block;vertical-align: top">
+            <am-collapse-group :limit="1" class="collapse-group">
+                <am-collapse>
+                    <div slot="head"
+                         style="height: 44px;line-height: 44px;">
+                        this is head
+                    </div>
+                    <div class="test-collapse-item"
+                         v-for="item in list">
+                        {{item}}
+                    </div>
+                </am-collapse>
+                <am-collapse>
+                    <div slot="head"
+                         style="height: 44px;line-height: 44px;">
+                        this is head
+                    </div>
+                    <div class="test-collapse-item"
+                         v-for="item in list">
+                        {{item}}
+                    </div>
+                </am-collapse>
+                <am-collapse>
+                    <div slot="head"
+                         style="height: 44px;line-height: 44px;">
+                        this is head
+                    </div>
+                    <div class="test-collapse-item"
+                         v-for="item in list">
+                        {{item}}
+                    </div>
+                </am-collapse>
+                <am-collapse>
+                    <div slot="head"
+                         style="height: 44px;line-height: 44px;">
+                        this is head
+                    </div>
+                    <div class="test-collapse-item"
+                         v-for="item in list">
+                        {{item}}
+                    </div>
+                </am-collapse>
+                <am-collapse>
+                    <div slot="head"
+                         style="height: 44px;line-height: 44px;">
+                        this is head
+                    </div>
+                    <div class="test-collapse-item"
+                         v-for="item in list">
+                        {{item}}
+                    </div>
+                </am-collapse>
+            </am-collapse-group>
+        </div>
+        <div style="width: 500px;display: inline-block;vertical-align: top">
+            <am-collapse-group :limit="2" shape="none" class="collapse-group">
+                <am-collapse>
+                    <div slot="head"
+                         style="height: 44px;line-height: 44px;">
+                        this is head
+                    </div>
+                    <div class="test-collapse-item"
+                         v-for="item in list">
+                        {{item}}
+                    </div>
+                </am-collapse>
+                <am-collapse>
+                    <div slot="head"
+                         style="height: 44px;line-height: 44px;">
+                        this is head
+                    </div>
+                    <div class="test-collapse-item"
+                         v-for="item in list">
+                        {{item}}
+                    </div>
+                </am-collapse>
+                <am-collapse>
+                    <div slot="head"
+                         style="height: 44px;line-height: 44px;">
+                        this is head
+                    </div>
+                    <div class="test-collapse-item"
+                         v-for="item in list">
+                        {{item}}
+                    </div>
+                </am-collapse>
+                <am-collapse>
+                    <div slot="head"
+                         style="height: 44px;line-height: 44px;">
+                        this is head
+                    </div>
+                    <div class="test-collapse-item"
+                         v-for="item in list">
+                        {{item}}
+                    </div>
+                </am-collapse>
+                <am-collapse>
+                    <div slot="head"
+                         style="height: 44px;line-height: 44px;">
+                        this is head
+                    </div>
+                    <div class="test-collapse-item"
+                         v-for="item in list">
+                        {{item}}
+                    </div>
+                </am-collapse>
+            </am-collapse-group>
+        </div>
+
 
     </div>
 </template>
@@ -48,7 +159,7 @@
             return {
                 val1: false,
                 val2: false,
-                list: [1, 2, 3, 4],
+                list: [1, 2,],
             };
         },
     };
@@ -58,11 +169,16 @@
     .test-collapse-item {
         height: 50px;
         width: 100%;
-        background-color: blueviolet;
-        color: white;
+        /*background-color: blueviolet;*/
         display: block;
         &:not(:last-child) {
             margin-bottom: 1em;
+        }
+    }
+
+    .collapse-group {
+        .am-collapse-head {
+            padding: 0 1em;
         }
     }
 </style>

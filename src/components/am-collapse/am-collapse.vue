@@ -1,6 +1,6 @@
 <template>
     <div class="am-collapse" :class="{'am-collapse-active':currentValue}">
-        <div class="am-collapse-head" @click="currentValue = !currentValue">
+        <div class="am-collapse-head" @click="_handleClick">
             <slot name="head">
                 collapse head
             </slot>
@@ -20,11 +20,12 @@
 
 <script>
 
-    import AmCollapseTransition from './am-collapse-transition'
-    import AmIcon from '../am-icon'
+    import AmCollapseTransition from './am-collapse-transition';
+    import AmIcon from '../am-icon';
+    import {findComponentUpward} from '../../scripts/dom';
 
     export default {
-        name: "am-collapse",
+        name: 'am-collapse',
         components: {
             AmCollapseTransition,
             AmIcon
@@ -36,16 +37,36 @@
         },
         data() {
             return {
-                currentValue: this.value
-            }
+                currentValue: this.value,
+                group: null,
+            };
         },
         watch: {
             value(val) {
-                if (this.currentValue !== this.value) this.currentValue = val
+                if (this.currentValue !== this.value) this.currentValue = val;
             },
             currentValue(val) {
-                this.$emit('input', val)
+                this.$emit('input', val);
             },
         },
-    }
+        methods: {
+            _handleClick() {
+                if (!!this.group) {
+                    this.group.beforeClick(this.currentValue, this);
+                }
+                this.currentValue = !this.currentValue;
+            },
+        },
+        mounted() {
+            this.group = findComponentUpward(this, 'am-collapse-group');
+            if (!!this.group) {
+                this.group.add(this);
+            }
+        },
+        beforeDestroy() {
+            if (!!this.group) {
+                this.group.remove(this);
+            }
+        },
+    };
 </script>
