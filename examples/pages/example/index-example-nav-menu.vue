@@ -44,6 +44,7 @@
                             {name: 'grid', icon: 'color-grid', url: 'grid'},
                             {name: 'carousel', icon: 'color-window', url: ''},
                             {name: 'tree', icon: 'color-tree', url: ''},
+                            {name: 'table', icon: 'color-table', url: ''},
 
                         ]
                     },
