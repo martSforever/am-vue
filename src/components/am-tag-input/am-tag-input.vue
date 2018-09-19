@@ -16,6 +16,7 @@
                 @remove="_handleRemove"
             />
         </am-move-container>
+        <input v-model="label" :style="inputStyles" class="am-tag-label-input"/>
     </div>
 </template>
 
@@ -63,6 +64,7 @@
             },
             dashed: {
                 type: Boolean,
+                default: true,
             },
             long: {
                 type: Boolean
@@ -88,6 +90,11 @@
                 },
             },
         },
+        data() {
+            return {
+                label: '',
+            };
+        },
         methods: {
             _handleRemove(index) {
                 if (!this.disabled) this.tags.splice(index, 1);
@@ -106,6 +113,12 @@
                         'am-tag-input-disabled': !!this.disabled,
                     }
                 ];
+            },
+            inputStyles() {
+                let labelLength = this.label.length - 0;
+                return {
+                    width: `${labelLength < 5 ? 5 : labelLength + 1}em`
+                };
             },
         },
     };
