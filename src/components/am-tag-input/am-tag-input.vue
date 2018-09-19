@@ -1,27 +1,29 @@
 <template>
-    <am-move-container class="am-tag-input" direction="top">
-        <am-tag
-            v-for="(tag,index) in tags"
-            :label="tag.label"
-            :value="tag.value"
-            :color="tag.color"
-            :deleteable="tag.deleteable"
-            :type="tag.type"
-            :shape="tag.shape"
-            :dashed="tag.dashed"
-            :renderFunc="tag.renderFunc"
-            :key="tag._tagKey"
-            :index="index"
-            @remove="_handleRemove"
-        />
-    </am-move-container>
+    <div class="am-tag-input" :class="classes">
+        <am-move-container direction="top">
+            <am-tag
+                v-for="(tag,index) in tags"
+                :label="tag.label"
+                :value="tag.value"
+                :color="tag.color"
+                :deleteable="tag.deleteable"
+                :type="tag.type"
+                :shape="tag.shape"
+                :dashed="tag.dashed"
+                :renderFunc="tag.renderFunc"
+                :key="tag._tagKey"
+                :index="index"
+                @remove="_handleRemove"
+            />
+        </am-move-container>
+    </div>
 </template>
 
 <script>
     import AmTag from './am-tag';
     import AmMoveContainer from '../am-move/am-move-container';
-    import Vue from 'vue';
     import {uuid} from '../../scripts/utils';
+    import {oneOf} from '../../scripts/utils';
 
     export default {
         name: 'am-tag-input',
@@ -30,7 +32,44 @@
             AmMoveContainer
         },
         props: {
-            tags: {type: Array, default: () => []}
+            tags: {type: Array, default: () => []},
+            type: {
+                type: String,
+                default: 'fill',
+                validator(val) {
+                    return oneOf(val, ['fill', 'line', 'none']);
+                },
+            },
+            color: {
+                type: String,
+                default: 'primary',
+                validator(val) {
+                    return oneOf(val, ['primary', 'info', 'success', 'warn', 'error', 'none']);
+                },
+            },
+            size: {
+                type: String,
+                default: 'default',
+                validator(val) {
+                    return oneOf(val, ['default', 'large', 'small']);
+                },
+            },
+            shape: {
+                type: String,
+                default: 'fillet',
+                validator(val) {
+                    return oneOf(val, ['fillet', 'round', 'none']);
+                },
+            },
+            dashed: {
+                type: Boolean,
+            },
+            long: {
+                type: Boolean
+            },
+            disabled: {
+                type: Boolean,
+            },
         },
         watch: {
             tags: {
@@ -51,7 +90,22 @@
         },
         methods: {
             _handleRemove(index) {
-                this.tags.splice(index, 1);
+                if (!this.disabled) this.tags.splice(index, 1);
+            },
+        },
+        computed: {
+            classes() {
+                return [
+                    `am-tag-input-${!!this.dashed ? 'line' : this.type}`,
+                    `am-tag-input-color-${this.color}`,
+                    `am-tag-input-${this.size}`,
+                    `am-tag-input-shape-${this.shape}`,
+                    {
+                        'am-tag-input-dashed': !!this.dashed,
+                        'am-tag-input-long': !!this.long,
+                        'am-tag-input-disabled': !!this.disabled,
+                    }
+                ];
             },
         },
     };

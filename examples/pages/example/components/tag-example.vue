@@ -8,13 +8,15 @@
                     <am-button @click="tags1.pop()">pop</am-button>
                 </am-button-group>
             </div>
-            <am-tag-input :tags="tags1"/>
+            <am-tag-input
+                :tags="tags1"
+            />
+            <am-button label="button"/>
         </div>
     </div>
 </template>
 
 <script>
-
 
 
     export default {

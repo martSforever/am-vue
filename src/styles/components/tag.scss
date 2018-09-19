@@ -59,10 +59,76 @@
 }
 
 .am-tag-input {
-    display: inline-block;
+    display: inline-flex;
+    align-items: center;
     vertical-align: bottom;
     box-sizing: border-box;
+    padding: 0 0.25em;
     .am-tag:not(:last-child) {
         margin-right: 0.25em;
+    }
+
+    /*size*/
+    @each $key, $value in $list-size {
+        &.am-tag-input-#{$key} {
+            height: $value;
+            font-size: $value/2.5;
+        }
+        &.am-tag-input-icon-only-#{$key} {
+            width: $value;
+            padding: 0;
+        }
+    }
+    /*shape*/
+    @each $key, $value in $list-shape {
+        &.am-tag-input-shape-#{$key} {
+            border-radius: $value;
+        }
+    }
+    /*fill type*/
+    &.am-tag-input-fill {
+        @each $key, $value in $list-color {
+            &.am-tag-input-color-#{$key} {
+                background-color: $value;
+                border: solid $border-size $value;
+                color: white;
+            }
+        }
+    }
+    /*line type*/
+    &.am-tag-input-line {
+        @each $key, $value in $list-color {
+            &.am-tag-input-color-#{$key} {
+                border: solid $border-size $value;
+                background: transparent;
+                color: $value;
+            }
+        }
+        &.am-tag-input-dashed {
+            border-style: dashed;
+        }
+    }
+    /*none type*/
+    &.am-tag-input-none {
+        @each $key, $value in $list-color {
+            &.am-tag-input-color-#{$key} {
+                border: solid $border-size transparent;
+                background: transparent;
+                color: $value;
+            }
+        }
+    }
+
+    &.am-tag-input-long {
+        width: 100%;
+    }
+    &.am-tag-input-disabled {
+        background-color: $color-normal-disabled !important;
+        color: $color-normal-sub-color !important;;
+        border-color: $color-normal-disabled !important;;
+        cursor: not-allowed;
+        .am-tag {
+            cursor: not-allowed;
+        }
     }
 }
