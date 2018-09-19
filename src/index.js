@@ -19,6 +19,8 @@ import moveContainer from './components/am-move/am-move-container';
 import collapse from './components/am-collapse/am-collapse';
 import collapseGroup from './components/am-collapse/am-collapse-group';
 import notice from './components/am-notice';
+import tag from './components/am-tag-input/am-tag';
+import tagInput from './components/am-tag-input/am-tag-input';
 
 
 const components = {
@@ -39,6 +41,8 @@ const components = {
     'move-container': moveContainer,
     collapse,
     'collapse-group': collapseGroup,
+    tag,
+    'tag-input': tagInput
 };
 
 let $amvue = {};

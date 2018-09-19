@@ -1,0 +1,68 @@
+.am-tag {
+    display: inline-block;
+    vertical-align: top;
+    cursor: pointer;
+    padding: 0 0.5em;
+    box-sizing: border-box;
+    user-select: none;
+    /*shape*/
+    @each $key, $value in $list-shape {
+        &.am-tag-shape-#{$key} {
+            border-radius: $value;
+        }
+    }
+    /*fill type*/
+    &.am-tag-fill {
+        @each $key, $value in $list-color {
+            &.am-tag-color-#{$key} {
+                background-color: $value;
+                border: solid $border-size $value;
+                color: white;
+            }
+        }
+    }
+    /*line type*/
+    &.am-tag-line {
+        @each $key, $value in $list-color {
+            &.am-tag-color-#{$key} {
+                border: solid $border-size $value;
+                background: transparent;
+                color: $value;
+            }
+        }
+        &.am-tag-dashed {
+            border-style: dashed;
+        }
+    }
+    /*none type*/
+    &.am-tag-none {
+        @each $key, $value in $list-color {
+            &.am-tag-color-#{$key} {
+                border: solid $border-size transparent;
+                background: transparent;
+                color: $value;
+            }
+        }
+    }
+    /*tap style*/
+    &:active {
+        position: relative;
+        top: 1px;
+        left: 1px;
+    }
+    &.am-tag-disabled {
+        background-color: $color-normal-disabled !important;
+        color: $color-normal-sub-color !important;;
+        border-color: $color-normal-disabled !important;;
+        cursor: not-allowed;
+    }
+}
+
+.am-tag-input {
+    display: inline-block;
+    vertical-align: bottom;
+    box-sizing: border-box;
+    .am-tag:not(:last-child) {
+        margin-right: 0.25em;
+    }
+}

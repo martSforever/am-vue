@@ -71,5 +71,10 @@ export default {
             name: 'notice',
             component: resolve => require(['examples/pages/example/components/notice-example.vue'], resolve),
         },
+        {
+            path: '/tag',
+            name: 'tag',
+            component: resolve => require(['examples/pages/example/components/tag-example.vue'], resolve),
+        },
     ]
 };
