@@ -1,5 +1,5 @@
 <template>
-    <am-move-container class="am-tag-input" direction="bottom">
+    <am-move-container class="am-tag-input" direction="top">
         <am-tag
             v-for="(tag,index) in tags"
             :label="tag.label"
@@ -39,7 +39,10 @@
                     if (!!val) {
                         val.forEach((item, index) => {
                             if (!item._tagKey) {
-                                Vue.set(item, '_tagKey', uuid(10, index));
+                                Object.defineProperty(item, '_tagKey', {
+                                    enumerable: false,
+                                    value: uuid()
+                                });
                             }
                         });
                     }
