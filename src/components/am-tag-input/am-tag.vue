@@ -1,11 +1,14 @@
 <template>
     <am-move-item class="am-tag" :class="classes" @click.native="handleClick">
-        <div class="am-tag-default" v-if="!renderFunc">
+        <div class="am-tag-default" v-if="!renderFunc && !scopedSlotFunc">
             <span class="am-tag-label">{{label}}</span>
             <am-icon icon="fas-times" v-if="!!deleteable"/>
         </div>
         <div class="am-tag-render" v-if="!!renderFunc">
-            <am-rendering-render-func :render-func="renderFunc"/>
+            <am-rendering-render-func :render-func="renderFunc" :data="{item:proxy}"/>
+        </div>
+        <div class="am-tag-render" v-if="!!scopedSlotFunc">
+            <am-rendering-scope-slot :scope-slot-func="scopedSlotFunc" :data="{item:proxy}"/>
         </div>
     </am-move-item>
 </template>
@@ -15,6 +18,7 @@
     import AmIcon from '../am-icon';
     import {oneOf} from '../../scripts/utils';
     import AmRenderingRenderFunc from '../am-render/rendering-render-func';
+    import AmRenderingScopeSlot from '../am-render/rendering-scope-slot';
     import {MODAL_TYPES} from '../am-modal';
 
     export default {
@@ -23,6 +27,7 @@
             AmMoveItem,
             AmIcon,
             AmRenderingRenderFunc,
+            AmRenderingScopeSlot,
         },
         props: {
             label: {type: String},
@@ -53,6 +58,38 @@
                 type: Boolean,
             },
             renderFunc: {type: Function},
+            scopedSlotFunc: {type: Function},
+        },
+        data() {
+            let _this = this;
+            return {
+                proxy: {
+                    get label() {
+                        return _this.label;
+                    },
+                    get value() {
+                        return _this.value;
+                    },
+                    get index() {
+                        return _this.index;
+                    },
+                    get color() {
+                        return _this.color;
+                    },
+                    get deleteable() {
+                        return _this.deleteable;
+                    },
+                    get type() {
+                        return _this.type;
+                    },
+                    get shape() {
+                        return _this.shape;
+                    },
+                    get dashed() {
+                        return _this.dashed;
+                    },
+                }
+            };
         },
         computed: {
             classes() {

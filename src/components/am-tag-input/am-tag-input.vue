@@ -10,10 +10,11 @@
                 :type="tag.type"
                 :shape="tag.shape"
                 :dashed="tag.dashed"
-                :renderFunc="tag.renderFunc"
+                :renderFunc="renderFunc"
                 :key="tag._tagKey"
                 :index="index"
                 @remove="_handleRemove"
+                :scoped-slot-func="$scopedSlots.default"
             />
             <input v-model="label"
                    :style="inputStyles"
@@ -41,7 +42,6 @@
             tags: {type: Array, default: () => []},
             type: {
                 type: String,
-                default: 'fill',
                 validator(val) {
                     return oneOf(val, ['fill', 'line', 'none']);
                 },
@@ -80,6 +80,9 @@
             notInput: {
                 type: Boolean,
             },
+            renderFunc: {
+                type: Function,
+            },
         },
         watch: {
             tags: {
@@ -115,7 +118,7 @@
         computed: {
             classes() {
                 return [
-                    `am-tag-input-${!!this.dashed ? 'line' : this.type}`,
+                    `am-tag-input-${!!this.type ? this.type : 'line'}`,
                     `am-tag-input-color-${this.color}`,
                     `am-tag-input-${this.size}`,
                     `am-tag-input-shape-${this.shape}`,

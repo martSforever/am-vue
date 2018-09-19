@@ -70,9 +70,9 @@
         outline: none;
         box-sizing: border-box;
         padding: 0.25em 0.5em;
-        margin-bottom: 0.25em;
         margin-top: 0.25em;
         margin-right: 0.25em;
+        font-size: inherit;
     }
 
     .am-tag {
@@ -84,7 +84,8 @@
     @each $key, $value in $list-color {
         &.am-tag-input-color-#{$key} {
             .am-tag-label-input {
-                border-bottom: 1px solid $value;
+                border-bottom: 1px solid mix(white, $value, 50);
+                background-color: transparent;
             }
         }
     }
@@ -109,6 +110,9 @@
                 background-color: $value;
                 border: solid $border-size $value;
                 color: white;
+                .am-tag-label-input {
+                    color: white;
+                }
             }
         }
     }
