@@ -15,8 +15,13 @@
                 :index="index"
                 @remove="_handleRemove"
             />
+            <input v-model="label"
+                   :style="inputStyles"
+                   class="am-tag-label-input"
+                   key="input"
+                   v-if="!notInput && !disabled"
+                   @keyup.enter="_handlerConfirm"/>
         </am-move-container>
-        <input v-model="label" :style="inputStyles" class="am-tag-label-input"/>
     </div>
 </template>
 
@@ -72,6 +77,9 @@
             disabled: {
                 type: Boolean,
             },
+            notInput: {
+                type: Boolean,
+            },
         },
         watch: {
             tags: {
@@ -98,6 +106,10 @@
         methods: {
             _handleRemove(index) {
                 if (!this.disabled) this.tags.splice(index, 1);
+            },
+            _handlerConfirm() {
+                !!this.label && this.$emit('confirm', this.label);
+                this.label = '';
             },
         },
         computed: {

@@ -4,12 +4,14 @@
         <div class="example-row">
             <div class="example-row">
                 <am-button-group>
-                    <am-button @click="tags1.push({color: 'error', label: 'error'})">push</am-button>
+                    <am-button @click="tags1.push({label: 'new tag'})">push</am-button>
                     <am-button @click="tags1.pop()">pop</am-button>
                 </am-button-group>
             </div>
             <am-tag-input
                 :tags="tags1"
+                @confirm="handleConfirm"
+                disabled
             />
             <am-button label="button"/>
         </div>
@@ -31,6 +33,11 @@
                     {color: 'error', label: 'error'},
                 ]
             };
+        },
+        methods: {
+            handleConfirm(label) {
+                this.tags1.push({label});
+            },
         },
     };
 </script>

@@ -15,6 +15,7 @@
     import AmIcon from '../am-icon';
     import {oneOf} from '../../scripts/utils';
     import AmRenderingRenderFunc from '../am-render/rendering-render-func';
+    import {MODAL_TYPES} from '../am-modal';
 
     export default {
         name: 'am-tag',
@@ -29,7 +30,6 @@
             index: {type: Number},
             color: {
                 type: String,
-                default: 'primary',
                 validator(val) {
                     return oneOf(val, ['primary', 'info', 'success', 'warn', 'error', 'none']);
                 },
@@ -58,13 +58,21 @@
             classes() {
                 return [
                     `am-tag-${!!this.dashed ? 'line' : this.type}`,
-                    `am-tag-color-${this.color}`,
+                    `am-tag-color-${this.targetColor}`,
                     `am-tag-shape-${this.shape}`,
                     {
                         'am-tag-dashed': !!this.dashed,
                         'am-tag-disabled': !!this.disabled,
                     }
                 ];
+            },
+            targetColor() {
+                if (!this.color) {
+                    let colors = Object.keys(MODAL_TYPES);
+                    return colors[_.random(0, colors.length - 1)];
+                } else {
+                    return this.color;
+                }
             },
         },
         methods: {
