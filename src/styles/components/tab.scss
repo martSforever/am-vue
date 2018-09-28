@@ -1,0 +1,16 @@
+$am-tabbar-head-height: 56px;
+
+.am-tabbar {
+    height: 100%;
+    width: 100%;
+    position: relative;
+    .am-tabbar-head {
+        height: $am-tabbar-head-height;
+    }
+    .am-tabbar-content {
+        position: absolute;
+        top: $am-tabbar-head-height;
+        bottom: 0;
+        height: unset;
+    }
+}

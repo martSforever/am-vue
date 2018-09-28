@@ -38,6 +38,26 @@
                 </am-swiper>
             </div>
         </div>
+        <div class="example-row">
+            <div class="title">多层包含</div>
+            <div style="height: 300px;">
+                <am-swiper>
+                    <am-swiper-item style="background-color: #c1c1c1;width: 20%">item1</am-swiper-item>
+                    <am-swiper-item style="background-color: #a3a3a3;width: 40%">item2</am-swiper-item>
+                    <am-swiper-item style="background-color: #c1c1c1;width: 60%">item3</am-swiper-item>
+                    <am-swiper-item style="background-color: #a3a3a3;">
+                        item4
+                        <div style="height: 100px;position: absolute;bottom: 0;width: 100%">
+                            <am-swiper>
+                                <am-swiper-item style="background-color: #ED4114">child1</am-swiper-item>
+                                <am-swiper-item style="background-color: #515a6e">child2</am-swiper-item>
+                            </am-swiper>
+                        </div>
+                    </am-swiper-item>
+                    <am-swiper-item style="background-color: #a9a9a9;width: 80%">item5</am-swiper-item>
+                </am-swiper>
+            </div>
+        </div>
     </div>
 </template>
 

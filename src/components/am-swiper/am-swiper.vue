@@ -53,6 +53,7 @@
 
             _touchStart(e) {
                 if (!this.swipeable) return;
+                e.stopPropagation();
                 this.touch.initialized = true;
                 this.currentTranslateX = this.translateX;
                 this.touch.startX = e.clientX;

@@ -51,7 +51,7 @@
                     {
                         name: 'navigation',
                         children: [
-                            {name: 'tabs', icon: 'color-tabs', url: ''},
+                            {name: 'tab', icon: 'color-tabs', url: 'tab'},
                             {name: 'scrollbar', icon: 'color-swip', url: ''},
                         ]
                     },

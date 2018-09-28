@@ -81,5 +81,10 @@ export default {
             name: 'swiper',
             component: resolve => require(['examples/pages/example/components/swiper-example.vue'], resolve),
         },
+        {
+            path: '/tab',
+            name: 'tab',
+            component: resolve => require(['examples/pages/example/components/tab-example.vue'], resolve),
+        },
     ]
 };

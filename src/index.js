@@ -23,7 +23,8 @@ import tag from './components/am-tag-input/am-tag';
 import tagInput from './components/am-tag-input/am-tag-input';
 import swiper from './components/am-swiper/am-swiper';
 import swiperItem from './components/am-swiper/am-swiper-item';
-
+import tabbar from './components/am-tabbar/am-tabbar';
+import tab from './components/am-tabbar/am-tab';
 
 const components = {
     icon,
@@ -47,7 +48,8 @@ const components = {
     'tag-input': tagInput,
     swiper,
     'swiper-item': swiperItem,
-
+    tabbar,
+    tab,
 };
 
 let $amvue = {};
