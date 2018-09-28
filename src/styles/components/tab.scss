@@ -6,6 +6,33 @@ $am-tabbar-head-height: 56px;
     position: relative;
     .am-tabbar-head {
         height: $am-tabbar-head-height;
+        position: relative;
+        .am-tabbar-head-content {
+            position: absolute;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            right: 0;
+            .am-tabbar-head-item {
+                height: 100%;
+                display: inline-flex;
+                align-items: center;
+                justify-content: center;
+                cursor: pointer;
+                margin-right: 1em;
+                &:first-child {
+                    margin-left: 1em;
+                }
+            }
+            .am-tabbar-head-indicator {
+                position: absolute;
+                bottom: 0;
+                left: 0;
+                border-radius: 100px;
+                @include transition-all-cubic-bezier;
+            }
+        }
+
     }
     .am-tabbar-content {
         position: absolute;
