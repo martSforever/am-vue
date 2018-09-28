@@ -76,5 +76,10 @@ export default {
             name: 'tag',
             component: resolve => require(['examples/pages/example/components/tag-example.vue'], resolve),
         },
+        {
+            path: '/input-area',
+            name: 'input-area',
+            component: resolve => require(['examples/pages/example/components/input-area-example.vue'], resolve),
+        },
     ]
 };
