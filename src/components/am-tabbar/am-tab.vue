@@ -1,5 +1,7 @@
 <template>
-    <span></span>
+    <am-swiper-item class="am-tab">
+        <slot></slot>
+    </am-swiper-item>
 </template>
 
 <script>
