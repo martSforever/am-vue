@@ -1,3 +1,21 @@
-.am-swiper {
 
+.am-swiper {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    user-select: auto;
+    .am-swiper-container {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        display: block;
+        .am-swiper-item {
+            display: inline-block;
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            width: 100%;
+        }
+    }
 }
+

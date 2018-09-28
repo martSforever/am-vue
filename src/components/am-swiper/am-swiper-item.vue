@@ -1,15 +1,36 @@
 <template>
-    <div class="am-swiper-item">
+    <div class="am-swiper-item" :style="styles">
         am-swiper-item
     </div>
 </template>
 
 <script>
+    import {findComponentUpward} from '../../scripts/dom';
+
     export default {
-        name: 'am-swiper-item'
+        name: 'am-swiper-item',
+        props: {},
+        data() {
+            return {
+                swiper: null,
+                left: 0,
+                width: 0,
+            };
+        },
+        mounted() {
+            this.width = this.$el.offsetWidth;
+            this.swiper = findComponentUpward(this, 'am-swiper');
+            if (!this.swiper) {
+                console.error('siper-item should be wrapped by swiper!');
+            }
+            this.swiper.addItem(this);
+        },
+        computed: {
+            styles() {
+                return {
+                    left: `${this.left}px`
+                };
+            }
+        },
     };
 </script>
-
-<style lang="scss">
-
-</style>

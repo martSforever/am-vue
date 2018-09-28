@@ -1,16 +1,83 @@
 <template>
     <div class="am-swiper">
-        am-swiper
-        <slot></slot>
+        <div class="am-swiper-container" @mousedown="_touchStart" :style="containerStyles">
+            <slot></slot>
+        </div>
     </div>
 </template>
 
 <script>
     export default {
-        name: 'am-swiper'
+        name: 'am-swiper',
+        props: {
+            swipeable: {type: Boolean, default: true}
+
+        },
+        data() {
+            return {
+                items: [],
+                touch: {},
+                translateX: 0,
+            };
+        },
+        methods: {
+            addItem(item) {
+                item.left = this.items.reduce((ret, item) => {
+                    ret += item.width;
+                    return ret;
+                }, 0);
+                this.items.push(item);
+            },
+
+            _touchStart(e) {
+                if (!this.swipeable) return;
+                this.touch.initialized = true;
+                this.currentTranslateX = this.translateX;
+                this.touch.startX = e.clientX;
+                this.touch.startY = e.clientY;
+            },
+            _touchmove(e) {
+                if (!this.swipeable) return;
+                if (!this.touch.initialized) return;
+                let deltaX = e.clientX - this.touch.startX;
+                this.translateX = deltaX + this.currentTranslateX;
+            },
+            _touchend(e) {
+                if (!(this.swipeable === true || this.swipeable === 'Y')) return;
+                if (!this.touch.initialized) return;
+                this.touch.initialized = false;
+                if (this.translateX > 0) {
+                    this.translateX = 0;
+                    this.touch.currentTranslateX = this.translateX;
+                }
+                let absX = -this.translateX;
+                for (let i = 0; i < this.items.length; i++) {
+                    const item = this.items[i];
+                    if (item.left < absX && absX < item.left + item.width) {
+                        absX = absX < item.left + (item.width / 2) ? item.left : (item.left + item.width);
+                    }
+                }
+                absX = Math.min(this.items[this.items.length - 1].left, absX);
+                this.translateX = -absX;
+            },
+
+        },
+        computed: {
+            containerStyles() {
+                return {
+                    transition: !!this.touch.initialized ? null : 'all 1s  cubic-bezier(.28, 1.03, 0, .99)',
+                    userSelect: !!this.swipeable ? 'none' : 'auto',
+                    transform: `translateX(${this.translateX}px)`
+                };
+            }
+        },
+        mounted() {
+            document.addEventListener('mousemove', this._touchmove);
+            document.addEventListener('mouseup', this._touchend);
+        },
+        beforeDestroy() {
+            document.removeEventListener('mousemove', this._touchmove);
+            document.removeEventListener('mouseup', this._touchend);
+        },
     };
 </script>
-
-<style lang="scss">
-
-</style>
