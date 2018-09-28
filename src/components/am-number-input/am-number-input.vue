@@ -47,7 +47,7 @@
                 }
             },
             currentValue(val) {
-                this.$emit('input', val);
+                this.$emit('input', val - 0);
             },
         },
         data() {

@@ -10,14 +10,27 @@
     export default {
         name: 'am-swiper',
         props: {
-            swipeable: {type: Boolean, default: true}
-
+            swipeable: {type: Boolean, default: true},
+            value: {type: Number, default: 0},
+        },
+        watch: {
+            value(val) {
+                if (val < this.items.length && val > -1 && this.currentValue !== val) {
+                    this.currentValue = val;
+                    this.translateX = -this.items[this.currentValue].left;
+                }
+            },
+            currentValue(val) {
+                this.$emit('input', val);
+            },
         },
         data() {
             return {
                 items: [],
                 touch: {},
-                translateX: 0,
+                translateX: null,
+
+                currentValue: null,
             };
         },
         methods: {
@@ -27,6 +40,12 @@
                     return ret;
                 }, 0);
                 this.items.push(item);
+
+                let length = this.items.length;
+                if (!this.currentValue && length > 0 && length - 1 === this.value) {
+                    this.currentValue = this.value;
+                    this.translateX = -this.items[this.value].left;
+                }
             },
 
             _touchStart(e) {
@@ -49,12 +68,14 @@
                 if (this.translateX > 0) {
                     this.translateX = 0;
                     this.touch.currentTranslateX = this.translateX;
+                    this.currentValue = 0;
                 }
                 let absX = -this.translateX;
                 for (let i = 0; i < this.items.length; i++) {
                     const item = this.items[i];
                     if (item.left < absX && absX < item.left + item.width) {
                         absX = absX < item.left + (item.width / 2) ? item.left : (item.left + item.width);
+                        this.currentValue = absX < item.left + (item.width / 2) ? i : i + 1;
                     }
                 }
                 absX = Math.min(this.items[this.items.length - 1].left, absX);
