@@ -21,6 +21,7 @@ import collapseGroup from './components/am-collapse/am-collapse-group';
 import notice from './components/am-notice';
 import tag from './components/am-tag-input/am-tag';
 import tagInput from './components/am-tag-input/am-tag-input';
+import inputArea from './components/am-input-area/';
 
 
 const components = {
@@ -42,7 +43,8 @@ const components = {
     collapse,
     'collapse-group': collapseGroup,
     tag,
-    'tag-input': tagInput
+    'tag-input': tagInput,
+    'input-area': inputArea,
 };
 
 let $amvue = {};
