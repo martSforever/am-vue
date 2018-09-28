@@ -38,18 +38,6 @@
                 </am-swiper>
             </div>
         </div>
-        <!--<div class="wrapper">
-            <div>
-                <am-number-input v-model="index1"/>
-            </div>
-            <am-swiper v-model="index1">
-                <am-swiper-item style="background-color: #c1c1c1"></am-swiper-item>
-                <am-swiper-item style="background-color: #a3a3a3;width: 200px"></am-swiper-item>
-                <am-swiper-item style="background-color: #c1c1c1"></am-swiper-item>
-                <am-swiper-item style="background-color: #a3a3a3;width: 200px"></am-swiper-item>
-                <am-swiper-item style="background-color: #c1c1c1"></am-swiper-item>
-            </am-swiper>
-        </div>-->
     </div>
 </template>
 
