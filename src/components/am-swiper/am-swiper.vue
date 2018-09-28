@@ -1,6 +1,6 @@
 <template>
     <div class="am-swiper">
-        <div class="am-swiper-container" @mousedown="_touchStart" :style="containerStyles">
+        <div class="am-swiper-container" @mousedown="_touchStart" :style="containerStyles" ref="container">
             <slot></slot>
         </div>
     </div>
@@ -29,6 +29,8 @@
                 items: [],
                 touch: {},
                 translateX: null,
+                totalWidth: 0,
+                containerWidth: null,
 
                 currentValue: null,
             };
@@ -39,6 +41,7 @@
                     ret += item.width;
                     return ret;
                 }, 0);
+                this.totalWidth += item.width;
                 this.items.push(item);
 
                 let length = this.items.length;
@@ -78,7 +81,7 @@
                         this.currentValue = absX < item.left + (item.width / 2) ? i : i + 1;
                     }
                 }
-                absX = Math.min(this.items[this.items.length - 1].left, absX);
+                absX = Math.min(this.totalWidth - this.containerWidth, absX);
                 this.translateX = -absX;
             },
 
@@ -93,6 +96,7 @@
             }
         },
         mounted() {
+            this.containerWidth = this.$refs.container.offsetWidth;
             document.addEventListener('mousemove', this._touchmove);
             document.addEventListener('mouseup', this._touchend);
         },

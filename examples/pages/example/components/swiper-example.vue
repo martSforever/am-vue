@@ -1,18 +1,55 @@
 <template>
-    <div class="swiper-example">
-        <div class="wrapper">
+    <div class="swiper-example example-page">
+        <div class="example-row">
+            <div class="title">基本用法</div>
+            <div style="height: 100px;">
+                <am-swiper>
+                    <am-swiper-item style="background-color: #c1c1c1">item1</am-swiper-item>
+                    <am-swiper-item style="background-color: #a3a3a3">item2</am-swiper-item>
+                    <am-swiper-item style="background-color: #c1c1c1">item3</am-swiper-item>
+                    <am-swiper-item style="background-color: #a3a3a3">item4</am-swiper-item>
+                </am-swiper>
+            </div>
+        </div>
+
+        <div class="example-row">
+            <div class="title">使用v-model绑定当前索引</div>
+            <div>
+                <am-number-input v-model="index1"/>
+            </div>
+            <div style="height: 100px;">
+                <am-swiper v-model="index1">
+                    <am-swiper-item style="background-color: #c1c1c1">item1</am-swiper-item>
+                    <am-swiper-item style="background-color: #a3a3a3">item2</am-swiper-item>
+                    <am-swiper-item style="background-color: #c1c1c1">item3</am-swiper-item>
+                    <am-swiper-item style="background-color: #a3a3a3">item4</am-swiper-item>
+                </am-swiper>
+            </div>
+        </div>
+
+        <div class="example-row">
+            <div class="title">不同宽度的子元素</div>
+            <div style="height: 100px;">
+                <am-swiper>
+                    <am-swiper-item style="background-color: #c1c1c1;width: 20%">item1</am-swiper-item>
+                    <am-swiper-item style="background-color: #a3a3a3;width: 40%">item2</am-swiper-item>
+                    <am-swiper-item style="background-color: #c1c1c1;width: 60%">item3</am-swiper-item>
+                    <am-swiper-item style="background-color: #a3a3a3;width: 80%">item4</am-swiper-item>
+                </am-swiper>
+            </div>
+        </div>
+        <!--<div class="wrapper">
             <div>
                 <am-number-input v-model="index1"/>
             </div>
             <am-swiper v-model="index1">
-                <am-swiper-item style="background-color: #2D8DF0"></am-swiper-item>
-                <am-swiper-item style="background-color: #ED4114;width: 200px"></am-swiper-item>
-                <am-swiper-item style="background-color: #ffb020"></am-swiper-item>
-                <am-swiper-item style="background-color: #ED4114;width: 200px"></am-swiper-item>
-                <am-swiper-item style="background-color: #ffb020"></am-swiper-item>
+                <am-swiper-item style="background-color: #c1c1c1"></am-swiper-item>
+                <am-swiper-item style="background-color: #a3a3a3;width: 200px"></am-swiper-item>
+                <am-swiper-item style="background-color: #c1c1c1"></am-swiper-item>
+                <am-swiper-item style="background-color: #a3a3a3;width: 200px"></am-swiper-item>
+                <am-swiper-item style="background-color: #c1c1c1"></am-swiper-item>
             </am-swiper>
-            <div>index1：{{index1}}</div>
-        </div>
+        </div>-->
     </div>
 </template>
 

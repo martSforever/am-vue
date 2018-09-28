@@ -1,6 +1,6 @@
 <template>
     <div class="am-swiper-item" :style="styles">
-        am-swiper-item
+        <slot></slot>
     </div>
 </template>
 
