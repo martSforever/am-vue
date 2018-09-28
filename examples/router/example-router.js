@@ -76,5 +76,10 @@ export default {
             name: 'tag',
             component: resolve => require(['examples/pages/example/components/tag-example.vue'], resolve),
         },
+        {
+            path: '/swiper',
+            name: 'swiper',
+            component: resolve => require(['examples/pages/example/components/swiper-example.vue'], resolve),
+        },
     ]
 };

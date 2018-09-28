@@ -21,6 +21,8 @@ import collapseGroup from './components/am-collapse/am-collapse-group';
 import notice from './components/am-notice';
 import tag from './components/am-tag-input/am-tag';
 import tagInput from './components/am-tag-input/am-tag-input';
+import swiper from './components/am-swiper/am-swiper';
+import swiperItem from './components/am-swiper/am-swiper-item';
 
 
 const components = {
@@ -43,6 +45,9 @@ const components = {
     'collapse-group': collapseGroup,
     tag,
     'tag-input': tagInput,
+    swiper,
+    'swiper-item': swiperItem,
+
 };
 
 let $amvue = {};

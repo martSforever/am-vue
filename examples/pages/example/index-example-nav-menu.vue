@@ -42,7 +42,7 @@
                         name: 'layout',
                         children: [
                             {name: 'grid', icon: 'color-grid', url: 'grid'},
-                            {name: 'carousel', icon: 'color-window', url: ''},
+                            {name: 'swiper', icon: 'color-window', url: 'swiper'},
                             {name: 'tree', icon: 'color-tree', url: ''},
                             {name: 'table', icon: 'color-table', url: ''},
 
