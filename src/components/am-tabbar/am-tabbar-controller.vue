@@ -18,6 +18,7 @@
         methods: {
             addTab(tab) {
                 this.tabs.push(tab);
+                console.log(tab.$slots.default)
             },
         },
     };
