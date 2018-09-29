@@ -15,9 +15,9 @@
         },
         watch: {
             value(val) {
-                if (val < this.items.length && val > -1 && this.currentValue !== val) {
+                if (val < this.headItems.length && val > -1 && this.currentValue !== val) {
                     this.currentValue = val;
-                    this.translateX = -this.items[this.currentValue].left;
+                    this.translateX = -this.headItems[this.currentValue].left;
                 }
             },
             currentValue(val) {
@@ -26,7 +26,7 @@
         },
         data() {
             return {
-                items: [],
+                headItems: [],
                 touch: {},
                 translateX: null,
                 totalWidth: 0,
@@ -37,20 +37,20 @@
         },
         methods: {
             addItem(item) {
-                this.items.push(item);
+                this.headItems.push(item);
                 this.totalWidth += item.width;
                 this.update();
-                let length = this.items.length;
+                let length = this.headItems.length;
                 if (!this.currentValue && length > 0 && length - 1 === this.value) {
                     this.currentValue = this.value;
-                    this.translateX = -this.items[this.value].left;
+                    this.translateX = -this.headItems[this.value].left;
                 }
             },
             update() {
-                this.items.sort((a, b) => a.order - b.order);
-                let len = this.items.length;
+                this.headItems.sort((a, b) => a.order - b.order);
+                let len = this.headItems.length;
                 for (let i = 0; i < len; i++) {
-                    const item = this.items[i];
+                    const item = this.headItems[i];
                     let preItem;
                     if (i === 0) {
                         preItem = {
@@ -58,10 +58,16 @@
                             width: 0
                         };
                     } else {
-                        preItem = this.items[i - 1];
+                        preItem = this.headItems[i - 1];
                     }
                     item.left = preItem.left + preItem.width;
                 }
+            },
+            remove(swiperItem) {
+                this.$refs.container.removeChild(swiperItem.$el);
+                swiperItem.$destroy();
+                this.headItems.splice(this.headItems.indexOf(swiperItem), 1);
+                this.update();
             },
             _touchStart(e) {
                 if (!this.swipeable) return;
@@ -87,8 +93,8 @@
                     this.currentValue = 0;
                 }
                 let absX = -this.translateX;
-                for (let i = 0; i < this.items.length; i++) {
-                    const item = this.items[i];
+                for (let i = 0; i < this.headItems.length; i++) {
+                    const item = this.headItems[i];
                     if (item.left < absX && absX < item.left + item.width) {
                         absX = absX < item.left + (item.width / 2) ? item.left : (item.left + item.width);
                         this.currentValue = absX < item.left + (item.width / 2) ? i : i + 1;

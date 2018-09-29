@@ -1,6 +1,7 @@
 <template>
     <div class="am-tabbar-head-item">
-        <slot></slot>
+        <span>{{tab.title}}</span>
+        <am-icon icon="fas-times" class="am-tabbar-head-item-close-icon" @click.stop="handleClickCloseIcon"/>
     </div>
 </template>
 
@@ -9,10 +10,18 @@
 
     export default {
         name: 'am-tabbar-head-item',
+        props: {
+            tab: {},
+        },
         mounted() {
             let head = findComponentUpward(this, 'am-tabbar-head');
             this.width = this.$el.offsetWidth;
             head.addItem(this);
+        },
+        methods: {
+            handleClickCloseIcon() {
+                this.$emit('close', this.tab);
+            },
         },
     };
 </script>

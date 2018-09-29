@@ -3,11 +3,11 @@
         <div class="am-tabbar-head-content">
             <am-tabbar-head-item
                 v-for="(tab,index) in tabs"
-                ref="items"
+                ref="headItems"
                 @click.native="_handleClick(index)"
-                :key="index">
-                {{tab.title}}
-            </am-tabbar-head-item>
+                :tab="tab"
+                @close="val=>$emit('close',val)"
+                :key="index"/>
             <div class="am-tabbar-head-indicator" :style="indicatorStyles"></div>
         </div>
     </div>
@@ -30,33 +30,52 @@
             },
             currentValue(val) {
                 this.$emit('input', val);
-                this.indicatorWidth = this.widths[val];
             }
         },
         data() {
             return {
-                widths: [],
+                headItems: [],
                 lefts: [0],
                 currentValue: null,
-                indicatorWidth: null,
             };
         },
         methods: {
             addItem(item) {
-                this.widths.push(item.width);
+                this.headItems.push(item);
+
                 this.lefts.push(item.width + this.lefts[this.lefts.length - 1]);
-                if (!this.currentValue && this.widths.length - 1 === this.value) {
+                if (!this.currentValue && this.headItems.length - 1 === this.value) {
                     this.currentValue = this.value;
                 }
             },
             _handleClick(index) {
                 this.currentValue = index;
             },
+            remove(index) {
+                if (this.currentValue >= this.headItems.length - 1) this.currentValue = this.headItems.length - 2;
+                this.headItems.splice(index, 1);
+                this.update();
+            },
+            update() {
+                let len = this.headItems.length;
+                this.lefts.splice(0, this.lefts.length);
+                for (let i = 0; i < len; i++) {
+                    const item = this.headItems[i];
+                    let preItem;
+                    if (i === 0) {
+                        preItem = {width: 0, left: 0};
+                    } else {
+                        preItem = this.headItems[i - 1];
+                    }
+                    item.left = preItem.width + preItem.left;
+                    this.lefts.push(item.left);
+                }
+            },
         },
         computed: {
             indicatorStyles() {
                 return {
-                    width: `${this.currentValue != null ? this.widths[this.currentValue] : 0}px`,
+                    width: `${(this.currentValue != null && !!this.headItems[this.currentValue]) ? this.headItems[this.currentValue].width : 0}px`,
                     height: '3px',
                     backgroundColor: this.indicatorColor,
                     transform: `translateX(calc(${this.currentValue + 1}em + ${this.lefts[this.currentValue]}px))`

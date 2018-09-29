@@ -1,5 +1,5 @@
 <template>
-    <am-swiper class="am-tabbar-controller" v-model="currentValue" :swipeable="swipeable">
+    <am-swiper class="am-tabbar-controller" v-model="currentValue" :swipeable="swipeable" ref="swiper">
         <slot></slot>
     </am-swiper>
 </template>
@@ -13,7 +13,7 @@
         props: {
             value: {},
             tabs: {type: Array,},
-            swipeable:{},
+            swipeable: {},
         },
         watch: {
             value(val) {

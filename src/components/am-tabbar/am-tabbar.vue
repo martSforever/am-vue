@@ -1,7 +1,7 @@
 <template>
     <div class="am-tabbar">
-        <am-tabbar-head :tabs="tabs" v-model="currentValue"></am-tabbar-head>
-        <am-tabbar-controller :tabs="tabs" v-model="currentValue" :swipeable="swipeable">
+        <am-tabbar-head :tabs="tabs" v-model="currentValue" @close="_handleClose" ref="head"/>
+        <am-tabbar-controller :tabs="tabs" v-model="currentValue" :swipeable="swipeable" ref="controller">
             <slot></slot>
         </am-tabbar-controller>
     </div>
@@ -42,6 +42,14 @@
                 tabs: []
             };
         },
-
+        methods: {
+            _handleClose(tab) {
+                this.$refs.controller.$refs.swiper.remove(tab.$refs.swiperItem);
+                let tabIndex = this.tabs.indexOf(tab);
+                this.tabs.splice(tabIndex, 1);
+                this.$refs.head.remove(tabIndex);
+                tab.$destroy();
+            }
+        },
     };
 </script>

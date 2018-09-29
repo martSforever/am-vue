@@ -20,8 +20,26 @@ $am-tabbar-head-height: 56px;
                 justify-content: center;
                 cursor: pointer;
                 margin-right: 1em;
+                position: relative;
+                @include transition-all;
                 &:first-child {
                     margin-left: 1em;
+                }
+                .am-tabbar-head-item-close-icon {
+                    color: $color-error;
+                    position: absolute;
+                    top: 0;
+                    right: -1em;
+                    opacity: 0;
+                    @include transition-all;
+                    &:hover {
+                        transform: rotate(180deg);
+                    }
+                }
+                &:hover {
+                    .am-tabbar-head-item-close-icon {
+                        opacity: 1;
+                    }
                 }
             }
             .am-tabbar-head-indicator {

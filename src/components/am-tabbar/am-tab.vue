@@ -1,5 +1,5 @@
 <template>
-    <am-swiper-item class="am-tab" :order="order">
+    <am-swiper-item class="am-tab" :order="order" ref="swiperItem">
         <slot></slot>
     </am-swiper-item>
 </template>

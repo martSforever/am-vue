@@ -21,19 +21,19 @@
         },
         data() {
             return {
-                items: [],
+                headItems: [],
                 stack: [],
             };
         },
         methods: {
             add(collapse) {
-                this.items.push(collapse);
+                this.headItems.push(collapse);
                 if (!!collapse.currentValue) {
                     this.stack.push(collapse);
                 }
             },
             remove(collapse) {
-                this.items.splice(this.items.indexOf(collapse), 1);
+                this.headItems.splice(this.headItems.indexOf(collapse), 1);
             },
             beforeClick(val, collapse) {
                 if (!val) {

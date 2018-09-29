@@ -79,7 +79,7 @@ export function onPasteImage(obj, handler) {
         let i = 0, items, item, types;
 
         if (clipboardData) {
-            items = clipboardData.items;
+            items = clipboardData.headItems;
             if (!items) return;
             item = items[0];
             // 保存在剪贴板中的数据类型
