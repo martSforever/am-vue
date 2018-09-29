@@ -37,20 +37,32 @@
         },
         methods: {
             addItem(item) {
-                item.left = this.items.reduce((ret, item) => {
-                    ret += item.width;
-                    return ret;
-                }, 0);
-                this.totalWidth += item.width;
                 this.items.push(item);
-
+                this.totalWidth += item.width;
+                this.update();
                 let length = this.items.length;
                 if (!this.currentValue && length > 0 && length - 1 === this.value) {
                     this.currentValue = this.value;
                     this.translateX = -this.items[this.value].left;
                 }
             },
-
+            update() {
+                this.items.sort((a, b) => a.order - b.order);
+                let len = this.items.length;
+                for (let i = 0; i < len; i++) {
+                    const item = this.items[i];
+                    let preItem;
+                    if (i === 0) {
+                        preItem = {
+                            left: 0,
+                            width: 0
+                        };
+                    } else {
+                        preItem = this.items[i - 1];
+                    }
+                    item.left = preItem.left + preItem.width;
+                }
+            },
             _touchStart(e) {
                 if (!this.swipeable) return;
                 e.stopPropagation();

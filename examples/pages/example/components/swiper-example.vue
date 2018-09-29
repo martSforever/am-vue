@@ -1,6 +1,6 @@
 <template>
     <div class="swiper-example example-page">
-        <div class="example-row">
+        <!--<div class="example-row">
             <div class="title">基本用法</div>
             <div style="height: 100px;">
                 <am-swiper>
@@ -10,9 +10,20 @@
                     <am-swiper-item style="background-color: #a3a3a3">item4</am-swiper-item>
                 </am-swiper>
             </div>
+        </div>-->
+        <div class="example-row">
+            <div class="title">自定义顺序</div>
+            <div style="height: 100px;">
+                <am-swiper>
+                    <am-swiper-item style="background-color: #c1c1c1" :order="3">item1</am-swiper-item>
+                    <am-swiper-item style="background-color: #a3a3a3" :order="1">item2</am-swiper-item>
+                    <am-swiper-item style="background-color: #c1c1c1" :order="2">item3</am-swiper-item>
+                    <am-swiper-item style="background-color: #a3a3a3" :order="4">item4</am-swiper-item>
+                </am-swiper>
+            </div>
         </div>
 
-        <div class="example-row">
+        <!--<div class="example-row">
             <div class="title">使用v-model绑定当前索引</div>
             <div>
                 <am-number-input v-model="index1"/>
@@ -57,7 +68,7 @@
                     <am-swiper-item style="background-color: #a9a9a9;width: 80%">item5</am-swiper-item>
                 </am-swiper>
             </div>
-        </div>
+        </div>-->
     </div>
 </template>
 

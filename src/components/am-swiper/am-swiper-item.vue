@@ -9,7 +9,12 @@
 
     export default {
         name: 'am-swiper-item',
-        props: {},
+        props: {
+            order: {
+                type: Number,
+                default: 0,
+            },
+        },
         data() {
             return {
                 swiper: null,
