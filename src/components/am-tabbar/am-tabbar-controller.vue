@@ -1,19 +1,33 @@
 <template>
-    <div class="am-tabbar-controller">
+    <am-swiper class="am-tabbar-controller" v-model="currentValue">
         <slot></slot>
-    </div>
+    </am-swiper>
 </template>
 
 <script>
+    import AmSwiper from "../am-swiper/am-swiper";
+
     export default {
         name: 'am-tabbar-controller',
+        components: {AmSwiper},
         props: {
-            tabs: {
-                type: Array,
-            }
+            value: {},
+            tabs: {type: Array,}
+        },
+        watch: {
+            value(val) {
+                if (this.currentValue !== val) {
+                    this.currentValue = val
+                }
+            },
+            currentValue(val) {
+                this.$emit('input', val)
+            },
         },
         data() {
-            return {};
+            return {
+                currentValue: this.value
+            };
         },
         methods: {
             addTab(tab) {

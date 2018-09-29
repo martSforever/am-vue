@@ -1,22 +1,19 @@
 <template>
     <div class="am-tabbar">
-        <am-tabbar-controller :tabs="tabs">
+        <am-tabbar-head :tabs="tabs" v-model="currentValue"></am-tabbar-head>
+        <am-tabbar-controller :tabs="tabs" v-model="currentValue">
             <slot></slot>
         </am-tabbar-controller>
-        <am-tabbar-head :tabs="tabs" v-model="currentValue"></am-tabbar-head>
-        <am-swiper
-            v-model="currentValue"
-            class="am-tabbar-content"
-            style="background-color: #f2f2f2">
-        </am-swiper>
     </div>
 </template>
 
 <script>
 
     import AmSwiper from '../am-swiper/am-swiper';
+    import AmSwiperItem from '../am-swiper/am-swiper-item'
     import AmTabbarHead from './am-tabbar-head';
     import AmTabbarController from './am-tabbar-controller';
+    import RenderingSlot from '../am-render/rendering-slot'
 
     export default {
         name: 'am-tabbar',
@@ -24,6 +21,8 @@
             AmTabbarController,
             AmTabbarHead,
             AmSwiper,
+            AmSwiperItem,
+            RenderingSlot,
         },
         props: {
             value: {type: Number, default: 0},
