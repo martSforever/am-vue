@@ -2,16 +2,16 @@
     <div class="tab-example">
         <div>{{index1}}</div>
         <div style="width: 1000px;height: 600px">
-            <am-tabbar v-model="index1">
-                <am-tab style="background-color: #c1c1c1" title="客户">
-                    item1--{{index1}}
+            <am-tabbar v-model="index1" :swipeable="false">
+                <am-tab style="background-color: #c1c1c1" title="客户" :order="4">
+                    客户--{{index1}}
                 </am-tab>
-                <am-tab style="background-color: #c3c3c3" title="杂货铺">
-                    <div>item2--{{index1}}</div>
+                <am-tab style="background-color: #c3c3c3" title="杂货铺" :order="2">
+                    <div>杂货铺--{{index1}}</div>
                 </am-tab>
-                <am-tab style="background-color: #c6c6c6" title="智慧零售门店">item3--{{index1}}</am-tab>
-                <am-tab style="background-color: #c6c6c6" title="小门店">item4--{{index1}}</am-tab>
-                <am-tab style="background-color: #c6c6c6" title="新开门店">item5--{{index1}}</am-tab>
+                <am-tab style="background-color: #c6c6c6" title="智慧零售门店" :order="1">智慧零售门店--{{index1}}</am-tab>
+                <am-tab style="background-color: #c6c6c6" title="小门店" :order="3">小门店--{{index1}}</am-tab>
+                <am-tab style="background-color: #c6c6c6" title="新开门店" :order="5">新开门店--{{index1}}</am-tab>
             </am-tabbar>
         </div>
     </div>

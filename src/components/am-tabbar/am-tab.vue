@@ -1,5 +1,5 @@
 <template>
-    <am-swiper-item class="am-tab">
+    <am-swiper-item class="am-tab" :order="order">
         <slot></slot>
     </am-swiper-item>
 </template>
@@ -11,7 +11,11 @@
     export default {
         name: 'am-tab',
         props: {
-            title: {type: String, required: true}
+            title: {type: String, required: true},
+            order: {
+                type: Number,
+                default: 0
+            },
         },
         components: {
             AmSwiperItem,
