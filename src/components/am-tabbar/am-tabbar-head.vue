@@ -34,17 +34,17 @@
         },
         data() {
             return {
-                headItems: [],
+                items: [],
                 lefts: [0],
                 currentValue: null,
             };
         },
         methods: {
             addItem(item) {
-                this.headItems.push(item);
+                this.items.push(item);
 
                 this.lefts.push(item.width + this.lefts[this.lefts.length - 1]);
-                if (!this.currentValue && this.headItems.length - 1 === this.value) {
+                if (!this.currentValue && this.items.length - 1 === this.value) {
                     this.currentValue = this.value;
                 }
             },
@@ -52,20 +52,20 @@
                 this.currentValue = index;
             },
             remove(index) {
-                if (this.currentValue >= this.headItems.length - 1) this.currentValue = this.headItems.length - 2;
-                this.headItems.splice(index, 1);
+                if (this.currentValue >= this.items.length - 1) this.currentValue = this.items.length - 2;
+                this.items.splice(index, 1);
                 this.update();
             },
             update() {
-                let len = this.headItems.length;
+                let len = this.items.length;
                 this.lefts.splice(0, this.lefts.length);
                 for (let i = 0; i < len; i++) {
-                    const item = this.headItems[i];
+                    const item = this.items[i];
                     let preItem;
                     if (i === 0) {
                         preItem = {width: 0, left: 0};
                     } else {
-                        preItem = this.headItems[i - 1];
+                        preItem = this.items[i - 1];
                     }
                     item.left = preItem.width + preItem.left;
                     this.lefts.push(item.left);
@@ -75,7 +75,7 @@
         computed: {
             indicatorStyles() {
                 return {
-                    width: `${(this.currentValue != null && !!this.headItems[this.currentValue]) ? this.headItems[this.currentValue].width : 0}px`,
+                    width: `${(this.currentValue != null && !!this.items[this.currentValue]) ? this.items[this.currentValue].width : 0}px`,
                     height: '3px',
                     backgroundColor: this.indicatorColor,
                     transform: `translateX(calc(${this.currentValue + 1}em + ${this.lefts[this.currentValue]}px))`
