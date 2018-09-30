@@ -1,8 +1,16 @@
 <template>
     <div class="tab-example">
-        <div>{{index1}}</div>
+        <am-button-group>
+            <am-button icon="fas-plus" @click="index1++"/>
+            <am-button>{{index1}}</am-button>
+            <am-button icon="fas-minus" @click="index1--"/>
+        </am-button-group>
+        <am-button-group>
+            <am-button @click="add">add tab</am-button>
+            <am-button>remove tab</am-button>
+        </am-button-group>
         <div style="width: 1000px;height: 600px">
-            <am-tabbar v-model="index1" :swipeable="false">
+            <am-tabbar v-model="index1" :swipeable="false" ref="tabbar">
                 <am-tab style="background-color: #c1c1c1" title="客户" :order="4">
                     客户--{{index1}}
                 </am-tab>
@@ -24,6 +32,21 @@
             return {
                 index1: 0
             };
+        },
+        methods: {
+            add() {
+                this.$refs.tabbar.add({
+                    title: 'new tab',
+                    context: this,
+                    render(h, context) {
+                        return (
+                            <div>
+                                --{context.index1}--
+                            </div>
+                        );
+                    },
+                });
+            }
         },
     };
 </script>

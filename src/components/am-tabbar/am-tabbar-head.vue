@@ -3,11 +3,10 @@
         <div class="am-tabbar-head-content">
             <am-tabbar-head-item
                 v-for="(tab,index) in tabs"
-                ref="headItems"
                 @click.native="_handleClick(index)"
                 :tab="tab"
-                @close="val=>$emit('close',val)"
-                :key="index"/>
+                @close="val=>$emit('close',{tab:val,index})"
+                :key="tab.tabId"/>
             <div class="am-tabbar-head-indicator" :style="indicatorStyles"></div>
         </div>
     </div>
@@ -42,8 +41,8 @@
         methods: {
             addItem(item) {
                 this.items.push(item);
-
-                this.lefts.push(item.width + this.lefts[this.lefts.length - 1]);
+                this.items.sort((a, b) => a.tab.order - b.tab.order);
+                this.update();
                 if (!this.currentValue && this.items.length - 1 === this.value) {
                     this.currentValue = this.value;
                 }
@@ -52,7 +51,7 @@
                 this.currentValue = index;
             },
             remove(index) {
-                if (this.currentValue >= this.items.length - 1) this.currentValue = this.items.length - 2;
+
                 this.items.splice(index, 1);
                 this.update();
             },
