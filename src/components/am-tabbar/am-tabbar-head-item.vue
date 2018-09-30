@@ -20,7 +20,7 @@
         },
         methods: {
             handleClickCloseIcon() {
-                this.$emit('close', this.tab);
+                this.$emit('close');
             },
         },
     };

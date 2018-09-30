@@ -5,7 +5,7 @@
                 v-for="(tab,index) in tabs"
                 @click.native="_handleClick(index)"
                 :tab="tab"
-                @close="val=>$emit('close',{tab:val,index})"
+                @close="$emit('close',index)"
                 :key="tab.tabId"/>
             <div class="am-tabbar-head-indicator" :style="indicatorStyles"></div>
         </div>

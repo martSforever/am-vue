@@ -1,6 +1,6 @@
 <template>
     <div class="am-tabbar">
-        <am-tabbar-head :tabs="tabs" v-model="currentValue" @close="_handleClose" ref="head"/>
+        <am-tabbar-head :tabs="tabs" v-model="currentValue" @close="remove" ref="head"/>
         <am-tabbar-controller :tabs="tabs" v-model="currentValue" :swipeable="swipeable" ref="controller">
             <am-tab v-for="(tab,index) in addTabs" :key="index" :title="tab.title" :order="tab.order">
                 <rendering-render-func :render-func="tab.render" :data="tab.context"/>
@@ -51,9 +51,10 @@
             };
         },
         methods: {
-            _handleClose({tab, index}) {
+            remove(index) {
                 if (this.currentValue === this.tabs.length - 1) this.currentValue = this.tabs.length - 2;
                 if (this.currentValue >= index) this.currentValue = Math.max(this.currentValue - 1, 0);
+                const tab = this.tabs[index];
 
                 this.$refs.controller.$refs.swiper.remove(tab.$refs.swiperItem);
                 let tabIndex = this.tabs.indexOf(tab);
