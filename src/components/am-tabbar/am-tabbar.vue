@@ -51,6 +51,19 @@
             };
         },
         methods: {
+            add(tab) {
+                tab.order = tab.order || this.tabs.length;
+                let toIndex = tab.order;
+                for (let i = 0; i < this.tabs.length; i++) {
+                    const tabItem = this.tabs[i];
+                    if (tabItem.order > toIndex) {
+                        toIndex = i;
+                        break;
+                    }
+                }
+                this.currentValue = toIndex;
+                this.addTabs.push(tab);
+            },
             remove(index) {
                 if (this.currentValue >= index) this.currentValue = Math.max(this.currentValue - 1, 0);
                 const tab = this.tabs[index];
@@ -59,15 +72,6 @@
                 this.tabs.splice(tabIndex, 1);
                 this.$refs.head.remove(tabIndex);
                 tab.$destroy();
-            },
-            add(tab) {
-                tab.order = tab.order || this.tabs.length;
-                let toIndex = tab.order;
-                this.tabs.forEach((tab) => {
-                    if (tab.order > toIndex) toIndex = tab.order;
-                });
-                this.currentValue = toIndex;
-                this.addTabs.push(tab);
             },
         },
     };

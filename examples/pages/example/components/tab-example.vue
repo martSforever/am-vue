@@ -37,6 +37,7 @@
             add() {
                 this.$refs.tabbar.add({
                     title: 'new tab',
+                    order: (Math.random() * this.$refs.tabbar.tabs.length).toFixed(0) - 0,
                     context: this,
                     render(h, context) {
                         return (
@@ -48,7 +49,7 @@
                 });
             },
             remove() {
-                let randomIndex = Math.random() * this.$refs.tabbar.tabs.length;
+                let randomIndex = (Math.random() * this.$refs.tabbar.tabs.length).toFixed(0) - 0;
                 this.$refs.tabbar.remove(randomIndex);
             },
         },
