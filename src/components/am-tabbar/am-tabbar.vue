@@ -52,10 +52,8 @@
         },
         methods: {
             remove(index) {
-                if (this.currentValue === this.tabs.length - 1) this.currentValue = this.tabs.length - 2;
                 if (this.currentValue >= index) this.currentValue = Math.max(this.currentValue - 1, 0);
                 const tab = this.tabs[index];
-
                 this.$refs.controller.$refs.swiper.remove(tab.$refs.swiperItem);
                 let tabIndex = this.tabs.indexOf(tab);
                 this.tabs.splice(tabIndex, 1);

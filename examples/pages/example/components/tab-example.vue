@@ -7,7 +7,7 @@
         </am-button-group>
         <am-button-group>
             <am-button @click="add">add tab</am-button>
-            <am-button>remove tab</am-button>
+            <am-button @click="remove">remove tab</am-button>
         </am-button-group>
         <div style="width: 1000px;height: 600px">
             <am-tabbar v-model="index1" :swipeable="false" ref="tabbar">
@@ -46,7 +46,11 @@
                         );
                     },
                 });
-            }
+            },
+            remove() {
+                let randomIndex = Math.random() * this.$refs.tabbar.tabs.length;
+                this.$refs.tabbar.remove(randomIndex);
+            },
         },
     };
 </script>
