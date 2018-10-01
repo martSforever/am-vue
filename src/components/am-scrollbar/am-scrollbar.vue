@@ -1,6 +1,13 @@
 <template>
-    <div class="am-scrollbar" ref="host">
-        <div class="am-scrollbar-content-wrapper" @scroll="_handleScroll" ref="wrapper">
+    <div class="am-scrollbar"
+         ref="host"
+         :class="{'am-scrollbar-hover':hover}"
+         @mouseenter="_mouseenter"
+         @mouseleave="_mouseleave"
+    >
+        <div class="am-scrollbar-content-wrapper"
+             @scroll="_handleScroll"
+             ref="wrapper">
             <div class="am-scrollbar-content" ref="content">
                 <span>contentWidth：{{contentWidth}}，contentHeight:{{contentHeight}}</span>
                 <span>hostWidth：{{hostWidth}}，hostHeight:{{hostHeight}}</span>
@@ -25,7 +32,7 @@
         name: "am-scrollbar",
         props: {
             scrollbarSize: {type: Number, default: 9},
-            scrollbarColor: {type: String, default: '#ddd'},
+            scrollbarColor: {type: String, default: 'rgba(0,0,0,0.4)'},
         },
         data() {
             return {
@@ -38,6 +45,7 @@
                 dragInitialized: false,
                 dragStartTop: 0,
                 dragStartY: 0,
+                hover: false,
             }
         },
         mounted() {
@@ -88,6 +96,12 @@
                 document.removeEventListener('mousemove', this.vIndicatorDragMove)
                 document.removeEventListener('mouseup', this.vIndicatorDragEnd)
                 document.body.style.userSelect = 'unset'
+            },
+            _mouseenter() {
+                this.hover = true
+            },
+            _mouseleave() {
+                this.hover = false
             },
         },
         beforeDestroy() {
