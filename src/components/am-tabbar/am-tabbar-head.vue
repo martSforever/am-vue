@@ -77,7 +77,7 @@
                     width: `${(this.currentValue != null && !!this.items[this.currentValue]) ? this.items[this.currentValue].width : 0}px`,
                     height: '3px',
                     backgroundColor: this.indicatorColor,
-                    transform: `translateX(calc(${this.currentValue + 1}em + ${this.lefts[this.currentValue]}px))`
+                    left: `calc(${this.currentValue + 1}em + ${this.lefts[this.currentValue]}px)`
                 };
             },
         }
