@@ -49,6 +49,7 @@
             inactiveColor: {type: String},
             label: {type: String},
             radioKey: {type: [String, Number]},
+            disabled: {type: Boolean, default: false},
         },
         computed: {
             radioSize() {
@@ -113,7 +114,10 @@
         },
         methods: {
             _handleClick() {
+                if (!!this.disabled) return
                 this.currentValue = !this.currentValue;
+                this.$emit('change', this.currentValue)
+
                 if (!!this.radioGroup) {
                     if (!this.radioGroup.multiple) {
                         this.radioGroup.radios.forEach(radio => {

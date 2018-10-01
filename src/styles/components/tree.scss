@@ -1,0 +1,21 @@
+.am-tree {
+    display: inline-block;
+    vertical-align: top;
+    box-sizing: border-box;
+    .am-tree-node-wrapper {
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        margin-bottom: 6px;
+        .am-tree-icon-wrapper {
+            margin-right: 1em;
+        }
+    }
+    .am-tree-children-wrapper {
+        & > div {
+            padding-left: 2em;
+            display: inline-flex;
+            flex-direction: column;
+        }
+    }
+}

@@ -86,5 +86,10 @@ export default {
             name: 'tab',
             component: resolve => require(['examples/pages/example/components/tab-example.vue'], resolve),
         },
+        {
+            path: '/tree',
+            name: 'tree',
+            component: resolve => require(['examples/pages/example/components/tree-example.vue'], resolve),
+        },
     ]
 };
