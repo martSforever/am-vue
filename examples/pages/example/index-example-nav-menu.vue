@@ -52,7 +52,7 @@
                         name: 'navigation',
                         children: [
                             {name: 'tab', icon: 'color-tabs', url: 'tab'},
-                            {name: 'scrollbar', icon: 'color-swip', url: ''},
+                            {name: 'scrollbar', icon: 'color-swip', url: 'scrolbar'},
                         ]
                     },
                     {

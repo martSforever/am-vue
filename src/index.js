@@ -26,6 +26,7 @@ import swiperItem from './components/am-swiper/am-swiper-item';
 import tabbar from './components/am-tabbar/am-tabbar';
 import tab from './components/am-tabbar/am-tab';
 import tree from './components/am-tree';
+import scrollbar from './components/am-scrollbar'
 
 const components = {
     icon,
@@ -52,6 +53,7 @@ const components = {
     tabbar,
     tab,
     tree,
+    scrollbar,
 };
 
 let $amvue = {};

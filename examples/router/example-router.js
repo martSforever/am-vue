@@ -91,5 +91,10 @@ export default {
             name: 'tree',
             component: resolve => require(['examples/pages/example/components/tree-example.vue'], resolve),
         },
+        {
+            path: '/scrolbar',
+            name: 'scrolbar',
+            component: resolve => require(['examples/pages/example/components/scrollbar-example.vue'], resolve),
+        },
     ]
 };
