@@ -26,7 +26,7 @@
             }
         },
         mounted() {
-            let i = 1;
+            let i = 3;
             while (i > 0) {
                 this.list.push(image2)
                 i--
@@ -51,7 +51,9 @@
         .item {
             background-color: #f2f2f2;
             color: black;
-            margin-bottom: 12px;
+            img{
+                display: block;
+            }
         }
     }
 </style>

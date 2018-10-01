@@ -2,5 +2,24 @@
     display: block;
     height: 100%;
     width: 100%;
-    overflow: scroll;
+    overflow: hidden;
+    position: relative;
+    .am-scrollbar-content-wrapper {
+        height: calc(100% + 17px);
+        width: calc(100% + 17px);
+        overflow: scroll;
+    }
+    .am-scrollbar-vertical-indicator-wrapper {
+        position: absolute;
+        right: 0;
+        top: 0;
+        bottom: 0;
+        .am-scrollbar-vertical-indicator {
+            position: absolute;
+            top: 0;
+            right: 0;
+            border-radius: 100px;
+            cursor: pointer;
+        }
+    }
 }
