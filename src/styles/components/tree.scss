@@ -10,6 +10,11 @@
         .am-tree-icon-wrapper {
             margin-right: 1em;
         }
+        .am-tree-content-wrapper {
+            &.am-tree-content-wrapper-clickable {
+                cursor: pointer;
+            }
+        }
     }
     .am-tree-children-wrapper {
         & > div {

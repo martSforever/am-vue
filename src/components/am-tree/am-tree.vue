@@ -17,7 +17,7 @@
                     v-model="data[checkKey]"
                 />
             </div>
-            <div class="am-tree-content-wrapper" @click="_handleClickNodeContent">
+            <div class="am-tree-content-wrapper" @click="_handleClickNodeContent" :class="{'am-tree-content-wrapper-clickable':!!openOnClickContent}">
                 <rendering-scope-slot v-if="!!root.$scopedSlots.default"
                                       :scope-slot-func="root.$scopedSlots.default"
                                       :data="data"/>
@@ -35,6 +35,9 @@
                              :children-key="childrenKey"
                              :expand-icon="expandIcon"
                              :reduce-icon="reduceIcon"
+                             :checked-icon="checkedIcon"
+                             :uncheck-icon="uncheckIcon"
+                             :disable-expand-icon="disableExpandIcon"
                              :initialized-on-start="initializedOnStart"
                              :before-open="beforeOpen"
                              :render-func="renderFunc"
@@ -57,14 +60,15 @@
         name: "am-tree",
         components: {RenderingRenderFunc, AmCollapseTransition, RenderingScopeSlot, AmRadio},
         props: {
-            data: {type: Object, default: null, desc: '每个节点渲染的数据'},
+            data: {type: Object, required: true, default: null, desc: '每个节点渲染的数据'},
+
             expandIcon: {type: String, default: 'fas-minus-square'},
             reduceIcon: {type: String, default: 'fas-plus-square'},
             disableExpandIcon: {type: String, default: 'fas-square'},
 
             checkedIcon: {type: String, default: 'fas-check-square'},
             uncheckIcon: {type: String, default: 'far-square'},
-            childrenKey: {type: String, desc: '子树数据在props->data中的对象属性key',},
+            childrenKey: {type: String, required: true, desc: '子树数据在props->data中的对象属性key',},
             renderFunc: {type: Function, desc: '支持两种自定义节点内容方式，这个是其中一种，通过渲染函数的方式进行，第一个参数为h，第二个参数为节点渲染所需要的数据',},
 
             isRoot: {type: Boolean, default: true, desc: '是否为根节点，这个属性是供a-tree内部使用的，实际业务开发的时候无需关注该属性',},
