@@ -14,6 +14,8 @@
                 <span>indicatorHeight:{{indicatorHeight}}</span>
                 <span>indicatorTop:{{indicatorTop}}</span>
                 <slot></slot>
+                <am-button @click="scrollTop">scrollTop</am-button>
+
             </div>
         </div>
         <div class="am-scrollbar-vertical-indicator-wrapper">
@@ -27,6 +29,7 @@
 <script>
     const elementResizeDetectorMaker = require("element-resize-detector");
     let erdUltraFast = elementResizeDetectorMaker({strategy: "scroll"});
+    import scrollToWithAnimation from 'scrollto-with-animation'
 
     export default {
         name: "am-scrollbar",
@@ -102,6 +105,12 @@
             },
             _mouseleave() {
                 this.hover = false
+            },
+            scrollTop(e, pos = 0, dur = 400, done) {
+                scrollToWithAnimation(this.$refs.wrapper, 'scrollTop', pos, dur, 'easeOutQuart', done,);
+            },
+            scrollLeft(e, pos = 0, dur = 400, done) {
+                scrollToWithAnimation(this.$refs.wrapper, 'scrollLeft', pos, dur, 'easeOutQuart', done,);
             },
         },
         beforeDestroy() {
