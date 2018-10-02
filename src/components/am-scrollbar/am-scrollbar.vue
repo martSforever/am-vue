@@ -9,13 +9,7 @@
              @scroll="_handleScroll"
              ref="wrapper">
             <div class="am-scrollbar-content" ref="content">
-                <span>contentWidth：{{contentWidth}}，contentHeight:{{contentHeight}}</span>
-                <span>hostWidth：{{hostWidth}}，hostHeight:{{hostHeight}}</span>
-                <span>indicatorHeight:{{indicatorHeight}}</span>
-                <span>indicatorTop:{{indicatorTop}}</span>
                 <slot></slot>
-                <am-button @click="scrollTop">scrollTop</am-button>
-
             </div>
         </div>
         <div class="am-scrollbar-vertical-indicator-wrapper">
@@ -23,10 +17,17 @@
                  :style="verticalIndicatorStyles"
                  @mousedown="vIndicatorDragStart"></div>
         </div>
+        <div class="am-scrollbar-horizontal-indicator-wrapper">
+            <div class="am-scrollbar-horizontal-indicator"
+                 :style="horizontalIndicatorStyles"
+                 @mousedown="hIndicatorDragStart"></div>
+        </div>
     </div>
 </template>
 
 <script>
+    import {addClass, removeClass} from "../../scripts/dom";
+
     const elementResizeDetectorMaker = require("element-resize-detector");
     let erdUltraFast = elementResizeDetectorMaker({strategy: "scroll"});
     import scrollToWithAnimation from 'scrollto-with-animation'
@@ -40,14 +41,16 @@
         data() {
             return {
                 contentWrapperScrollTop: 0,
+                contentWrapperScrollLeft: 0,
                 contentWidth: 0,
                 contentHeight: 0,
                 hostWidth: 0,
                 hostHeight: 0,
 
-                dragInitialized: false,
                 dragStartTop: 0,
                 dragStartY: 0,
+                dragStartLeft: 0,
+                dragStartX: 0,
                 hover: false,
             }
         },
@@ -62,12 +65,26 @@
             indicatorTop() {
                 return (this.hostHeight - this.indicatorHeight) * this.contentWrapperScrollTop / (this.contentHeight - this.hostHeight)
             },
+            indicatorWidth() {
+                return (this.contentWidth > this.hostWidth) ? this.hostWidth * this.hostWidth / this.contentWidth : 0
+            },
+            indicatorLeft() {
+                return (this.hostWidth - this.indicatorWidth) * this.contentWrapperScrollLeft / (this.contentWidth - this.hostWidth)
+            },
             verticalIndicatorStyles() {
                 return {
                     height: `${this.indicatorHeight}px`,
                     width: `${this.scrollbarSize}px`,
                     top: `${this.indicatorTop}px`,
-                    backgroundColor: this.scrollbarColor
+                    backgroundColor: this.scrollbarColor,
+                }
+            },
+            horizontalIndicatorStyles() {
+                return {
+                    height: `${this.scrollbarSize}px`,
+                    width: `${this.indicatorWidth}px`,
+                    left: `${this.indicatorLeft}px`,
+                    backgroundColor: this.scrollbarColor,
                 }
             },
         },
@@ -82,13 +99,14 @@
             },
             _handleScroll(e) {
                 this.contentWrapperScrollTop = e.target.scrollTop
+                this.contentWrapperScrollLeft = e.target.scrollLeft
             },
             vIndicatorDragStart(e) {
                 this.dragStartTop = this.indicatorTop
                 this.dragStartY = e.clientY
                 document.addEventListener('mousemove', this.vIndicatorDragMove)
                 document.addEventListener('mouseup', this.vIndicatorDragEnd)
-                document.body.style.userSelect = 'none'
+                addClass(document.body, 'am-body-user-select-none')
             },
             vIndicatorDragMove(e) {
                 let deltaY = e.clientY - this.dragStartY
@@ -99,6 +117,24 @@
                 document.removeEventListener('mousemove', this.vIndicatorDragMove)
                 document.removeEventListener('mouseup', this.vIndicatorDragEnd)
                 document.body.style.userSelect = 'unset'
+                removeClass(document.body, 'am-body-user-select-none')
+            },
+            hIndicatorDragStart(e) {
+                this.dragStartLeft = this.indicatorLeft
+                this.dragStartX = e.clientX
+                document.addEventListener('mousemove', this.hIndicatorDragMove)
+                document.addEventListener('mouseup', this.hIndicatorDragEnd)
+                addClass(document.body, 'am-body-user-select-none')
+            },
+            hIndicatorDragMove(e) {
+                let deltaX = e.clientX - this.dragStartX
+                const targetLeft = this.dragStartLeft + deltaX
+                this.$refs.wrapper.scrollLeft = `${targetLeft * (this.contentWidth - this.hostWidth) / (this.hostWidth - this.indicatorWidth)}`
+            },
+            hIndicatorDragEnd(e) {
+                document.removeEventListener('mousemove', this.hIndicatorDragMove)
+                document.removeEventListener('mouseup', this.hIndicatorDragEnd)
+                removeClass(document.body, 'am-body-user-select-none')
             },
             _mouseenter() {
                 this.hover = true

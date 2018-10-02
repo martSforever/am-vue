@@ -6,6 +6,16 @@
                 <am-button>{{list.length}}</am-button>
                 <am-button @click="remove">remove</am-button>
             </am-button-group>
+            <am-button-group>
+                <am-button @click="add2">add</am-button>
+                <am-button>{{list2.length}}</am-button>
+                <am-button @click="remove2">remove</am-button>
+            </am-button-group>
+            <div style="width: max-content;white-space: nowrap">
+                <div v-for="item in list2" class="h-item">
+                    <img :src="item">
+                </div>
+            </div>
             <div class="item" v-for="item in list">
                 <img :src="item">
             </div>
@@ -22,13 +32,20 @@
         name: "scrollbar-example",
         data() {
             return {
-                list: []
+                list: [],
+                list2: [],
             }
         },
         mounted() {
             let i = 3;
             while (i > 0) {
                 this.list.push(image2)
+                i--
+            }
+
+            i = 3;
+            while (i > 0) {
+                this.list2.push(image2)
                 i--
             }
         },
@@ -38,6 +55,12 @@
             },
             remove() {
                 this.list.shift()
+            },
+            add2() {
+                this.list2.unshift(`${image2}?time=${this.getTime()}`)
+            },
+            remove2() {
+                this.list2.shift()
             },
             getTime() {
                 return new Date().getTime();
@@ -51,9 +74,12 @@
         .item {
             background-color: #f2f2f2;
             color: black;
-            img{
+            img {
                 display: block;
             }
+        }
+        .h-item {
+            display: inline-block;
         }
     }
 </style>

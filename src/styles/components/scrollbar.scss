@@ -8,6 +8,11 @@
         height: calc(100% + 17px);
         width: calc(100% + 17px);
         overflow: scroll;
+        .am-scrollbar-content {
+            width: max-content;
+            min-width: 100%;
+            display: inline-block;
+        }
     }
     .am-scrollbar-vertical-indicator-wrapper {
         position: absolute;
@@ -21,11 +26,31 @@
             border-radius: 100px;
             cursor: pointer;
             opacity: 0;
-            transition: opacity 0.4s;
+            transition-duration: 0.4s;
+            transition-property: opacity, height;
+        }
+    }
+    .am-scrollbar-horizontal-indicator-wrapper {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        .am-scrollbar-horizontal-indicator {
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            border-radius: 100px;
+            cursor: pointer;
+            opacity: 0;
+            transition-duration: 0.4s;
+            transition-property: opacity, width;
         }
     }
     &.am-scrollbar-hover {
         .am-scrollbar-vertical-indicator {
+            opacity: 1;
+        }
+        .am-scrollbar-horizontal-indicator {
             opacity: 1;
         }
     }

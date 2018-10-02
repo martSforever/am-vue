@@ -13,3 +13,9 @@
 @import "tab";
 @import "tree";
 @import "scrollbar";
+
+.am-body-user-select-none {
+    * {
+        user-select: none;
+    }
+}

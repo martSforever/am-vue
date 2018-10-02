@@ -1,23 +1,25 @@
 <template>
     <div class="index-example-nav-menu">
-        <div v-for="(urlGroup,groupIndex) in urlGroups"
-             :key="groupIndex">
-            <div class="menu-group">
-                <span class="group-name">{{urlGroup.name}}</span>
-                <div v-for="(item,itemIndex) in urlGroup.children"
-                     :key="itemIndex"
-                     @click="handleClick(item)"
-                     :class="{active:item.url === currentUrl}"
-                     class="menu-item">
-                    <div class="left-side">
-                        <am-icon :icon="item.icon"/>
-                        <span>{{item.name}}</span>
+        <am-scrollbar>
+            <div v-for="(urlGroup,groupIndex) in urlGroups"
+                 :key="groupIndex">
+                <div class="menu-group">
+                    <span class="group-name">{{urlGroup.name}}</span>
+                    <div v-for="(item,itemIndex) in urlGroup.children"
+                         :key="itemIndex"
+                         @click="handleClick(item)"
+                         :class="{active:item.url === currentUrl}"
+                         class="menu-item">
+                        <div class="left-side">
+                            <am-icon :icon="item.icon"/>
+                            <span>{{item.name}}</span>
+                        </div>
                     </div>
                 </div>
+
+
             </div>
-
-
-        </div>
+        </am-scrollbar>
     </div>
 </template>
 
