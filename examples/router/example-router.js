@@ -96,5 +96,10 @@ export default {
             name: 'scrolbar',
             component: resolve => require(['examples/pages/example/components/scrollbar-example.vue'], resolve),
         },
+        {
+            path: '/i18n',
+            name: 'i18n',
+            component: resolve => require(['examples/pages/example/components/i18n-example.vue'], resolve),
+        },
     ]
 };
