@@ -29,7 +29,6 @@ module.exports = merge(webpackBaseConfig, {
     resolve: {
         alias: {
             vue: 'vue/dist/vue.esm.js',
-            amvue: path.join(__dirname, '../src/index.js'),
             // vue: 'vue/dist/vue.runtime.js'
         }
     },
