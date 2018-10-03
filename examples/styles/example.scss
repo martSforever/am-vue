@@ -1,18 +1,16 @@
 .example-page {
     padding: 24px;
     overflow: auto;
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    right: 0;
-    left: 0;
+    height: 100%;
+    width: 100%;
     .title {
         font-size: 18px;
         color: $color-primary;
         padding: 1em 0;
     }
     .example-row {
-        margin-bottom: 12px;width: 100%;
+        margin-bottom: 12px;
+        width: 100%;
         &.align-center {
             display: flex;
             align-items: center;

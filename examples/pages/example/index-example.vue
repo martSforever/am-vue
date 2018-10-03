@@ -5,7 +5,9 @@
             <index-example-nav-menu/>
             <div class="example-wrapper">
                 <keep-alive>
-                    <router-view/>
+                    <am-scrollbar>
+                        <router-view/>
+                    </am-scrollbar>
                 </keep-alive>
             </div>
         </div>

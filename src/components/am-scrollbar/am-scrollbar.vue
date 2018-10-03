@@ -142,11 +142,15 @@
             _mouseleave() {
                 this.hover = false
             },
-            scrollTop(e, pos = 0, dur = 400, done) {
+            scrollTop(pos = 0, dur = 400, done) {
                 scrollToWithAnimation(this.$refs.wrapper, 'scrollTop', pos, dur, 'easeOutQuart', done,);
             },
-            scrollLeft(e, pos = 0, dur = 400, done) {
+            scrollLeft(pos = 0, dur = 400, done) {
                 scrollToWithAnimation(this.$refs.wrapper, 'scrollLeft', pos, dur, 'easeOutQuart', done,);
+            },
+            scrollTo({x, y}) {
+                x != null && (this.scrollLeft(x))
+                y != null && (this.scrollTop(y))
             },
         },
         beforeDestroy() {

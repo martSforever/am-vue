@@ -12,6 +12,7 @@
             width: max-content;
             min-width: 100%;
             display: inline-block;
+            float: left;
         }
     }
     .am-scrollbar-vertical-indicator-wrapper {
@@ -47,11 +48,15 @@
         }
     }
     &.am-scrollbar-hover {
-        .am-scrollbar-vertical-indicator {
-            opacity: 1;
-        }
-        .am-scrollbar-horizontal-indicator {
-            opacity: 1;
+        & {
+            & > .am-scrollbar-vertical-indicator-wrapper, & > .am-scrollbar-horizontal-indicator-wrapper {
+                .am-scrollbar-vertical-indicator {
+                    opacity: 1;
+                }
+                .am-scrollbar-horizontal-indicator {
+                    opacity: 1;
+                }
+            }
         }
     }
 }
