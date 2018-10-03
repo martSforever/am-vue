@@ -1,5 +1,6 @@
 import './styles/index.scss';
 import AmVueDomPortal from './directives/vue-dom-portal';
+import $i18n from './locale';
 
 import icon from './components/am-icon';
 import button from './components/am-button';
@@ -56,7 +57,7 @@ const components = {
     scrollbar,
 };
 
-let $amvue = {};
+let $amvue = {$i18n};
 
 const defaultInstallOptions = {
     ComponentPrefix: 'am',                          //组件使用前缀，比如这里是am，则在使用图标组件的时候就是<am-icon/>
@@ -74,6 +75,13 @@ function install(vue, options) {
     vue.use(AmVueDomPortal);
     vue.prototype.$modal = modal;
     vue.prototype.$notice = notice;
+    vue.mixin({
+        data() {
+            return {
+                $amvue
+            }
+        },
+    })
 }
 
 window.Amvue = {

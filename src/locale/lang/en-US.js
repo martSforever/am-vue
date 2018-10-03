@@ -1,6 +1,6 @@
 module.exports = {
   "locale": "en-US",
-  "language-name": "English(United State)",
+  "languageName": "English(United State)",
 
   "date": {
     "year": 'Year',

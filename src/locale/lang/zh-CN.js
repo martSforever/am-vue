@@ -1,6 +1,6 @@
 module.exports = {
   "locale": "zh-CN",
-  "language-name": "简体中文",
+  "languageName": "简体中文",
 
   "date": {
     "year": "年",

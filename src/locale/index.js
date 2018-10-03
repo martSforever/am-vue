@@ -1,11 +1,11 @@
-import VueI18n from 'vue-i18n'
-import Vue from 'vue'
 import langs from './lang'
 
-Vue.use(VueI18n)
+const $i18n = {
+    langs,
+    locale: langs[Object.keys(langs)[0]],
+    setLocale(langName) {
+        $i18n.locale = langs[langName]
+    },
+}
 
-let i18n = new VueI18n({
-    locale: 'zh-CN',
-    messages: langs,
-})
-export default i18n
+export default $i18n
