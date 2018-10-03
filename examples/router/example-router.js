@@ -101,5 +101,10 @@ export default {
             name: 'i18n',
             component: resolve => require(['examples/pages/example/components/i18n-example.vue'], resolve),
         },
+        {
+            path: '/popover',
+            name: 'popover',
+            component: resolve => require(['examples/pages/example/components/popover-example.vue'], resolve),
+        },
     ]
 };

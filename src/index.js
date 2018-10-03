@@ -28,6 +28,7 @@ import tabbar from './components/am-tabbar/am-tabbar';
 import tab from './components/am-tabbar/am-tab';
 import tree from './components/am-tree';
 import scrollbar from './components/am-scrollbar'
+import popover from './components/am-popover'
 
 const components = {
     icon,
@@ -55,6 +56,7 @@ const components = {
     tab,
     tree,
     scrollbar,
+    popover,
 };
 
 let $amvue = {};

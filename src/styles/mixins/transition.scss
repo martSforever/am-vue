@@ -18,6 +18,17 @@
     opacity: 0;
 }
 
+/*缩放过度*/
+.am-popover-scale-enter-active, .am-popover-scale-leave-active {
+    transition: all .1s linear;
+    opacity: 1;
+}
+
+.am-popover-scale-enter, .am-popover-scale-leave-to {
+    opacity: 0;
+    transform: scale(0.75, 0.75);
+}
+
 /*透明度*/
 .am-transition-fade-enter-active, .am-transition-fade-leave-active {
     opacity: 1;
