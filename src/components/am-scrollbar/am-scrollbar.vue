@@ -8,7 +8,7 @@
         <div class="am-scrollbar-content-wrapper"
              @scroll="_handleScroll"
              ref="wrapper">
-            <div class="am-scrollbar-content" ref="content">
+            <div class="am-scrollbar-content" ref="content" :style="contentStyles">
                 <slot></slot>
             </div>
         </div>
@@ -37,6 +37,8 @@
         props: {
             scrollbarSize: {type: Number, default: 9},
             scrollbarColor: {type: String, default: 'rgba(0,0,0,0.4)'},
+            scrollX: {type: Boolean, default: true},
+            scrollY: {type: Boolean, default: true},
         },
         data() {
             return {
@@ -86,6 +88,12 @@
                     left: `${this.indicatorLeft}px`,
                     backgroundColor: this.scrollbarColor,
                 }
+            },
+            contentStyles() {
+                let styles = {}
+                if (!this.scrollX) styles.width = `${this.contentWidth}px`
+                if (!this.scrollY) styles.height = `${this.contentHeight}px`
+                return styles
             },
         },
         methods: {

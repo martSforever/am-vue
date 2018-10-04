@@ -24,6 +24,30 @@
             </div>
         </div>
         <div class="title">
+            设置横向不滚动或者纵向不滚动
+        </div>
+        <div class="example-row">
+
+            <div style="height: 100px;width: 300px;display: inline-block">
+                <am-scrollbar :scroll-x="false">
+                    <div style="height: 200px;width: 600px;background-color: #ED4114">
+                        hello world!hello world!hello world!hello world!hello world!hello world!hello world!hello
+                        world!hello world!hello world!hello world!hello world!
+                    </div>
+                </am-scrollbar>
+            </div>
+            <div style="height: 100px;width: 300px;display: inline-block">
+                <am-scrollbar :scroll-y="false">
+                    <div style="height: 200px;width: 600px;background-color: #ED4114">
+                        hello world!hello world!hello world!hello world!hello world!hello world!hello world!hello
+                        world!hello world!hello world!hello world!hello world!
+                    </div>
+                </am-scrollbar>
+            </div>
+
+        </div>
+
+        <div class="title">
             综合测试，经过测试，当浏览器窗口大小变化、scrollbar的内容大小变化，scrollbar中图片加载延迟都不会影响scrollbar的正常使用
         </div>
         <div>
