@@ -108,8 +108,8 @@
                 </div>
             </am-popover>
         </div>
-        <am-button>direction</am-button>
         <am-button-group>
+            <am-button dashed>direction</am-button>
             <am-button @click="direction='top'" :color="direction === 'top'?'success':'primary'">top</am-button>
             <am-button @click="direction='bottom'" :color="direction === 'bottom'?'success':'primary'">bottom
             </am-button>
@@ -117,8 +117,8 @@
             <am-button @click="direction='right'" :color="direction === 'right'?'success':'primary'">right
             </am-button>
         </am-button-group>
-        <am-button>align</am-button>
         <am-button-group>
+            <am-button dashed>align</am-button>
             <am-button @click="align='start'" :color="align === 'start'?'success':'primary'">start</am-button>
             <am-button @click="align='center'" :color="align === 'center'?'success':'primary'">center</am-button>
             <am-button @click="align='end'" :color="align === 'end'?'success':'primary'">end</am-button>
