@@ -23,8 +23,10 @@
                     @mouseleave.native="_handleHover('popoverHover',false,'popoverTimer')"
                     @input="val=> currentValue = val"
         >
-            <div class="am-dropdown-popover-wrapper">
-                <slot name="popover"></slot>
+            <div class="am-dropdown-popover-wrapper" :style="{height:`${height}px`,width:`${width}px`}">
+                <am-scrollbar :scrollbar-size="scrollbarSize">
+                    <slot name="popover"></slot>
+                </am-scrollbar>
             </div>
         </am-popover>
     </div>
@@ -33,9 +35,14 @@
 <script>
     import AmPopover from '../am-popover'
     import {oneOf} from "../../scripts/utils";
+    import AmScrollbar from '../am-scrollbar/am-scrollbar'
 
     export default {
         name: "am-dropdown",
+        components: {
+            AmScrollbar,
+            AmPopover,
+        },
         props: {
             value: {type: Boolean, default: false},
             trigger: {
@@ -85,9 +92,10 @@
                 default: '4px',
                 desc: '边框圆角'
             },
-        },
-        components: {
-            AmPopover
+            scrollbarSize: {type: Number, default: 6},
+            hideOnClickItem: {type: Boolean, default: true},
+            height: {type: Number, default: 144},
+            width: {type: Number, default: 120},
         },
         watch: {
             value(val) {
