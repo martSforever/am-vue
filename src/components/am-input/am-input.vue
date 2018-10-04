@@ -10,6 +10,7 @@
             <input v-model="currentValue"
                    :placeholder="!!disabled?'':placeholder"
                    :disabled="disabled"
+                   :readonly="readonly"
                    @focus="e=>$emit('focus', e)"
                    @blur="e=>$emit('blur', e)"
                    @click="e=>$emit('click', e)"
@@ -73,6 +74,7 @@
             suffixIcon: {type: String},
             placeholder: {type: String, default: '点击输入内容...'},
             disabled: {type: Boolean},
+            readonly: {type: Boolean},
             clearable: {type: Boolean},
             regexp: {type: RegExp},
         },

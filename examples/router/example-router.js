@@ -111,5 +111,10 @@ export default {
             name: 'dropdown',
             component: resolve => require(['examples/pages/example/components/dropdown-example.vue'], resolve),
         },
+        {
+            path: '/select',
+            name: 'select',
+            component: resolve => require(['examples/pages/example/components/select-example.vue'], resolve),
+        },
     ]
 };

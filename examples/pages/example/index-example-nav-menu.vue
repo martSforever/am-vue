@@ -64,7 +64,7 @@
                             {name: 'number input', icon: 'number-nine', url: 'number-input'},
                             {name: 'switch', icon: 'color-switch', url: 'switch'},
                             {name: 'radio', icon: 'color-checked', url: 'radio'},
-                            {name: 'select', icon: 'color-select', url: ''},
+                            {name: 'select', icon: 'color-select', url: 'select'},
                             {name: 'timepicker', icon: 'color-time', url: ''},
                             {name: 'datepicker', icon: 'color-date', url: ''},
                         ]

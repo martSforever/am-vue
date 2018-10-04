@@ -31,6 +31,7 @@ import scrollbar from './components/am-scrollbar'
 import popover from './components/am-popover'
 import dropdown from './components/am-dropdown'
 import dropdownItem from './components/am-dropdown/am-dropdown-item'
+import select from './components/am-select'
 
 const components = {
     icon,
@@ -61,6 +62,7 @@ const components = {
     popover,
     dropdown,
     'dropdown-item': dropdownItem,
+    select,
 };
 
 let $amvue = {};
