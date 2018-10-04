@@ -5,8 +5,7 @@
         </div>
         <am-dropdown v-model="val1" direction="bottom">
             <am-button slot="reference">dropdown</am-button>
-            <div slot="popover" >
-                <am-dropdown-item>刘德华刘德华刘德华刘德华刘德华刘德华</am-dropdown-item>
+            <div slot="popover">
                 <am-dropdown-item>吴彦祖</am-dropdown-item>
                 <am-dropdown-item>张学友</am-dropdown-item>
                 <am-dropdown-item>易烊千玺</am-dropdown-item>

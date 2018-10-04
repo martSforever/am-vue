@@ -24,7 +24,7 @@
                     @input="val=> currentValue = val"
         >
             <div class="am-dropdown-popover-wrapper" :style="{height:`${height}px`,width:`${width}px`}">
-                <am-scrollbar :scrollbar-size="scrollbarSize">
+                <am-scrollbar :scrollbar-size="scrollbarSize" :scroll-x="false">
                     <slot name="popover"></slot>
                 </am-scrollbar>
             </div>
@@ -95,7 +95,7 @@
             scrollbarSize: {type: Number, default: 6},
             hideOnClickItem: {type: Boolean, default: true},
             height: {type: Number, default: 144},
-            width: {type: Number, default: 120},
+            width: {type: Number, default: 100},
         },
         watch: {
             value(val) {
