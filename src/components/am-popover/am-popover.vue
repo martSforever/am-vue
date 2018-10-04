@@ -139,7 +139,7 @@
                 !!this.shadow && (styles.boxShadow = this.shadow)
 
                 styles[this.arrowDirectionMap[this.currentDirection]] = `${-this.arrowSize / 2}px`
-                let align = this._getArrowAlign()
+                let align = this.arrowAlign
 
                 !!align && (styles[align.key] = align.value)
                 return styles
@@ -162,6 +162,23 @@
                     borderRadius: this.borderRadius
                 }
             },
+            arrowAlign() {
+                if (this.isMounted) {
+                    if (oneOf(this.currentDirection, ['top', 'bottom'])) {
+                        return {
+                            key: this.currentAlign === 'end' ? 'right' : 'left',
+                            value: this.currentAlign === 'center' ? `${(this.$refs.popperContent.offsetWidth - (this.arrowSize * Math.sqrt(2))) / 2}px` : `${this.arrowSize}px`
+                        }
+                    } else {
+                        return {
+                            key: this.currentAlign === 'end' ? 'bottom' : 'top',
+                            value: this.currentAlign === 'center' ? `${(this.$refs.popperContent.offsetHeight - (this.arrowSize * Math.sqrt(2))) / 2}px` : `${this.arrowSize}px`
+                        }
+                    }
+                } else {
+                    return null
+                }
+            },
         },
         methods: {
             update() {
@@ -180,23 +197,6 @@
                 let placement = this.popper.popper.getAttribute('x-placement');
                 this.currentDirection = placement.split('-')[0];
                 this.currentAlign = placement.split('-')[1];
-            },
-            _getArrowAlign() {
-                if (this.isMounted) {
-                    if (oneOf(this.currentDirection, ['top', 'bottom'])) {
-                        return {
-                            key: this.currentAlign === 'end' ? 'right' : 'left',
-                            value: this.currentAlign === 'center' ? `${(this.reference.offsetWidth - (this.arrowSize * Math.sqrt(2))) / 2}px` : `${this.arrowSize}px`
-                        }
-                    } else {
-                        return {
-                            key: this.currentAlign === 'end' ? 'bottom' : 'top',
-                            value: this.currentAlign === 'center' ? `${(this.reference.offsetHeight - (this.arrowSize * Math.sqrt(2))) / 2}px` : `${this.arrowSize}px`
-                        }
-                    }
-                } else {
-                    return null
-                }
             },
             _handleClickOutside(e) {
                 if (!!this.hideOnClickOutside && !this.reference.contains(e.target) && !this.$el.contains(e.target)) {
