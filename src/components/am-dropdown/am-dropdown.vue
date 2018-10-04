@@ -2,10 +2,13 @@
     <div class="am-dropdown">
         <div class="am-dropdown-reference-wrapper"
              @click="_handleClickReference"
+             @mouseenter="referenceHover=true"
+             @mouseleave="_handleHover('referenceHover',false,'referenceTimer')"
              ref="reference">
             <slot name="reference"></slot>
+            {{referenceHover}}-{{popoverHover}}
         </div>
-        <am-popover v-model="currentValue"
+        <am-popover :value="show"
                     reference-name="reference"
                     parent-name="am-dropdown"
                     :show-arrow="showArrow"
@@ -16,6 +19,10 @@
                     :align="align"
                     :shadow="shadow"
                     :border-radius="borderRadius"
+
+                    @mouseenter.native="popoverHover=true"
+                    @mouseleave.native="_handleHover('popoverHover',false,'popoverTimer')"
+                    @input="val=> currentValue = val"
         >
             <slot name="popover"></slot>
         </am-popover>
@@ -91,12 +98,29 @@
         },
         data() {
             return {
-                currentValue: this.value
+                currentValue: this.value,
+                referenceHover: false,
+                popoverHover: false,
+                referenceTimer: null,
+                popoverTimer: null,
             }
         },
         methods: {
             _handleClickReference() {
-                this.currentValue = !this.currentValue
+                this.trigger === 'click' && (this.currentValue = !this.currentValue)
+            },
+            _handleHover(target, val, timerName) {
+                if (!!this[timerName]) {
+                    clearTimeout(this[timerName])
+                    this[timerName] = null
+                }
+                this[timerName] = setTimeout(() => this[target] = val, 150)
+            },
+        },
+        computed: {
+            show() {
+                return this.trigger === 'click' ?
+                    this.currentValue : (this.referenceHover || this.popoverHover)
             },
         },
     }

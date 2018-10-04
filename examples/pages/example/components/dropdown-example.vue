@@ -7,6 +7,12 @@
                 hello world
             </div>
         </am-dropdown>
+        <am-dropdown trigger="hover">
+            <am-button slot="reference">dropdown</am-button>
+            <div slot="popover" style="height: 100px;width: 100px">
+                hello world
+            </div>
+        </am-dropdown>
     </div>
 </template>
 
