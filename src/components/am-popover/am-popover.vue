@@ -7,7 +7,6 @@
             >
                 <div class="am-popover-arrow" :style="arrowStyles" v-if="showArrow"></div>
                 <div class="am-popover-content" ref="popperContent" :style="popoverContentStyles">
-                    referenceWidth:{{referenceWidth}}
                     <slot></slot>
                 </div>
                 <div class="am-popover-shadow" :style="popoverShadowStyles"></div>
@@ -31,7 +30,7 @@
                 required: true,
                 desc: '父引用组件名，因为reference是从父引用组件的$refs中寻找的，所以而popper不一定在父引用组件的根节点下，所以这里需要指定父引用节点名称',
             },
-            arrowSize: {type: Number, default: 12, desc: '小三角大小，默认单位为px',},
+            arrowSize: {type: Number, default: 9, desc: '小三角大小，默认单位为px',},
             direction: {
                 type: String, default: 'bottom', desc: '位置，有四种选择：上下左右', validator(val) {
                     return oneOf(val, ['top', 'bottom', 'left', 'right'])
@@ -231,7 +230,6 @@
             this.isMounted = true
             this.reference = this._getReference()
             this.currentValue && this.update()
-            console.log(this.reference)
             this.referenceWidth = this.reference.offsetWidth
             this.referenceHeight = this.reference.offsetHeight
             document.addEventListener('click', this._handleClickOutside)

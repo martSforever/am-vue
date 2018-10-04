@@ -6,7 +6,6 @@
              @mouseleave="_handleHover('referenceHover',false,'referenceTimer')"
              ref="reference">
             <slot name="reference"></slot>
-            {{referenceHover}}-{{popoverHover}}
         </div>
         <am-popover :value="show"
                     reference-name="reference"
@@ -24,7 +23,9 @@
                     @mouseleave.native="_handleHover('popoverHover',false,'popoverTimer')"
                     @input="val=> currentValue = val"
         >
-            <slot name="popover"></slot>
+            <div class="am-dropdown-popover-wrapper">
+                <slot name="popover"></slot>
+            </div>
         </am-popover>
     </div>
 </template>
@@ -52,7 +53,7 @@
             },
             sizeEqual: {
                 type: Boolean,
-                default: true,
+                default: false,
                 desc: '是否令popper与reference在方向上宽度一致'
             },
             hideOnClickOutside: {
@@ -60,7 +61,7 @@
                 default: true,
                 desc: '是否在点击popover外部元素的时候，关闭popover'
             },
-            arrowSize: {type: Number, default: 12, desc: '小三角大小，默认单位为px',},
+            arrowSize: {type: Number, default: 9, desc: '小三角大小，默认单位为px',},
             direction: {
                 type: String, default: 'bottom', desc: '位置，有四种选择：上下左右', validator(val) {
                     return oneOf(val, ['top', 'bottom', 'left', 'right'])
@@ -107,9 +108,10 @@
         },
         methods: {
             _handleClickReference() {
-                this.trigger === 'click' && (this.currentValue = !this.currentValue)
+                this.trigger === 'click' && !this.disabled && (this.currentValue = !this.currentValue)
             },
             _handleHover(target, val, timerName) {
+                if (!!this.disabled) return
                 if (!!this[timerName]) {
                     clearTimeout(this[timerName])
                     this[timerName] = null
