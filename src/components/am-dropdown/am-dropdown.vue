@@ -92,6 +92,7 @@
                 default: '4px',
                 desc: '边框圆角'
             },
+
             scrollbarSize: {type: Number, default: 6},
             hideOnClickItem: {type: Boolean, default: true},
             height: {type: Number, default: 144},

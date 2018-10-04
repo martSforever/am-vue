@@ -5,7 +5,7 @@
             <index-example-nav-menu/>
             <div class="example-wrapper">
                 <keep-alive>
-                    <am-scrollbar>
+                    <am-scrollbar :scroll-x="false">
                         <router-view/>
                     </am-scrollbar>
                 </keep-alive>
