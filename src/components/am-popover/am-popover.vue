@@ -77,7 +77,10 @@
             value(val) {
                 if (this.currentValue !== val) {
                     this.currentValue = val
-                    if (!!this.currentValue) this.update()
+                    if (!!this.currentValue) {
+                        this.update()
+                        this.$nextTick(() => this._getPopperSize())
+                    }
                 }
             },
             currentValue(val) {
@@ -116,6 +119,9 @@
                 currentAlign: this.align,
                 referenceWidth: null,
                 referenceHeight: null,
+                popperHeight: 0,
+                popperWidth: 0,
+                hasPopperSize: false,
                 arrowDirectionMap: {
                     top: 'bottom',
                     bottom: 'top',
@@ -167,12 +173,12 @@
                     if (oneOf(this.currentDirection, ['top', 'bottom'])) {
                         return {
                             key: this.currentAlign === 'end' ? 'right' : 'left',
-                            value: this.currentAlign === 'center' ? `${(this.$refs.popperContent.offsetWidth - (this.arrowSize * Math.sqrt(2))) / 2}px` : `${this.arrowSize}px`
+                            value: this.currentAlign === 'center' ? `${(this.popperWidth - (this.arrowSize * Math.sqrt(2))) / 2}px` : `${this.arrowSize}px`
                         }
                     } else {
                         return {
                             key: this.currentAlign === 'end' ? 'bottom' : 'top',
-                            value: this.currentAlign === 'center' ? `${(this.$refs.popperContent.offsetHeight - (this.arrowSize * Math.sqrt(2))) / 2}px` : `${this.arrowSize}px`
+                            value: this.currentAlign === 'center' ? `${(this.popperHeight - (this.arrowSize * Math.sqrt(2))) / 2}px` : `${this.arrowSize}px`
                         }
                     }
                 } else {
@@ -211,6 +217,13 @@
                     return
                 }
                 return !!referenceTarget.$el ? referenceTarget.$el : referenceTarget
+            },
+            _getPopperSize() {
+                if (!this.hasPopperSize) {
+                    this.hasPopperSize = true
+                    this.popperHeight = this.$el.offsetHeight
+                    this.popperWidth = this.$el.offsetWidth
+                }
             },
         },
         mounted() {
