@@ -3,6 +3,7 @@
     display: inline-block;
     box-sizing: border-box;
     vertical-align: top;
+    position: absolute;
     z-index: 9999;
     .am-popover-content-wrapper {
         position: relative;

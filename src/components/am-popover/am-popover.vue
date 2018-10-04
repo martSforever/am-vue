@@ -7,6 +7,7 @@
             >
                 <div class="am-popover-arrow" :style="arrowStyles" v-if="showArrow"></div>
                 <div class="am-popover-content" ref="popperContent" :style="popoverContentStyles">
+                    referenceWidth:{{referenceWidth}}
                     <slot></slot>
                 </div>
                 <div class="am-popover-shadow" :style="popoverShadowStyles"></div>
@@ -230,6 +231,7 @@
             this.isMounted = true
             this.reference = this._getReference()
             this.currentValue && this.update()
+            console.log(this.reference)
             this.referenceWidth = this.reference.offsetWidth
             this.referenceHeight = this.reference.offsetHeight
             document.addEventListener('click', this._handleClickOutside)
