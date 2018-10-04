@@ -106,5 +106,10 @@ export default {
             name: 'popover',
             component: resolve => require(['examples/pages/example/components/popover-example.vue'], resolve),
         },
+        {
+            path: '/dropdown',
+            name: 'dropdown',
+            component: resolve => require(['examples/pages/example/components/dropdown-example.vue'], resolve),
+        },
     ]
 };

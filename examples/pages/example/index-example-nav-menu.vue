@@ -73,7 +73,7 @@
                         name: 'view',
                         children: [
                             {name: 'popover', icon: 'color-popover', url: 'popover'},
-                            {name: 'dropdown', icon: 'color-droplet', url: ''},
+                            {name: 'dropdown', icon: 'color-droplet', url: 'dropdown'},
                             {name: 'collapse', icon: 'color-collapse', url: 'collapse'},
                             {name: 'tag', icon: 'color-tag', url: 'tag'},
                             {name: 'move', icon: 'color-run', url: 'move'},
