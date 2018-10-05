@@ -3,8 +3,29 @@
         .am-button-group {
             text-align: right;
             width: 100%;
-            justify-content: flex-end;
+            justify-content: center;
+            box-shadow: 0 0 20px #ddd;
+        }
+        .am-timepicker-spinner-wrapper {
             padding: 0.5em;
+        }
+    }
+}
+
+.am-time-spinner {
+    display: inline-block;
+    .am-time-spinner-item {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 28px;
+        cursor: pointer;
+        border-radius: $border-size;
+        font-size: 12px;
+        color: $color-normal-content;
+        @include transition-all;
+        &:hover {
+            background-color: $color-primary-light;
         }
     }
 }
