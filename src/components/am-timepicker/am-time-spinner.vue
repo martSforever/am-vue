@@ -1,5 +1,5 @@
 <template>
-    <div class="am-time-spinner" style="height: 140px;width: 44px">
+    <div class="am-time-spinner">
         <am-scrollbar
             :scroll-x="false"
             :scrollbar-size="6"

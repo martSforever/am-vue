@@ -9,19 +9,23 @@
         }
         .am-timepicker-spinner-wrapper {
             padding: 0.5em;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
     }
 }
 
 .am-time-spinner {
     display: inline-block;
+    height: 140px;
+    width: 44px;
     .am-time-spinner-item {
         display: flex;
         justify-content: center;
         align-items: center;
         height: 28px;
         cursor: pointer;
-        border-radius: $border-size;
         font-size: 12px;
         color: $color-normal-content;
         @include transition-all;
@@ -29,8 +33,7 @@
             background-color: $color-primary-light;
         }
         &.am-time-spinner-item-active {
-            background-color: $color-primary;
-            color: white;
+            background-color: $color-primary-light;
         }
         &.am-time-spinner-item-hide {
             opacity: 0;
