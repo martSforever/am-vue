@@ -1,19 +1,69 @@
 <template>
     <div class="select-example example-page">
-        <div class="title">基本用法</div>
+        <div class="title">基本用法 <br>
+            最基本的用法需要完成三个步骤
+            1、准备需要显示的数组list，
+            2、要显示的文本属性的key，
+            3、显示的作用于插槽模板
+        </div>
         <div class="example-row">
-            <am-select :data="list"
-                       children-key="children"
-                       @select="handleSelect"
+            <am-select :data="list1"
+                       show-key="name">
+                <template slot-scope="data">
+                    {{data.name}}
+                </template>
+            </am-select>
+        </div>
+        <div class="title">设置input样式，select复用了input组件，继承了input组件所有属性</div>
+        <div class="example-row">
+            <am-select :data="list1"
+                       show-key="name"
+
+                       type="fill"
+                       color="primary"
+                       suffix-icon="fas-angle-down"
             >
                 <template slot-scope="data">
                     {{data.name}}
                 </template>
             </am-select>
         </div>
-        <div class="title">设置input样式</div>
-        <div class="title">只读，不是禁用</div>
+
         <div class="title">自定义渲染内容</div>
+        <div class="example-row">
+            <am-select :data="list1"
+                       show-key="name"
+            >
+                <template slot-scope="data">
+                    <div>
+                        <am-icon icon="fab-github"/>
+                        {{data.name}}
+                    </div>
+                </template>
+            </am-select>
+        </div>
+        <div class="title">级联选择</div>
+        <div class="example-row">
+            <am-select :data="list10"
+                       show-key="name"
+                       children-key="children"
+            >
+                <template slot-scope="data">
+                    <div>
+                        {{data.name}}
+                    </div>
+                </template>
+            </am-select>
+        </div>
+        <div class="title">使用渲染函数渲染模板</div>
+        <div class="example-row">
+            <am-select :data="list10"
+                       show-key="name"
+                       children-key="children"
+                       :render-func="renderFunc"
+            >
+            </am-select>
+        </div>
     </div>
 </template>
 
@@ -22,7 +72,12 @@
         name: "select-example",
         data() {
             return {
-                list: [
+                list1: [
+                    {name: '哈密瓜'},
+                    {name: '西瓜'},
+                    {name: '南瓜'},
+                ],
+                list10: [
                     {
                         name: '广东省', children: [
                             {
@@ -55,6 +110,11 @@
                         return ret
                     }, '')
                 })
+            },
+            renderFunc(h, data) {
+                return (
+                    <div><am-icon icon="fas-user"/>{data.name}</div>
+                )
             },
         },
     }

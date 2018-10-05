@@ -3,6 +3,20 @@
         <am-input ref="input"
                   @click="currentShow = true"
                   v-model="currentValue"
+
+                  :type="type"
+                  :color="color"
+                  :size="size"
+                  :shape="shape"
+                  :dashed="dashed"
+                  :long="long"
+                  :prefix-icon="prefixIcon"
+                  :suffix-icon="suffixIcon"
+                  :placeholder="placeholder"
+                  :disabled="disabled"
+                  :readonly="readonly"
+                  :clearable="clearable"
+                  :regexp="regexp"
         />
         <am-popover
             v-model="currentShow"
@@ -25,6 +39,7 @@
     import AmInput from '../am-input'
     import AmPopover from '../am-popover'
     import AmSelectItem from './am-select-item'
+    import {oneOf} from "../../scripts/utils";
 
     export default {
         name: "am-select",
@@ -39,6 +54,45 @@
             childrenKey: {type: String},
             show: {type: Boolean, default: false},
             renderFunc: {type: Function},
+            showKey: {type: String},
+
+            type: {
+                type: String,
+                default: 'line',
+                validator(val) {
+                    return oneOf(val, ['fill', 'line', 'none']);
+                },
+            },
+            color: {
+                type: String,
+                default: 'info',
+                validator(val) {
+                    return oneOf(val, ['primary', 'info', 'success', 'warn', 'error', 'none']);
+                },
+            },
+            size: {
+                type: String,
+                default: 'default',
+                validator(val) {
+                    return oneOf(val, ['default', 'large', 'small']);
+                },
+            },
+            shape: {
+                type: String,
+                default: 'fillet',
+                validator(val) {
+                    return oneOf(val, ['fillet', 'round', 'none']);
+                },
+            },
+            dashed: {type: Boolean,},
+            long: {type: Boolean,},
+            prefixIcon: {type: String},
+            suffixIcon: {type: String},
+            placeholder: {type: String, default: '点击输入内容...'},
+            disabled: {type: Boolean},
+            readonly: {type: Boolean},
+            clearable: {type: Boolean},
+            regexp: {type: RegExp},
         },
         watch: {
             value(val) {
@@ -59,6 +113,15 @@
                 currentShow: this.show,
                 currentValue: this.value,
             }
+        },
+        mounted() {
+            (!!this.showKey) &&
+            this.$on('select', (result) => {
+                this.currentValue = result.reduce((ret, item) => {
+                    ret.push([item[this.showKey]])
+                    return ret
+                }, []).join(',')
+            })
         },
     }
 </script>
