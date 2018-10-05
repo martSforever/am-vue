@@ -1,3 +1,20 @@
 .am-select {
+    display: inline-block;
+    vertical-align: bottom;
+    box-sizing: border-box;
+    .am-select-item {
+        .am-select-item-content {
+            padding: 0.5em;
+            font-size: 14px;
+            cursor: pointer;
+            @include transition-all;
 
+            &:hover {
+                background-color: $color-primary-light;
+            }
+        }
+        .am-dropdown {
+            display: block;
+        }
+    }
 }

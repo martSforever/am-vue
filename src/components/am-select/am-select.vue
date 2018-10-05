@@ -10,7 +10,13 @@
             reference-name="input"
             :size-equal="true"
         >
-            popover content
+            <am-select-item v-for="(item,index) in data"
+                            :key="index"
+                            :data="item"
+                            :scope-slot-func="$scopedSlots.default"
+                            :rendering-render-func="renderFunc"
+                            :children-key="childrenKey"
+            />
         </am-popover>
     </div>
 </template>
@@ -18,12 +24,14 @@
 <script>
     import AmInput from '../am-input'
     import AmPopover from '../am-popover'
+    import AmSelectItem from './am-select-item'
 
     export default {
         name: "am-select",
         components: {
             AmInput,
             AmPopover,
+            AmSelectItem,
         },
         props: {
             value: {},
@@ -49,7 +57,7 @@
         data() {
             return {
                 currentShow: this.show,
-                currentValue:this.value,
+                currentValue: this.value,
             }
         },
     }

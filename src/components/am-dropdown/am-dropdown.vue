@@ -2,7 +2,7 @@
     <div class="am-dropdown">
         <div class="am-dropdown-reference-wrapper"
              @click="_handleClickReference"
-             @mouseenter="referenceHover=true"
+             @mouseenter="!disabled && (referenceHover=true)"
              @mouseleave="_handleHover('referenceHover',false,'referenceTimer')"
              ref="reference">
             <slot name="reference"></slot>
@@ -19,7 +19,7 @@
                     :shadow="shadow"
                     :border-radius="borderRadius"
 
-                    @mouseenter.native="popoverHover=true"
+                    @mouseenter.native="!disabled && (popoverHover=true)"
                     @mouseleave.native="_handleHover('popoverHover',false,'popoverTimer')"
                     @input="val=> currentValue = val"
         >
@@ -121,6 +121,7 @@
             },
             _handleHover(target, val, timerName) {
                 if (!!this.disabled) return
+
                 if (!!this[timerName]) {
                     clearTimeout(this[timerName])
                     this[timerName] = null
