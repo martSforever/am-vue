@@ -1,9 +1,19 @@
 <template>
     <div class="am-timepicker">
         <am-input ref="input"
-                  @click="currentShow = true"
+                  @click="!disabled && (currentShow = true)"
                   :suffix-icon="suffixIcon"
                   :value="showValue"
+                  :type="type"
+                  :color="color"
+                  :size="size"
+                  :shape="shape"
+                  :dashed="dashed"
+                  :long="long"
+                  :prefixIcon="prefixIcon"
+                  :suffixIcon="suffixIcon"
+                  :placeholder="placeholder"
+                  :disabled="disabled"
         />
         <am-popover
             reference-name="input"
@@ -33,6 +43,7 @@
     import AmTimeSpinner from './am-time-spinner'
     import AmPopover from '../am-popover'
     import {zeroize} from "../../scripts/utils";
+    import {oneOf} from "../../scripts/utils";
 
     export default {
         name: "am-timepicker",
@@ -47,7 +58,43 @@
             show: {type: Boolean, default: false},
             value: {type: Date, default: () => new Date()},
 
+            type: {
+                type: String,
+                default: 'line',
+                validator(val) {
+                    return oneOf(val, ['fill', 'line', 'none']);
+                },
+            },
+            color: {
+                type: String,
+                default: 'info',
+                validator(val) {
+                    return oneOf(val, ['primary', 'info', 'success', 'warn', 'error', 'none']);
+                },
+            },
+            size: {
+                type: String,
+                default: 'default',
+                validator(val) {
+                    return oneOf(val, ['default', 'large', 'small']);
+                },
+            },
+            shape: {
+                type: String,
+                default: 'fillet',
+                validator(val) {
+                    return oneOf(val, ['fillet', 'round', 'none']);
+                },
+            },
+            dashed: {type: Boolean,},
+            long: {type: Boolean,},
+            prefixIcon: {type: String},
             suffixIcon: {type: String, default: 'fas-clock'},
+            placeholder: {type: String, default: '点击输入内容...'},
+            disabled: {type: Boolean},
+            readonly: {type: Boolean},
+            clearable: {type: Boolean},
+            regexp: {type: RegExp},
         },
         watch: {
             show(val) {
@@ -82,7 +129,7 @@
         },
         computed: {
             showValue() {
-                return `${zeroize(this.value.getHours())}:${zeroize(this.value.getMinutes())}:${zeroize(this.value.getSeconds())}`
+                return `${zeroize(this.currentValue.getHours())}:${zeroize(this.currentValue.getMinutes())}:${zeroize(this.currentValue.getSeconds())}`
             },
         },
         methods: {
