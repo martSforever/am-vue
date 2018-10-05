@@ -65,7 +65,7 @@
                             {name: 'switch', icon: 'color-switch', url: 'switch'},
                             {name: 'radio', icon: 'color-checked', url: 'radio'},
                             {name: 'select', icon: 'color-select', url: 'select'},
-                            {name: 'timepicker', icon: 'color-time', url: ''},
+                            {name: 'timepicker', icon: 'color-time', url: 'timepicker'},
                             {name: 'datepicker', icon: 'color-date', url: ''},
                         ]
                     },
