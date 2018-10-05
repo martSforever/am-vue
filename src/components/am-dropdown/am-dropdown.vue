@@ -3,7 +3,7 @@
         <div class="am-dropdown-reference-wrapper"
              @click="_handleClickReference"
              @mouseenter="!disabled && (referenceHover=true)"
-             @mouseleave="_handleHover('referenceHover',false,'referenceTimer')"
+             @mouseleave="_handleLeave('referenceHover',false,'referenceTimer')"
              ref="reference">
             <slot name="reference"></slot>
         </div>
@@ -20,13 +20,17 @@
                     :border-radius="borderRadius"
 
                     @mouseenter.native="!disabled && (popoverHover=true)"
-                    @mouseleave.native="_handleHover('popoverHover',false,'popoverTimer')"
+                    @mouseleave.native="_handleLeave('popoverHover',false,'popoverTimer')"
                     @input="val=> currentValue = val"
         >
-            <div class="am-dropdown-popover-wrapper" :style="{height:`${height}px`,width:`${width}px`}">
+            <div class="am-dropdown-popover-wrapper" :style="{height:`${height}px`,width:`${width}px`}"
+                 v-if="!!scrollbar">
                 <am-scrollbar :scrollbar-size="scrollbarSize" :scroll-x="false">
                     <slot name="popover"></slot>
                 </am-scrollbar>
+            </div>
+            <div v-else>
+                <slot name="popover"></slot>
             </div>
         </am-popover>
     </div>
@@ -97,6 +101,7 @@
             hideOnClickItem: {type: Boolean, default: true},
             height: {type: Number, default: 144},
             width: {type: Number, default: 100},
+            scrollbar: {type: Boolean, default: true},
         },
         watch: {
             value(val) {
@@ -119,7 +124,7 @@
             _handleClickReference() {
                 this.trigger === 'click' && !this.disabled && (this.currentValue = !this.currentValue)
             },
-            _handleHover(target, val, timerName) {
+            _handleLeave(target, val, timerName) {
                 if (!!this.disabled) return
 
                 if (!!this[timerName]) {

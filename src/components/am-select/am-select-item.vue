@@ -1,39 +1,20 @@
 <template>
     <div class="am-select-item">
-        <!--<div class="am-select-item-content"
-             @click="currentValue = !currentValue"
-             ref="reference">
-            <am-rendering-scope-slot :scope-slot-func="scopeSlotFunc" :data="data" v-if="!!scopeSlotFunc"/>
-            <am-rendering-render-func :render-func="renderingRenderFunc" :data="data" v-if="!!renderingRenderFunc"/>
-        </div>
-        <am-popover parent-name="am-select-item"
-                    reference-name="reference"
-                    direction="right"
-                    v-model="currentValue"
-        >
-            <div style="width: 50px;height: 50px">
-                <am-select-item
-                    v-for="(item,index) in data[childrenKey]"
-                    :key="index"
-                    :scope-slot-func="scopeSlotFunc"
-                    :rendering-render-func="renderingRenderFunc"
-                    :data="item"
-                    :children-key="childrenKey"
-                />
-            </div>
-        </am-popover>-->
-
         <am-dropdown
-            trigger="click"
+            ref="dropdown"
+            trigger="hover"
             direction="right"
             :disabled="!(!!childrenKey && !!data[childrenKey] && data[childrenKey].length>0)"
+            :scrollbar="false"
         >
             <div class="am-select-item-content"
                  slot="reference">
                 <am-rendering-scope-slot :scope-slot-func="scopeSlotFunc" :data="data" v-if="!!scopeSlotFunc"/>
                 <am-rendering-render-func :render-func="renderingRenderFunc" :data="data" v-if="!!renderingRenderFunc"/>
             </div>
-            <div slot="popover">
+            <div slot="popover"
+                 @mouseenter="handleMouseEnter"
+            >
                 <am-select-item
                     v-for="(item,index) in data[childrenKey]"
                     :key="index"
@@ -72,6 +53,14 @@
             return {
                 currentValue: false,
             }
+        },
+        methods: {
+            handleMouseEnter() {
+                this.$nextTick(() => {
+                    clearTimeout(this.$refs.dropdown.popoverTimer)
+                    this.$refs.dropdown.popoverTimer = null
+                })
+            },
         },
     }
 </script>
