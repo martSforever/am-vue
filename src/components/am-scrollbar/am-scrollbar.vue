@@ -28,9 +28,9 @@
 <script>
     import {addClass, removeClass} from "../../scripts/dom";
 
+    const scroll = require('scroll')
     const elementResizeDetectorMaker = require("element-resize-detector");
     let erdUltraFast = elementResizeDetectorMaker({strategy: "scroll"});
-    import scrollToWithAnimation from 'scrollto-with-animation'
 
     export default {
         name: "am-scrollbar",
@@ -151,10 +151,10 @@
                 this.hover = false
             },
             scrollTop(pos = 0, dur = 400, done) {
-                scrollToWithAnimation(this.$refs.wrapper, 'scrollTop', pos, dur, 'easeOutQuart', done,);
+                scroll.top(this.$refs.wrapper, pos)
             },
             scrollLeft(pos = 0, dur = 400, done) {
-                scrollToWithAnimation(this.$refs.wrapper, 'scrollLeft', pos, dur, 'easeOutQuart', done,);
+                scroll.left(this.$refs.wrapper, pos)
             },
             scrollTo({x, y}) {
                 x != null && (this.scrollLeft(x))
