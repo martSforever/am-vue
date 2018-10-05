@@ -1,9 +1,10 @@
 .am-timepicker {
     .am-timepicker-content-wrapper {
+        user-select: none;
         .am-button-group {
             text-align: right;
             width: 100%;
-            justify-content: center;
+            justify-content: flex-end;
             box-shadow: 0 0 20px #ddd;
         }
         .am-timepicker-spinner-wrapper {
@@ -26,6 +27,13 @@
         @include transition-all;
         &:hover {
             background-color: $color-primary-light;
+        }
+        &.am-time-spinner-item-active {
+            background-color: $color-primary;
+            color: white;
+        }
+        &.am-time-spinner-item-hide {
+            opacity: 0;
         }
     }
 }
