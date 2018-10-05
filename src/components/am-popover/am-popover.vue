@@ -207,6 +207,7 @@
             _handleClickOutside(e) {
                 if (!!this.hideOnClickOutside && !this.reference.contains(e.target) && !this.$el.contains(e.target)) {
                     this.currentValue = false
+                    this.$emit('click-outside')
                 }
             },
             _getReference() {

@@ -9,6 +9,7 @@
             reference-name="input"
             parent-name="am-timepicker"
             v-model="currentShow"
+            @click-outside="handleClickOutside"
         >
             <div class="am-timepicker-content-wrapper">
                 <div class="am-timepicker-spinner-wrapper">
@@ -98,6 +99,9 @@
                 this.minute = this.value.getMinutes()
                 this.second = this.value.getSeconds()
                 this.currentShow = false
+            },
+            handleClickOutside() {
+                this.handleCancel()
             },
         },
     }
