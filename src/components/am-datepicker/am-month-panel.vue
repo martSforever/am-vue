@@ -7,7 +7,7 @@
                  :key="index">
                 <div class="am-month-panel-item"
                      :class="{'am-month-panel-item-active':item===currentValue,'am-month-panel-item-now':item === nowMonth}">
-                    {{item+1}}月
+                    {{$amlocale.date.month[item]}}
                 </div>
             </div>
         </div>

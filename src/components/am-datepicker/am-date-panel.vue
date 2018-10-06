@@ -3,7 +3,7 @@
         <div class="am-date-panel-content-wrapper">
             <div>
                 <div class="am-date-panel-item"
-                     v-for="(item,index) in weekday"
+                     v-for="(item,index) in $amlocale.date.week"
                      :key="index">
                     {{item}}
                 </div>

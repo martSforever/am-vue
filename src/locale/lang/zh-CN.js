@@ -1,32 +1,25 @@
 module.exports = {
-  "locale": "zh-CN",
-  "languageName": "简体中文",
-
-  "date": {
-    "year": "年",
-    "month": "月",
-
-    month1: '1 月',
-    month2: '2 月',
-    month3: '3 月',
-    month4: '4 月',
-    month5: '5 月',
-    month6: '6 月',
-    month7: '7 月',
-    month8: '8 月',
-    month9: '9 月',
-    month10: '10 月',
-    month11: '11 月',
-    month12: '12 月',
-
-    week: {
-      0: '日',
-      1: '一',
-      2: '二',
-      3: '三',
-      4: '四',
-      5: '五',
-      6: '六'
+    locale: "zh-CN",
+    languageName: "简体中文",
+    date: {
+        yearUnit: "年",
+        monthUnit: "月",
+        month: [
+            '1 月',
+            '2 月',
+            '3 月',
+            '4 月',
+            '5 月',
+            '6 月',
+            '7 月',
+            '8 月',
+            '9 月',
+            '10 月',
+            '11 月',
+            '12 月',
+        ],
+        week: [
+            '日', '一', '二', '三', '四', '五', '六'
+        ],
     }
-  }
 }

@@ -87,7 +87,7 @@ $date-width: 32px;
                         cursor: pointer;
                         .am-month-panel-item {
                             height: 24px;
-                            width: 80%;
+                            min-width: 80%;
                             border-radius: $border-size;
                             display: flex;
                             align-items: center;
@@ -124,6 +124,7 @@ $date-width: 32px;
                         align-items: center;
                         justify-content: center;
                         cursor: pointer;
+                        font-size: 12px;
                         &:hover {
                             background-color: $color-primary-light;
                         }
