@@ -1,12 +1,12 @@
 <template>
-    <div class="am-month-pannel">
-        <div class="am-month-pannel-content-wrapper">
-            <div class="am-month-pannel-item-wrapper"
+    <div class="am-month-panel">
+        <div class="am-month-panel-content-wrapper">
+            <div class="am-month-panel-item-wrapper"
                  v-for="(item,index) in list"
                  @click="currentValue = item"
                  :key="index">
-                <div class="am-month-pannel-item"
-                     :class="{'am-month-pannel-item-active':item===currentValue,'am-month-pannel-item-now':item === nowMonth}">
+                <div class="am-month-panel-item"
+                     :class="{'am-month-panel-item-active':item===currentValue,'am-month-panel-item-now':item === nowMonth}">
                     {{item+1}}月
                 </div>
             </div>
@@ -16,7 +16,7 @@
 
 <script>
     export default {
-        name: "am-month-pannel",
+        name: "am-month-panel",
         props: {
             value: {},
         },

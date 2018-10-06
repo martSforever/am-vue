@@ -3,8 +3,8 @@
                   ref="scrollbar"
                   @vertical-scroll-top="addPreviousYears"
                   @vertical-scroll-bottom="addNextYears"
-                  class="am-year-pannel">
-        <div class="am-year-pannel-content-wrapper" ref="wrapper">
+                  class="am-year-panel">
+        <div class="am-year-panel-content-wrapper" ref="wrapper">
             <div class="am-year-panel-item-wrapper" v-for="(item,index) in list" :key="index">
                 <div class="am-year-panel-item"
                      ref="items"
@@ -23,7 +23,7 @@
     const dateWidth = 32;
 
     export default {
-        name: "am-year-pannel",
+        name: "am-year-panel",
         components: {
             AmScrollbar,
         },

@@ -13,11 +13,14 @@
                 <am-icon icon="fas-angle-right"/>
                 <am-icon icon="fas-angle-double-right"/>
             </div>
-            <div class="am-datepicker-pannel-wrapper">
-                <am-year-pannel v-model="currentYear" ref="year"/>
+            <div class="am-datepicker-panel-wrapper">
+                <am-date-panel v-model="currentDate"/>
             </div>
-            <div class="am-datepicker-pannel-wrapper">
-                <am-month-pannel v-model="currentMonth"/>
+            <div class="am-datepicker-panel-wrapper">
+                <am-year-panel v-model="currentYear" ref="year"/>
+            </div>
+            <div class="am-datepicker-panel-wrapper">
+                <am-month-panel v-model="currentMonth"/>
             </div>
         </div>
     </div>
@@ -25,17 +28,19 @@
 
 <script>
     import AmInput from '../am-input'
-    import AmYearPannel from "./am-year-pannel";
-    import AmMonthPannel from "./am-month-pannel";
+    import AmYearPanel from "./am-year-panel";
+    import AmMonthPanel from "./am-month-panel";
     import AmIcon from '../am-icon'
     import AmButton from '../am-button'
     import {zeroize} from "../../scripts/utils";
+    import AmDatePanel from "./am-date-panel";
 
     export default {
         name: "am-datepicker",
         components: {
-            AmMonthPannel,
-            AmYearPannel,
+            AmDatePanel,
+            AmYearPanel,
+            AmMonthPanel,
             AmInput,
             AmIcon,
             AmButton,

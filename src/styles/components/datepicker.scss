@@ -33,12 +33,12 @@ $date-width: 32px;
                 }
             }
         }
-        .am-datepicker-pannel-wrapper {
+        .am-datepicker-panel-wrapper {
             width: 100%;
             height: $date-width*6;
-            .am-year-pannel {
-                font-size: 14px;
-                .am-year-pannel-content-wrapper {
+            font-size: 14px;
+            .am-year-panel {
+                .am-year-panel-content-wrapper {
                     width: 100%;
                     .am-year-panel-item-wrapper {
                         width: 33.33%;
@@ -70,41 +70,69 @@ $date-width: 32px;
                     }
                 }
             }
-            .am-month-pannel {
+            .am-month-panel {
                 width: 100%;
                 height: 100%;
                 display: flex;
                 align-items: center;
-                .am-month-pannel-content-wrapper {
+                .am-month-panel-content-wrapper {
                     height: 176px;
                     width: 100%;
-                    .am-month-pannel-item-wrapper {
+                    .am-month-panel-item-wrapper {
                         display: inline-flex;
                         width: 33.33%;
                         height: 44px;
                         align-items: center;
                         justify-content: center;
                         cursor: pointer;
-                        .am-month-pannel-item {
+                        .am-month-panel-item {
                             height: 24px;
                             width: 80%;
                             border-radius: $border-size;
                             display: flex;
                             align-items: center;
                             justify-content: center;
-                            font-size: 12px;
                             @include transition-all;
                             &:hover {
                                 background-color: $color-primary-light;
                             }
-                            &.am-month-pannel-item-now {
+                            &.am-month-panel-item-now {
                                 background-color: $color-primary-light;
                             }
-                            &.am-month-pannel-item-active {
+                            &.am-month-panel-item-active {
                                 background-color: $color-primary;
                                 color: white;
                             }
 
+                        }
+                    }
+                }
+            }
+            .am-date-panel {
+                width: 100%;
+                height: 100%;
+                display: flex;
+                align-items: center;
+                .am-date-panel-content-wrapper {
+                    height: 100%;
+                    width: 100%;
+                    .am-date-panel-item {
+                        width: 14.2%;
+                        height: 27px;
+                        vertical-align: top;
+                        display: inline-flex;
+                        align-items: center;
+                        justify-content: center;
+                        cursor: pointer;
+                        &:hover {
+                            background-color: $color-primary-light;
+                        }
+                        &.am-date-panel-item-now {
+                            background-color: $color-primary-light;
+                        }
+                        &.am-date-panel-item-active {
+                            background-color: $color-primary;
+                            color: white;
                         }
                     }
                 }
