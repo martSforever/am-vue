@@ -3,34 +3,101 @@ $date-width: 32px;
 .am-datepicker {
     display: inline-block;
     vertical-align: bottom;
+    user-select: none;
     .am-datepicker-content-wrapper {
-        border: solid 1px #ddd;
         width: $date-width*7;
-        height: $date-width*6;
-        .am-year-pannel {
-            font-size: 14px;
-            user-select: none;
-            .am-year-pannel-content-wrapper {
-                .am-year-panel-item {
-                    width: 33.33%;
-                    display: inline-flex;
-                    justify-content: center;
-                    align-items: center;
-                    height: $date-width*6/5;
-                    color: $color-normal-content;
+        border: solid 1px #ddd;
+        .am-datepicker-head {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: space-around;
+            flex-direction: row;
+            height: 44px;
+            padding: 0 0.5em;
+            & > .am-icon {
+                cursor: pointer;
+            }
+            .am-datepicker-head-text {
+                display: inline-block;
+                & > span {
+                    border-radius: $border-size;
+                    padding: 0 4px;
                     cursor: pointer;
+                    font-weight: bold;
                     &:hover {
                         background-color: $color-primary-light;
                     }
-                    @include transition-all;
-                    &.am-year-panel-item-now {
-                        background-color: $color-primary-light;
+                }
+            }
+        }
+        .am-datepicker-pannel-wrapper {
+            width: 100%;
+            height: $date-width*6;
+            .am-year-pannel {
+                font-size: 14px;
+                .am-year-pannel-content-wrapper {
+                    .am-year-panel-item {
+                        width: 33.33%;
+                        display: inline-flex;
+                        justify-content: center;
+                        align-items: center;
+                        height: $date-width*6/5;
+                        color: $color-normal-content;
+                        cursor: pointer;
+                        &:hover {
+                            background-color: $color-primary-light;
+                        }
+                        @include transition-all;
+                        &.am-year-panel-item-now {
+                            background-color: $color-primary-light;
+                        }
+                        &.am-year-panel-item-active {
+                            background-color: $color-primary;
+                            color: white;
+                            border-radius: $border-size;
+                            font-size: 16px;
+                        }
                     }
-                    &.am-year-panel-item-active {
-                        background-color: $color-primary;
-                        color: white;
-                        border-radius: $border-size;
-                        font-size: 16px;
+                }
+            }
+            .am-month-pannel {
+                width: 100%;
+                height: 100%;
+                display: flex;
+                align-items: center;
+                .am-month-pannel-content-wrapper {
+                    height: 176px;
+                    width: 100%;
+                    .am-month-pannel-item-wrapper {
+                        display: inline-flex;
+                        width: 33.33%;
+                        height: 44px;
+                        align-items: center;
+                        justify-content: center;
+                        cursor: pointer;
+                        .am-month-pannel-item {
+                            height: 32px;
+                            width: 80%;
+                            border-radius: $border-size;
+                            display: flex;
+                            align-items: center;
+                            justify-content: center;
+                            font-size: 12px;
+                            @include transition-all;
+                            &:hover {
+                                background-color: $color-primary-light;
+                            }
+                            &.am-month-pannel-item-now {
+                                background-color: $color-primary-light;
+                            }
+                            &.am-month-pannel-item-active {
+                                background-color: $color-primary;
+                                color: white;
+                                font-size: 16px;
+                            }
+
+                        }
                     }
                 }
             }
