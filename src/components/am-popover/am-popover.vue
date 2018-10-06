@@ -1,5 +1,5 @@
 <template>
-    <div class="am-popover">
+    <div class="am-popover" v-dom-portal>
         <transition name="am-popover-scale">
             <div class="am-popover-content-wrapper"
                  :class="popperWrapperClasses"

@@ -127,7 +127,7 @@
             综合测试，当页面滚动时，会自动追踪位置，当元素移动时，需要调用update方法更新位置，
             当popover所在方向位置不足时，会自动更新到另一个位置，当位置变得充足时，又会自动回到原来的位置
         </div>
-        <div class="box">
+        <div class="popover-example-box">
             <am-scrollbar>
                 <div class="inner-box">
                     <div style="width: 100px;height: 100px;background-color: #782009;color: white"
@@ -189,23 +189,21 @@
 </script>
 
 <style lang="scss">
-    .popover-example {
-        .box {
-            width: 800px;
-            height: 400px;
-            .inner-box {
-                width: 1000px;
-                height: 800px;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-            }
+    .popover-example-box {
+        width: 800px;
+        height: 400px;
+        .inner-box {
+            width: 1000px;
+            height: 800px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
+    }
 
-        .popover-box {
-            color: black;
-            height: 100px;
-            width: 200px;
-        }
+    .popover-box {
+        color: black;
+        height: 100px;
+        width: 200px;
     }
 </style>
