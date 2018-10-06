@@ -37,7 +37,7 @@
                 </div>
                 <div slot="popover">
                     <am-dropdown-item
-                        @click="$ami18n.setLocale(lang)"
+                        @click="changeLang(lang)"
                         v-for="(lang,index) in langs"
                         :key="index">
                         {{lang.languageName}}
@@ -70,6 +70,26 @@
                 logo,
                 langs: [zhCN, enUS],
             };
+        },
+        methods: {
+            changeLang(lang) {
+                this.$ami18n.setLocale(lang)
+                window.localStorage.setItem('locale', lang.locale)
+            },
+        },
+        mounted() {
+            const locale = window.localStorage.getItem('locale')
+            console.log(this.langs)
+            if (!!locale) {
+                for (let i = 0; i < this.langs.length; i++) {
+                    const lang = this.langs[i];
+                    console.log(lang.locale, locale)
+                    if (lang.locale === locale) {
+                        this.$ami18n.setLocale(lang)
+                        break
+                    }
+                }
+            }
         },
     };
 </script>
