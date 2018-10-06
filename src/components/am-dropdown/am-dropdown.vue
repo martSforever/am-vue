@@ -18,7 +18,7 @@
                     :align="align"
                     :shadow="shadow"
                     :border-radius="borderRadius"
-
+                    window-boundary
                     @mouseenter.native="!disabled && (popoverHover=true)"
                     @mouseleave.native="_handleLeave('popoverHover',false,'popoverTimer')"
                     @input="val=> currentValue = val"

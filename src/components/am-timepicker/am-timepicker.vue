@@ -19,6 +19,7 @@
             reference-name="input"
             parent-name="am-timepicker"
             v-model="currentShow"
+            window-boundary
             @click-outside="handleClickOutside"
         >
             <div class="am-timepicker-content-wrapper">

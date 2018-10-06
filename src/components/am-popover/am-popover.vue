@@ -72,6 +72,7 @@
                 type: String,
                 default: 'white'
             },
+            windowBoundary: {type: Boolean, default: false}
         },
         watch: {
             value(val) {
@@ -193,7 +194,10 @@
                 } else {
                     this.popper = new Popper(this.reference, this.$el, {
                         placement: `${this.currentDirection}-${this.currentAlign}`,
-                        modifiers: {offset: {offset: `0,${!!this.showArrow ? this.arrowSize : 0}`,}},
+                        modifiers: {
+                            offset: {offset: `0,${!!this.showArrow ? this.arrowSize : 0}`,},
+                            preventOverflow: this.windowBoundary ? {boundariesElement: 'window'} : null
+                        },
                         onUpdate: () => this._refreshArrow(),
                         onCreate: () => this._refreshArrow(),
                     })

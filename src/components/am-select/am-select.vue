@@ -23,6 +23,7 @@
             parent-name="am-select"
             reference-name="input"
             :size-equal="true"
+            window-boundary
         >
             <am-select-item v-for="(item,index) in data"
                             :key="index"

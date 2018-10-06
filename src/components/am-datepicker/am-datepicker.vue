@@ -4,6 +4,7 @@
         <am-popover parent-name="am-datepicker"
                     reference-name="input"
                     @click-outside="handleCancel"
+                    window-boundary
                     v-model="currentShow">
             <div class="am-datepicker-content-wrapper">
                 <div class="am-datepicker-head">
