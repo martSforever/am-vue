@@ -4,150 +4,151 @@ $box-shadow: 0 0 5px #ddd;
     display: inline-block;
     vertical-align: bottom;
     user-select: none;
-    .am-datepicker-content-wrapper {
-        width: $date-width*7;
-        .am-datepicker-head {
-            width: 100%;
-            display: flex;
-            align-items: center;
-            justify-content: space-around;
-            flex-direction: row;
-            height: 44px;
-            padding: 0 0.5em;
-            box-shadow: $box-shadow;
-            & > .am-icon {
+}
+
+.am-datepicker-content-wrapper {
+    width: $date-width*7;
+    .am-datepicker-head {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+        flex-direction: row;
+        height: 44px;
+        padding: 0 0.5em;
+        box-shadow: $box-shadow;
+        & > .am-icon {
+            cursor: pointer;
+            color: $color-normal-disabled;
+        }
+        .am-datepicker-head-text {
+            display: inline-block;
+            & > span {
+                border-radius: $border-size;
+                color: $color-normal-sub-color;
+                padding: 0 4px;
                 cursor: pointer;
-                color: $color-normal-disabled;
+                font-weight: bold;
+                &:hover {
+                    background-color: $color-primary-light;
+                }
             }
-            .am-datepicker-head-text {
-                display: inline-block;
-                & > span {
-                    border-radius: $border-size;
-                    color: $color-normal-sub-color;
-                    padding: 0 4px;
+        }
+    }
+    .am-datepicker-panel-wrapper {
+        width: 100%;
+        height: $date-width*6;
+        font-size: 14px;
+        .am-year-panel {
+            .am-year-panel-content-wrapper {
+                width: 100%;
+                .am-year-panel-item-wrapper {
+                    width: 33.33%;
+                    display: inline-flex;
+                    justify-content: center;
+                    align-items: center;
+                    height: $date-width*6/5;
+                    color: $color-normal-content;
                     cursor: pointer;
-                    font-weight: bold;
-                    &:hover {
-                        background-color: $color-primary-light;
+                    .am-year-panel-item {
+                        width: 80%;
+                        height: 24px;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        &:hover {
+                            background-color: $color-primary-light;
+                        }
+                        @include transition-all;
+                        &.am-year-panel-item-now {
+                            background-color: $color-primary-light;
+                        }
+                        &.am-year-panel-item-active {
+                            background-color: $color-primary;
+                            color: white;
+                            border-radius: $border-size;
+                        }
                     }
                 }
             }
         }
-        .am-datepicker-panel-wrapper {
+        .am-month-panel {
             width: 100%;
-            height: $date-width*6;
-            font-size: 14px;
-            .am-year-panel {
-                .am-year-panel-content-wrapper {
-                    width: 100%;
-                    .am-year-panel-item-wrapper {
-                        width: 33.33%;
-                        display: inline-flex;
-                        justify-content: center;
-                        align-items: center;
-                        height: $date-width*6/5;
-                        color: $color-normal-content;
-                        cursor: pointer;
-                        .am-year-panel-item {
-                            width: 80%;
-                            height: 24px;
-                            display: flex;
-                            align-items: center;
-                            justify-content: center;
-                            &:hover {
-                                background-color: $color-primary-light;
-                            }
-                            @include transition-all;
-                            &.am-year-panel-item-now {
-                                background-color: $color-primary-light;
-                            }
-                            &.am-year-panel-item-active {
-                                background-color: $color-primary;
-                                color: white;
-                                border-radius: $border-size;
-                            }
-                        }
-                    }
-                }
-            }
-            .am-month-panel {
+            height: 100%;
+            display: flex;
+            align-items: center;
+            .am-month-panel-content-wrapper {
+                height: 176px;
                 width: 100%;
-                height: 100%;
-                display: flex;
-                align-items: center;
-                .am-month-panel-content-wrapper {
-                    height: 176px;
-                    width: 100%;
-                    .am-month-panel-item-wrapper {
-                        display: inline-flex;
-                        width: 33.33%;
-                        height: 44px;
-                        align-items: center;
-                        justify-content: center;
-                        cursor: pointer;
-                        .am-month-panel-item {
-                            height: 24px;
-                            min-width: 80%;
-                            border-radius: $border-size;
-                            display: flex;
-                            align-items: center;
-                            justify-content: center;
-                            @include transition-all;
-                            &:hover {
-                                background-color: $color-primary-light;
-                            }
-                            &.am-month-panel-item-now {
-                                background-color: $color-primary-light;
-                            }
-                            &.am-month-panel-item-active {
-                                background-color: $color-primary;
-                                color: white;
-                            }
-
-                        }
-                    }
-                }
-            }
-            .am-date-panel {
-                width: 100%;
-                height: 100%;
-                display: flex;
-                align-items: center;
-                .am-date-panel-content-wrapper {
-                    height: 100%;
-                    width: 100%;
-                    .am-date-panel-item {
-                        width: 14.2%;
-                        height: 27px;
-                        vertical-align: top;
-                        display: inline-flex;
-                        align-items: center;
-                        justify-content: center;
-                        cursor: pointer;
-                        font-size: 12px;
+                .am-month-panel-item-wrapper {
+                    display: inline-flex;
+                    width: 33.33%;
+                    height: 44px;
+                    align-items: center;
+                    justify-content: center;
+                    cursor: pointer;
+                    .am-month-panel-item {
+                        height: 24px;
+                        min-width: 80%;
                         border-radius: $border-size;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
                         @include transition-all;
                         &:hover {
                             background-color: $color-primary-light;
                         }
-                        &.am-date-panel-item-now {
-                            background-color: $color-success;
-                            color: white;
+                        &.am-month-panel-item-now {
+                            background-color: $color-primary-light;
                         }
-                        &.am-date-panel-item-other-month {
-                            color: $color-normal-disabled;
-                        }
-                        &.am-date-panel-item-active {
+                        &.am-month-panel-item-active {
                             background-color: $color-primary;
                             color: white;
                         }
+
                     }
                 }
             }
         }
-        .am-datepicker-foot {
-            text-align: right;
-            box-shadow: $box-shadow;
+        .am-date-panel {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            .am-date-panel-content-wrapper {
+                height: 100%;
+                width: 100%;
+                .am-date-panel-item {
+                    width: 14.2%;
+                    height: 27px;
+                    vertical-align: top;
+                    display: inline-flex;
+                    align-items: center;
+                    justify-content: center;
+                    cursor: pointer;
+                    font-size: 12px;
+                    border-radius: $border-size;
+                    @include transition-all;
+                    &:hover {
+                        background-color: $color-primary-light;
+                    }
+                    &.am-date-panel-item-now {
+                        background-color: $color-success;
+                        color: white;
+                    }
+                    &.am-date-panel-item-other-month {
+                        color: $color-normal-disabled;
+                    }
+                    &.am-date-panel-item-active {
+                        background-color: $color-primary;
+                        color: white;
+                    }
+                }
+            }
         }
+    }
+    .am-datepicker-foot {
+        text-align: right;
+        box-shadow: $box-shadow;
     }
 }

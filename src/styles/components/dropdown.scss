@@ -2,14 +2,14 @@
     display: inline-block;
     vertical-align: bottom;
     box-sizing: border-box;
-    .am-dropdown-item {
-        display: block;
-        padding: 0.5em;
-        cursor: pointer;
-        @include transition-all;
-        font-size: 14px;
-        &:hover {
-            background-color: $color-normal-border;
-        }
+}
+.am-dropdown-item {
+    display: block;
+    padding: 0.5em;
+    cursor: pointer;
+    @include transition-all;
+    font-size: 14px;
+    &:hover {
+        background-color: $color-normal-border;
     }
 }
