@@ -37,7 +37,8 @@ $date-width: 32px;
             .am-year-pannel {
                 font-size: 14px;
                 .am-year-pannel-content-wrapper {
-                    .am-year-panel-item {
+                    width: 100%;
+                    .am-year-panel-item-wrapper {
                         width: 33.33%;
                         display: inline-flex;
                         justify-content: center;
@@ -45,18 +46,25 @@ $date-width: 32px;
                         height: $date-width*6/5;
                         color: $color-normal-content;
                         cursor: pointer;
-                        &:hover {
-                            background-color: $color-primary-light;
-                        }
-                        @include transition-all;
-                        &.am-year-panel-item-now {
-                            background-color: $color-primary-light;
-                        }
-                        &.am-year-panel-item-active {
-                            background-color: $color-primary;
-                            color: white;
-                            border-radius: $border-size;
-                            font-size: 16px;
+                        .am-year-panel-item {
+                            width: 80%;
+                            height: 32px;
+                            display: flex;
+                            align-items: center;
+                            justify-content: center;
+                            &:hover {
+                                background-color: $color-primary-light;
+                            }
+                            @include transition-all;
+                            &.am-year-panel-item-now {
+                                background-color: $color-primary-light;
+                            }
+                            &.am-year-panel-item-active {
+                                background-color: $color-primary;
+                                color: white;
+                                border-radius: $border-size;
+                                font-size: 16px;
+                            }
                         }
                     }
                 }

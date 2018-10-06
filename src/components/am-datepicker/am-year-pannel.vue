@@ -5,13 +5,13 @@
                   @vertical-scroll-bottom="addNextYears"
                   class="am-year-pannel">
         <div class="am-year-pannel-content-wrapper" ref="wrapper">
-            <div class="am-year-panel-item"
-                 ref="items"
-                 v-for="(item,index) in list"
-                 :class="{'am-year-panel-item-active':item === currentValue,'am-year-panel-item-now':nowYear===item}"
-                 :key="index"
-                 @click="handleClickItem(item,index)">
-                {{item}}
+            <div class="am-year-panel-item-wrapper" v-for="(item,index) in list" :key="index">
+                <div class="am-year-panel-item"
+                     ref="items"
+                     :class="{'am-year-panel-item-active':item === currentValue,'am-year-panel-item-now':nowYear===item}"
+                     @click="handleClickItem(item,index)">
+                    {{item}}
+                </div>
             </div>
         </div>
     </am-scrollbar>
