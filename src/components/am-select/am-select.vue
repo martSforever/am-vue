@@ -1,44 +1,40 @@
 <template>
     <div class="am-select">
-        <am-input ref="input"
-                  @click="currentShow = true"
-                  v-model="currentValue"
+        <am-dropdown trigger="click">
+            <am-input slot="reference"
+                      @click="currentShow = true"
+                      v-model="currentValue"
 
-                  :type="type"
-                  :color="color"
-                  :size="size"
-                  :shape="shape"
-                  :dashed="dashed"
-                  :long="long"
-                  :prefix-icon="prefixIcon"
-                  :suffix-icon="suffixIcon"
-                  :placeholder="placeholder"
-                  :disabled="disabled"
-                  :readonly="readonly"
-                  :clearable="clearable"
-                  :regexp="regexp"
-        />
-        <am-popover
-            v-model="currentShow"
-            parent-name="am-select"
-            reference-name="input"
-            :size-equal="true"
-            window-boundary
-        >
-            <am-select-item v-for="(item,index) in data"
-                            :key="index"
-                            :data="item"
-                            :scope-slot-func="$scopedSlots.default"
-                            :rendering-render-func="renderFunc"
-                            :children-key="childrenKey"
-            />
-        </am-popover>
+                      :type="type"
+                      :color="color"
+                      :size="size"
+                      :shape="shape"
+                      :dashed="dashed"
+                      :long="long"
+                      :prefix-icon="prefixIcon"
+                      :suffix-icon="suffixIcon"
+                      :placeholder="placeholder"
+                      :disabled="disabled"
+                      :readonly="readonly"
+                      :clearable="clearable"
+                      :regexp="regexp"/>
+            <div slot="popover">
+                <am-select-item v-for="(item,index) in data"
+                                :key="index"
+                                :data="item"
+                                :scope-slot-func="$scopedSlots.default"
+                                :rendering-render-func="renderFunc"
+                                :children-key="childrenKey"
+                />
+            </div>
+        </am-dropdown>
     </div>
 </template>
 
 <script>
     import AmInput from '../am-input'
     import AmPopover from '../am-popover'
+    import AmDropdown from '../am-dropdown'
     import AmSelectItem from './am-select-item'
     import {oneOf} from "../../scripts/utils";
 
@@ -48,6 +44,7 @@
             AmInput,
             AmPopover,
             AmSelectItem,
+            AmDropdown,
         },
         props: {
             value: {},

@@ -14,8 +14,7 @@
                 <am-rendering-render-func :render-func="renderingRenderFunc" :data="data" v-if="!!renderingRenderFunc"/>
             </div>
             <div slot="popover"
-                 @mouseenter="handleMouseEnter"
-            >
+                 @mouseenter="handleMouseEnter">
                 <am-select-item
                     v-for="(item,index) in data[childrenKey]"
                     :key="index"

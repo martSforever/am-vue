@@ -23,14 +23,10 @@
                     @mouseleave.native="_handleLeave('popoverHover',false,'popoverTimer')"
                     @input="val=> currentValue = val"
         >
-            <div class="am-dropdown-popover-wrapper" :style="{height:`${height}px`,width:`${width}px`}"
-                 v-if="!!scrollbar">
+            <div class="am-dropdown-popover-wrapper" :style="{height:`${height}px`,width:`${width}px`}">
                 <am-scrollbar :scrollbar-size="scrollbarSize" :scroll-x="false">
                     <slot name="popover"></slot>
                 </am-scrollbar>
-            </div>
-            <div v-else>
-                <slot name="popover"></slot>
             </div>
         </am-popover>
     </div>
