@@ -1,7 +1,10 @@
 <template>
     <div class="am-datepicker">
         <am-input :suffix-icon="suffixIcon" :value="showValue" ref="input" @click="currentShow =true"/>
-        <am-popover parent-name="am-datepicker" reference-name="input" v-model="currentShow">
+        <am-popover parent-name="am-datepicker"
+                    reference-name="input"
+                    @click-outside="handleCancel"
+                    v-model="currentShow">
             <div class="am-datepicker-content-wrapper">
                 <div class="am-datepicker-head">
                     <am-icon icon="fas-angle-double-left" @click="currentYear--"/>
@@ -22,14 +25,19 @@
                                    v-show="mode === 'date'"/>
                     <am-year-panel v-model="currentYear"
                                    v-show="mode === 'year'"
-                                   ref="year"/>
+                                   ref="year"
+                                   @click="mode = 'month'"
+                    />
                     <am-month-panel v-model="currentMonth"
-                                    v-show="mode === 'month'"/>
+                                    v-show="mode === 'month'"
+                                    @click="mode = 'date'"
+                    />
                 </div>
                 <div class="am-datepicker-foot">
                     <am-button-group size="small">
-                        <am-button type="none" color="error" @click="handleCancel">取消</am-button>
-                        <am-button type="none" color="success" @click="handleConfirm">确定</am-button>
+                        <am-button type="none" color="error" @click="handleCancel">{{$amlocale.cancelText}}</am-button>
+                        <am-button type="none" color="success" @click="handleConfirm">{{$amlocale.confirmText}}
+                        </am-button>
                     </am-button-group>
                 </div>
             </div>

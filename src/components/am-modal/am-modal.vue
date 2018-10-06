@@ -52,9 +52,11 @@
                             <div class="am-modal-body-foot-default" v-if="!!confirmButton || !!cancelButton">
                                 <am-button-group size="small">
                                     <am-button color="success" @click="_handleConfirm" v-if="!!confirmButton">
-                                        确认
+                                        {{$amlocale.confirmText}}
                                     </am-button>
-                                    <am-button color="error" @click="_handleCancel" v-if="!!cancelButton">取消</am-button>
+                                    <am-button color="error" @click="_handleCancel" v-if="!!cancelButton">
+                                        {{$amlocale.cancelText}}
+                                    </am-button>
                                 </am-button-group>
                             </div>
                         </slot>

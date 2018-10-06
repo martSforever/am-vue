@@ -1,6 +1,8 @@
 module.exports = {
     locale: "en-US",
     languageName: "English(United State)",
+    confirmText: 'confirm',
+    cancelText: 'cancel',
     date: {
         yearUnit: 'Year',
         monthUnit: "Month",

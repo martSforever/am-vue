@@ -1,6 +1,8 @@
 module.exports = {
     locale: "zh-CN",
     languageName: "简体中文",
+    confirmText: '确定',
+    cancelText: '取消',
     date: {
         yearUnit: "年",
         monthUnit: "月",

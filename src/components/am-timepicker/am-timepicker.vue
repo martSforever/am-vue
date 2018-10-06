@@ -28,8 +28,8 @@
                     <am-time-spinner :num="60" v-model="second" ref="secondSpinner"/>
                 </div>
                 <am-button-group size="small">
-                    <am-button color="error" type="none" @click="handleCancel">取消</am-button>
-                    <am-button color="success" type="none" @click="handleConfirm">确定</am-button>
+                    <am-button color="error" type="none" @click="handleCancel">{{$amlocale.cancelText}}</am-button>
+                    <am-button color="success" type="none" @click="handleConfirm">{{$amlocale.confirmText}}</am-button>
                 </am-button-group>
             </div>
         </am-popover>

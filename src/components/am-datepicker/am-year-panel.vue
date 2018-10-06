@@ -53,7 +53,7 @@
             for (let i = this.start; i < this.start + this.num * 3; i++) {
                 this.list.push(i)
             }
-            this.$nextTick(() => this.handleClickItem(this.value))
+            this.$nextTick(() => this.currentValue = this.value)
         },
         methods: {
             addPreviousYears() {
@@ -74,13 +74,14 @@
                 }
             },
             updatePosition() {
-                this.$nextTick(()=>{
+                this.$nextTick(() => {
                     const targetItemRef = this.$refs.items[this.currentIndex - 6]
                     this.$refs.scrollbar.scrollTop(targetItemRef.offsetTop)
                 })
             },
             handleClickItem(item) {
                 this.currentValue = item
+                this.$emit('click', item)
             },
         },
         computed: {
