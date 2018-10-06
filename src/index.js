@@ -33,6 +33,7 @@ import dropdown from './components/am-dropdown'
 import dropdownItem from './components/am-dropdown/am-dropdown-item'
 import select from './components/am-select'
 import timepicker from './components/am-timepicker'
+import datepicker from './components/am-datepicker'
 
 const components = {
     icon,
@@ -65,6 +66,7 @@ const components = {
     'dropdown-item': dropdownItem,
     select,
     timepicker,
+    datepicker,
 };
 
 let $amvue = {};

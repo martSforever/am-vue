@@ -121,5 +121,10 @@ export default {
             name: 'timepicker',
             component: resolve => require(['examples/pages/example/components/timepicker-example.vue'], resolve),
         },
+        {
+            path: '/datepicker',
+            name: 'datepicker',
+            component: resolve => require(['examples/pages/example/components/datepicker-example.vue'], resolve),
+        },
     ]
 };
