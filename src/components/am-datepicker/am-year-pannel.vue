@@ -8,10 +8,9 @@
             <div class="am-year-panel-item"
                  ref="items"
                  v-for="(item,index) in list"
-                 :class="{'am-year-panel-item-active':item === currentValue}"
+                 :class="{'am-year-panel-item-active':item === currentValue,'am-year-panel-item-now':nowYear===item}"
                  :key="index"
-                 @click="handleClickItem(item,index)"
-            >
+                 @click="handleClickItem(item,index)">
                 {{item}}
             </div>
         </div>
@@ -37,6 +36,7 @@
             },
             currentValue(val) {
                 this.$emit('input', val)
+                this.updatePosition()
             },
         },
         data() {
@@ -46,6 +46,7 @@
                 list: [],
                 start: this.value - Math.floor(defaultNum * 1.5),
                 num: defaultNum,
+                nowYear: new Date().getFullYear()
             }
         },
         mounted() {
@@ -78,7 +79,6 @@
             },
             handleClickItem(item) {
                 this.currentValue = item
-                this.updatePosition()
             },
         },
         computed: {
