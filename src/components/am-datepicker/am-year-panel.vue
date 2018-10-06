@@ -74,8 +74,10 @@
                 }
             },
             updatePosition() {
-                const targetItemRef = this.$refs.items[this.currentIndex - 6]
-                this.$refs.scrollbar.scrollTop(targetItemRef.offsetTop)
+                this.$nextTick(()=>{
+                    const targetItemRef = this.$refs.items[this.currentIndex - 6]
+                    this.$refs.scrollbar.scrollTop(targetItemRef.offsetTop)
+                })
             },
             handleClickItem(item) {
                 this.currentValue = item

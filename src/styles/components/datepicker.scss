@@ -6,7 +6,6 @@ $date-width: 32px;
     user-select: none;
     .am-datepicker-content-wrapper {
         width: $date-width*7;
-        border: solid 1px #ddd;
         .am-datepicker-head {
             width: 100%;
             display: flex;
@@ -17,7 +16,7 @@ $date-width: 32px;
             padding: 0 0.5em;
             & > .am-icon {
                 cursor: pointer;
-                color: $color-primary;
+                color: $color-primary-dark;
             }
             .am-datepicker-head-text {
                 display: inline-block;
@@ -144,6 +143,9 @@ $date-width: 32px;
                     }
                 }
             }
+        }
+        .am-datepicker-foot{
+            text-align: right;
         }
     }
 }
