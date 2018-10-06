@@ -14,7 +14,12 @@
                 <am-icon icon="fas-angle-double-right"/>
             </div>
             <div class="am-datepicker-panel-wrapper">
-                <am-date-panel v-model="currentDate"/>
+                <am-date-panel v-model="currentDate"
+                               :year="currentYear"
+                               :month="currentMonth"
+                               :date="currentDate"
+                               @click="handleClickDate"
+                />
             </div>
             <div class="am-datepicker-panel-wrapper">
                 <am-year-panel v-model="currentYear" ref="year"/>
@@ -64,6 +69,11 @@
         },
         methods: {
             zeroize,
+            handleClickDate(date) {
+                this.currentYear = date.year
+                this.currentMonth = date.month
+                this.currentDate = date.day
+            },
         },
     }
 </script>

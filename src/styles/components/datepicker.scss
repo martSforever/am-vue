@@ -125,11 +125,17 @@ $date-width: 32px;
                         justify-content: center;
                         cursor: pointer;
                         font-size: 12px;
+                        border-radius: $border-size;
+                        @include transition-all;
                         &:hover {
                             background-color: $color-primary-light;
                         }
                         &.am-date-panel-item-now {
-                            background-color: $color-primary-light;
+                            background-color: $color-success;
+                            color: white;
+                        }
+                        &.am-date-panel-item-other-month {
+                            color: $color-normal-disabled;
                         }
                         &.am-date-panel-item-active {
                             background-color: $color-primary;
