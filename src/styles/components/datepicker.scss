@@ -15,6 +15,10 @@ $date-width: 32px;
                     justify-content: center;
                     align-items: center;
                     height: $date-width*6/5;
+                    @include transition-all;
+                    &.am-year-panel-item-active {
+                        background-color: $color-primary-light;
+                    }
                 }
             }
         }

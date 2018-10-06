@@ -108,6 +108,7 @@
             _handleScroll(e) {
                 this.contentWrapperScrollTop = e.target.scrollTop
                 this.contentWrapperScrollLeft = e.target.scrollLeft
+                this.$emit('scroll', e)
             },
             vIndicatorDragStart(e) {
                 this.dragStartTop = this.indicatorTop
