@@ -17,11 +17,13 @@ $date-width: 32px;
             padding: 0 0.5em;
             & > .am-icon {
                 cursor: pointer;
+                color: $color-primary;
             }
             .am-datepicker-head-text {
                 display: inline-block;
                 & > span {
                     border-radius: $border-size;
+                    color: $color-normal-content;
                     padding: 0 4px;
                     cursor: pointer;
                     font-weight: bold;
@@ -48,7 +50,7 @@ $date-width: 32px;
                         cursor: pointer;
                         .am-year-panel-item {
                             width: 80%;
-                            height: 32px;
+                            height: 24px;
                             display: flex;
                             align-items: center;
                             justify-content: center;
@@ -63,7 +65,6 @@ $date-width: 32px;
                                 background-color: $color-primary;
                                 color: white;
                                 border-radius: $border-size;
-                                font-size: 16px;
                             }
                         }
                     }
@@ -85,7 +86,7 @@ $date-width: 32px;
                         justify-content: center;
                         cursor: pointer;
                         .am-month-pannel-item {
-                            height: 32px;
+                            height: 24px;
                             width: 80%;
                             border-radius: $border-size;
                             display: flex;
@@ -102,7 +103,6 @@ $date-width: 32px;
                             &.am-month-pannel-item-active {
                                 background-color: $color-primary;
                                 color: white;
-                                font-size: 16px;
                             }
 
                         }

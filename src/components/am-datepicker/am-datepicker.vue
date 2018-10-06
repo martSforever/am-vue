@@ -54,7 +54,7 @@
         },
         computed: {
             showValue() {
-                return `${this.currentYear}-${this.currentMonth + 1}-${this.currentDate}`
+                return `${this.currentYear}-${zeroize(this.currentMonth + 1)}-${zeroize(this.currentDate)}`
             },
         },
         methods: {
