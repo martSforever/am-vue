@@ -1,6 +1,21 @@
 <template>
     <div class="am-datepicker">
-        <am-input :suffix-icon="suffixIcon" :value="showValue" ref="input" @click="currentShow =true"/>
+        <am-input :value="showValue"
+                  ref="input"
+                  @click="currentShow =true"
+
+                  :suffix-icon="suffixIcon"
+                  :type="type"
+                  :color="color"
+                  :size="size"
+                  :shape="shape"
+                  :dashed="dashed"
+                  :long="long"
+                  :prefixIcon="prefixIcon"
+                  :suffixIcon="suffixIcon"
+                  :placeholder="placeholder"
+                  :disabled="disabled"
+        />
         <am-popover parent-name="am-datepicker"
                     reference-name="input"
                     @click-outside="handleCancel"
@@ -11,28 +26,32 @@
                     <am-icon icon="fas-angle-double-left" @click="currentYear--"/>
                     <am-icon icon="fas-angle-left" @click="prevMonth"/>
                     <div class="am-datepicker-head-text">
-                        <span @click="mode='year'">{{currentYear}}</span>-<span @click="mode='month'">{{zeroize(currentMonth+1)}}</span>-<span
-                        @click="mode='date'">{{zeroize(currentDate)}}</span>
+                        <span @click="mode='year'"
+                              class="am-datepicker-head-text-item">{{currentYear}}</span><span
+                        v-if="hasMonth">-<span
+                        @click="mode='month'"
+                        class="am-datepicker-head-text-item">{{zeroize(currentMonth+1)}}</span></span><span
+                        v-if="hasDate">-<span
+                        @click="mode='date'" class="am-datepicker-head-text-item">{{zeroize(currentDate)}}</span>
+                    </span>
                     </div>
                     <am-icon icon="fas-angle-right" @click="nextMonth"/>
                     <am-icon icon="fas-angle-double-right" @click="currentYear++"/>
                 </div>
                 <div class="am-datepicker-panel-wrapper">
+                    <am-year-panel v-model="currentYear"
+                                   v-show="mode === 'year'"
+                                   ref="year"
+                                   @click="handlePickYear"/>
+                    <am-month-panel v-model="currentMonth"
+                                    v-show="mode === 'month'"
+                                    @click="handlePickMonth"/>
                     <am-date-panel v-model="currentDate"
                                    :year="currentYear"
                                    :month="currentMonth"
                                    :date="currentDate"
                                    @click="handleClickDate"
                                    v-show="mode === 'date'"/>
-                    <am-year-panel v-model="currentYear"
-                                   v-show="mode === 'year'"
-                                   ref="year"
-                                   @click="mode = 'month'"
-                    />
-                    <am-month-panel v-model="currentMonth"
-                                    v-show="mode === 'month'"
-                                    @click="mode = 'date'"
-                    />
                 </div>
                 <div class="am-datepicker-foot">
                     <am-button-group size="small">
@@ -56,6 +75,7 @@
     import {zeroize} from "../../scripts/utils";
     import AmDatePanel from "./am-date-panel";
     import AmPopover from '../am-popover'
+    import {oneOf} from "../../scripts/utils";
 
     export default {
         name: "am-datepicker",
@@ -72,7 +92,49 @@
         props: {
             value: {type: Date, default: () => new Date()},
             show: {type: Boolean, default: false},
+            view: {
+                type: String, default: 'date', validator(val) {
+                    return oneOf(val, ['year', 'month', 'date'])
+                },
+            },
+
+            type: {
+                type: String,
+                default: 'line',
+                validator(val) {
+                    return oneOf(val, ['fill', 'line', 'none']);
+                },
+            },
+            color: {
+                type: String,
+                default: 'info',
+                validator(val) {
+                    return oneOf(val, ['primary', 'info', 'success', 'warn', 'error', 'none']);
+                },
+            },
+            size: {
+                type: String,
+                default: 'default',
+                validator(val) {
+                    return oneOf(val, ['default', 'large', 'small']);
+                },
+            },
+            shape: {
+                type: String,
+                default: 'fillet',
+                validator(val) {
+                    return oneOf(val, ['fillet', 'round', 'none']);
+                },
+            },
+            dashed: {type: Boolean,},
+            long: {type: Boolean,},
+            prefixIcon: {type: String},
             suffixIcon: {type: String, default: 'fas-calendar-alt'},
+            placeholder: {type: String, default: '点击输入内容...'},
+            disabled: {type: Boolean},
+            readonly: {type: Boolean},
+            clearable: {type: Boolean},
+            regexp: {type: RegExp},
         },
         watch: {
             value(val) {
@@ -87,6 +149,9 @@
             },
             currentShow(val) {
                 this.$emit('update:show', val)
+                if (!!val && this.mode === 'year') {
+                    this.$nextTick(() => this.$refs.year.updatePosition())
+                }
             },
             mode(val) {
                 if (val === 'year') {
@@ -100,13 +165,22 @@
                 currentYear: this.value.getFullYear(),
                 currentMonth: this.value.getMonth(),
                 currentDate: this.value.getDate(),
-                mode: 'date',
+                mode: this.view,
                 currentShow: this.show,
             }
         },
         computed: {
+            hasMonth() {
+                return oneOf(this.view, ['month', 'date'])
+            },
+            hasDate() {
+                return oneOf(this.view, ['date'])
+            },
             showValue() {
-                return `${this.currentValue.getFullYear()}-${zeroize(this.currentValue.getMonth() + 1)}-${zeroize(this.currentValue.getDate())}`
+                let ret = `${this.currentValue.getFullYear()}`
+                this.hasMonth && (ret += `-${zeroize(this.currentValue.getMonth() + 1)}`)
+                this.hasDate && (ret += `-${zeroize(this.currentValue.getDate())}`)
+                return ret
             },
         },
         methods: {
@@ -141,6 +215,14 @@
             handleCancel() {
                 this.reset()
                 this.currentShow = false
+            },
+            handlePickYear() {
+                if (this.hasMonth)
+                    this.mode = 'month'
+            },
+            handlePickMonth() {
+                if (this.hasDate)
+                    this.mode = 'date'
             },
             reset() {
                 this.currentYear = this.currentValue.getFullYear();

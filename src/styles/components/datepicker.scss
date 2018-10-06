@@ -3,11 +3,11 @@ $box-shadow: 0 0 5px #ddd;
 .am-datepicker {
     display: inline-block;
     vertical-align: bottom;
-    user-select: none;
 }
 
 .am-datepicker-content-wrapper {
     width: $date-width*7;
+    user-select: none;
     .am-datepicker-head {
         width: 100%;
         display: flex;
@@ -23,10 +23,9 @@ $box-shadow: 0 0 5px #ddd;
         }
         .am-datepicker-head-text {
             display: inline-block;
-            & > span {
+            & span.am-datepicker-head-text-item {
                 border-radius: $border-size;
                 color: $color-normal-sub-color;
-                padding: 0 4px;
                 cursor: pointer;
                 font-weight: bold;
                 &:hover {

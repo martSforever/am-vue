@@ -79,11 +79,9 @@
         },
         mounted() {
             const locale = window.localStorage.getItem('locale')
-            console.log(this.langs)
             if (!!locale) {
                 for (let i = 0; i < this.langs.length; i++) {
                     const lang = this.langs[i];
-                    console.log(lang.locale, locale)
                     if (lang.locale === locale) {
                         this.$ami18n.setLocale(lang)
                         break

@@ -15,7 +15,9 @@
                 color="primary"
             />
         </div>
-
+        <div class="title">
+            还有其他更多特性，敬请期待……
+        </div>
     </div>
 </template>
 
