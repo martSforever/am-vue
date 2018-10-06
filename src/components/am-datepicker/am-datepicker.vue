@@ -1,6 +1,6 @@
 <template>
     <div class="am-datepicker">
-        <am-button @click="$refs.year.addPreviousYears()">addPreviousYears</am-button>
+        <am-button @click="$refs.year.updatePosition()">updatePosition</am-button>
         <am-input :suffix-icon="suffixIcon"/>
         <div class="am-datepicker-content-wrapper">
             <am-year-pannel v-model="currentYear" ref="year"/>

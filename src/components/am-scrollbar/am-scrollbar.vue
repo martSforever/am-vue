@@ -109,6 +109,8 @@
                 this.contentWrapperScrollTop = e.target.scrollTop
                 this.contentWrapperScrollLeft = e.target.scrollLeft
                 this.$emit('scroll', e)
+                if (this.contentWrapperScrollTop === (this.contentHeight - this.hostHeight)) this.$emit('vertical-scroll-bottom')
+                if (this.contentWrapperScrollTop === 0) this.$emit('vertical-scroll-top')
             },
             vIndicatorDragStart(e) {
                 this.dragStartTop = this.indicatorTop
