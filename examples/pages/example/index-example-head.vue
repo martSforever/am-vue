@@ -59,6 +59,8 @@
 </template>
 
 <script>
+    import {storage} from "../../scripts/utils";
+
     const logo = require('examples/assets/logo.png');
     import zhCN from 'amvue/locale/lang/zh-CN.js'
     import enUS from 'amvue/locale/lang/en-US.js'
@@ -74,11 +76,11 @@
         methods: {
             changeLang(lang) {
                 this.$ami18n.setLocale(lang)
-                window.localStorage.setItem('locale', lang.locale)
+                storage.setItem('locale', lang.locale)
             },
         },
         mounted() {
-            const locale = window.localStorage.getItem('locale')
+            const locale = storage.getItem('locale')
             if (!!locale) {
                 for (let i = 0; i < this.langs.length; i++) {
                     const lang = this.langs[i];

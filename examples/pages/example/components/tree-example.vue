@@ -90,6 +90,7 @@
 <script>
 
     import Vue from 'vue'
+    import {storage} from "../../../scripts/utils";
 
     const treeExmNode = {
         name: 'tree-exm-node',
@@ -110,7 +111,7 @@
         name: "tree-example",
         data() {
             return {
-                initialized: JSON.parse(window.localStorage.getItem('initialized')),
+                initialized: JSON.parse(storage.getItem('initialized')),
                 data: {
                     name: '广东省',
                     city: [
@@ -157,7 +158,7 @@
         },
         watch: {
             initialized(val) {
-                window.localStorage.setItem('initialized', JSON.stringify(val))
+                storage.setItem('initialized', JSON.stringify(val))
             },
         },
         methods: {
