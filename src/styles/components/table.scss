@@ -10,4 +10,12 @@
         width: 0;
         overflow: hidden;
     }
+    .am-table-content {
+        .am-table-head {
+            background-color: $color-primary-light;
+            color: $color-normal-content;
+            font-size: 14px;
+            font-weight: bold;
+        }
+    }
 }

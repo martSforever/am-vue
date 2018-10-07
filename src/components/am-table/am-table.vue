@@ -8,6 +8,7 @@
 
         <am-table-content
             :head-columns="headColumns"
+            :padding="padding"
         />
     </div>
 </template>
@@ -19,6 +20,9 @@
     export default {
         name: "am-table",
         components: {AmTableContent, AmTableColumnController},
+        props: {
+            padding: {type: Number, default: 3},
+        },
         data() {
             return {
                 columns: [],

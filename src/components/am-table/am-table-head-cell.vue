@@ -3,27 +3,27 @@
         :rowspan="col.rowspan"
         :colspan="col.colspan"
         class="am-table-head-cell">
-        <rendering-scope-slot
-            v-if="!!col.titleScopedSlot"
-            :scope-slot-func="col.titleScopedSlot"
-            :data="{col}"/>
-        <rendering-render-func
-            v-else-if="!!col.titleRenderFunc"
-            :render-func="col.titleRenderFunc"
-            :data="{col}"/>
-        <span v-else>{{col.title}}</span>
+        <am-table-cell
+            :styles="{width:col.width,padding:`${padding}px`}"
+            :data="{col}"
+            :title="col.title"
+            :render-fcun="col.titleRenderFunc"
+            :scope-slot-func="col.titleScopedSlot"/>
     </td>
 </template>
 
 <script>
     import RenderingScopeSlot from "../am-render/rendering-scope-slot";
     import RenderingRenderFunc from "../am-render/rendering-render-func";
+    import AmTableCell from "./am-table-cell";
 
     export default {
         name: "am-table-head-cell",
-        components: {RenderingRenderFunc, RenderingScopeSlot},
+        components: {AmTableCell, RenderingRenderFunc, RenderingScopeSlot},
         props: {
             col: {},
+            padding: {},
+
         },
     }
 </script>

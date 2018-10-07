@@ -2,6 +2,7 @@
     <div class="am-table-content">
         <am-table-head
             :head-columns="headColumns"
+            :padding="padding"
         />
     </div>
 </template>
@@ -14,6 +15,7 @@
         components: {AmTableHead},
         props: {
             headColumns: {},
+            padding: {},
         },
     }
 </script>

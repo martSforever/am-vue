@@ -6,6 +6,7 @@
                 <am-table-head-cell
                     v-for="(col,colIndex) in row"
                     :key="colIndex"
+                    :padding="padding"
                     :col="col"/>
             </tr>
         </table>
@@ -20,6 +21,8 @@
         components: {AmTableHeadCell},
         props: {
             headColumns: {},
+            padding: {},
+
         },
     }
 </script>
