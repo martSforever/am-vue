@@ -11,9 +11,10 @@
             :scope-slot-func="col.titleScopedSlot"
             :content-fixed="contentFixed"
             :fixed="col.fixed"/>
-        <div class="drag-indicator"
+        <div v-if="col.fixed === contentFixed"
+             class="am-table-head-cell-drag-indicator"
              :style="dragIndicatorStyles"
-             @mousedown="_handleMouseDown"></div>
+             @mousedown="handleMouseDown"></div>
     </td>
 </template>
 
@@ -21,6 +22,9 @@
     import RenderingScopeSlot from "../am-render/rendering-scope-slot";
     import RenderingRenderFunc from "../am-render/rendering-render-func";
     import AmTableCell from "./am-table-cell";
+    import {findComponentUpward} from "../../scripts/dom";
+    import {addClass, removeClass} from "../../scripts/dom";
+    import {removePx} from "../../scripts/utils";
 
     export default {
         name: "am-table-head-cell",
@@ -31,15 +35,67 @@
             headRowHeight: {},
             contentFixed: {},
             borderSize: {},
-            borderColor:{},
+            borderColor: {},
 
+        },
+        data() {
+            return {
+                table: null,
+            }
+        },
+        mounted() {
+            this.table = findComponentUpward(this, 'am-table')
         },
         computed: {
             dragIndicatorStyles() {
+                return {
+                    width: '8px',
+                    right: `0`,
+                    height: '100%'
+                }
+            },
+            dragColumn() {
+                function iterate(column) {
+                    if (!(!!column.children && column.children.length > 0)) return column
+                    else {
+                        return iterate(column.children[column.children.length - 1])
+                    }
+                }
+
+                return iterate(this.col)
             },
         },
         methods: {
-            _handleMouseDown() {
+            handleMouseDown(e) {
+                this.startX = e.clientX
+                document.addEventListener('mousemove', this.handleMouseMove)
+                document.addEventListener('mouseup', this.handleMouseUp)
+                addClass(document.body, 'am-body-user-select-none')
+                this.indicator = document.createElement('div')
+                this.indicator.style.width = `${e.target.offsetWidth}px`
+                this.indicator.style.backgroundColor = '#ddd'
+                this.indicator.style.zIndex = 1
+                this.indicator.style.height = `${this.table.$el.offsetHeight}px`
+                this.indicator.style.display = 'inline-block'
+                this.indicator.style.position = 'absolute'
+                this.indicator.style.top = `${this.table.$el.getBoundingClientRect().top}px`
+                this.indicator.style.left = `${e.clientX - e.target.offsetWidth / 2}px`
+                document.body.appendChild(this.indicator)
+            },
+            handleMouseMove(e) {
+                this.indicator.style.left = `${e.clientX}px`
+            },
+            handleMouseUp(e) {
+                document.removeEventListener('mousemove', this.handleMouseMove)
+                document.removeEventListener('mouseup', this.handleMouseUp)
+                removeClass(document.body, 'am-body-user-select-none')
+                document.body.removeChild(this.indicator)
+                this.endX = e.clientX
+                let durX = this.endX - this.startX
+                let width = removePx(this.dragColumn.width)
+                width = width + durX
+                width = width > 30 ? width : 30
+                this.dragColumn.updateWidth(`${width}px`)
             },
         },
     }

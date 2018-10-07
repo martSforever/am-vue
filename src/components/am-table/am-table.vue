@@ -71,7 +71,7 @@
             headRowHeight: {type: Number, default: 36},
             bodyRowHeight: {type: Number, default: 36},
             scrollbarSize: {type: Number, default: 6},
-            borderSize: {type: Number, default: 4},
+            borderSize: {type: Number, default: 0},
             borderColor: {type: String, default: '#ddd'},
             stripe: {type: Boolean, default: true},
             list: {},

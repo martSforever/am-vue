@@ -84,7 +84,7 @@
                         }
                         return ret
                     }, 0)
-                    styles.width = `${width + count * this.borderSize}px`
+                    styles.width = `${width + (count + 1) * this.borderSize}px`
                 }
                 return styles
             },
