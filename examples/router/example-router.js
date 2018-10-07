@@ -126,5 +126,10 @@ export default {
             name: 'datepicker',
             component: resolve => require(['examples/pages/example/components/datepicker-example.vue'], resolve),
         },
+        {
+            path: '/table',
+            name: 'table',
+            component: resolve => require(['examples/pages/example/components/table-example.vue'], resolve),
+        },
     ]
 };

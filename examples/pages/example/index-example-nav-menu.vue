@@ -46,7 +46,7 @@
                             {name: 'grid', icon: 'color-grid', url: 'grid'},
                             {name: 'swiper', icon: 'color-window', url: 'swiper'},
                             {name: 'tree', icon: 'color-tree', url: 'tree'},
-                            {name: 'table', icon: 'color-table', url: ''},
+                            {name: 'table', icon: 'color-table', url: 'table'},
 
                         ]
                     },
