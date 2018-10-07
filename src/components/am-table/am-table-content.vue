@@ -53,7 +53,7 @@
             hoverIndex: {},
             selectIndex: {},
             borderSize: {},
-            borderColor:{},
+            borderColor: {},
         },
         data() {
             return {
@@ -84,7 +84,7 @@
                         }
                         return ret
                     }, 0)
-                    styles.width = `${width + count * 2}px`
+                    styles.width = `${width + count * this.borderSize}px`
                 }
                 return styles
             },
