@@ -1,5 +1,5 @@
 <template>
-    <td
+    <td style="border: solid 1px transparent"
         :rowspan="col.rowspan"
         :colspan="col.colspan"
         class="am-table-head-cell">

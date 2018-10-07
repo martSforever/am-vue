@@ -12,7 +12,11 @@
                         <am-table-column title="收货地址" field="takeAddr"></am-table-column>
                         <am-table-column title="收货联系人" field="takePerson" width="200px">
                             <template slot-scope="{row,col}">
-                                <am-input size="small" long v-model="row.takePerson"></am-input>
+                                <am-input shape="none"
+                                          type="fill"
+                                          size="small"
+                                          long
+                                          v-model="row.takePerson"/>
                             </template>
                         </am-table-column>
                         <am-table-column title="收货联系方式" field="takeContract"></am-table-column>

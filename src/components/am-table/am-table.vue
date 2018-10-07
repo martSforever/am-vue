@@ -76,10 +76,11 @@
                 return {
                     'am-table-shadow-left': this.shadowLeft,
                     'am-table-shadow-right': this.shadowRight,
+                    'am-table-stripe': true
                 }
             },
             tableHeadHeight() {
-                return 4 + (this.headRowHeight * this.headColumns.length) + 2 * (this.headColumns.length - 1)
+                return (this.headRowHeight * this.headColumns.length) + 2 * (this.headColumns.length - 1)
             },
             /*获取渲染表头所需要的数据*/
             renderColumns() {

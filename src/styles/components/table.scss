@@ -6,6 +6,9 @@
     width: 100%;
     box-shadow: $box-shadow;
     position: relative;
+    table {
+        border-collapse: collapse;
+    }
     .am-table-column-controller {
         height: 0;
         width: 0;
@@ -52,7 +55,6 @@
             }
         }
     }
-
     .am-table-content-left, .am-table-content-right {
         position: absolute;
         top: 0;
@@ -78,7 +80,6 @@
             position: absolute;
         }
     }
-
     .am-table-body {
         background-color: white;
         .am-scrollbar-horizontal-indicator, .am-scrollbar-vertical-indicator {
@@ -98,6 +99,13 @@
     &.am-table-shadow-right {
         .am-table-content.am-table-content-right {
             box-shadow: $box-shadow;
+        }
+    }
+    &.am-table-stripe {
+        .am-table-body {
+            .am-table-row:nth-child(even) {
+                background-color: $color-primary-light;
+            }
         }
     }
 }

@@ -1,6 +1,7 @@
 <template>
     <tr class="am-table-row">
         <td v-for="(col,colIndex) in renderColumns"
+            style="border: solid 1px transparent"
             :key="colIndex">
             <am-table-cell
                 :styles="{width:col.width,padding:`${padding}`,height:`${bodyRowHeight}px`}"
