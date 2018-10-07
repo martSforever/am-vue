@@ -6,7 +6,7 @@
         </am-button-group>
         <am-button @click="log()">headColumns</am-button>
         <div style="width: 100%;height: 400px">
-            <am-table ref="table1" :list="dateList">
+            <am-table ref="table1" :list="dateList" :stripe="true">
                 <am-table-column title="内部订单信息">
                     <am-table-column title="收货信息">
                         <am-table-column title="收货地址" field="takeAddr"></am-table-column>

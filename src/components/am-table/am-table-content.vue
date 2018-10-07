@@ -18,6 +18,8 @@
             :body-row-height="bodyRowHeight"
             :table-head-height="tableHeadHeight"
             :content-fixed="contentFixed"
+            :hover-index="hoverIndex"
+            @update:hoverIndex="e=>$emit('update:hoverIndex',e)"
             @scroll="handleScroll"
             @mouseenter.native="focusPart = 'body'"
         />
@@ -42,6 +44,7 @@
             list: {},
             contentFixed: {},
             scrollbarSize: {},
+            hoverIndex: {},
         },
         data() {
             return {

@@ -16,6 +16,7 @@
             :list="list"
             :body-row-height="bodyRowHeight"
             content-fixed="center"
+            :hover-index.sync="hoverIndex"
             @scroll="e=>handleContentScroll(e,'center')"
             @mouseenter.native="focusContent = 'center'"/>
 
@@ -29,6 +30,7 @@
             :list="list"
             :body-row-height="bodyRowHeight"
             content-fixed="left"
+            :hover-index.sync="hoverIndex"
             @scroll="e=>handleContentScroll(e,'left')"
             @mouseenter.native="focusContent = 'left'"/>
 
@@ -42,6 +44,7 @@
             :list="list"
             :body-row-height="bodyRowHeight"
             content-fixed="right"
+            :hover-index.sync="hoverIndex"
             @scroll="e=>handleContentScroll(e,'right')"
             @mouseenter.native="focusContent = 'right'"/>
     </div>
@@ -59,6 +62,7 @@
             headRowHeight: {type: Number, default: 36},
             bodyRowHeight: {type: Number, default: 36},
             scrollbarSize: {type: Number, default: 6},
+            stripe: {type: Boolean, default: true},
             list: {},
         },
         data() {
@@ -69,6 +73,7 @@
                 shadowLeft: false,
                 shadowRight: false,
                 dragingScrollbar: false,
+                hoverIndex: null,
             }
         },
         computed: {
@@ -76,7 +81,7 @@
                 return {
                     'am-table-shadow-left': this.shadowLeft,
                     'am-table-shadow-right': this.shadowRight,
-                    'am-table-stripe': true
+                    'am-table-stripe': this.stripe,
                 }
             },
             tableHeadHeight() {

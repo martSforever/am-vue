@@ -80,12 +80,6 @@
             position: absolute;
         }
     }
-    .am-table-body {
-        background-color: white;
-        .am-scrollbar-horizontal-indicator, .am-scrollbar-vertical-indicator {
-            z-index: 1;
-        }
-    }
     &:hover {
         .am-scrollbar-horizontal-indicator, .am-scrollbar-vertical-indicator {
             opacity: 1;
@@ -106,6 +100,15 @@
             .am-table-row:nth-child(even) {
                 background-color: $color-primary-light;
             }
+        }
+    }
+    .am-table-body {
+        background-color: white;
+        .am-table-row-hover {
+            background-color: #ddefff !important;
+        }
+        .am-scrollbar-horizontal-indicator, .am-scrollbar-vertical-indicator {
+            z-index: 1;
         }
     }
 }
