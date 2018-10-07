@@ -5,6 +5,7 @@
     height: 100%;
     width: 100%;
     box-shadow: $box-shadow;
+    position: relative;
     .am-table-column-controller {
         height: 0;
         width: 0;
@@ -52,6 +53,30 @@
             .rendering-scope-slot, .rendering-render-func {
                 width: 100%;
             }
+        }
+    }
+
+    .am-table-content-left, .am-table-content-right {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        .am-table-body {
+            .am-scrollbar-content-wrapper {
+                height: 100%;
+            }
+        }
+    }
+    .am-table-content-left {
+        left: 0;
+    }
+    .am-table-content-right {
+        right: 0;
+    }
+
+    .am-table-body {
+        background-color: white;
+        .am-scrollbar-horizontal-indicator {
+            z-index: 1;
         }
     }
 }

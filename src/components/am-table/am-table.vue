@@ -16,7 +16,7 @@
             :body-row-height="bodyRowHeight"
             content-fixed="center"/>
 
-        <!--<am-table-content
+        <am-table-content
             :head-columns="headColumns"
             :padding="padding"
             :head-row-height="headRowHeight"
@@ -24,7 +24,7 @@
             :render-columns="renderColumns"
             :list="list"
             :body-row-height="bodyRowHeight"
-            content-fixed="left"/>-->
+            content-fixed="left"/>
     </div>
 </template>
 
@@ -39,6 +39,7 @@
             padding: {type: String, default: '0 0 0 6px'},
             headRowHeight: {type: Number, default: 36},
             bodyRowHeight: {type: Number, default: 36},
+            scrollbarSize: {type: Number, default: 6},
             list: {},
         },
         data() {

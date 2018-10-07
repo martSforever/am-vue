@@ -1,6 +1,8 @@
 <template>
     <div class="am-table-body" :style="{top:`${tableHeadHeight}px`}">
-        <am-scrollbar @scroll="handleScroll">
+        <am-scrollbar @scroll="handleScroll"
+                      :scroll-x="contentFixed === 'center'"
+                      :scrollbar-size="contentFixed === 'center'?scrollbarSize:0">
             <table>
                 <am-table-row
                     v-for="(row,rowIndex) in list"
@@ -34,6 +36,7 @@
             padding: {},
             tableHeadHeight: {},
             contentFixed: {},
+            scrollbarSize: {},
 
         },
         methods: {

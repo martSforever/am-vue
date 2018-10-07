@@ -1,5 +1,5 @@
 <template>
-    <div class="am-table-content">
+    <div class="am-table-content" :class="[`am-table-content-${contentFixed}`]" :style="styles">
         <am-table-head
             ref="head"
             :head-columns="headColumns"
@@ -23,6 +23,7 @@
 <script>
     import AmTableHead from "./am-table-head";
     import AmTableBody from "./am-table-body";
+    import {removePx} from "../../scripts/utils";
 
     export default {
         name: "am-table-content",
@@ -36,10 +37,25 @@
             bodyRowHeight: {},
             list: {},
             contentFixed: {},
+            scrollbarSize: {},
         },
         methods: {
             handleBodyScroll(e) {
-                this.$refs.head.$refs.scrollbar.$refs.wrapper.scrollLeft = e.target.scrollLeft
+                (this.contentFixed === 'center') && (this.$refs.head.$refs.scrollbar.$refs.wrapper.scrollLeft = e.target.scrollLeft)
+            },
+        },
+        computed: {
+            styles() {
+                let styles = {}
+                if (this.contentFixed !== 'center') {
+                    let width = this.renderColumns.reduce((ret, item) => {
+                        if (item.fixed === this.contentFixed)
+                            ret += removePx(item.width)
+                        return ret
+                    }, 0)
+                    styles.width = `${width}px`
+                }
+                return styles
             },
         },
     }
