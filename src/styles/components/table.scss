@@ -71,11 +71,15 @@
     }
     .am-table-content-right {
         right: 0;
+        table {
+            position: absolute;
+            right: 0;
+        }
     }
 
     .am-table-body {
         background-color: white;
-        .am-scrollbar-horizontal-indicator {
+        .am-scrollbar-horizontal-indicator, .am-scrollbar-vertical-indicator-wrapper {
             z-index: 1;
         }
     }

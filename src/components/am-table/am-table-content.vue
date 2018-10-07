@@ -50,12 +50,15 @@
             styles() {
                 let styles = {}
                 if (this.contentFixed !== 'center') {
+                    let count = 0
                     let width = this.renderColumns.reduce((ret, item) => {
-                        if (item.fixed === this.contentFixed)
+                        if (item.fixed === this.contentFixed) {
+                            count++;
                             ret += removePx(item.width)
+                        }
                         return ret
                     }, 0)
-                    styles.width = `${width}px`
+                    styles.width = `${width + count * 2}px`
                 }
                 return styles
             },

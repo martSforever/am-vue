@@ -28,6 +28,17 @@
             :list="list"
             :body-row-height="bodyRowHeight"
             content-fixed="left"/>
+
+        <am-table-content
+            ref="right"
+            :head-columns="headColumns"
+            :padding="padding"
+            :head-row-height="headRowHeight"
+            :table-head-height="tableHeadHeight"
+            :render-columns="renderColumns"
+            :list="list"
+            :body-row-height="bodyRowHeight"
+            content-fixed="right"/>
     </div>
 </template>
 
@@ -75,7 +86,7 @@
                 return ret
             },
         },
-        methods:{
+        methods: {
             handleCenterScroll(e) {
                 if (!!this.$refs.left) {
                     this.$refs.left.$refs.body.$refs.scrollbar.$refs.wrapper.scrollTop = e.target.scrollTop
