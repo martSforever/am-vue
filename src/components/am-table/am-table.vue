@@ -16,7 +16,8 @@
             :list="list"
             :body-row-height="bodyRowHeight"
             content-fixed="center"
-            @scroll="handleCenterScroll"/>
+            @scroll="e=>handleContentScroll(e,'center')"
+            @mouseenter.native="focusContent = 'center'"/>
 
         <am-table-content
             ref="left"
@@ -27,7 +28,9 @@
             :render-columns="renderColumns"
             :list="list"
             :body-row-height="bodyRowHeight"
-            content-fixed="left"/>
+            content-fixed="left"
+            @scroll="e=>handleContentScroll(e,'left')"
+            @mouseenter.native="focusContent = 'left'"/>
 
         <am-table-content
             ref="right"
@@ -38,7 +41,9 @@
             :render-columns="renderColumns"
             :list="list"
             :body-row-height="bodyRowHeight"
-            content-fixed="right"/>
+            content-fixed="right"
+            @scroll="e=>handleContentScroll(e,'right')"
+            @mouseenter.native="focusContent = 'right'"/>
     </div>
 </template>
 
@@ -60,6 +65,7 @@
             return {
                 columns: [],
                 headColumns: [],
+                focusContent: null
             }
         },
         computed: {
@@ -87,9 +93,16 @@
             },
         },
         methods: {
-            handleCenterScroll(e) {
-                if (!!this.$refs.left) {
+            handleContentScroll(e, focusContent) {
+                if (focusContent !== this.focusContent) return
+                if (!!this.$refs.left && this.$refs.left.$refs.body.$refs.scrollbar.$refs.wrapper !== e.target) {
                     this.$refs.left.$refs.body.$refs.scrollbar.$refs.wrapper.scrollTop = e.target.scrollTop
+                }
+                if (!!this.$refs.center && this.$refs.center.$refs.body.$refs.scrollbar.$refs.wrapper !== e.target) {
+                    this.$refs.center.$refs.body.$refs.scrollbar.$refs.wrapper.scrollTop = e.target.scrollTop
+                }
+                if (!!this.$refs.right && this.$refs.right.$refs.body.$refs.scrollbar.$refs.wrapper !== e.target) {
+                    this.$refs.right.$refs.body.$refs.scrollbar.$refs.wrapper.scrollTop = e.target.scrollTop
                 }
             },
         },

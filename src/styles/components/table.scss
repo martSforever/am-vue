@@ -79,8 +79,13 @@
 
     .am-table-body {
         background-color: white;
-        .am-scrollbar-horizontal-indicator, .am-scrollbar-vertical-indicator-wrapper {
+        .am-scrollbar-horizontal-indicator, .am-scrollbar-vertical-indicator {
             z-index: 1;
+        }
+    }
+    &:hover {
+        .am-scrollbar-horizontal-indicator, .am-scrollbar-vertical-indicator {
+            opacity: 1;
         }
     }
 }
