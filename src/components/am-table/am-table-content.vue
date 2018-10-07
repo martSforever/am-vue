@@ -9,6 +9,7 @@
             :content-fixed="contentFixed"
         />
         <am-table-body
+            ref="body"
             :render-columns="renderColumns"
             :list="list"
             :padding="padding"
@@ -42,6 +43,7 @@
         methods: {
             handleBodyScroll(e) {
                 (this.contentFixed === 'center') && (this.$refs.head.$refs.scrollbar.$refs.wrapper.scrollLeft = e.target.scrollLeft)
+                this.$emit('scroll', e)
             },
         },
         computed: {

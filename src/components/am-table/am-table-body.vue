@@ -1,6 +1,7 @@
 <template>
     <div class="am-table-body" :style="{top:`${tableHeadHeight}px`}">
-        <am-scrollbar @scroll="handleScroll"
+        <am-scrollbar ref="scrollbar"
+                      @scroll="handleScroll"
                       :scroll-x="contentFixed === 'center'"
                       :scrollbar-size="contentFixed === 'center'?scrollbarSize:0">
             <table>

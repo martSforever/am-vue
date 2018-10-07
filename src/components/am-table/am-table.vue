@@ -7,6 +7,7 @@
         </am-table-column-controller>
 
         <am-table-content
+            ref="center"
             :head-columns="headColumns"
             :padding="padding"
             :head-row-height="headRowHeight"
@@ -14,9 +15,11 @@
             :render-columns="renderColumns"
             :list="list"
             :body-row-height="bodyRowHeight"
-            content-fixed="center"/>
+            content-fixed="center"
+            @scroll="handleCenterScroll"/>
 
         <am-table-content
+            ref="left"
             :head-columns="headColumns"
             :padding="padding"
             :head-row-height="headRowHeight"
@@ -70,6 +73,13 @@
 
                 this.columns.forEach((child) => iterate(child))
                 return ret
+            },
+        },
+        methods:{
+            handleCenterScroll(e) {
+                if (!!this.$refs.left) {
+                    this.$refs.left.$refs.body.$refs.scrollbar.$refs.wrapper.scrollTop = e.target.scrollTop
+                }
             },
         },
     }
