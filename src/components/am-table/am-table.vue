@@ -20,6 +20,8 @@
             :select-index.sync="selectIndex"
             :border-size="borderSize"
             :border-color="borderColor"
+            :row-style-func="rowStyleFunc"
+            :cell-style-func="cellStyleFunc"
             @scroll="e=>handleContentScroll(e,'center')"
             @mouseenter.native="focusContent = 'center'"/>
 
@@ -37,6 +39,8 @@
             :select-index.sync="selectIndex"
             :border-size="borderSize"
             :border-color="borderColor"
+            :row-style-func="rowStyleFunc"
+            :cell-style-func="cellStyleFunc"
             @scroll="e=>handleContentScroll(e,'left')"
             @mouseenter.native="focusContent = 'left'"/>
 
@@ -54,6 +58,8 @@
             :select-index.sync="selectIndex"
             :border-size="borderSize"
             :border-color="borderColor"
+            :row-style-func="rowStyleFunc"
+            :cell-style-func="cellStyleFunc"
             @scroll="e=>handleContentScroll(e,'right')"
             @mouseenter.native="focusContent = 'right'"/>
     </div>
@@ -74,6 +80,8 @@
             borderSize: {type: Number, default: 0},
             borderColor: {type: String, default: '#ddd'},
             stripe: {type: Boolean, default: true},
+            rowStyleFunc: {type: Function,},
+            cellStyleFunc: {type: Function,},
             list: {},
         },
         data() {

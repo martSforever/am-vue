@@ -17,6 +17,8 @@
                     :border-size="borderSize"
                     :border-color="borderColor"
                     :class="{'am-table-row-hover':hoverIndex === rowIndex,'am-table-row-select':selectIndex === rowIndex}"
+                    :style="!!rowStyleFunc?rowStyleFunc({row,rowIndex}):null"
+                    :cell-style-func="cellStyleFunc"
                     @mouseenter.native="$emit('update:hoverIndex',rowIndex)"
                     @click.native="$emit('update:selectIndex',rowIndex)"
                 />
@@ -46,7 +48,9 @@
             hoverIndex: {},
             selectIndex: {},
             borderSize: {},
-            borderColor:{},
+            borderColor: {},
+            rowStyleFunc: {type: Function,},
+            cellStyleFunc: {type: Function,},
 
         },
         methods: {

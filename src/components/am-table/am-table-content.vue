@@ -23,6 +23,8 @@
             :hover-index="hoverIndex"
             :border-size="borderSize"
             :border-color="borderColor"
+            :row-style-func="rowStyleFunc"
+            :cell-style-func="cellStyleFunc"
             @update:hoverIndex="e=>$emit('update:hoverIndex',e)"
             :select-index="selectIndex"
             @update:selectIndex="e=>$emit('update:selectIndex',e)"
@@ -54,6 +56,8 @@
             selectIndex: {},
             borderSize: {},
             borderColor: {},
+            rowStyleFunc: {type: Function,},
+            cellStyleFunc: {type: Function,},
         },
         data() {
             return {

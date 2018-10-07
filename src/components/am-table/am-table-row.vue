@@ -10,6 +10,7 @@
                 :render-fcun="col.colRenderFunc"
                 :scope-slot-func="col.colScopedSlot"
                 :content-fixed="contentFixed"
+                :style="!!cellStyleFunc?cellStyleFunc({row,col,rowIndex,colIndex}):null"
                 :fixed="col.fixed"/>
         </td>
     </tr>
@@ -29,8 +30,8 @@
             bodyRowHeight: {},
             contentFixed: {},
             borderSize: {},
-            borderColor:{},
-
+            borderColor: {},
+            cellStyleFunc: {type: Function,},
         },
     }
 </script>

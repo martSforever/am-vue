@@ -178,6 +178,16 @@
                 this.dateList.pop()
             },
             removePx,
+            rowStyleFunc({row, rowIndex}) {
+                return {
+                    backgroundColor: rowIndex % 2 === 0 ? '#333' : '#999'
+                }
+            },
+            cellStyleFunc({row, rowIndex, col, colIndex}) {
+                return {
+                    backgroundColor: colIndex % 2 === 0 ? 'blue' : 'red'
+                }
+            },
         },
     }
 </script>
