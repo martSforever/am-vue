@@ -8,6 +8,26 @@
                     <am-table-column title="客户联系方式" field="age"></am-table-column>
                 </am-table-column>
                 <am-table-column title="商家" field="age"></am-table-column>
+                <am-table-column title="客户" field="name">
+                    <am-table-column title="客户姓名" field="name"></am-table-column>
+                    <am-table-column title="客户联系方式" field="age"></am-table-column>
+                </am-table-column>
+                <am-table-column title="商家" field="age"></am-table-column>
+                <am-table-column title="客户" field="name">
+                    <am-table-column title="客户姓名" field="name"></am-table-column>
+                    <am-table-column title="客户联系方式" field="age"></am-table-column>
+                </am-table-column>
+                <am-table-column title="商家" field="age"></am-table-column>
+                <am-table-column title="客户" field="name">
+                    <am-table-column title="客户姓名" field="name"></am-table-column>
+                    <am-table-column title="客户联系方式" field="age"></am-table-column>
+                </am-table-column>
+                <am-table-column title="商家" field="age"></am-table-column>
+                <am-table-column title="客户" field="name">
+                    <am-table-column title="客户姓名" field="name"></am-table-column>
+                    <am-table-column title="客户联系方式" field="age"></am-table-column>
+                </am-table-column>
+                <am-table-column title="商家" field="age"></am-table-column>
             </am-table>
         </div>
     </div>

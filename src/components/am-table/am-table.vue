@@ -9,6 +9,8 @@
         <am-table-content
             :head-columns="headColumns"
             :padding="padding"
+            :head-row-height="headRowHeight"
+            :table-head-height="tableHeadHeight"
         />
     </div>
 </template>
@@ -22,12 +24,18 @@
         components: {AmTableContent, AmTableColumnController},
         props: {
             padding: {type: Number, default: 3},
+            headRowHeight: {type: Number, default: 32},
         },
         data() {
             return {
                 columns: [],
                 headColumns: [],
             }
+        },
+        computed: {
+            tableHeadHeight() {
+                return this.headRowHeight * this.headColumns.length
+            },
         },
     }
 </script>

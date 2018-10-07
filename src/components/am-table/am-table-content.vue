@@ -3,6 +3,8 @@
         <am-table-head
             :head-columns="headColumns"
             :padding="padding"
+            :head-row-height="headRowHeight"
+            :table-head-height="tableHeadHeight"
         />
     </div>
 </template>
@@ -16,6 +18,8 @@
         props: {
             headColumns: {},
             padding: {},
+            headRowHeight: {},
+            tableHeadHeight:{},
         },
     }
 </script>
