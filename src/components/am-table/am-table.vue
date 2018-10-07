@@ -17,6 +17,7 @@
             :body-row-height="bodyRowHeight"
             content-fixed="center"
             :hover-index.sync="hoverIndex"
+            :select-index.sync="selectIndex"
             @scroll="e=>handleContentScroll(e,'center')"
             @mouseenter.native="focusContent = 'center'"/>
 
@@ -31,6 +32,7 @@
             :body-row-height="bodyRowHeight"
             content-fixed="left"
             :hover-index.sync="hoverIndex"
+            :select-index.sync="selectIndex"
             @scroll="e=>handleContentScroll(e,'left')"
             @mouseenter.native="focusContent = 'left'"/>
 
@@ -45,6 +47,7 @@
             :body-row-height="bodyRowHeight"
             content-fixed="right"
             :hover-index.sync="hoverIndex"
+            :select-index.sync="selectIndex"
             @scroll="e=>handleContentScroll(e,'right')"
             @mouseenter.native="focusContent = 'right'"/>
     </div>
@@ -74,6 +77,7 @@
                 shadowRight: false,
                 dragingScrollbar: false,
                 hoverIndex: null,
+                selectIndex: null,
             }
         },
         computed: {

@@ -14,8 +14,9 @@
                     :padding="padding"
                     :body-row-height="bodyRowHeight"
                     :content-fixed="contentFixed"
-                    :class="{'am-table-row-hover':hoverIndex === rowIndex}"
-                    @mouseenter.native="currentHoverIndex = rowIndex"
+                    :class="{'am-table-row-hover':hoverIndex === rowIndex,'am-table-row-select':selectIndex === rowIndex}"
+                    @mouseenter.native="$emit('update:hoverIndex',rowIndex)"
+                    @click.native="$emit('update:selectIndex',rowIndex)"
                 />
             </table>
         </am-scrollbar>
@@ -41,19 +42,7 @@
             contentFixed: {},
             scrollbarSize: {},
             hoverIndex: {},
-        },
-        watch: {
-            hoverIndex(val) {
-                if (this.currentHoverIndex !== val) this.currentHoverIndex = val
-            },
-            currentHoverIndex(val) {
-                this.$emit('update:hoverIndex', val)
-            },
-        },
-        data() {
-            return {
-                currentHoverIndex: this.hoverIndex
-            }
+            selectIndex: {},
         },
         methods: {
             handleScroll(e) {

@@ -20,6 +20,8 @@
             :content-fixed="contentFixed"
             :hover-index="hoverIndex"
             @update:hoverIndex="e=>$emit('update:hoverIndex',e)"
+            :select-index="selectIndex"
+            @update:selectIndex="e=>$emit('update:selectIndex',e)"
             @scroll="handleScroll"
             @mouseenter.native="focusPart = 'body'"
         />
@@ -45,6 +47,7 @@
             contentFixed: {},
             scrollbarSize: {},
             hoverIndex: {},
+            selectIndex: {},
         },
         data() {
             return {
