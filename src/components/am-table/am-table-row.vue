@@ -4,7 +4,7 @@
             :key="colIndex">
             <am-table-cell
                 :styles="{width:col.width,padding:`${padding}`,height:`${bodyRowHeight}px`}"
-                :data="{col}"
+                :data="{row,col,rowIndex,colIndex}"
                 :text="row[col.field]"
                 :render-fcun="col.colRenderFunc"
                 :scope-slot-func="col.colScopedSlot"/>

@@ -1,5 +1,5 @@
 <template>
-    <span class="am-table-column"><slot :row="{}"></slot></span>
+    <span class="am-table-column"><slot :row="{}" :col="{}" :row-index="-1" :col-index="-1"></slot></span>
 </template>
 
 <script>

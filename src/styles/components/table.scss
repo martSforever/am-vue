@@ -8,6 +8,8 @@
     .am-table-column-controller {
         height: 0;
         width: 0;
+        display: inline-block;
+        float: left;
         overflow: hidden;
     }
     .am-table-content {
@@ -15,7 +17,7 @@
         height: 100%;
         position: relative;
         .am-table-head {
-            background-color: $color-primary-light;
+            background-color: $color-normal-background;
             color: $color-normal-content;
             font-size: 14px;
             font-weight: bold;
@@ -39,6 +41,9 @@
                 white-space: nowrap;
                 overflow: hidden;
                 text-overflow: ellipsis;
+            }
+            .rendering-scope-slot, .rendering-render-func {
+                width: 100%;
             }
         }
     }
