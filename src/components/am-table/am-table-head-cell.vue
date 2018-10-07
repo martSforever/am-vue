@@ -4,9 +4,9 @@
         :colspan="col.colspan"
         class="am-table-head-cell">
         <am-table-cell
-            :styles="{width:col.width,padding:`${padding}px`,height:`${headRowHeight}px`}"
+            :styles="{width:col.width,padding:`${padding}`,height:`${headRowHeight}px`}"
             :data="{col}"
-            :title="col.title"
+            :text="col.title"
             :render-fcun="col.titleRenderFunc"
             :scope-slot-func="col.titleScopedSlot"/>
     </td>

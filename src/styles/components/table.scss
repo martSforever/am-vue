@@ -11,17 +11,34 @@
         overflow: hidden;
     }
     .am-table-content {
+        width: 100%;
+        height: 100%;
+        position: relative;
         .am-table-head {
             background-color: $color-primary-light;
             color: $color-normal-content;
             font-size: 14px;
             font-weight: bold;
-            .am-table-head-cell {
-                .am-table-cell {
-                    display: flex;
-                    align-items: center;
-                    box-sizing: border-box;
-                }
+        }
+        .am-table-body {
+            font-size: 12px;
+            color: $color-normal-content;
+            position: absolute;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            top: 100%;
+        }
+
+        .am-table-cell {
+            display: flex;
+            align-items: center;
+            box-sizing: border-box;
+            .am-table-cell-default-text {
+                width: 100%;
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
             }
         }
     }

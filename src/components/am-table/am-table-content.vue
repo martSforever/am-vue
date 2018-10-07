@@ -6,20 +6,31 @@
             :head-row-height="headRowHeight"
             :table-head-height="tableHeadHeight"
         />
+        <am-table-body
+            :render-columns="renderColumns"
+            :list="list"
+            :padding="padding"
+            :body-row-height="bodyRowHeight"
+            :table-head-height="tableHeadHeight"
+        />
     </div>
 </template>
 
 <script>
     import AmTableHead from "./am-table-head";
+    import AmTableBody from "./am-table-body";
 
     export default {
         name: "am-table-content",
-        components: {AmTableHead},
+        components: {AmTableBody, AmTableHead},
         props: {
             headColumns: {},
             padding: {},
             headRowHeight: {},
-            tableHeadHeight:{},
+            tableHeadHeight: {},
+            renderColumns: {},
+            bodyRowHeight: {},
+            list: {},
         },
     }
 </script>

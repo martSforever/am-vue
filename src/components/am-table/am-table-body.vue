@@ -1,15 +1,37 @@
 <template>
-    <div class="am-table-body">
-        am-table-body
+    <div class="am-table-body" :style="{top:`${tableHeadHeight}px`}">
+        <am-scrollbar>
+            <table>
+                <am-table-row
+                    v-for="(row,rowIndex) in list"
+                    :key="rowIndex"
+                    :render-columns="renderColumns"
+                    :row="row"
+                    :row-index="rowIndex"
+                    :padding="padding"
+                    :body-row-height="bodyRowHeight"
+                />
+            </table>
+        </am-scrollbar>
     </div>
 </template>
 
 <script>
+    import AmTableRow from "./am-table-row";
+    import AmScrollbar from '../am-scrollbar'
+
     export default {
-        name: "am-table-body"
+        name: "am-table-body",
+        components: {
+            AmTableRow,
+            AmScrollbar,
+        },
+        props: {
+            renderColumns: {},
+            bodyRowHeight: {},
+            list: {},
+            padding: {},
+            tableHeadHeight: {},
+        },
     }
 </script>
-
-<style lang="scss">
-
-</style>

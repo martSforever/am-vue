@@ -2,7 +2,7 @@
     <div class="am-table-cell" :style="styles">
         <rendering-scope-slot v-if="!!scopeSlotFunc" :scope-slot-func="scopeSlotFunc" :data="data"/>
         <rendering-render-func v-else-if="!!renderFcun" :render-func="renderFcun" :data="data"/>
-        <span v-else>{{title}}</span>
+        <div v-else class="am-table-cell-default-text">{{text}}</div>
     </div>
 </template>
 
@@ -18,7 +18,7 @@
             scopeSlotFunc: {},
             renderFcun: {},
             data: {},
-            title: {},
+            text: {},
         },
     }
 </script>
