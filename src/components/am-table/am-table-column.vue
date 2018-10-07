@@ -21,6 +21,19 @@
                 },
             },
         },
+        watch: {
+            order(newval, oldval) {
+                if (newval !== oldval) {
+                    this.$parent.collectHeadColumns()
+                }
+            },
+            width(val) {
+                if (this.currentWidth !== val) this.currentWidth = val
+            },
+            currentWidth(val) {
+                this.$emit('update:width', val)
+            },
+        },
         data() {
             return {
                 currentWidth: this.width,
@@ -73,6 +86,7 @@
                     if (!!child.isTableColumn) ret.push(child.column)
                     return ret
                 }, [])
+                return ret
             }
         },
     }
