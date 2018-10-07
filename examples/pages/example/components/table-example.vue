@@ -15,6 +15,7 @@
                                 <am-input shape="none"
                                           type="fill"
                                           size="small"
+                                          color="primary"
                                           long
                                           v-model="row.takePerson"/>
                             </template>

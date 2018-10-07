@@ -1,7 +1,7 @@
 <template>
-    <td style="border: solid 1px transparent"
-        :rowspan="col.rowspan"
+    <td :rowspan="col.rowspan"
         :colspan="col.colspan"
+        :style="{border:`solid ${borderSize}px ${borderColor}`}"
         class="am-table-head-cell">
         <am-table-cell
             :styles="{width:col.width,padding:`${padding}`,height:`${headRowHeight}px`}"
@@ -11,6 +11,9 @@
             :scope-slot-func="col.titleScopedSlot"
             :content-fixed="contentFixed"
             :fixed="col.fixed"/>
+        <div class="drag-indicator"
+             :style="dragIndicatorStyles"
+             @mousedown="_handleMouseDown"></div>
     </td>
 </template>
 
@@ -27,6 +30,17 @@
             padding: {},
             headRowHeight: {},
             contentFixed: {},
+            borderSize: {},
+            borderColor:{},
+
+        },
+        computed: {
+            dragIndicatorStyles() {
+            },
+        },
+        methods: {
+            _handleMouseDown() {
+            },
         },
     }
 </script>

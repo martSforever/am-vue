@@ -12,6 +12,8 @@
                         v-for="(col,colIndex) in row"
                         :key="colIndex"
                         :padding="padding"
+                        :border-size="borderSize"
+                        :border-color="borderColor"
                         :head-row-height="headRowHeight"
                         :col="col"
                         :content-fixed="contentFixed"/>
@@ -37,6 +39,9 @@
             headRowHeight: {},
             tableHeadHeight: {},
             contentFixed: {},
+            borderSize: {},
+            borderColor:{},
+
         },
     }
 </script>

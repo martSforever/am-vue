@@ -7,6 +7,8 @@
             :head-row-height="headRowHeight"
             :table-head-height="tableHeadHeight"
             :content-fixed="contentFixed"
+            :border-size="borderSize"
+            :border-color="borderColor"
             @scroll="handleScroll"
             @mouseenter.native="focusPart = 'head'"
         />
@@ -19,6 +21,8 @@
             :table-head-height="tableHeadHeight"
             :content-fixed="contentFixed"
             :hover-index="hoverIndex"
+            :border-size="borderSize"
+            :border-color="borderColor"
             @update:hoverIndex="e=>$emit('update:hoverIndex',e)"
             :select-index="selectIndex"
             @update:selectIndex="e=>$emit('update:selectIndex',e)"
@@ -48,6 +52,8 @@
             scrollbarSize: {},
             hoverIndex: {},
             selectIndex: {},
+            borderSize: {},
+            borderColor:{},
         },
         data() {
             return {

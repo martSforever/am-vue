@@ -18,6 +18,8 @@
             content-fixed="center"
             :hover-index.sync="hoverIndex"
             :select-index.sync="selectIndex"
+            :border-size="borderSize"
+            :border-color="borderColor"
             @scroll="e=>handleContentScroll(e,'center')"
             @mouseenter.native="focusContent = 'center'"/>
 
@@ -33,6 +35,8 @@
             content-fixed="left"
             :hover-index.sync="hoverIndex"
             :select-index.sync="selectIndex"
+            :border-size="borderSize"
+            :border-color="borderColor"
             @scroll="e=>handleContentScroll(e,'left')"
             @mouseenter.native="focusContent = 'left'"/>
 
@@ -48,6 +52,8 @@
             content-fixed="right"
             :hover-index.sync="hoverIndex"
             :select-index.sync="selectIndex"
+            :border-size="borderSize"
+            :border-color="borderColor"
             @scroll="e=>handleContentScroll(e,'right')"
             @mouseenter.native="focusContent = 'right'"/>
     </div>
@@ -61,10 +67,12 @@
         name: "am-table",
         components: {AmTableContent, AmTableColumnController},
         props: {
-            padding: {type: String, default: '0 0 0 6px'},
+            padding: {type: String, default: '0 6px 0 6px'},
             headRowHeight: {type: Number, default: 36},
             bodyRowHeight: {type: Number, default: 36},
             scrollbarSize: {type: Number, default: 6},
+            borderSize: {type: Number, default: 4},
+            borderColor: {type: String, default: '#ddd'},
             stripe: {type: Boolean, default: true},
             list: {},
         },
@@ -89,7 +97,7 @@
                 }
             },
             tableHeadHeight() {
-                return (this.headRowHeight * this.headColumns.length) + 2 * (this.headColumns.length - 1)
+                return (this.headRowHeight * this.headColumns.length) + (this.borderSize) * (this.headColumns.length - 1)
             },
             /*获取渲染表头所需要的数据*/
             renderColumns() {

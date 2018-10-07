@@ -14,6 +14,8 @@
                     :padding="padding"
                     :body-row-height="bodyRowHeight"
                     :content-fixed="contentFixed"
+                    :border-size="borderSize"
+                    :border-color="borderColor"
                     :class="{'am-table-row-hover':hoverIndex === rowIndex,'am-table-row-select':selectIndex === rowIndex}"
                     @mouseenter.native="$emit('update:hoverIndex',rowIndex)"
                     @click.native="$emit('update:selectIndex',rowIndex)"
@@ -43,6 +45,9 @@
             scrollbarSize: {},
             hoverIndex: {},
             selectIndex: {},
+            borderSize: {},
+            borderColor:{},
+
         },
         methods: {
             handleScroll(e) {
