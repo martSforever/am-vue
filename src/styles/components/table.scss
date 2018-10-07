@@ -88,4 +88,14 @@
             opacity: 1;
         }
     }
+    &.am-table-shadow-left {
+        .am-table-content.am-table-content-left {
+            box-shadow: $box-shadow;
+        }
+    }
+    &.am-table-shadow-right {
+        .am-table-content.am-table-content-right {
+            box-shadow: $box-shadow;
+        }
+    }
 }

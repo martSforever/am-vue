@@ -1,5 +1,5 @@
 <template>
-    <div class="am-table">
+    <div class="am-table" :class="classes">
         <am-table-column-controller
             :columns.sync="columns"
             :head-columns.sync="headColumns">
@@ -65,10 +65,18 @@
             return {
                 columns: [],
                 headColumns: [],
-                focusContent: null
+                focusContent: null,
+                shadowLeft: false,
+                shadowRight: false,
             }
         },
         computed: {
+            classes() {
+                return {
+                    'am-table-shadow-left': this.shadowLeft,
+                    'am-table-shadow-right': this.shadowRight,
+                }
+            },
             tableHeadHeight() {
                 return 4 + (this.headRowHeight * this.headColumns.length) + 2 * (this.headColumns.length - 1)
             },
@@ -95,6 +103,11 @@
         methods: {
             handleContentScroll(e, focusContent) {
                 if (focusContent !== this.focusContent) return
+                if (focusContent === 'center') {
+                    this.shadowLeft = (e.target.scrollLeft > 0)
+                    this.shadowRight = (e.target.scrollLeft < (e.target.scrollWidth - e.target.offsetWidth + 17))
+                    // console.log(e.target.scrollWidth, e.target.offsetWidth, e.target.scrollWidth - e.target.offsetWidth, e.target.scrollLeft)
+                }
                 if (!!this.$refs.left && this.$refs.left.$refs.body.$refs.scrollbar.$refs.wrapper !== e.target) {
                     this.$refs.left.$refs.body.$refs.scrollbar.$refs.wrapper.scrollTop = e.target.scrollTop
                 }
