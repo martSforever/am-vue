@@ -1,52 +1,49 @@
 <template>
-    <div style="height: 100%;width: 100%">
-        {{focusContent}}--{{dragingScrollbar}}
-        <div class="am-table" :class="classes">
-            <am-table-column-controller
-                :columns.sync="columns"
-                :head-columns.sync="headColumns">
-                <slot></slot>
-            </am-table-column-controller>
+    <div class="am-table" :class="classes">
+        <am-table-column-controller
+            :columns.sync="columns"
+            :head-columns.sync="headColumns">
+            <slot></slot>
+        </am-table-column-controller>
 
-            <am-table-content
-                ref="center"
-                :head-columns="headColumns"
-                :padding="padding"
-                :head-row-height="headRowHeight"
-                :table-head-height="tableHeadHeight"
-                :render-columns="renderColumns"
-                :list="list"
-                :body-row-height="bodyRowHeight"
-                content-fixed="center"
-                @scroll="e=>handleContentScroll(e,'center')"
-                @mouseenter.native="focusContent = 'center'"/>
+        <am-table-content
+            ref="center"
+            :head-columns="headColumns"
+            :padding="padding"
+            :head-row-height="headRowHeight"
+            :table-head-height="tableHeadHeight"
+            :render-columns="renderColumns"
+            :list="list"
+            :body-row-height="bodyRowHeight"
+            content-fixed="center"
+            @scroll="e=>handleContentScroll(e,'center')"
+            @mouseenter.native="focusContent = 'center'"/>
 
-            <am-table-content
-                ref="left"
-                :head-columns="headColumns"
-                :padding="padding"
-                :head-row-height="headRowHeight"
-                :table-head-height="tableHeadHeight"
-                :render-columns="renderColumns"
-                :list="list"
-                :body-row-height="bodyRowHeight"
-                content-fixed="left"
-                @scroll="e=>handleContentScroll(e,'left')"
-                @mouseenter.native="focusContent = 'left'"/>
+        <am-table-content
+            ref="left"
+            :head-columns="headColumns"
+            :padding="padding"
+            :head-row-height="headRowHeight"
+            :table-head-height="tableHeadHeight"
+            :render-columns="renderColumns"
+            :list="list"
+            :body-row-height="bodyRowHeight"
+            content-fixed="left"
+            @scroll="e=>handleContentScroll(e,'left')"
+            @mouseenter.native="focusContent = 'left'"/>
 
-            <am-table-content
-                ref="right"
-                :head-columns="headColumns"
-                :padding="padding"
-                :head-row-height="headRowHeight"
-                :table-head-height="tableHeadHeight"
-                :render-columns="renderColumns"
-                :list="list"
-                :body-row-height="bodyRowHeight"
-                content-fixed="right"
-                @scroll="e=>handleContentScroll(e,'right')"
-                @mouseenter.native="focusContent = 'right'"/>
-        </div>
+        <am-table-content
+            ref="right"
+            :head-columns="headColumns"
+            :padding="padding"
+            :head-row-height="headRowHeight"
+            :table-head-height="tableHeadHeight"
+            :render-columns="renderColumns"
+            :list="list"
+            :body-row-height="bodyRowHeight"
+            content-fixed="right"
+            @scroll="e=>handleContentScroll(e,'right')"
+            @mouseenter.native="focusContent = 'right'"/>
     </div>
 </template>
 

@@ -28,11 +28,6 @@
                         <am-table-column title="发货联系方式" field="sendContract"></am-table-column>
                     </am-table-column>
                 </am-table-column>
-                <am-table-column title="外部订单信息" fixed="left">
-                    <am-table-column title="收货地址left" field="takeAddr"></am-table-column>
-                    <am-table-column title="收货联系人left" field="takePerson"></am-table-column>
-                    <am-table-column title="收货联系方式left" field="takeContract"></am-table-column>
-                </am-table-column>
                 <am-table-column title="订单信息" fixed="right">
                     <am-table-column title="发货信息">
                         <am-table-column title="发货地址right" field="sendAddr"></am-table-column>
@@ -40,6 +35,12 @@
                         <am-table-column title="发货联系方式right" field="sendContract"></am-table-column>
                     </am-table-column>
                 </am-table-column>
+                <am-table-column title="外部订单信息" fixed="left">
+                    <am-table-column title="收货地址left" field="takeAddr"></am-table-column>
+                    <am-table-column title="收货联系人left" field="takePerson"></am-table-column>
+                    <am-table-column title="收货联系方式left" field="takeContract"></am-table-column>
+                </am-table-column>
+
 
             </am-table>
         </div>
