@@ -21,6 +21,9 @@
             color: $color-normal-content;
             font-size: 14px;
             font-weight: bold;
+            .am-scrollbar-content-wrapper {
+                width: 100%;
+            }
         }
         .am-table-body {
             font-size: 12px;

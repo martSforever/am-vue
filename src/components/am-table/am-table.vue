@@ -15,6 +15,16 @@
             :list="list"
             :body-row-height="bodyRowHeight"
             content-fixed="center"/>
+
+        <!--<am-table-content
+            :head-columns="headColumns"
+            :padding="padding"
+            :head-row-height="headRowHeight"
+            :table-head-height="tableHeadHeight"
+            :render-columns="renderColumns"
+            :list="list"
+            :body-row-height="bodyRowHeight"
+            content-fixed="left"/>-->
     </div>
 </template>
 

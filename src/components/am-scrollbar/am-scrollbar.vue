@@ -7,6 +7,7 @@
     >
         <div class="am-scrollbar-content-wrapper"
              @scroll="_handleScroll"
+             :style="wrapperStyles"
              ref="wrapper">
             <div class="am-scrollbar-content" ref="content" :style="contentStyles">
                 <slot></slot>
@@ -93,6 +94,16 @@
                 let styles = {}
                 if (!this.scrollX) styles.width = `${this.contentWidth}px`
                 if (!this.scrollY) styles.height = `${this.contentHeight}px`
+                return styles
+            },
+            wrapperStyles() {
+                let styles = {}
+                if (!this.scrollX) {
+                    styles.overflowX = 'hidden'
+                }
+                if (!this.scrollY) {
+                    styles.overflowY = 'hidden'
+                }
                 return styles
             },
         },
