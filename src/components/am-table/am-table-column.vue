@@ -1,5 +1,5 @@
 <template>
-    <span class="am-table-column"></span>
+    <span class="am-table-column"><slot :row="{}"></slot></span>
 </template>
 
 <script>
@@ -50,10 +50,10 @@
                     get title() {
                         return _this.title
                     },
-                    get titleScopedSlots() {
+                    get titleScopedSlot() {
                         return _this.$scopedSlots.title
                     },
-                    get colScopedSlots() {
+                    get colScopedSlot() {
                         return _this.$scopedSlots.default
                     },
                     get titleRenderFunc() {

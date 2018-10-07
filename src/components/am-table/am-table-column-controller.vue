@@ -49,14 +49,14 @@
                 function calcRowSpan(column) {
                     if (!!column.children && column.children.length > 0) {
                         column.children.forEach(child => calcRowSpan(child))
-                        column.rowSpan = 1
-                        column.colSpan = 0
+                        column.rowspan = 1
+                        column.colspan = 0
                         column.children.forEach((child) => {
-                            column.colSpan += child.colSpan
+                            column.colspan += child.colspan
                         })
                     } else {
-                        column.rowSpan = maxLevel - column.level
-                        column.colSpan = 1
+                        column.rowspan = maxLevel - column.level
+                        column.colspan = 1
                     }
                 }
 
