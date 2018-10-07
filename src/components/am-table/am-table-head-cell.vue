@@ -8,7 +8,9 @@
             :data="{col}"
             :text="col.title"
             :render-fcun="col.titleRenderFunc"
-            :scope-slot-func="col.titleScopedSlot"/>
+            :scope-slot-func="col.titleScopedSlot"
+            :content-fixed="contentFixed"
+            :fixed="col.fixed"/>
     </td>
 </template>
 
@@ -24,7 +26,7 @@
             col: {},
             padding: {},
             headRowHeight: {},
-
+            contentFixed: {},
         },
     }
 </script>

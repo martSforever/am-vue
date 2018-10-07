@@ -13,7 +13,8 @@
             :table-head-height="tableHeadHeight"
             :render-columns="renderColumns"
             :list="list"
-            :body-row-height="bodyRowHeight"/>
+            :body-row-height="bodyRowHeight"
+            content-fixed="center"/>
     </div>
 </template>
 

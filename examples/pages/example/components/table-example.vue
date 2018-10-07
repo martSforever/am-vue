@@ -7,7 +7,7 @@
         <am-button @click="log()">headColumns</am-button>
         <div style="width: 100%;height: 400px">
             <am-table ref="table1" :list="dateList">
-                <am-table-column title="订单信息">
+                <am-table-column title="内部订单信息">
                     <am-table-column title="收货信息">
                         <am-table-column title="收货地址" field="takeAddr"></am-table-column>
                         <am-table-column title="收货联系人" field="takePerson" width="200px">
@@ -23,7 +23,7 @@
                         <am-table-column title="发货联系方式" field="sendContract"></am-table-column>
                     </am-table-column>
                 </am-table-column>
-                <am-table-column title="订单信息">
+                <am-table-column title="外部订单信息" fixed="left">
                     <am-table-column title="收货信息">
                         <am-table-column title="收货地址" field="takeAddr"></am-table-column>
                         <am-table-column title="收货联系人" field="takePerson"></am-table-column>

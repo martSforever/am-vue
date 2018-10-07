@@ -6,6 +6,7 @@
             :padding="padding"
             :head-row-height="headRowHeight"
             :table-head-height="tableHeadHeight"
+            :content-fixed="contentFixed"
         />
         <am-table-body
             :render-columns="renderColumns"
@@ -13,6 +14,7 @@
             :padding="padding"
             :body-row-height="bodyRowHeight"
             :table-head-height="tableHeadHeight"
+            :content-fixed="contentFixed"
             @scroll="handleBodyScroll"
         />
     </div>
@@ -33,6 +35,7 @@
             renderColumns: {},
             bodyRowHeight: {},
             list: {},
+            contentFixed: {},
         },
         methods: {
             handleBodyScroll(e) {

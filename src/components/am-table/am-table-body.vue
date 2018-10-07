@@ -10,6 +10,7 @@
                     :row-index="rowIndex"
                     :padding="padding"
                     :body-row-height="bodyRowHeight"
+                    :content-fixed="contentFixed"
                 />
             </table>
         </am-scrollbar>
@@ -32,6 +33,8 @@
             list: {},
             padding: {},
             tableHeadHeight: {},
+            contentFixed: {},
+
         },
         methods: {
             handleScroll(e) {

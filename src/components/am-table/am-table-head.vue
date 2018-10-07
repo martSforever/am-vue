@@ -10,7 +10,8 @@
                         :key="colIndex"
                         :padding="padding"
                         :head-row-height="headRowHeight"
-                        :col="col"/>
+                        :col="col"
+                        :content-fixed="contentFixed"/>
                 </tr>
             </table>
         </am-scrollbar>
@@ -32,6 +33,7 @@
             padding: {},
             headRowHeight: {},
             tableHeadHeight: {},
+            contentFixed: {},
         },
     }
 </script>

@@ -1,8 +1,10 @@
 <template>
     <div class="am-table-cell" :style="styles">
-        <rendering-scope-slot v-if="!!scopeSlotFunc" :scope-slot-func="scopeSlotFunc" :data="data"/>
-        <rendering-render-func v-else-if="!!renderFcun" :render-func="renderFcun" :data="data"/>
-        <div v-else class="am-table-cell-default-text">{{text}}</div>
+        <div class="am-table-cell-wrapper" v-if="fixed === contentFixed">
+            <rendering-scope-slot v-if="!!scopeSlotFunc" :scope-slot-func="scopeSlotFunc" :data="data"/>
+            <rendering-render-func v-else-if="!!renderFcun" :render-func="renderFcun" :data="data"/>
+            <div v-else class="am-table-cell-default-text">{{text}}</div>
+        </div>
     </div>
 </template>
 
@@ -19,6 +21,8 @@
             renderFcun: {},
             data: {},
             text: {},
+            fixed: {},
+            contentFixed: {},
         },
     }
 </script>

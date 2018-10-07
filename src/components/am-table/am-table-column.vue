@@ -38,6 +38,7 @@
             return {
                 currentWidth: this.width,
                 isTableColumn: true,
+                currentFixed: this.fixed
             }
         },
         computed: {
@@ -76,14 +77,17 @@
                         return _this.field
                     },
                     get fixed() {
-                        return _this.fixed
+                        return _this.currentFixed
                     },
                     updateWidth(width) {
                         _this.currentWidth = width
                     },
                 }
                 ret.children = this.$children.reduce((ret, child) => {
-                    if (!!child.isTableColumn) ret.push(child.column)
+                    if (!!child.isTableColumn) {
+                        child.currentFixed = this.currentFixed
+                        ret.push(child.column)
+                    }
                     return ret
                 }, [])
                 return ret

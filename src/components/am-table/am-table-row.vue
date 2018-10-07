@@ -7,7 +7,9 @@
                 :data="{row,col,rowIndex,colIndex}"
                 :text="row[col.field]"
                 :render-fcun="col.colRenderFunc"
-                :scope-slot-func="col.colScopedSlot"/>
+                :scope-slot-func="col.colScopedSlot"
+                :content-fixed="contentFixed"
+                :fixed="col.fixed"/>
         </td>
     </tr>
 </template>
@@ -24,6 +26,8 @@
             rowIndex: {},
             padding: {},
             bodyRowHeight: {},
+            contentFixed: {},
+
         },
     }
 </script>
