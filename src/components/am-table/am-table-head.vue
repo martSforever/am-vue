@@ -1,7 +1,7 @@
 <template>
     <div class="am-table-head"
          :style="{height:`${tableHeadHeight}px`}">
-        <am-scrollbar :scroll-y="false" :scrollbar-size="0">
+        <am-scrollbar :scroll-y="false" :scrollbar-size="0" ref="scrollbar">
             <table>
                 <tr v-for="(row,rowIndex) in headColumns"
                     :key="rowIndex">

@@ -1,7 +1,7 @@
 <template>
     <div class="table-example">
         <am-button @click="log()">headColumns</am-button>
-        <div style="width: 1000px;height: 400px">
+        <div style="width: 100%;height: 400px">
             <am-table ref="table1" :list="dateList">
                 <am-table-column title="订单信息">
                     <am-table-column title="收货信息">

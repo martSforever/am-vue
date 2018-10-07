@@ -1,6 +1,7 @@
 <template>
     <div class="am-table-content">
         <am-table-head
+            ref="head"
             :head-columns="headColumns"
             :padding="padding"
             :head-row-height="headRowHeight"
@@ -12,6 +13,7 @@
             :padding="padding"
             :body-row-height="bodyRowHeight"
             :table-head-height="tableHeadHeight"
+            @scroll="handleBodyScroll"
         />
     </div>
 </template>
@@ -31,6 +33,11 @@
             renderColumns: {},
             bodyRowHeight: {},
             list: {},
+        },
+        methods: {
+            handleBodyScroll(e) {
+                this.$refs.head.$refs.scrollbar.$refs.wrapper.scrollLeft = e.target.scrollLeft
+            },
         },
     }
 </script>

@@ -1,6 +1,6 @@
 <template>
     <div class="am-table-body" :style="{top:`${tableHeadHeight}px`}">
-        <am-scrollbar>
+        <am-scrollbar @scroll="handleScroll">
             <table>
                 <am-table-row
                     v-for="(row,rowIndex) in list"
@@ -32,6 +32,11 @@
             list: {},
             padding: {},
             tableHeadHeight: {},
+        },
+        methods: {
+            handleScroll(e) {
+                this.$emit('scroll', e)
+            },
         },
     }
 </script>
