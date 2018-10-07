@@ -4,7 +4,7 @@
         :colspan="col.colspan"
         class="am-table-head-cell">
         <am-table-cell
-            :styles="{width:col.width,padding:`${padding}px`,height:headRowHeight}"
+            :styles="{width:col.width,padding:`${padding}px`,height:`${headRowHeight}px`}"
             :data="{col}"
             :title="col.title"
             :render-fcun="col.titleRenderFunc"

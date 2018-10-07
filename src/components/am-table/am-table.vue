@@ -34,7 +34,7 @@
         },
         computed: {
             tableHeadHeight() {
-                return this.headRowHeight * this.headColumns.length
+                return 4 + (this.headRowHeight * this.headColumns.length) + 2 * (this.headColumns.length - 1)
             },
         },
     }

@@ -16,6 +16,13 @@
             color: $color-normal-content;
             font-size: 14px;
             font-weight: bold;
+            .am-table-head-cell {
+                .am-table-cell {
+                    display: flex;
+                    align-items: center;
+                    box-sizing: border-box;
+                }
+            }
         }
     }
 }
