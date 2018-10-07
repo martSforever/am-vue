@@ -4,13 +4,16 @@
             <am-button @click="addRow">add row</am-button>
             <am-button @click="removeRow">remove row</am-button>
         </am-button-group>
+        <am-number-input v-model="width" :dur-num="10"></am-number-input>
+        <am-number-input v-model="order"></am-number-input>
         <am-button @click="log()">headColumns</am-button>
         <div style="width: 100%;height: 400px">
             <am-table ref="table1" :list="dateList" :stripe="true">
                 <am-table-column title="内部订单信息">
                     <am-table-column title="收货信息">
-                        <am-table-column title="收货地址" field="takeAddr"></am-table-column>
-                        <am-table-column title="收货联系人" field="takePerson" width="200px">
+                        <am-table-column title="收货地址" field="takeAddr" order="1"></am-table-column>
+                        <am-table-column title="收货联系人" field="takePerson" :width="`${width}px`" :order="order"
+                                         @update:width="e=>width=removePx(e)">
                             <template slot-scope="{row,col}">
                                 <am-input shape="none"
                                           type="fill"
@@ -20,7 +23,7 @@
                                           v-model="row.takePerson"/>
                             </template>
                         </am-table-column>
-                        <am-table-column title="收货联系方式" field="takeContract"></am-table-column>
+                        <am-table-column title="收货联系方式" field="takeContract" order="3"></am-table-column>
                     </am-table-column>
                     <am-table-column title="发货信息">
                         <am-table-column title="发货地址" field="sendAddr"></am-table-column>
@@ -53,6 +56,8 @@
 </template>
 
 <script>
+    import {removePx} from "../../../../src/scripts/utils";
+
     export default {
         name: "table-example",
         props: {},
@@ -149,7 +154,9 @@
                         sendPerson: '张学友-end',
                         sendContract: '18211111111',
                     },
-                ]
+                ],
+                width: 200,
+                order: 2
             }
         },
         methods: {
@@ -170,6 +177,7 @@
             removeRow() {
                 this.dateList.pop()
             },
+            removePx,
         },
     }
 </script>

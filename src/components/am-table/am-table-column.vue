@@ -5,6 +5,7 @@
 <script>
 
     import {oneOf} from "../../scripts/utils";
+    import {findComponentUpward} from "../../scripts/dom";
 
     export default {
         name: "am-table-column",
@@ -24,7 +25,8 @@
         watch: {
             order(newval, oldval) {
                 if (newval !== oldval) {
-                    this.$parent.collectHeadColumns()
+                    const controller = findComponentUpward(this, 'am-table-column-controller')
+                    controller.collectHeadColumns()
                 }
             },
             width(val) {
