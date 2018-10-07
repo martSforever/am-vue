@@ -7,6 +7,8 @@
             :head-row-height="headRowHeight"
             :table-head-height="tableHeadHeight"
             :content-fixed="contentFixed"
+            @scroll="handleScroll"
+            @mouseenter.native="focusPart = 'head'"
         />
         <am-table-body
             ref="body"
@@ -16,7 +18,8 @@
             :body-row-height="bodyRowHeight"
             :table-head-height="tableHeadHeight"
             :content-fixed="contentFixed"
-            @scroll="handleBodyScroll"
+            @scroll="handleScroll"
+            @mouseenter.native="focusPart = 'body'"
         />
     </div>
 </template>
@@ -40,9 +43,20 @@
             contentFixed: {},
             scrollbarSize: {},
         },
+        data() {
+            return {
+                focusPart: null,
+            }
+        },
         methods: {
-            handleBodyScroll(e) {
-                (this.contentFixed === 'center') && (this.$refs.head.$refs.scrollbar.$refs.wrapper.scrollLeft = e.target.scrollLeft)
+            handleScroll(e) {
+                if (this.contentFixed === 'center') {
+                    if (this.focusPart === 'body')
+                        this.$refs.head.$refs.scrollbar.$refs.wrapper.scrollLeft = e.target.scrollLeft
+                    else {
+                        this.$refs.body.$refs.scrollbar.$refs.wrapper.scrollLeft = e.target.scrollLeft
+                    }
+                }
                 this.$emit('scroll', e)
             },
         },

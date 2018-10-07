@@ -1,7 +1,10 @@
 <template>
     <div class="am-table-head"
          :style="{height:`${tableHeadHeight}px`}">
-        <am-scrollbar :scroll-y="false" :scroll-x="false" :scrollbar-size="0" ref="scrollbar">
+        <am-scrollbar :scroll-x="contentFixed ==='center'"
+                      :scrollbar-size="0"
+                      ref="scrollbar"
+                      @scroll="e=>$emit('scroll',e)">
             <table>
                 <tr v-for="(row,rowIndex) in headColumns"
                     :key="rowIndex">
