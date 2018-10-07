@@ -14,12 +14,13 @@
             </div>
         </div>
         <div class="am-scrollbar-vertical-indicator-wrapper" v-if="!!scrollY">
-            <div class="am-scrollbar-vertical-indicator"
+            <div ref="verticalIndicator"
+                 class="am-scrollbar-vertical-indicator"
                  :style="verticalIndicatorStyles"
                  @mousedown="vIndicatorDragStart"></div>
         </div>
         <div class="am-scrollbar-horizontal-indicator-wrapper" v-if="!!scrollX">
-            <div class="am-scrollbar-horizontal-indicator"
+            <div ref="horizontalIndicator" class="am-scrollbar-horizontal-indicator"
                  :style="horizontalIndicatorStyles"
                  @mousedown="hIndicatorDragStart"></div>
         </div>
