@@ -72,7 +72,11 @@
             cancelEdit() {
                 const editItems = this.findEditItems(this)
                 editItems.forEach((item) => item.disableEdit())
-            }
+            },
+            saveEdit() {
+                const editItems = this.findEditItems(this)
+                editItems.forEach((item) => item.save())
+            },
         },
     };
 </script>

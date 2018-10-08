@@ -154,7 +154,7 @@
             handleVerticalIndicatorMouseup() {
                 this.dragingScrollbar = false;
             },
-            triggerRowMethod(row, index, methodName) {
+            triggerSingleRowMethod(row, index, methodName) {
                 let centerRows = findComponentsDownward(this.$refs.center, 'am-table-row');
                 centerRows[index][methodName]();
                 if (!!this.$refs.left) {
@@ -166,29 +166,34 @@
                     rightRows[index][methodName]();
                 }
             },
-            handleRowClick(row, index) {
-                this.triggerRowMethod(row, index, 'click')
-            },
-            handleRowDblClick(row, index) {
-                this.triggerRowMethod(row, index, 'dblClick')
-                !!this.editable && (this.triggerRowMethod(row, index, 'edit'))
-            },
-            cancelEdit(index) {
-                console.log('cancelEdit', index)
+            triggerMultipleRowMethod(row, index, methodName) {
                 if (index != null) {
-                    this.triggerRowMethod(null, index, 'cancelEdit')
+                    this.triggerSingleRowMethod(null, index, methodName)
                 } else {
                     let centerRows = findComponentsDownward(this.$refs.center, 'am-table-row');
-                    centerRows.forEach(row => row.cancelEdit())
+                    centerRows.forEach(row => row[methodName]())
                     if (!!this.$refs.left) {
                         let leftRows = findComponentsDownward(this.$refs.left, 'am-table-row');
-                        leftRows.forEach(row => row.cancelEdit())
+                        leftRows.forEach(row => row[methodName]())
                     }
                     if (!!this.$refs.right) {
                         let rightRows = findComponentsDownward(this.$refs.right, 'am-table-row');
-                        rightRows.forEach(row => row.cancelEdit())
+                        rightRows.forEach(row => row[methodName]())
                     }
                 }
+            },
+            handleRowClick(row, index) {
+                this.triggerSingleRowMethod(row, index, 'click')
+            },
+            handleRowDblClick(row, index) {
+                this.triggerSingleRowMethod(row, index, 'dblClick')
+                !!this.editable && (this.triggerSingleRowMethod(row, index, 'edit'))
+            },
+            cancelEdit(index) {
+                this.triggerMultipleRowMethod(null, index, 'cancelEdit')
+            },
+            saveEdit(index) {
+                this.triggerMultipleRowMethod(null, index, 'saveEdit')
             },
         },
         mounted() {

@@ -1,13 +1,18 @@
 <template>
     <div class="table-example">
+        <div class="title">
+            最好不要出现有两列对同一个属性值做双向绑定的情况出现，会导致保存的时候数据异常
+        </div>
         <am-button-group>
             <am-button @click="addRow">add row</am-button>
             <am-button @click="removeRow">remove row</am-button>
         </am-button-group>
         <am-number-input v-model="index1"/>
         <am-button-group>
-            <am-button @click="cancelEditSpecific">cancel edit specific</am-button>
-            <am-button @click="cancelEditAll">cancel edit all</am-button>
+            <am-button @click="cancelEditSpecific">cancelEditSpecific</am-button>
+            <am-button @click="cancelEditAll">cancelEditAll</am-button>
+            <am-button @click="saveSpecificEdit">saveSpecificEdit</am-button>
+            <am-button @click="saveEdit">saveEdit</am-button>
         </am-button-group>
         <am-number-input v-model="width" :dur-num="10"></am-number-input>
         <am-number-input v-model="order"></am-number-input>
@@ -17,7 +22,7 @@
                 <am-table-column title="内部订单信息">
                     <am-table-column title="收货信息">
                         <!--<am-table-column title="收货地址" field="takeAddr" order="1"></am-table-column>-->
-                        <am-table-column-input title="收货地址" field="takeAddr" order="1"/>
+                        <am-table-column-input title="收货地址" field="takeAddr" order="1" type="fill" color="primary"/>
                         <am-table-column title="收货联系人" field="takePerson" :order="order"></am-table-column>
                         <am-table-column title="收货联系方式" field="takeContract" order="3"></am-table-column>
                     </am-table-column>
@@ -42,7 +47,8 @@
                 <am-table-column title="外部订单信息" fixed="left">
                     <am-table-column-index :order="1" :width="`${width}px`"
                                            @update:width="e=>width=removePx(e)"/>
-                    <am-table-column-input title="收货地址" field="takeAddr" order="1"/>
+                    <!--<am-table-column-input title="收货地址" field="takeAddr" order="1"/>-->
+                    <am-table-column title="收货地址left" field="takeAddr"></am-table-column>
                     <am-table-column title="收货联系人left" field="takePerson"></am-table-column>
                     <am-table-column title="收货联系方式left" field="takeContract"></am-table-column>
                 </am-table-column>
@@ -195,6 +201,16 @@
             },
             cancelEditAll() {
                 this.$refs.table1.cancelEdit()
+            },
+            saveSpecificEdit() {
+                if (this.index1 != null) {
+                    this.$refs.table1.saveEdit(this.index1)     //保存数据
+                    this.$refs.table1.cancelEdit(this.index1)   //取消编辑状态
+                }
+            },
+            saveEdit() {
+                this.$refs.table1.saveEdit()                    //保存数据
+                this.cancelEditAll()                             //取消编辑状态
             },
         },
     };
