@@ -153,30 +153,24 @@
             handleVerticalIndicatorMouseup() {
                 this.dragingScrollbar = false;
             },
-
-            handleRowClick(row, index) {
+            triggerRowMethod(row, index, methodName) {
                 let centerRows = findComponentsDownward(this.$refs.center, 'am-table-row');
-                centerRows[index].click();
+                centerRows[index][methodName]();
                 if (!!this.$refs.left) {
                     let leftRows = findComponentsDownward(this.$refs.left, 'am-table-row');
-                    leftRows[index].click();
+                    leftRows[index][methodName]();
                 }
                 if (!!this.$refs.right) {
                     let rightRows = findComponentsDownward(this.$refs.right, 'am-table-row');
-                    rightRows[index].click();
+                    rightRows[index][methodName]();
                 }
             },
+            handleRowClick(row, index) {
+                this.triggerRowMethod(row, index, 'click')
+            },
             handleRowDblClick(row, index) {
-                let centerRows = findComponentsDownward(this.$refs.center, 'am-table-row');
-                centerRows[index].dblClick();
-                if (!!this.$refs.left) {
-                    let leftRows = findComponentsDownward(this.$refs.left, 'am-table-row');
-                    leftRows[index].dblClick();
-                }
-                if (!!this.$refs.right) {
-                    let rightRows = findComponentsDownward(this.$refs.right, 'am-table-row');
-                    rightRows[index].dblClick();
-                }
+                this.triggerRowMethod(row, index, 'dblClick')
+                !!this.editable && (this.triggerRowMethod(row, index, 'edit'))
             },
         },
         mounted() {
