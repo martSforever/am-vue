@@ -44,6 +44,7 @@
                     </am-table-column>
                 </am-table-column>
                 <am-table-column title="外部订单信息" fixed="left">
+                    <am-table-column-index :order="1"/>
                     <am-table-column title="收货地址left" field="takeAddr"></am-table-column>
                     <am-table-column title="收货联系人left" field="takePerson"></am-table-column>
                     <am-table-column title="收货联系方式left" field="takeContract"></am-table-column>
@@ -56,10 +57,10 @@
 </template>
 
 <script>
-    import {removePx} from "../../../../src/scripts/utils";
+    import {removePx} from '../../../../src/scripts/utils';
 
     export default {
-        name: "table-example",
+        name: 'table-example',
         props: {},
         data() {
             return {
@@ -157,11 +158,11 @@
                 ],
                 width: 200,
                 order: 2
-            }
+            };
         },
         methods: {
             log() {
-                console.log(this.$refs.table1.headColumns)
+                console.log(this.$refs.table1.headColumns);
             },
             addRow() {
                 this.dateList.push({
@@ -172,22 +173,22 @@
                     sendAddr: '佛山市南海区狮山镇',
                     sendPerson: '张学友-add',
                     sendContract: '18211111111',
-                })
+                });
             },
             removeRow() {
-                this.dateList.pop()
+                this.dateList.pop();
             },
             removePx,
             rowStyleFunc({row, rowIndex}) {
                 return {
                     backgroundColor: rowIndex % 2 === 0 ? '#333' : '#999'
-                }
+                };
             },
             cellStyleFunc({row, rowIndex, col, colIndex}) {
                 return {
                     backgroundColor: colIndex % 2 === 0 ? 'blue' : 'red'
-                }
+                };
             },
         },
-    }
+    };
 </script>

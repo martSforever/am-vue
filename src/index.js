@@ -27,15 +27,16 @@ import swiperItem from './components/am-swiper/am-swiper-item';
 import tabbar from './components/am-tabbar/am-tabbar';
 import tab from './components/am-tabbar/am-tab';
 import tree from './components/am-tree';
-import scrollbar from './components/am-scrollbar'
-import popover from './components/am-popover'
-import dropdown from './components/am-dropdown'
-import dropdownItem from './components/am-dropdown/am-dropdown-item'
-import select from './components/am-select'
-import timepicker from './components/am-timepicker'
-import datepicker from './components/am-datepicker'
-import table from './components/am-table'
-import tableColumn from './components/am-table/am-table-column'
+import scrollbar from './components/am-scrollbar';
+import popover from './components/am-popover';
+import dropdown from './components/am-dropdown';
+import dropdownItem from './components/am-dropdown/am-dropdown-item';
+import select from './components/am-select';
+import timepicker from './components/am-timepicker';
+import datepicker from './components/am-datepicker';
+import table from './components/am-table';
+import tableColumn from './components/am-table/am-table-column';
+import tableColumnIndex from './components/am-table-expansion/am-table-column-index';
 
 const components = {
     icon,
@@ -71,6 +72,7 @@ const components = {
     datepicker,
     table,
     'table-column': tableColumn,
+    'table-column-index': tableColumnIndex,
 };
 
 let $amvue = {};
