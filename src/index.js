@@ -37,6 +37,7 @@ import datepicker from './components/am-datepicker';
 import table from './components/am-table';
 import tableColumn from './components/am-table/am-table-column';
 import tableColumnIndex from './components/am-table-expansion/am-table-column-index';
+import tableColumnInput from './components/am-table-expansion/am-table-column-input/am-table-column-input'
 
 const components = {
     icon,
@@ -73,6 +74,7 @@ const components = {
     table,
     'table-column': tableColumn,
     'table-column-index': tableColumnIndex,
+    'table-column-input': tableColumnInput,
 };
 
 let $amvue = {};

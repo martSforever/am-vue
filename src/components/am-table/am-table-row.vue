@@ -52,12 +52,27 @@
                 }
                 return this.table;
             },
+            findEditItems(context) {
+                return context.$children.reduce((components, child) => {
+                    if (!!child.isTableEditItem) components.push(child);
+                    const foundChilds = this.findEditItems(child);
+                    return components.concat(foundChilds);
+                }, []);
+            },
             click() {
-                console.log('click', this.row, this.rowIndex, this.contentFixed);
+                // console.log('click', this.row, this.rowIndex, this.contentFixed);
             },
             dblClick() {
-                console.log('dblClick', this.row, this.rowIndex, this.contentFixed);
+                // console.log('dblClick', this.row, this.rowIndex, this.contentFixed);
             },
+            edit() {
+                const editItems = this.findEditItems(this)
+                editItems.forEach((item) => item.enableEdit())
+            },
+            cancelEdit() {
+                const editItems = this.findEditItems(this)
+                editItems.forEach((item) => item.disableEdit())
+            }
         },
     };
 </script>

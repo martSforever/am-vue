@@ -84,6 +84,7 @@
             rowStyleFunc: {type: Function,},
             cellStyleFunc: {type: Function,},
             list: {},
+            editable: {type: Boolean, default: true},
         },
         data() {
             return {
@@ -171,6 +172,23 @@
             handleRowDblClick(row, index) {
                 this.triggerRowMethod(row, index, 'dblClick')
                 !!this.editable && (this.triggerRowMethod(row, index, 'edit'))
+            },
+            cancelEdit(index) {
+                console.log('cancelEdit', index)
+                if (index != null) {
+                    this.triggerRowMethod(null, index, 'cancelEdit')
+                } else {
+                    let centerRows = findComponentsDownward(this.$refs.center, 'am-table-row');
+                    centerRows.forEach(row => row.cancelEdit())
+                    if (!!this.$refs.left) {
+                        let leftRows = findComponentsDownward(this.$refs.left, 'am-table-row');
+                        leftRows.forEach(row => row.cancelEdit())
+                    }
+                    if (!!this.$refs.right) {
+                        let rightRows = findComponentsDownward(this.$refs.right, 'am-table-row');
+                        rightRows.forEach(row => row.cancelEdit())
+                    }
+                }
             },
         },
         mounted() {
