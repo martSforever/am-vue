@@ -12,8 +12,7 @@
                 <am-table-column title="内部订单信息">
                     <am-table-column title="收货信息">
                         <am-table-column title="收货地址" field="takeAddr" order="1"></am-table-column>
-                        <am-table-column title="收货联系人" field="takePerson" :width="`${width}px`" :order="order"
-                                         @update:width="e=>width=removePx(e)">
+                        <am-table-column title="收货联系人" field="takePerson" :order="order" width="200px">
                             <template slot-scope="{row,col}">
                                 <am-input shape="none"
                                           type="fill"
@@ -44,7 +43,8 @@
                     </am-table-column>
                 </am-table-column>
                 <am-table-column title="外部订单信息" fixed="left">
-                    <am-table-column-index :order="1"/>
+                    <am-table-column-index :order="1" :width="`${width}px`"
+                                           @update:width="e=>width=removePx(e)"/>
                     <am-table-column title="收货地址left" field="takeAddr"></am-table-column>
                     <am-table-column title="收货联系人left" field="takePerson"></am-table-column>
                     <am-table-column title="收货联系方式left" field="takeContract"></am-table-column>
@@ -64,6 +64,8 @@
         props: {},
         data() {
             return {
+                width: 40,
+                order: 2,
                 dateList: [
                     {
                         takeAddr: '广州市花都区机场大道东888号',
@@ -156,8 +158,7 @@
                         sendContract: '18211111111',
                     },
                 ],
-                width: 200,
-                order: 2
+
             };
         },
         methods: {

@@ -30,17 +30,19 @@
                 },
             },
         },
-        order(newval, oldval) {
-            if (newval !== oldval) {
-                const controller = findComponentUpward(this, 'am-table-column-controller');
-                controller.collectHeadColumns();
-            }
-        },
-        width(val) {
-            if (this.currentWidth !== val) this.currentWidth = val;
-        },
-        currentWidth(val) {
-            this.$emit('update:width', val);
+        watch: {
+            order(newval, oldval) {
+                if (newval !== oldval) {
+                    const controller = findComponentUpward(this, 'am-table-column-controller');
+                    controller.collectHeadColumns();
+                }
+            },
+            width(val) {
+                if (this.currentWidth !== val) this.currentWidth = val;
+            },
+            currentWidth(val) {
+                this.$emit('update:width', val);
+            },
         },
         data() {
             return {
