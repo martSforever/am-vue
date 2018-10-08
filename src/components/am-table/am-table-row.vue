@@ -1,5 +1,5 @@
 <template>
-    <tr class="am-table-row">
+    <tr class="am-table-row" @click="handleClickTrEl" @dblclick="handleDblClickTrEl">
         <td v-for="(col,colIndex) in renderColumns"
             :style="{border:`solid ${borderSize}px ${borderColor}`}"
             :key="colIndex">
@@ -17,10 +17,11 @@
 </template>
 
 <script>
-    import AmTableCell from "./am-table-cell";
+    import AmTableCell from './am-table-cell';
+    import {findComponentUpward} from '../../scripts/dom';
 
     export default {
-        name: "am-table-row",
+        name: 'am-table-row',
         components: {AmTableCell},
         props: {
             renderColumns: {},
@@ -33,5 +34,30 @@
             borderColor: {},
             cellStyleFunc: {type: Function,},
         },
-    }
+        data() {
+            return {
+                table: null
+            };
+        },
+        methods: {
+            handleClickTrEl() {
+                this.getTable().handleRowClick(this.row, this.rowIndex);
+            },
+            handleDblClickTrEl() {
+                this.getTable().handleRowDblClick(this.row, this.rowIndex);
+            },
+            getTable() {
+                if (!this.table) {
+                    this.table = findComponentUpward(this, 'am-table');
+                }
+                return this.table;
+            },
+            click() {
+                console.log('click', this.row, this.rowIndex, this.contentFixed);
+            },
+            dblClick() {
+                console.log('dblClick', this.row, this.rowIndex, this.contentFixed);
+            },
+        },
+    };
 </script>

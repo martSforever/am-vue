@@ -66,11 +66,12 @@
 </template>
 
 <script>
-    import AmTableColumnController from "./am-table-column-controller";
-    import AmTableContent from "./am-table-content";
+    import AmTableColumnController from './am-table-column-controller';
+    import AmTableContent from './am-table-content';
+    import {findComponentsDownward} from '../../scripts/dom';
 
     export default {
-        name: "am-table",
+        name: 'am-table',
         components: {AmTableContent, AmTableColumnController},
         props: {
             padding: {type: String, default: '0 6px 0 6px'},
@@ -94,7 +95,7 @@
                 dragingScrollbar: false,
                 hoverIndex: null,
                 selectIndex: null,
-            }
+            };
         },
         computed: {
             classes() {
@@ -102,64 +103,89 @@
                     'am-table-shadow-left': this.shadowLeft,
                     'am-table-shadow-right': this.shadowRight,
                     'am-table-stripe': this.stripe,
-                }
+                };
             },
             tableHeadHeight() {
-                return (this.headRowHeight * this.headColumns.length) + (this.borderSize) * (this.headColumns.length - 1)
+                return (this.headRowHeight * this.headColumns.length) + (this.borderSize) * (this.headColumns.length - 1);
             },
             /*获取渲染表头所需要的数据*/
             renderColumns() {
-                if (!this.columns || this.columns.length < 1) return []
-                let ret = []
+                if (!this.columns || this.columns.length < 1) return [];
+                let ret = [];
 
                 /*递归遍历节点，将列数据收集起来，是一个森林结构*/
                 function iterate(column) {
                     if (!!column.children && column.children.length > 0) {
                         column.children.forEach((child) => {
-                            iterate(child)
-                        })
+                            iterate(child);
+                        });
                     } else {
-                        ret.push(column)
+                        ret.push(column);
                     }
                 }
 
-                this.columns.forEach((child) => iterate(child))
-                return ret
+                this.columns.forEach((child) => iterate(child));
+                return ret;
             },
         },
         methods: {
             handleContentScroll(e, focusContent) {
-                if (focusContent !== (this.dragingScrollbar ? 'center' : this.focusContent)) return
+                if (focusContent !== (this.dragingScrollbar ? 'center' : this.focusContent)) return;
                 if (focusContent === 'center') {
-                    this.shadowLeft = (e.target.scrollLeft > 0)
-                    this.shadowRight = (e.target.scrollLeft < (e.target.scrollWidth - e.target.offsetWidth + 17))
+                    this.shadowLeft = (e.target.scrollLeft > 0);
+                    this.shadowRight = (e.target.scrollLeft < (e.target.scrollWidth - e.target.offsetWidth + 17));
                     // console.log(e.target.scrollWidth, e.target.offsetWidth, e.target.scrollWidth - e.target.offsetWidth, e.target.scrollLeft)
                 }
 
                 if (!!this.$refs.left && this.$refs.left.$refs.body.$refs.scrollbar.$refs.wrapper !== e.target) {
-                    this.$refs.left.$refs.body.$refs.scrollbar.$refs.wrapper.scrollTop = e.target.scrollTop
+                    this.$refs.left.$refs.body.$refs.scrollbar.$refs.wrapper.scrollTop = e.target.scrollTop;
                 }
                 if (!!this.$refs.center && this.$refs.center.$refs.body.$refs.scrollbar.$refs.wrapper !== e.target) {
-                    this.$refs.center.$refs.body.$refs.scrollbar.$refs.wrapper.scrollTop = e.target.scrollTop
+                    this.$refs.center.$refs.body.$refs.scrollbar.$refs.wrapper.scrollTop = e.target.scrollTop;
                 }
                 if (!!this.$refs.right && this.$refs.right.$refs.body.$refs.scrollbar.$refs.wrapper !== e.target) {
-                    this.$refs.right.$refs.body.$refs.scrollbar.$refs.wrapper.scrollTop = e.target.scrollTop
+                    this.$refs.right.$refs.body.$refs.scrollbar.$refs.wrapper.scrollTop = e.target.scrollTop;
                 }
             },
             handleVerticalIndicatorMousedown() {
-                this.dragingScrollbar = true
+                this.dragingScrollbar = true;
             },
             handleVerticalIndicatorMouseup() {
-                this.dragingScrollbar = false
+                this.dragingScrollbar = false;
+            },
+
+            handleRowClick(row, index) {
+                let centerRows = findComponentsDownward(this.$refs.center, 'am-table-row');
+                centerRows[index].click();
+                if (!!this.$refs.left) {
+                    let leftRows = findComponentsDownward(this.$refs.left, 'am-table-row');
+                    leftRows[index].click();
+                }
+                if (!!this.$refs.right) {
+                    let rightRows = findComponentsDownward(this.$refs.right, 'am-table-row');
+                    rightRows[index].click();
+                }
+            },
+            handleRowDblClick(row, index) {
+                let centerRows = findComponentsDownward(this.$refs.center, 'am-table-row');
+                centerRows[index].dblClick();
+                if (!!this.$refs.left) {
+                    let leftRows = findComponentsDownward(this.$refs.left, 'am-table-row');
+                    leftRows[index].dblClick();
+                }
+                if (!!this.$refs.right) {
+                    let rightRows = findComponentsDownward(this.$refs.right, 'am-table-row');
+                    rightRows[index].dblClick();
+                }
             },
         },
         mounted() {
-            this.$refs.center.$refs.body.$refs.scrollbar.$refs.verticalIndicator.addEventListener('mousedown', this.handleVerticalIndicatorMousedown)
-            document.addEventListener('mouseup', this.handleVerticalIndicatorMouseup)
+            this.$refs.center.$refs.body.$refs.scrollbar.$refs.verticalIndicator.addEventListener('mousedown', this.handleVerticalIndicatorMousedown);
+            document.addEventListener('mouseup', this.handleVerticalIndicatorMouseup);
         },
         beforeDestroy() {
-            this.$refs.center.$refs.body.$refs.scrollbar.$refs.verticalIndicator.removeEventListener('mousedown', this.handleVerticalIndicatorMousedown)
-            document.removeEventListener('mouseup', this.handleVerticalIndicatorMouseup)
+            this.$refs.center.$refs.body.$refs.scrollbar.$refs.verticalIndicator.removeEventListener('mousedown', this.handleVerticalIndicatorMousedown);
+            document.removeEventListener('mouseup', this.handleVerticalIndicatorMouseup);
         },
-    }
+    };
 </script>
