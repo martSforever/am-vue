@@ -6,6 +6,8 @@
         <am-button-group>
             <am-button @click="addRow">add row</am-button>
             <am-button @click="removeRow">remove row</am-button>
+            <am-button @click="getSelectRow1">getSelectRow1</am-button>
+            <am-button @click="getSelectRow2">getSelectRow2</am-button>
         </am-button-group>
         <am-number-input v-model="index1"/>
         <am-button-group>
@@ -20,6 +22,12 @@
         <div style="width: 100%;height: 400px">
             <am-table ref="table1" :list="dateList" :stripe="true">
                 <am-table-column title="内部订单信息">
+                    <am-table-column field="checked" width="90px" title="checked"/>
+                    <am-table-column-check field="checked" ref="check1"/>
+                    <am-table-column-check field="checked" :confirm="false"/>
+                    <am-table-column field="checked2" width="90px" title="checked"/>
+                    <am-table-column-check field="checked2" :confirm="false" ref="check2"/>
+
                     <am-table-column title="收货信息">
                         <!--<am-table-column title="收货地址" field="takeAddr" order="1"></am-table-column>-->
                         <am-table-column-input title="收货地址" field="takeAddr" order="1" type="fill" color="primary"/>
@@ -61,9 +69,11 @@
 
 <script>
     import {removePx} from '../../../../src/scripts/utils';
+    import AmTableColumn from '../../../../src/components/am-table/am-table-column';
 
     export default {
         name: 'table-example',
+        components: {AmTableColumn},
         props: {},
         data() {
             return {
@@ -196,22 +206,38 @@
             },
             cancelEditSpecific() {
                 if (this.index1 != null) {
-                    this.$refs.table1.cancelEdit(this.index1)
+                    this.$refs.table1.cancelEdit(this.index1);
                 }
             },
             cancelEditAll() {
-                this.$refs.table1.cancelEdit()
+                this.$refs.table1.cancelEdit();
             },
             saveSpecificEdit() {
                 if (this.index1 != null) {
-                    this.$refs.table1.saveEdit(this.index1)     //保存数据
-                    this.$refs.table1.cancelEdit(this.index1)   //取消编辑状态
+                    this.$refs.table1.saveEdit(this.index1);     //保存数据
+                    this.$refs.table1.cancelEdit(this.index1);   //取消编辑状态
                 }
             },
             saveEdit() {
-                this.$refs.table1.saveEdit()                    //保存数据
-                this.cancelEditAll()                             //取消编辑状态
+                this.$refs.table1.saveEdit();                    //保存数据
+                this.cancelEditAll();                             //取消编辑状态
             },
+            getSelectRow1() {
+                this.$modal.show({
+                    message: this.$refs.check1.getSelectRow().reduce((ret, item) => {
+                        ret.push(item.takePerson);
+                        return ret;
+                    }, []).join(',')
+                });
+            },
+            getSelectRow2() {
+                this.$modal.show({
+                    message: this.$refs.check2.getSelectRow().reduce((ret, item) => {
+                        ret.push(item.takePerson);
+                        return ret;
+                    }, []).join(',')
+                });
+            }
         },
     };
 </script>

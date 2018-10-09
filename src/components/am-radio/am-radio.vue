@@ -80,6 +80,9 @@
             classes() {
                 return [
                     `am-radio-color-${this.radioColor}`,
+                    {
+                        'am-radio-disabled': !!this.disabled
+                    }
                 ];
             },
             styles() {
@@ -113,10 +116,11 @@
             };
         },
         methods: {
-            _handleClick() {
-                if (!!this.disabled) return
+            _handleClick(e) {
+                this.$emit('click', e);
+                if (!!this.disabled) return;
                 this.currentValue = !this.currentValue;
-                this.$emit('change', this.currentValue)
+                this.$emit('change', this.currentValue);
 
                 if (!!this.radioGroup) {
                     if (!this.radioGroup.multiple) {

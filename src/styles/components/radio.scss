@@ -40,6 +40,10 @@
             }
         }
     }
+
+    &.am-radio-disabled {
+        color: $color-normal-disabled !important;
+    }
 }
 
 .am-radio-group {
