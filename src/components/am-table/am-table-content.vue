@@ -73,7 +73,7 @@
                         this.$refs.body.$refs.scrollbar.$refs.wrapper.scrollLeft = e.target.scrollLeft
                     }
                 }
-                this.$emit('scroll', e)
+                (e.target !== this.$refs.head.$refs.scrollbar.$refs.wrapper) && this.$emit('scroll', e)
             },
         },
         computed: {
