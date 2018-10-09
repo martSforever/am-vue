@@ -1,23 +1,23 @@
 <template>
     <div class="index-example-nav-menu">
-        <am-scrollbar>
-            <div v-for="(urlGroup,groupIndex) in urlGroups"
-                 :key="groupIndex">
-                <div class="menu-group">
-                    <span class="group-name">{{urlGroup.name}}</span>
-                    <div v-for="(item,itemIndex) in urlGroup.children"
-                         :key="itemIndex"
-                         @click="handleClick(item)"
-                         :class="{active:item.url === currentUrl}"
-                         class="menu-item">
-                        <div class="left-side">
-                            <am-icon :icon="item.icon"/>
-                            <span>{{item.name}}</span>
+        <am-scrollbar :scroll-x="false">
+            <div class="index-example-nav-menu-content">
+                <div v-for="(urlGroup,groupIndex) in urlGroups"
+                     :key="groupIndex">
+                    <div class="menu-group">
+                        <span class="group-name">{{urlGroup.name}}</span>
+                        <div v-for="(item,itemIndex) in urlGroup.children"
+                             :key="itemIndex"
+                             @click="handleClick(item)"
+                             :class="{active:item.url === currentUrl}"
+                             class="menu-item">
+                            <div class="left-side">
+                                <am-icon :icon="item.icon"/>
+                                <span>{{item.name}}</span>
+                            </div>
                         </div>
                     </div>
                 </div>
-
-
             </div>
         </am-scrollbar>
     </div>
@@ -107,8 +107,11 @@
         box-sizing: border-box;
 
         overflow-y: auto;
+        overflow-x: hidden;
         border-right: solid 1px #ddd;
-        padding: 24px 0;
+        .index-example-nav-menu-content {
+            padding: 24px 0;
+        }
         .menu-group {
             padding: 0 0 0 12px;
             .group-name {
