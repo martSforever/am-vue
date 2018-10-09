@@ -50,6 +50,7 @@
             label: {type: String},
             radioKey: {type: [String, Number]},
             disabled: {type: Boolean, default: false},
+            readOnly: {type: Boolean},
         },
         computed: {
             radioSize() {
@@ -118,7 +119,7 @@
         methods: {
             _handleClick(e) {
                 this.$emit('click', e);
-                if (!!this.disabled) return;
+                if (!!this.disabled || !!this.readOnly) return;
                 this.currentValue = !this.currentValue;
                 this.$emit('change', this.currentValue);
 

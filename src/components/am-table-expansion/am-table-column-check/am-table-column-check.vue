@@ -7,7 +7,7 @@
                      :col-render-func="colRenderFunc"
                      :fixed.sync="currentFixed">
         <template slot="title" slot-scope="{col,colIndex}">
-            <am-radio :value="currentValue" disabled @click="handleClickTitle"/>
+            <am-radio :value="currentValue" read-only @click="handleClickTitle"/>
         </template>
         <template slot-scope="{row,rowIndex,col,colIndex}">
             <am-table-column-check-item
