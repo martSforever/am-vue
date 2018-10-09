@@ -1,5 +1,8 @@
 <template>
-    <am-radio v-model="row[field]"/>
+    <am-radio v-model="row[field]"
+              @change="val=>$emit('change',val,row,rowIndex)"
+              :color="color"
+    />
 </template>
 
 <script>
@@ -12,5 +15,8 @@
         mixins: [
             tableEditItemMixin
         ],
+        props: {
+            color: {},
+        },
     };
 </script>

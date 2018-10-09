@@ -7,7 +7,12 @@
                      :col-render-func="colRenderFunc"
                      :fixed.sync="currentFixed">
         <template slot="title" slot-scope="{col,colIndex}">
-            <am-radio :value="currentValue" read-only @click="handleClickTitle"/>
+            <am-radio :value="currentValue"
+                      read-only
+                      @click="handleClickTitle"
+                      :disabled="!!singleSelect || disabled"
+                      :color="color"
+            />
         </template>
         <template slot-scope="{row,rowIndex,col,colIndex}">
             <am-table-column-check-item
@@ -20,6 +25,8 @@
 
                 @mounted="handleItemMounted"
                 @beforeDestroy="handleItemBeforeDestroyed"
+                @change="handleChange"
+                :color="color"
             />
         </template>
     </am-table-column>
@@ -41,15 +48,20 @@
             tableColumnMixin
         ],
         props: {
+
             width: {type: String, default: '32px'},
 
             confirm: {type: Boolean, default: true},
             singleSelect: {type: Boolean},
+            disabled: {type: Boolean},
+
+            color: {type: String, default: 'primary'},
         },
         data() {
             return {
                 items: [],
                 currentValue: false,
+                singleIndex: null,
             };
         },
         methods: {
@@ -60,6 +72,7 @@
                 this.items.splice(this.items.indexOf(item), 1);
             },
             handleClickTitle() {
+                if (!!this.singleSelect || !!this.disabled) return
                 if (!!this.confirm)
                     this.$modal.show({
                         confirmButton: true,
@@ -78,6 +91,18 @@
                     if (!!item.row[this.field]) ret.push(item.row);
                     return ret;
                 }, []);
+            },
+            handleChange(val, row, rowIndex) {
+                if (!!this.singleSelect) {
+                    if (!!val) {
+                        if (this.singleIndex != null) {
+                            this.items[this.singleIndex].row[this.field] = false
+                        }
+                        this.singleIndex = rowIndex
+                    } else {
+                        this.singleIndex = null
+                    }
+                }
             },
         },
     };

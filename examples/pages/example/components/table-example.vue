@@ -27,6 +27,8 @@
                     <am-table-column-check field="checked" :confirm="false"/>
                     <am-table-column field="checked2" width="90px" title="checked"/>
                     <am-table-column-check field="checked2" :confirm="false" ref="check2"/>
+                    <am-table-column-check field="checked2" :confirm="false" ref="check2" color="success"
+                                           single-select/>
 
                     <am-table-column title="收货信息">
                         <!--<am-table-column title="收货地址" field="takeAddr" order="1"></am-table-column>-->
