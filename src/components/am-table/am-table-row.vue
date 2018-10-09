@@ -1,5 +1,5 @@
 <template>
-    <tr class="am-table-row" @click="handleClickTrEl" @dblclick="handleDblClickTrEl">
+    <tr class="am-table-row" @click="handleClickTrEl" @dblclick="handleDblClickTrEl" :class="classes">
         <td v-for="(col,colIndex) in renderColumns"
             :style="{border:`solid ${borderSize}px ${borderColor}`}"
             :key="colIndex">
@@ -36,7 +36,8 @@
         },
         data() {
             return {
-                table: null
+                table: null,
+                currentEditable: false
             };
         },
         methods: {
@@ -66,16 +67,25 @@
                 // console.log('dblClick', this.row, this.rowIndex, this.contentFixed);
             },
             edit() {
-                const editItems = this.findEditItems(this)
-                editItems.forEach((item) => item.enableEdit())
+                const editItems = this.findEditItems(this);
+                editItems.forEach((item) => item.enableEdit());
+                this.currentEditable = true;
             },
             cancelEdit() {
-                const editItems = this.findEditItems(this)
-                editItems.forEach((item) => item.disableEdit())
+                const editItems = this.findEditItems(this);
+                editItems.forEach((item) => item.disableEdit());
+                this.currentEditable = false;
             },
             saveEdit() {
-                const editItems = this.findEditItems(this)
-                editItems.forEach((item) => item.save())
+                const editItems = this.findEditItems(this);
+                editItems.forEach((item) => item.save());
+            },
+        },
+        computed: {
+            classes() {
+                return {
+                    'am-table-row-editing': !!this.currentEditable
+                };
             },
         },
     };
