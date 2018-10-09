@@ -34,12 +34,12 @@
 </template>
 
 <script>
-    import tableColumnMixin from "../table-column-mixin";
-    import AmTableColumnInputItem from "./am-table-column-input-item";
-    import {oneOf} from "../../../scripts/utils";
+    import tableColumnMixin from '../table-column-mixin';
+    import AmTableColumnInputItem from './am-table-column-input-item';
+    import {oneOf} from '../../../scripts/utils';
 
     export default {
-        name: "am-table-column-input",
+        name: 'am-table-column-input',
         components: {AmTableColumnInputItem},
         mixins: [
             tableColumnMixin
@@ -76,12 +76,12 @@
             dashed: {type: Boolean,},
             long: {type: Boolean, default: true},
             prefixIcon: {type: String},
-            suffixIcon: {type: String},
+            suffixIcon: {type: String, default: 'fas-pencil-alt'},
             placeholder: {type: String, default: '点击输入内容...'},
             disabled: {type: Boolean},
             readonly: {type: Boolean},
             clearable: {type: Boolean},
             regexp: {type: RegExp},
         },
-    }
+    };
 </script>
