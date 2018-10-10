@@ -1,5 +1,5 @@
 <template>
-    <am-radio v-model="row[field]"
+    <am-radio v-model="currentValue"
               @change="val=>$emit('change',val,row,rowIndex)"
               :color="color"
     />
@@ -17,6 +17,11 @@
         ],
         props: {
             color: {},
+        },
+        watch: {
+            currentValue(val) {
+                this.save();
+            },
         },
     };
 </script>

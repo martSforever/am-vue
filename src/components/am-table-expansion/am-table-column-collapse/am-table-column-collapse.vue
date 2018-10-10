@@ -1,54 +1,27 @@
 <template>
-    <am-table-column ref="column"
+    <am-table-column class="am-table-column-collapse"
+                     ref="column"
                      :title="title"
                      :width.sync="currentWidth"
                      :order="order"
                      :title-render-func="titleRenderFunc"
                      :col-render-func="colRenderFunc"
                      :fixed.sync="currentFixed">
-        <template slot="title" slot-scope="{col,colIndex}">
-            <am-radio :value="currentValue"
-                      read-only
-                      @click="handleClickTitle"
-                      :disabled="!!singleSelect || disabled"
-                      :color="color"
-            />
-        </template>
-        <template slot-scope="{row,rowIndex,col,colIndex}">
-            <am-table-column-check-item
-                :row="row"
-                :row-index="rowIndex"
-                :col="col"
-                :col-index="colIndex"
-                :field="field"
-                :editable="editable"
 
-                @mounted="handleItemMounted"
-                @beforeDestroy="handleItemBeforeDestroyed"
-                @change="handleChange"
-                :color="color"
-            />
-        </template>
     </am-table-column>
 </template>
 
 <script>
+    import AmTableColumn from '../../am-table/am-table-column';
     import tableColumnMixin from '../table-column-mixin';
-    import AmRadio from '../../am-radio';
-    import AmTableColumnCheckItem from './am-table-column-check-item';
-    import Vue from 'vue';
 
     export default {
-        name: 'am-table-column-check',
-        components: {
-            AmTableColumnCheckItem,
-            AmRadio,
+        name: 'am-table-column-collapse',
+        mixins: {
+            tableColumnMixin,
         },
-        mixins: [
-            tableColumnMixin
-        ],
+        components: {AmTableColumn},
         props: {
-
             width: {type: String, default: '32px'},
 
             confirm: {type: Boolean, default: true},
@@ -84,11 +57,11 @@
             },
             confirmClickTitle() {
                 this.currentValue = !this.currentValue;
-                this.items.forEach(item => item.save(this.currentValue));
+                this.items.forEach(item => Vue.set(item.row, this.field, this.currentValue));
             },
             getSelectRow() {
                 return this.items.reduce((ret, item) => {
-                    if (!!item.currentValue) ret.push(item.row);
+                    if (!!item.row[this.field]) ret.push(item.row);
                     return ret;
                 }, []);
             },
@@ -96,7 +69,7 @@
                 if (!!this.singleSelect) {
                     if (!!val) {
                         if (this.singleIndex != null) {
-                            this.items[this.singleIndex].currentValue = false;
+                            this.items[this.singleIndex].row[this.field] = false;
                         }
                         this.singleIndex = rowIndex;
                     } else {

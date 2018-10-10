@@ -1,3 +1,5 @@
+import Vue from 'vue';
+
 const tableEditItemMixin = {
     props: {
         row: {},
@@ -10,9 +12,9 @@ const tableEditItemMixin = {
     },
     data() {
         return {
-            isTableEditItem: true,                   //是否为表格编辑组件
-            currentValue: this.row[this.field],     //当前编辑双向绑定的值
-            currentEditable: false,                 //当前是否处于编辑状态
+            isTableEditItem: true,                                  //是否为表格编辑组件
+            currentValue: !!this.field && this.row[this.field],     //当前编辑双向绑定的值
+            currentEditable: false,                                 //当前是否处于编辑状态
         };
     },
     watch: {
@@ -27,6 +29,9 @@ const tableEditItemMixin = {
             /*当取消编辑状态之后，将当前双向绑定的值，重置会row中对象field的值*/
             if (!val) this.currentValue = this.row[this.field];
         },
+        /*currentValue(val) {
+            !!this.field && (this.row[this.field] = val);
+        },*/
     },
     mounted() {
         /*如果当前为表头单元格，直接返回*/
@@ -46,8 +51,9 @@ const tableEditItemMixin = {
         disableEdit() {
             this.currentEditable = false;
         },
-        save() {
-            this.row[this.field] = this.currentValue;
+        save(val) {
+            this.currentValue = val != null ? val : this.currentValue;
+            !!this.field && (Vue.set(this.row, this.field, this.currentValue));
         },
     },
 };
