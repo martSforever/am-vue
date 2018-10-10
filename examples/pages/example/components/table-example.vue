@@ -22,13 +22,12 @@
         <div style="width: 100%;height: 400px">
             <am-table ref="table1" :list="dateList" :stripe="true">
                 <am-table-column title="内部订单信息">
-                    <am-table-column field="checked" width="90px" title="checked"/>
                     <am-table-column-check ref="check1"/>
                     <am-table-column-check :confirm="false"/>
-                    <am-table-column field="checked2" width="90px" title="checked"/>
                     <am-table-column-check field="checked1" :confirm="false" ref="check2"/>
-                    <am-table-column-check field="checked1" :confirm="false" ref="check2" color="success"
-                                           single-select/>
+                    <am-table-column-check field="checked1" :confirm="false" ref="check2" color="success" single-select/>
+                    <am-table-column field="checked1" width="90px" title="checked"/>
+                    <am-table-column-collapse/>
 
                     <am-table-column title="收货信息">
                         <!--<am-table-column title="收货地址" field="takeAddr" order="1"></am-table-column>-->

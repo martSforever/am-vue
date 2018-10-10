@@ -7,20 +7,48 @@
                      :title-render-func="titleRenderFunc"
                      :col-render-func="colRenderFunc"
                      :fixed.sync="currentFixed">
+        <template slot="title" slot-scope="{col,colIndex}">
+            <am-radio :value="currentValue"
+                      read-only
+                      @click="handleClickTitle"
+                      :disabled="!!singleSelect || disabled"
+                      :color="color"
+                      :active-icon="activeIcon"
+                      :inactive-icon="inactiveIcon"
+            />
+        </template>
 
+        <template slot-scope="{row,rowIndex,col,colIndex}">
+            <am-table-column-collapse-item
+                :row="row"
+                :row-index="rowIndex"
+                :col="col"
+                :col-index="colIndex"
+                :field="field"
+                :editable="editable"
+
+                @mounted="handleItemMounted"
+                @beforeDestroy="handleItemBeforeDestroyed"
+                @change="handleChange"
+
+                :color="color"
+                :active-icon="activeIcon"
+                :inactive-icon="inactiveIcon"
+            />
+        </template>
     </am-table-column>
 </template>
 
 <script>
     import AmTableColumn from '../../am-table/am-table-column';
     import tableColumnMixin from '../table-column-mixin';
+    import AmTableColumnCollapseItem from './am-table-column-collapse-item';
+    import AmRadio from '../../am-radio/am-radio';
 
     export default {
         name: 'am-table-column-collapse',
-        mixins: {
-            tableColumnMixin,
-        },
-        components: {AmTableColumn},
+        mixins: [tableColumnMixin],
+        components: {AmRadio, AmTableColumnCollapseItem, AmTableColumn},
         props: {
             width: {type: String, default: '32px'},
 
@@ -29,6 +57,8 @@
             disabled: {type: Boolean},
 
             color: {type: String, default: 'primary'},
+            activeIcon: {type: String, default: 'fas-angle-up'},
+            inactiveIcon: {type: String, default: 'fas-angle-down'},
         },
         data() {
             return {

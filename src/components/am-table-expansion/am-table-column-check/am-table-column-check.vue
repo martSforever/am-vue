@@ -36,7 +36,6 @@
     import tableColumnMixin from '../table-column-mixin';
     import AmRadio from '../../am-radio';
     import AmTableColumnCheckItem from './am-table-column-check-item';
-    import Vue from 'vue';
 
     export default {
         name: 'am-table-column-check',
