@@ -30,6 +30,8 @@
                 @mounted="handleItemMounted"
                 @beforeDestroy="handleItemBeforeDestroyed"
                 @change="handleChange"
+                :render-func="renderFunc"
+                :scope-slot-func="$scopedSlots.default"
 
                 :color="color"
                 :active-icon="activeIcon"
@@ -44,6 +46,7 @@
     import tableColumnMixin from '../table-column-mixin';
     import AmTableColumnCollapseItem from './am-table-column-collapse-item';
     import AmRadio from '../../am-radio/am-radio';
+    import Vue from 'vue';
 
     export default {
         name: 'am-table-column-collapse',
@@ -55,6 +58,7 @@
             confirm: {type: Boolean, default: true},
             singleSelect: {type: Boolean},
             disabled: {type: Boolean},
+            renderFunc: {type: Function},
 
             color: {type: String, default: 'primary'},
             activeIcon: {type: String, default: 'fas-angle-up'},
@@ -87,7 +91,7 @@
             },
             confirmClickTitle() {
                 this.currentValue = !this.currentValue;
-                this.items.forEach(item => Vue.set(item.row, this.field, this.currentValue));
+                this.items.forEach(item => item.currentValue = this.currentValue);
             },
             getSelectRow() {
                 return this.items.reduce((ret, item) => {

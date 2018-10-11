@@ -9,6 +9,7 @@
             <am-button @click="getSelectRow1">getSelectRow1</am-button>
             <am-button @click="getSelectRow2">getSelectRow2</am-button>
         </am-button-group>
+        <am-switch v-model="editable"/>
         <am-number-input v-model="index1"/>
         <am-button-group>
             <am-button @click="cancelEditSpecific">cancelEditSpecific</am-button>
@@ -20,14 +21,38 @@
         <am-number-input v-model="order"></am-number-input>
         <am-button @click="log()">headColumns</am-button>
         <div style="width: 100%;height: 400px">
-            <am-table ref="table1" :list="dateList" :stripe="true">
+            <am-table ref="table1" :list="dateList" :stripe="true" :editable="editable">
                 <am-table-column title="内部订单信息">
                     <am-table-column-check ref="check1"/>
                     <am-table-column-check :confirm="false"/>
                     <am-table-column-check field="checked1" :confirm="false" ref="check2"/>
                     <am-table-column-check field="checked1" :confirm="false" ref="check2" color="success" single-select/>
                     <am-table-column field="checked1" width="90px" title="checked"/>
-                    <am-table-column-collapse/>
+                    <am-table-column-collapse field="checked1">
+                        <template slot-scope="{row}">
+                            <div style="height: 100px;background-color: #515a6e;color: white">
+                                {{row.takeAddr}}
+                            </div>
+                        </template>
+                    </am-table-column-collapse>
+                    <am-table-column-collapse>
+                        <template slot-scope="{row}">
+                            <div style="height: 100px;background-color: blueviolet;color: white;width: 100%">
+                                1、{{row.takeAddr}}----->>>>>
+                                2、{{row.takeAddr}}----->>>>>
+                                3、{{row.takeAddr}}----->>>>>
+                                4、{{row.takeAddr}}----->>>>>
+                                5、{{row.takeAddr}}----->>>>>
+                                6、{{row.takeAddr}}----->>>>>
+                                7、{{row.takeAddr}}----->>>>>
+                                8、{{row.takeAddr}}----->>>>>
+                                9、{{row.takeAddr}}----->>>>>
+                                10、{{row.takeAddr}}----->>>>>
+                                11、{{row.takeAddr}}----->>>>>
+                                12、{{row.takeAddr}}----->>>>>
+                            </div>
+                        </template>
+                    </am-table-column-collapse>
 
                     <am-table-column title="收货信息">
                         <!--<am-table-column title="收货地址" field="takeAddr" order="1"></am-table-column>-->
@@ -81,6 +106,7 @@
                 width: 40,
                 order: 2,
                 index1: null,
+                editable: false,
                 dateList: [
                     {
                         takeAddr: '广州市花都区机场大道东888号',

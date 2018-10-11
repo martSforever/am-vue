@@ -21,17 +21,14 @@ const tableEditItemMixin = {
         row: {
             handler(newval) {
                 /*当row中的属性被改变之后，刷新当前编辑双向绑定的值*/
-                if (newval[this.field] !== this.currentValue) this.currentValue = newval[this.field];
+                if (newval[this.field] !== this.currentValue && !!this.field) this.currentValue = newval[this.field];
             },
             deep: true
         },
         currentEditable(val) {
             /*当取消编辑状态之后，将当前双向绑定的值，重置会row中对象field的值*/
-            if (!val) this.currentValue = this.row[this.field];
+            if (!val && !!this.field) this.currentValue = this.row[this.field];
         },
-        /*currentValue(val) {
-            !!this.field && (this.row[this.field] = val);
-        },*/
     },
     mounted() {
         /*如果当前为表头单元格，直接返回*/
@@ -52,7 +49,7 @@ const tableEditItemMixin = {
             this.currentEditable = false;
         },
         save(val) {
-            this.currentValue = val != null ? val : this.currentValue;
+            val != null && (this.currentValue = val);
             !!this.field && (Vue.set(this.row, this.field, this.currentValue));
         },
     },
