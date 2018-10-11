@@ -61,7 +61,7 @@
                         return (<tr>
                             <td colSpan={this.parent.table.renderColumns.length}>
                                 <am-collapse-transition onAfterLeave={this.handleTransitionEnd}>
-                                    <div v-show={this.parent.show}>
+                                    <div v-show={this.parent.show} ref="wrapper">
                                         {!!this.parent.scopeSlotFunc && this.parent.scopeSlotFunc({row: this.parent.row, rowIndex: this.parent.rowIndex})}
                                     </div>
                                 </am-collapse-transition>
@@ -73,6 +73,9 @@
                             this.$el.parentNode.removeChild(this.$el);
                             this.$destroy();
                         },
+                        initWidth() {
+                            this.$refs.wrapper.style.width = `${this.$el.parentNode.offsetWidth}px`;
+                        },
                     },
                 });
                 return vueComponent.$mount();
@@ -82,6 +85,7 @@
                 this.rows.forEach((row) => {
                     let instance = this.getInstance();
                     insertAfter(instance.$el, row);
+                    instance.initWidth();
                 });
                 this.$nextTick(() => this.show = true);
             },

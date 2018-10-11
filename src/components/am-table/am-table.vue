@@ -69,6 +69,7 @@
     import AmTableColumnController from './am-table-column-controller';
     import AmTableContent from './am-table-content';
     import {findComponentsDownward} from '../../scripts/dom';
+    import {removePx} from '../../scripts/utils';
 
     export default {
         name: 'am-table',
@@ -128,6 +129,12 @@
                 this.columns.forEach((child) => iterate(child));
                 return ret;
             },
+            tableWidth() {
+                this.renderColumns.forEach((ret, col) => {
+                    ret += removePx(col.width);
+                    return ret;
+                }, 0);
+            },
         },
         methods: {
             handleContentScroll(e, focusContent) {
@@ -168,32 +175,32 @@
             },
             triggerMultipleRowMethod(row, index, methodName) {
                 if (index != null) {
-                    this.triggerSingleRowMethod(null, index, methodName)
+                    this.triggerSingleRowMethod(null, index, methodName);
                 } else {
                     let centerRows = findComponentsDownward(this.$refs.center, 'am-table-row');
-                    centerRows.forEach(row => row[methodName]())
+                    centerRows.forEach(row => row[methodName]());
                     if (!!this.$refs.left) {
                         let leftRows = findComponentsDownward(this.$refs.left, 'am-table-row');
-                        leftRows.forEach(row => row[methodName]())
+                        leftRows.forEach(row => row[methodName]());
                     }
                     if (!!this.$refs.right) {
                         let rightRows = findComponentsDownward(this.$refs.right, 'am-table-row');
-                        rightRows.forEach(row => row[methodName]())
+                        rightRows.forEach(row => row[methodName]());
                     }
                 }
             },
             handleRowClick(row, index) {
-                this.triggerSingleRowMethod(row, index, 'click')
+                this.triggerSingleRowMethod(row, index, 'click');
             },
             handleRowDblClick(row, index) {
-                this.triggerSingleRowMethod(row, index, 'dblClick')
-                !!this.editable && (this.triggerSingleRowMethod(row, index, 'edit'))
+                this.triggerSingleRowMethod(row, index, 'dblClick');
+                !!this.editable && (this.triggerSingleRowMethod(row, index, 'edit'));
             },
             cancelEdit(index) {
-                this.triggerMultipleRowMethod(null, index, 'cancelEdit')
+                this.triggerMultipleRowMethod(null, index, 'cancelEdit');
             },
             saveEdit(index) {
-                this.triggerMultipleRowMethod(null, index, 'saveEdit')
+                this.triggerMultipleRowMethod(null, index, 'saveEdit');
             },
         },
         mounted() {
