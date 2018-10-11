@@ -23,6 +23,9 @@
     display: inline-block;
     height: 140px;
     width: 44px;
+    .am-scrollbar-content-wrapper {
+        height: 100%;
+    }
     .am-time-spinner-item {
         display: flex;
         justify-content: center;
