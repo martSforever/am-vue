@@ -127,7 +127,9 @@
                     clearTimeout(this[timerName])
                     this[timerName] = null
                 }
-                this[timerName] = setTimeout(() => this[target] = val, 150)
+                this[timerName] = setTimeout(() => {
+                    this[target] = val;
+                }, 150)
             },
         },
         computed: {

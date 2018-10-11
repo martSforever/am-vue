@@ -9,6 +9,7 @@
         >
             <div class="am-select-item-content"
                  @click="handleClick"
+                 @mouseenter="handleEnterContent"
                  slot="reference">
                 <am-rendering-scope-slot :scope-slot-func="scopeSlotFunc" :data="data" v-if="!!scopeSlotFunc"/>
                 <am-rendering-render-func :render-func="renderingRenderFunc" :data="data" v-if="!!renderingRenderFunc"/>
@@ -83,6 +84,18 @@
                     root.$emit('select', result)
                     root.currentShow = false
                 }
+            },
+            handleEnterContent() {
+                setTimeout(() => {
+                    const dropdown = findComponentUpward(this, 'am-dropdown')
+                    dropdown.popoverHover = true
+                    dropdown.referenceHover = true
+                    clearTimeout(dropdown.popoverTimer)
+                    clearTimeout(dropdown.referenceTimer)
+                    dropdown.popoverTimer = null
+                    dropdown.referenceTimer = null
+                }, 50)
+
             },
         },
     }
