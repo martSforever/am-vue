@@ -101,9 +101,11 @@
                 let styles = {}
                 if (!this.scrollX) {
                     styles.overflowX = 'hidden'
+                    styles.height = '100%'
                 }
                 if (!this.scrollY) {
                     styles.overflowY = 'hidden'
+                    styles.width = '100%'
                 }
                 return styles
             },
