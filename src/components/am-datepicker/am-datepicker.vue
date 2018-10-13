@@ -76,6 +76,9 @@
     import AmDatePanel from "./am-date-panel";
     import AmPopover from '../am-popover'
     import {oneOf} from "../../scripts/utils";
+    import {typeOf} from "../../scripts/utils";
+    import {dateFormat} from "../../scripts/utils";
+
 
     export default {
         name: "am-datepicker",
@@ -90,18 +93,17 @@
             AmPopover,
         },
         props: {
-            value: {type: Date, default: () => new Date()},
+            value: {type: Date | String,},
             show: {type: Boolean, default: false},
             view: {
                 type: String, default: 'date', validator(val) {
                     return oneOf(val, ['year', 'month', 'date'])
                 },
             },
+            format: {type: String, default: 'yyyy-MM-dd'},
 
             type: {
-                type: String,
-                default: 'line',
-                validator(val) {
+                type: String, default: 'line', validator(val) {
                     return oneOf(val, ['fill', 'line', 'none']);
                 },
             },
@@ -138,11 +140,11 @@
         },
         watch: {
             value(val) {
-                this.currentValue = val
+                this.currentValue = this.valueIsString ? !!val ? new Date(val.replace(/-/g, '/')) : new Date() : val
                 this.reset()
             },
             currentValue(val) {
-                this.$emit('input', val)
+                this.$emit('input', this.valueIsString ? dateFormat(val, this.format) : val)
             },
             show(val) {
                 if (this.currentShow !== val) this.currentShow = val
@@ -160,11 +162,15 @@
             },
         },
         data() {
+            const valueIsString = ((this.value == null) || typeOf(this.value) === 'string')
+            const currentValue = valueIsString ? !!this.value ? new Date(this.value.replace(/-/g, '/')) : null : this.value
+            const now = new Date()
             return {
-                currentValue: this.value,
-                currentYear: this.value.getFullYear(),
-                currentMonth: this.value.getMonth(),
-                currentDate: this.value.getDate(),
+                valueIsString,
+                currentValue,
+                currentYear: !!currentValue ? currentValue.getFullYear() : now.getFullYear(),
+                currentMonth: !!currentValue ? currentValue.getMonth() : now.getMonth(),
+                currentDate: !!currentValue ? currentValue.getDate() : now.getDate(),
                 mode: this.view,
                 currentShow: this.show,
             }
@@ -177,10 +183,8 @@
                 return oneOf(this.view, ['date'])
             },
             showValue() {
-                let ret = `${this.currentValue.getFullYear()}`
-                this.hasMonth && (ret += `-${zeroize(this.currentValue.getMonth() + 1)}`)
-                this.hasDate && (ret += `-${zeroize(this.currentValue.getDate())}`)
-                return ret
+                if (!this.currentValue) return null
+                return dateFormat(this.currentValue, this.format)
             },
         },
         methods: {
@@ -225,6 +229,7 @@
                     this.mode = 'date'
             },
             reset() {
+                if (!this.currentValue) return
                 this.currentYear = this.currentValue.getFullYear();
                 this.currentMonth = this.currentValue.getMonth();
                 this.currentDate = this.currentValue.getDate();
