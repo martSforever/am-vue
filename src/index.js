@@ -39,7 +39,8 @@ import tableColumn from './components/am-table/am-table-column';
 import tableColumnIndex from './components/am-table-expansion/am-table-column-index';
 import tableColumnInput from './components/am-table-expansion/am-table-column-input/am-table-column-input';
 import tableColumnCheck from './components/am-table-expansion/am-table-column-check/am-table-column-check';
-import tableCOlumnCollapse from './components/am-table-expansion/am-table-column-collapse/am-table-column-collapse';
+import tableColumnCollapse from './components/am-table-expansion/am-table-column-collapse/am-table-column-collapse';
+import tableColumnDatepicker from './components/am-table-expansion/am-table-column-datepicker/am-table-column-datepicker'
 
 const components = {
     icon,
@@ -78,7 +79,8 @@ const components = {
     'table-column-index': tableColumnIndex,
     'table-column-input': tableColumnInput,
     'table-column-check': tableColumnCheck,
-    'table-column-collapse': tableCOlumnCollapse,
+    'table-column-collapse': tableColumnCollapse,
+    'table-column-datepicker': tableColumnDatepicker,
 };
 
 let $amvue = {};

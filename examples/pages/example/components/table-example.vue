@@ -57,6 +57,8 @@
                     <am-table-column title="收货信息">
                         <!--<am-table-column title="收货地址" field="takeAddr" order="1"></am-table-column>-->
                         <am-table-column-input title="收货地址" field="takeAddr" order="1" type="fill" color="primary"/>
+                        <am-table-column-datepicker title="收货日期" field="takeDate"/>
+                        <am-table-column title="收货日期（普通列）" field="takeDate"/>
                         <am-table-column title="收货联系人" field="takePerson" :order="order"></am-table-column>
                         <am-table-column title="收货联系方式" field="takeContract" order="3"></am-table-column>
                     </am-table-column>
@@ -116,6 +118,8 @@
                         sendAddr: '广州市白云区兴太三路638号',
                         sendPerson: '张学友1',
                         sendContract: '18211111111',
+
+                        takeDate: '2018-10-13',
                     },
                     {
                         takeAddr: '广州市花都区站前路1号',
