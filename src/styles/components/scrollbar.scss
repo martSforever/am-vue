@@ -60,3 +60,13 @@
         }
     }
 }
+
+::-webkit-scrollbar {
+    background: transparent;
+    width: 9px;
+    height: 9px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: transparent;
+}
