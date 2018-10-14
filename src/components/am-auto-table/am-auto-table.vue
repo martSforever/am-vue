@@ -1,6 +1,6 @@
 <template>
     <div class="am-auto-table">
-        <div class="am-auto-table-title" v-if="!!title">{{title}}-{{editing}}</div>
+        <div class="am-auto-table-title" v-if="!!title">{{title}}-{{currentSelectIndex}}</div>
         <div class="am-auto-table-header">
             <div>
                 <am-button icon="fas-cog" icon-only size="small" type="none"/>
@@ -25,6 +25,7 @@
             :editing.sync="editing"
             :before-edit="beforeEdit"
             :before-cancel-edit="beforeCancelEdit"
+            :select-index.sync="currentSelectIndex"
 
             @render-columns-change="val=>renderColumns = val"
         >
@@ -60,6 +61,15 @@
             indexing: {type: Boolean, default: true},
             rowNum: {type: Number, default: 10},
             title: {type: String},
+            selectIndex: {type: Number, default: 0},
+        },
+        watch: {
+            selectIndex(val) {
+                if (this.currentSelectIndex !== val) this.currentSelectIndex = val
+            },
+            currentSelectIndex(val) {
+                this.$emit('update:selectIndex', val)
+            },
         },
         data() {
             return {
@@ -67,22 +77,17 @@
                 editing: false,
                 table: null,
                 editStatus: EDIT_STATUS.NORMAL,
-                list: [
-                    {acctName: '刘德华', acctCode: 'SGBVCD', birthday: '2018-10-19', acctType: '大客户', acctAgency: '河南经销商'},
-                    {acctName: '刘德华', acctCode: 'SGBVCD', birthday: '2018-10-19', acctType: '大客户', acctAgency: '河南经销商'},
-                    {acctName: '刘德华', acctCode: 'SGBVCD', birthday: '2018-10-19', acctType: '大客户', acctAgency: '河南经销商'},
-                    {acctName: '刘德华', acctCode: 'SGBVCD', birthday: '2018-10-19', acctType: '大客户', acctAgency: '河南经销商'},
-                    {acctName: '刘德华', acctCode: 'SGBVCD', birthday: '2018-10-19', acctType: '大客户', acctAgency: '河南经销商'},
-                    {acctName: '刘德华', acctCode: 'SGBVCD', birthday: '2018-10-19', acctType: '大客户', acctAgency: '河南经销商'},
-                    {acctName: '刘德华', acctCode: 'SGBVCD', birthday: '2018-10-19', acctType: '大客户', acctAgency: '河南经销商'},
-                    {acctName: '刘德华', acctCode: 'SGBVCD', birthday: '2018-10-19', acctType: '大客户', acctAgency: '河南经销商'},
-                    {acctName: '刘德华', acctCode: 'SGBVCD', birthday: '2018-10-19', acctType: '大客户', acctAgency: '河南经销商'},
-                    {acctName: '张学友', acctCode: 'SGBVCD', birthday: '2018-10-19', acctType: '大客户', acctAgency: '河南经销商'},
-                ]
+                currentSelectIndex: this.selectIndex,
+                list: []
             }
         },
         mounted() {
             this.table = this.$refs.table
+
+            /*---------------------------------------testing-------------------------------------------*/
+            for (let i = 0; i < 10; i++) {
+                this.list.push({acctName: `刘德华${i + 1}`, acctCode: 'SGBVCD', birthday: '2018-10-19', acctType: '大客户', acctAgency: '河南经销商'},)
+            }
         },
         computed: {
             searchFields() {
@@ -109,6 +114,7 @@
                 this.list.unshift({})
                 this.table.enableEdit(0)
             },
+
             cancelEdit(val) {
                 if (this.editStatus === EDIT_STATUS.CREATE) {
                     this.editStatus = EDIT_STATUS.NORMAL
@@ -118,7 +124,7 @@
             },
             saveEdit(val) {
                 this.table.saveEdit(val)
-                this.cancelEdit(val)
+                this.table.cancelEdit(val)
             },
 
         },

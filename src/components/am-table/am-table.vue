@@ -5,7 +5,6 @@
             :head-columns.sync="headColumns">
             <slot></slot>
         </am-table-column-controller>
-
         <am-table-content
             ref="center"
             :head-columns="headColumns"
@@ -17,7 +16,7 @@
             :body-row-height="bodyRowHeight"
             content-fixed="center"
             :hover-index.sync="hoverIndex"
-            :select-index.sync="selectIndex"
+            :select-index.sync="currentSelectIndex"
             :border-size="borderSize"
             :border-color="borderColor"
             :row-style-func="rowStyleFunc"
@@ -36,7 +35,7 @@
             :body-row-height="bodyRowHeight"
             content-fixed="left"
             :hover-index.sync="hoverIndex"
-            :select-index.sync="selectIndex"
+            :select-index.sync="currentSelectIndex"
             :border-size="borderSize"
             :border-color="borderColor"
             :row-style-func="rowStyleFunc"
@@ -55,7 +54,7 @@
             :body-row-height="bodyRowHeight"
             content-fixed="right"
             :hover-index.sync="hoverIndex"
-            :select-index.sync="selectIndex"
+            :select-index.sync="currentSelectIndex"
             :border-size="borderSize"
             :border-color="borderColor"
             :row-style-func="rowStyleFunc"
@@ -90,6 +89,7 @@
             beforeEdit: {type: Function},
             beforeCancelEdit: {type: Function},
             editing: {type: Boolean, default: false},
+            selectIndex: {type: Number},
         },
         watch: {
             editing(val) {
@@ -97,6 +97,12 @@
             },
             currentEditing(val) {
                 this.$emit('update:editing', val)
+            },
+            selectIndex(val) {
+                if (this.currentSelectIndex !== val) this.currentSelectIndex = val
+            },
+            currentSelectIndex(val) {
+                this.$emit('update:selectIndex', val)
             },
         },
         data() {
@@ -108,7 +114,7 @@
                 shadowRight: false,
                 dragingScrollbar: false,
                 hoverIndex: null,
-                selectIndex: null,
+                currentSelectIndex: this.selectIndex,
                 currentEditing: this.editing,
             };
         },
