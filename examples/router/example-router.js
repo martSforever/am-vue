@@ -131,5 +131,10 @@ export default {
             name: 'table',
             component: resolve => require(['examples/pages/example/components/table-example.vue'], resolve),
         },
+        {
+            path: '/auto-table',
+            name: 'auto-table-example',
+            component: resolve => require(['examples/pages/example/components/auto-table-example.vue'], resolve),
+        },
     ]
 };

@@ -1,0 +1,10 @@
+.am-auto-table {
+    height: 100%;
+    width: 100%;
+    box-shadow: $box-shadow;
+    .am-auto-table-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+}

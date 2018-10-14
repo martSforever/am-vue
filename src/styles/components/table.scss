@@ -4,7 +4,6 @@
     vertical-align: bottom;
     height: 100%;
     width: 100%;
-    box-shadow: $box-shadow;
     position: relative;
     overflow: hidden;
     table {
@@ -22,7 +21,7 @@
         height: 100%;
         position: relative;
         .am-table-head {
-            background-color: $color-normal-background;
+            background-color: white;
             color: $color-normal-content;
             font-size: 14px;
             font-weight: bold;

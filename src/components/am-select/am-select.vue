@@ -1,6 +1,6 @@
 <template>
     <div class="am-select">
-        <am-dropdown trigger="click">
+        <am-dropdown trigger="click" :size-equal="sizeEqual">
             <am-input slot="reference"
                       @click="currentShow = true"
                       v-model="currentValue"
@@ -17,6 +17,7 @@
                       :disabled="disabled"
                       :readonly="readonly"
                       :clearable="clearable"
+                      :width="width"
                       :regexp="regexp"/>
             <div slot="popover">
                 <am-select-item v-for="(item,index) in data"
@@ -91,6 +92,8 @@
             readonly: {type: Boolean},
             clearable: {type: Boolean},
             regexp: {type: RegExp},
+            width: {type: Number},
+            sizeEqual: {type: Boolean},
         },
         watch: {
             value(val) {

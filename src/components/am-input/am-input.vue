@@ -6,7 +6,7 @@
         <span class="am-input-prefix-icon" v-if="!!prefixIcon" @click="e=>$emit('click-prefix-icon',e)">
             <am-icon :icon="prefixIcon"/>
         </span>
-        <div class="am-input-wrapper">
+        <div class="am-input-wrapper" :style="wrapperStyles">
             <input v-model="currentValue"
                    :placeholder="!!disabled?'':placeholder"
                    :disabled="disabled"
@@ -77,6 +77,7 @@
             readonly: {type: Boolean},
             clearable: {type: Boolean},
             regexp: {type: RegExp},
+            width: {type: Number, default: 150}
         },
         watch: {
             value(val) {
@@ -111,6 +112,11 @@
                         'am-input-dashed': !!this.dashed
                     },
                 ];
+            },
+            wrapperStyles() {
+                const styles = {}
+                !!this.width && (styles.width = `${this.width}px`)
+                return styles
             },
         },
         methods: {

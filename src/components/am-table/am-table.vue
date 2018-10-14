@@ -1,5 +1,5 @@
 <template>
-    <div class="am-table" :class="classes">
+    <div class="am-table" :class="classes" :style="styles">
         <am-table-column-controller
             :columns.sync="columns"
             :head-columns.sync="headColumns">
@@ -86,6 +86,7 @@
             cellStyleFunc: {type: Function,},
             list: {},
             editable: {type: Boolean, default: true},
+            rowNum: {type: Number},
         },
         data() {
             return {
@@ -100,6 +101,12 @@
             };
         },
         computed: {
+            styles() {
+                const styles = {}
+                !!this.rowNum && (styles.height = `${this.headColumns.length * this.headRowHeight + (this.rowNum + 1) * this.bodyRowHeight}px`)
+                console.log(styles)
+                return styles
+            },
             classes() {
                 return {
                     'am-table-shadow-left': this.shadowLeft,

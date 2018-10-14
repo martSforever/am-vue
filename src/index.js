@@ -41,6 +41,7 @@ import tableColumnInput from './components/am-table-expansion/am-table-column-in
 import tableColumnCheck from './components/am-table-expansion/am-table-column-check/am-table-column-check';
 import tableColumnCollapse from './components/am-table-expansion/am-table-column-collapse/am-table-column-collapse';
 import tableColumnDatepicker from './components/am-table-expansion/am-table-column-datepicker/am-table-column-datepicker'
+import autoTable from './components/am-auto-table/am-auto-table'
 
 const components = {
     icon,
@@ -81,6 +82,7 @@ const components = {
     'table-column-check': tableColumnCheck,
     'table-column-collapse': tableColumnCollapse,
     'table-column-datepicker': tableColumnDatepicker,
+    'auto-table': autoTable,
 };
 
 let $amvue = {};
