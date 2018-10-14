@@ -1,27 +1,33 @@
 <template>
     <div class="am-auto-table">
-        <div class="am-auto-table-title" v-if="!!title">{{title}}</div>
+        <div class="am-auto-table-title" v-if="!!title">{{title}}-{{editing}}</div>
         <div class="am-auto-table-header">
             <div>
                 <am-button icon="fas-cog" icon-only size="small" type="none"/>
                 <am-select size="small" suffix-icon="fas-angle-down" placeholder="搜索类型" :width="60" shape="none" type="none" :data="searchFields" show-key="title"/>
                 <am-input size="small" suffix-icon="fas-search" shape="none" type="none" placeholder="搜索关键字"/>
-                <am-button-group size="small" shape="round">
-                    <am-button label="新建" icon="fas-plus-circle" color="success"/>
+                <am-button-group size="small" shape="round" v-show="!editing">
+                    <am-button label="新建" icon="fas-plus-circle" color="success" @click="handleClickCreateButton"/>
                     <am-button label="删除" icon="fas-minus-circle" color="error"/>
-                    <am-button label="导入" icon="fas-upload"/>
-                    <am-button label="导出" icon="fas-download"/>
+                    <am-button label="导入" icon="fas-download"/>
+                    <am-button label="导出" icon="fas-upload"/>
                 </am-button-group>
-                <am-button-group size="small" shape="round">
-                    <am-button label="保存编辑" icon="fas-save"/>
-                    <am-button label="取消编辑" color="error" icon="fas-ban"/>
+                <am-button-group size="small" shape="round" v-show="!!editing">
+                    <am-button label="保存编辑" icon="fas-save" @click="handleClickSaveEditButton"/>
+                    <am-button label="取消编辑" color="error" icon="fas-ban" @click="handleClickCancelEditButton"/>
                 </am-button-group>
             </div>
         </div>
         <am-table
-            @render-columns-change="val=>{renderColumns = val}"
+            ref="table"
             :row-num="rowNum"
-            :list="list">
+            :list="list"
+            :editing.sync="editing"
+            :before-edit="beforeEdit"
+            :before-cancel-edit="beforeCancelEdit"
+
+            @render-columns-change="val=>renderColumns = val"
+        >
             <am-table-column-index v-if="indexing"/>
             <slot></slot>
         </am-table>
@@ -42,6 +48,11 @@
     import AmSelect from "../am-select/am-select";
     import AmPagination from "../am-pagination/am-pagination";
 
+    const EDIT_STATUS = {
+        NORMAL: 'normal',
+        CREATE: 'create'
+    }
+
     export default {
         name: "am-auto-table",
         components: {AmPagination, AmSelect, AmInput, AmButton, AmButtonGroup, AmTableColumnIndex, AmTable},
@@ -53,6 +64,9 @@
         data() {
             return {
                 renderColumns: null,
+                editing: false,
+                table: null,
+                editStatus: EDIT_STATUS.NORMAL,
                 list: [
                     {acctName: '刘德华', acctCode: 'SGBVCD', birthday: '2018-10-19', acctType: '大客户', acctAgency: '河南经销商'},
                     {acctName: '刘德华', acctCode: 'SGBVCD', birthday: '2018-10-19', acctType: '大客户', acctAgency: '河南经销商'},
@@ -67,6 +81,9 @@
                 ]
             }
         },
+        mounted() {
+            this.table = this.$refs.table
+        },
         computed: {
             searchFields() {
                 if (!this.renderColumns) return []
@@ -74,7 +91,36 @@
                     if (!item.noSearch) ret.push(item)
                     return ret
                 }, [])
-            }
+            },
+        },
+        methods: {
+            beforeEdit() {
+            },
+            beforeCancelEdit() {
+            },
+            handleClickCancelEditButton() {
+                this.cancelEdit();
+            },
+            handleClickSaveEditButton() {
+                this.saveEdit()
+            },
+            handleClickCreateButton() {
+                this.editStatus = EDIT_STATUS.CREATE
+                this.list.unshift({})
+                this.table.enableEdit(0)
+            },
+            cancelEdit(val) {
+                if (this.editStatus === EDIT_STATUS.CREATE) {
+                    this.editStatus = EDIT_STATUS.NORMAL
+                    this.list.shift()
+                }
+                this.table.cancelEdit(val)
+            },
+            saveEdit(val) {
+                this.table.saveEdit(val)
+                this.cancelEdit(val)
+            },
+
         },
     }
 </script>

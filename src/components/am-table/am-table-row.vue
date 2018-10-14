@@ -66,7 +66,7 @@
             dblClick() {
                 // console.log('dblClick', this.row, this.rowIndex, this.contentFixed);
             },
-            edit() {
+            enableEdit() {
                 const editItems = this.findEditItems(this);
                 editItems.forEach((item) => item.enableEdit());
                 this.currentEditable = true;

@@ -87,6 +87,17 @@
             list: {},
             editable: {type: Boolean, default: true},
             rowNum: {type: Number},
+            beforeEdit: {type: Function},
+            beforeCancelEdit: {type: Function},
+            editing: {type: Boolean, default: false},
+        },
+        watch: {
+            editing(val) {
+                if (this.currentEditing !== val) this.currentEditing = val
+            },
+            currentEditing(val) {
+                this.$emit('update:editing', val)
+            },
         },
         data() {
             return {
@@ -98,13 +109,14 @@
                 dragingScrollbar: false,
                 hoverIndex: null,
                 selectIndex: null,
+                currentEditing: this.editing,
             };
         },
         computed: {
             styles() {
                 const styles = {}
                 !!this.rowNum && (styles.height = `${this.headColumns.length * this.headRowHeight + (this.rowNum) * this.bodyRowHeight}px`)
-                console.log(styles)
+                // console.log(styles)
                 return styles
             },
             classes() {
@@ -202,13 +214,21 @@
             },
             handleRowDblClick(row, index) {
                 this.triggerSingleRowMethod(row, index, 'dblClick');
-                !!this.editable && (this.triggerSingleRowMethod(row, index, 'edit'));
+                !!this.beforeEdit && this.beforeEdit()
+                this.currentEditing = true
+                !!this.editable && (this.triggerSingleRowMethod(row, index, 'enableEdit'));
             },
             cancelEdit(index) {
+                !!this.beforeCancelEdit && this.beforeCancelEdit()
+                this.currentEditing = false
                 this.triggerMultipleRowMethod(null, index, 'cancelEdit');
             },
             saveEdit(index) {
                 this.triggerMultipleRowMethod(null, index, 'saveEdit');
+            },
+            enableEdit(index) {
+                this.currentEditing = true
+                index != null && !!this.editable && (this.triggerSingleRowMethod(null, index, 'enableEdit'));
             },
         },
         mounted() {
