@@ -4,7 +4,7 @@
         <div class="am-auto-table-header">
             <div>
                 <am-button icon="fas-cog" icon-only size="small" type="none"/>
-                <am-select size="small" suffix-icon="fas-angle-down" placeholder="搜索类型" :width="60" shape="none" type="none"/>
+                <am-select size="small" suffix-icon="fas-angle-down" placeholder="搜索类型" :width="60" shape="none" type="none" :data="searchFields" show-key="title"/>
                 <am-input size="small" suffix-icon="fas-search" shape="none" type="none" placeholder="搜索关键字"/>
                 <am-button-group size="small" shape="round">
                     <am-button label="新建" icon="fas-plus-circle" color="success"/>
@@ -19,6 +19,7 @@
             </div>
         </div>
         <am-table
+            @render-columns-change="val=>{renderColumns = val}"
             :row-num="rowNum"
             :list="list">
             <am-table-column-index v-if="indexing"/>
@@ -51,6 +52,7 @@
         },
         data() {
             return {
+                renderColumns: null,
                 list: [
                     {acctName: '刘德华', acctCode: 'SGBVCD', birthday: '2018-10-19', acctType: '大客户', acctAgency: '河南经销商'},
                     {acctName: '刘德华', acctCode: 'SGBVCD', birthday: '2018-10-19', acctType: '大客户', acctAgency: '河南经销商'},
@@ -63,6 +65,15 @@
                     {acctName: '刘德华', acctCode: 'SGBVCD', birthday: '2018-10-19', acctType: '大客户', acctAgency: '河南经销商'},
                     {acctName: '张学友', acctCode: 'SGBVCD', birthday: '2018-10-19', acctType: '大客户', acctAgency: '河南经销商'},
                 ]
+            }
+        },
+        computed: {
+            searchFields() {
+                if (!this.renderColumns) return []
+                return this.renderColumns.reduce((ret, item) => {
+                    if (!item.noSearch) ret.push(item)
+                    return ret
+                }, [])
             }
         },
     }

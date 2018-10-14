@@ -12,7 +12,8 @@
                  @mouseenter="handleEnterContent"
                  slot="reference">
                 <am-rendering-scope-slot :scope-slot-func="scopeSlotFunc" :data="data" v-if="!!scopeSlotFunc"/>
-                <am-rendering-render-func :render-func="renderingRenderFunc" :data="data" v-if="!!renderingRenderFunc"/>
+                <am-rendering-render-func :render-func="renderingRenderFunc" :data="data" v-else-if="!!renderingRenderFunc"/>
+                <span v-else-if="!!showKey">{{data[showKey]}}</span>
             </div>
             <div slot="popover"
                  @mouseenter="handleMouseEnter">
@@ -23,6 +24,7 @@
                     :rendering-render-func="renderingRenderFunc"
                     :data="item"
                     :children-key="childrenKey"
+                    show-key="showKey"
                 />
             </div>
         </am-dropdown>
@@ -50,6 +52,8 @@
             scopeSlotFunc: {},
             renderingRenderFunc: {},
             childrenKey: {},
+            showKey: {type: String},
+
         },
         data() {
             return {

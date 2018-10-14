@@ -134,6 +134,7 @@
                 }
 
                 this.columns.forEach((child) => iterate(child));
+                this.$emit('render-columns-change', ret)
                 return ret;
             },
             tableWidth() {

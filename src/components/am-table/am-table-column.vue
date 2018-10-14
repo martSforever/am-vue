@@ -21,6 +21,7 @@
                     return oneOf(val, ['left', 'right', 'center']);
                 },
             },
+            noSearch: {type: Boolean, default: false},
         },
         watch: {
             order(newval, oldval) {
@@ -83,6 +84,9 @@
                     },
                     get fixed() {
                         return _this.currentFixed;
+                    },
+                    get noSearch() {
+                        return _this.noSearch;
                     },
                     updateWidth(width) {
                         _this.currentWidth = width;

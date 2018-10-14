@@ -3,6 +3,7 @@
                      :title="title"
                      :width.sync="currentWidth"
                      :order="order"
+                     :no-search="noSearch"
                      :title-render-func="titleRenderFunc"
                      :col-render-func="colRenderFunc"
                      :fixed.sync="currentFixed">
@@ -24,6 +25,7 @@
             title: {type: String, desc: '列标题，当没有titleRenderFunc以及没有$scopedSlots.title时，显示该文本', default: '#'},
             width: {default: '32px', desc: '列宽度'},
             order: {default: 999, desc: '列排序'},
+            noSearch: {type: Boolean, default: true},
         }
     };
 </script>

@@ -29,6 +29,7 @@
                                 :scope-slot-func="$scopedSlots.default"
                                 :rendering-render-func="renderFunc"
                                 :children-key="childrenKey"
+                                :show-key="showKey"
                 />
             </div>
         </am-dropdown>
