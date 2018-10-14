@@ -23,7 +23,7 @@
                     @mouseleave.native="_handleLeave('popoverHover',false,'popoverTimer')"
                     @input="val=> currentValue = val"
         >
-            <div class="am-dropdown-popover-wrapper" :style="{height:`${height}px`,width:`${width}px`}">
+            <div class="am-dropdown-popover-wrapper" :style="wrapperStyles">
                 <am-scrollbar :scrollbar-size="scrollbarSize" :scroll-x="false">
                     <slot name="popover"></slot>
                 </am-scrollbar>
@@ -96,7 +96,7 @@
             scrollbarSize: {type: Number, default: 6},
             hideOnClickItem: {type: Boolean, default: true},
             height: {type: Number, default: 144},
-            width: {type: Number, default: 100},
+            width: {type: Number | String, default: '100px'},
             scrollbar: {type: Boolean, default: true},
         },
         watch: {
@@ -136,6 +136,14 @@
             show() {
                 return this.trigger === 'click' ?
                     this.currentValue : (this.referenceHover || this.popoverHover)
+            },
+            wrapperStyles() {
+                const styles = {}
+                if (!!this.height)
+                    styles.height = `${this.height}${this.height instanceof String ? 'px' : ''}`
+                if (!!this.width)
+                    styles.width = `${this.width}${this.width instanceof Number ? 'px' : ''}`
+                return styles
             },
         },
     }

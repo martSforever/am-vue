@@ -1,6 +1,6 @@
 <template>
     <div class="am-select">
-        <am-dropdown trigger="click" :size-equal="sizeEqual" v-model="currentShow">
+        <am-dropdown trigger="click" :size-equal="sizeEqual" v-model="currentShow" :width="dropdownWidth">
             <am-input slot="reference"
                       @click="currentShow = true"
                       v-model="currentValue"
@@ -97,6 +97,7 @@
             regexp: {type: RegExp},
             width: {type: Number},
             sizeEqual: {type: Boolean},
+            dropdownWidth: {default: '100px'},
         },
         watch: {
             value(val) {
@@ -119,10 +120,9 @@
             }
         },
         mounted() {
-            (!!this.showKey) &&
             this.$on('select', (result) => {
                 this.currentValue = result.reduce((ret, item) => {
-                    ret.push([item[this.showKey]])
+                    ret.push(!!this.showKey ? item[this.showKey] : item)
                     return ret
                 }, []).join(',')
             })

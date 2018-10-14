@@ -103,7 +103,7 @@
         computed: {
             styles() {
                 const styles = {}
-                !!this.rowNum && (styles.height = `${this.headColumns.length * this.headRowHeight + (this.rowNum + 1) * this.bodyRowHeight}px`)
+                !!this.rowNum && (styles.height = `${this.headColumns.length * this.headRowHeight + (this.rowNum) * this.bodyRowHeight}px`)
                 console.log(styles)
                 return styles
             },

@@ -1,0 +1,36 @@
+.am-pagination {
+    display: inline-flex;
+    align-items: center;
+    justify-content: space-between;
+    color: $color-normal-sub-color;
+    user-select: none;
+    @each $key, $value in $list-size {
+        &.am-pagination-#{$key} {
+            height: $value;
+            font-size: $value/2.5;
+        }
+        .am-pagination-operate-num {
+            width: $value;
+            height: $value;
+            border-radius: $value;
+            line-height: $value;
+        }
+    }
+
+    .am-pagination-operate-wrapper {
+        display: inline-block;
+        .am-icon, .am-pagination-operate-num {
+            cursor: pointer;
+            margin: 0 6px;
+            font-size: inherit;
+        }
+        .am-pagination-operate-num {
+            display: inline-block;
+            text-align: center;
+            &.am-pagination-operate-num-active {
+                background-color: $color-primary;
+                color: white;
+            }
+        }
+    }
+}
