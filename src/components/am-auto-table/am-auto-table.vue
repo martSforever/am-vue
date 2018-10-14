@@ -8,7 +8,7 @@
                 <am-input size="small" suffix-icon="fas-search" shape="none" type="none" placeholder="搜索关键字"/>
                 <am-button-group size="small" shape="round" v-show="!editing">
                     <am-button label="新建" icon="fas-plus-circle" color="success" @click="handleClickCreateButton"/>
-                    <am-button label="删除" icon="fas-minus-circle" color="error"/>
+                    <am-button label="删除" icon="fas-minus-circle" color="error" @click="handleClickDeleteButton"/>
                     <am-button label="导入" icon="fas-download"/>
                     <am-button label="导出" icon="fas-upload"/>
                 </am-button-group>
@@ -114,6 +114,18 @@
                 this.list.unshift({})
                 this.table.enableEdit(0)
             },
+            handleClickDeleteButton() {
+                this.$modal.show({
+                    title: '确认提示',
+                    message: `确认要删除第${this.currentSelectIndex + 1}条记录吗？`,
+                    confirmButton: true,
+                    cancelButton: true,
+                    onConfirm: () => {
+                        this.list.splice(this.currentSelectIndex, 1)
+                    },
+                })
+            },
+
 
             cancelEdit(val) {
                 if (this.editStatus === EDIT_STATUS.CREATE) {
