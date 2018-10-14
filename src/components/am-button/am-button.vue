@@ -7,10 +7,10 @@
         <am-icon :icon="icon"
                  v-if="!!icon && iconPosition === 'left'"
                  :loading="iconLoading"
-                 class="am-button-icon"/>
+                 class="am-button-icon am-button-icon-left"/>
         <slot><span class="am-button-label">{{label}}</span></slot>
         <am-icon :icon="icon" v-if="!!icon && iconPosition === 'right'" :loading="iconLoading"
-                 class="am-button-icon"/>
+                 class="am-button-icon am-button-icon-right"/>
     </button>
 </template>
 

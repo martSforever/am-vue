@@ -1,10 +1,21 @@
 <template>
     <div class="am-auto-table">
+        <div class="am-auto-table-title" v-if="!!title">{{title}}</div>
         <div class="am-auto-table-header">
             <div>
                 <am-button icon="fas-cog" icon-only size="small" type="none"/>
                 <am-select size="small" suffix-icon="fas-angle-down" placeholder="搜索类型" :width="60" shape="none" type="none"/>
                 <am-input size="small" suffix-icon="fas-search" shape="none" type="none" placeholder="搜索关键字"/>
+                <am-button-group size="small" shape="round">
+                    <am-button label="新建" icon="fas-plus-circle" color="success"/>
+                    <am-button label="删除" icon="fas-minus-circle" color="error"/>
+                    <am-button label="导入" icon="fas-upload"/>
+                    <am-button label="导出" icon="fas-download"/>
+                </am-button-group>
+                <am-button-group size="small" shape="round">
+                    <am-button label="保存编辑" icon="fas-save"/>
+                    <am-button label="取消编辑" color="error" icon="fas-ban"/>
+                </am-button-group>
             </div>
         </div>
         <am-table
@@ -17,10 +28,6 @@
             <div>
                 <am-pagination/>
             </div>
-            <am-button-group size="small" shape="none">
-                <am-button label="保存编辑"/>
-                <am-button label="取消编辑" color="error"/>
-            </am-button-group>
         </div>
     </div>
 </template>
@@ -40,6 +47,7 @@
         props: {
             indexing: {type: Boolean, default: true},
             rowNum: {type: Number, default: 10},
+            title: {type: String},
         },
         data() {
             return {

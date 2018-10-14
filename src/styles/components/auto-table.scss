@@ -2,10 +2,17 @@
     height: 100%;
     width: 100%;
     box-shadow: $box-shadow;
+    .am-auto-table-title {
+        font-size: 16px;
+        padding: 6px 12px;
+        background-color: #f2f2f2;
+        color: $color-normal-title;
+    }
     .am-auto-table-header {
         display: flex;
         align-items: center;
         justify-content: space-between;
+        padding: 12px 0;
     }
     .am-auto-table-footer {
         padding: 0 1em;
