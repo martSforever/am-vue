@@ -7,4 +7,13 @@
         align-items: center;
         justify-content: space-between;
     }
+    .am-auto-table-footer {
+        padding: 0 1em;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        .am-auto-table-page-select {
+            line-height: 24px;
+        }
+    }
 }

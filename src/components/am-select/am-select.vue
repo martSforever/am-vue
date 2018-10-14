@@ -18,7 +18,10 @@
                       :readonly="readonly"
                       :clearable="clearable"
                       :width="width"
-                      :regexp="regexp"/>
+                      :regexp="regexp">
+                <slot name="prepend" slot="prepend"></slot>
+                <slot name="append" slot="append"></slot>
+            </am-input>
             <div slot="popover">
                 <am-select-item v-for="(item,index) in data"
                                 :key="index"

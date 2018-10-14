@@ -13,10 +13,11 @@
             <am-table-column-index v-if="indexing"/>
             <slot></slot>
         </am-table>
-        <div class="am-auto-table-header">
+        <div class="am-auto-table-footer">
             <div>
-                <am-button label="页大小：" type="none" size="small"/>
-                <am-select size="small" suffix-icon="fas-angle-down" :value="rowNum" :width="40" shape="none" type="none" :size-equal="true"/>
+                <am-select size="small" suffix-icon="fas-angle-down" :value="rowNum" :width="40" shape="none" type="none" :size-equal="true" class="am-auto-table-page-select">
+                    <span slot="prepend">页大小:</span>
+                </am-select>
             </div>
             <am-button-group size="small" shape="none">
                 <am-button label="保存编辑"/>
@@ -39,7 +40,7 @@
         components: {AmSelect, AmInput, AmButton, AmButtonGroup, AmTableColumnIndex, AmTable},
         props: {
             indexing: {type: Boolean, default: true},
-            rowNum: {type: Boolean, default: 10},
+            rowNum: {type: Number, default: 10},
         },
         data() {
             return {
