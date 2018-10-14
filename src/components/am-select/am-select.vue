@@ -1,6 +1,6 @@
 <template>
     <div class="am-select">
-        <am-dropdown trigger="click" :size-equal="sizeEqual">
+        <am-dropdown trigger="click" :size-equal="sizeEqual" v-model="currentShow">
             <am-input slot="reference"
                       @click="currentShow = true"
                       v-model="currentValue"
@@ -12,7 +12,7 @@
                       :dashed="dashed"
                       :long="long"
                       :prefix-icon="prefixIcon"
-                      :suffix-icon="suffixIcon"
+                      :suffix-icon="selectSuffixIcon"
                       :placeholder="placeholder"
                       :disabled="disabled"
                       :readonly="readonly"
@@ -126,6 +126,11 @@
                     return ret
                 }, []).join(',')
             })
+        },
+        computed: {
+            selectSuffixIcon() {
+                return this.currentShow ? 'fas-angle-up' : 'fas-angle-down'
+            }
         },
     }
 </script>
