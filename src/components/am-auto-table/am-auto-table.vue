@@ -15,9 +15,7 @@
         </am-table>
         <div class="am-auto-table-footer">
             <div>
-                <am-select size="small" suffix-icon="fas-angle-down" :value="rowNum" :width="40" shape="none" type="none" :size-equal="true" class="am-auto-table-page-select">
-                    <span slot="prepend">页大小:</span>
-                </am-select>
+                <am-pagination/>
             </div>
             <am-button-group size="small" shape="none">
                 <am-button label="保存编辑"/>
@@ -34,10 +32,11 @@
     import AmButton from "../am-button/am-button";
     import AmInput from "../am-input/am-input";
     import AmSelect from "../am-select/am-select";
+    import AmPagination from "../am-pagination/am-pagination";
 
     export default {
         name: "am-auto-table",
-        components: {AmSelect, AmInput, AmButton, AmButtonGroup, AmTableColumnIndex, AmTable},
+        components: {AmPagination, AmSelect, AmInput, AmButton, AmButtonGroup, AmTableColumnIndex, AmTable},
         props: {
             indexing: {type: Boolean, default: true},
             rowNum: {type: Number, default: 10},

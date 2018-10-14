@@ -136,5 +136,10 @@ export default {
             name: 'auto-table-example',
             component: resolve => require(['examples/pages/example/components/auto-table-example.vue'], resolve),
         },
+        {
+            path: '/pagination',
+            name: 'pagination-example',
+            component: resolve => require(['examples/pages/example/components/pagination-example.vue'], resolve),
+        },
     ]
 };

@@ -65,6 +65,10 @@
             &, & input {
                 font-size: $value/2.5;
             }
+            .am-input-prepend, .am-input-append {
+                height: $value;
+                line-height: $value;
+            }
         }
     }
 
