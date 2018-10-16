@@ -91,20 +91,25 @@
         methods: {
             handleClickNum(item) {
                 this.currentPage = item
+                this.$nextTick(() => this.$emit('load'))
             },
             handleClickPrevNumIcon() {
                 if (this.currentPage - 1 < 1) return
                 this.currentPage--
+                this.$nextTick(() => this.$emit('load'))
             },
             handleClickNextNumIcon() {
                 if (this.currentPage + 1 > this.nums.length) return
                 else this.currentPage++
+                this.$nextTick(() => this.$emit('load'))
             },
             handleClickFirstNum() {
                 this.currentPage = 1
+                this.$nextTick(() => this.$emit('load'))
             },
             handleClickLastNum() {
                 this.currentPage = this.nums.length
+                this.$nextTick(() => this.$emit('load'))
             },
             handleClickRefresh() {
                 this.$emit('refresh')

@@ -1,6 +1,6 @@
 <template>
     <div class="am-auto-table">
-        <div class="am-auto-table-title" v-if="!!title">{{title}}-{{currentSelectIndex}}</div>
+        <div class="am-auto-table-title" v-if="!!title">{{title}}-{{option.count}}</div>
         <div class="am-auto-table-header">
             <div>
                 <am-button icon="fas-cog" icon-only size="small" type="none"/>
@@ -34,7 +34,11 @@
         </am-table>
         <div class="am-auto-table-footer">
             <div>
-                <am-pagination/>
+                <am-pagination :page.sync="option.param.query.page"
+                               :page-size.sync="option.param.query.pageSize"
+                               :total-size="option.count"
+                               @load="option.load()"
+                               @refresh="option.load()"/>
             </div>
         </div>
     </div>
@@ -62,6 +66,7 @@
             rowNum: {type: Number, default: 10},
             title: {type: String},
             selectIndex: {type: Number, default: 0},
+            option: {type: Object,},
         },
         watch: {
             selectIndex(val) {
@@ -70,6 +75,7 @@
             currentSelectIndex(val) {
                 this.$emit('update:selectIndex', val)
             },
+
         },
         data() {
             return {
@@ -78,16 +84,12 @@
                 table: null,
                 editStatus: EDIT_STATUS.NORMAL,
                 currentSelectIndex: this.selectIndex,
-                list: []
+                list: this.option.list,
+
             }
         },
         mounted() {
             this.table = this.$refs.table
-
-            /*---------------------------------------testing-------------------------------------------*/
-            for (let i = 0; i < 10; i++) {
-                this.list.push({acctName: `刘德华${i + 1}`, acctCode: 'SGBVCD', birthday: '2018-10-19', acctType: '大客户', acctAgency: '河南经销商'},)
-            }
         },
         computed: {
             searchFields() {
