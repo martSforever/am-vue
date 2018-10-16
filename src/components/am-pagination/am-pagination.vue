@@ -44,7 +44,7 @@
             size: {type: String, default: 'small'},
 
             page: {type: Number, default: 1},
-            pageSize: {type: Number, default: 10},
+            pageSize: {type: Number | String, default: "10"},
             totalSize: {type: Number,},
             sizeOption: {type: Array, default: () => [10, 15, 20, 50]},
         },
@@ -62,6 +62,7 @@
             currentPageSize(val) {
                 this.$emit('size-change', val)
                 this.$emit('update:pageSize', val)
+                this.$emit('load');
             },
         },
         data() {

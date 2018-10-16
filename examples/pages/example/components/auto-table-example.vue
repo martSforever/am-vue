@@ -19,8 +19,8 @@
         data() {
             return {
                 option: new AutoOption({
-                    url: 'http://localhost/acct/queryPage',
-                    countUrl: 'http://localhost/acct/queryCount',
+                    url: 'acct/queryPage',
+                    countUrl: 'acct/queryCount',
                 })
             }
         },
