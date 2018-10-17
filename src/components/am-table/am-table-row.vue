@@ -33,6 +33,7 @@
             borderSize: {},
             borderColor: {},
             cellStyleFunc: {type: Function,},
+            forKey: {},
         },
         data() {
             return {

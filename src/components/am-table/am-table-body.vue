@@ -8,7 +8,8 @@
                 <am-table-row
                     ref="rows"
                     v-for="(row,rowIndex) in list"
-                    :key="rowIndex"
+                    :key="row._key || rowIndex"
+                    :for-key="row._key || rowIndex"
                     :render-columns="renderColumns"
                     :row="row"
                     :row-index="rowIndex"

@@ -186,31 +186,24 @@
                 this.dragingScrollbar = false;
             },
             triggerSingleRowMethod(row, index, methodName) {
-                let centerRows = findComponentsDownward(this.$refs.center, 'am-table-row');
-                centerRows[index][methodName]();
-                if (!!this.$refs.left) {
-                    let leftRows = findComponentsDownward(this.$refs.left, 'am-table-row');
-                    leftRows[index][methodName]();
-                }
-                if (!!this.$refs.right) {
-                    let rightRows = findComponentsDownward(this.$refs.right, 'am-table-row');
-                    rightRows[index][methodName]();
-                }
+                const target = ['left', 'center', 'right']
+                target.forEach(position => {
+                    if (!this.$refs[position]) return
+                    const rows = this.$refs[position].$refs.body.$refs.rows
+                    rows.sort((a, b) => a.forKey - b.forKey)
+                    rows[index][methodName]();
+                })
             },
             triggerMultipleRowMethod(row, index, methodName) {
                 if (index != null) {
                     this.triggerSingleRowMethod(null, index, methodName);
                 } else {
-                    let centerRows = findComponentsDownward(this.$refs.center, 'am-table-row');
-                    centerRows.forEach(row => row[methodName]());
-                    if (!!this.$refs.left) {
-                        let leftRows = findComponentsDownward(this.$refs.left, 'am-table-row');
-                        leftRows.forEach(row => row[methodName]());
-                    }
-                    if (!!this.$refs.right) {
-                        let rightRows = findComponentsDownward(this.$refs.right, 'am-table-row');
-                        rightRows.forEach(row => row[methodName]());
-                    }
+                    const target = ['left', 'center', 'right']
+                    target.forEach(position => {
+                        if (!this.$refs[position]) return
+                        let rows = this.$ref[position].$refs.body.$refs.rows;
+                        rows.forEach(row => row[methodName]());
+                    })
                 }
             },
             handleRowClick(row, index) {
@@ -235,7 +228,6 @@
                 this.triggerMultipleRowMethod(null, index, 'saveEdit');
             },
             enableEdit(index) {
-                console.log(index)
                 this.currentEditing = true;
                 index != null && !!this.editable && (this.triggerSingleRowMethod(null, index, 'enableEdit'));
             },

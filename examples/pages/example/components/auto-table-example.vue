@@ -34,7 +34,7 @@
                     countUrl: 'acct/queryCount',
                     insertUrl: 'acct/insert',
                     updateUrl: 'acct/update',
-                    delete: 'acct/delete',
+                    deleteUrl: 'acct/delete',
 
                     param: {
                         headId: '123456'
