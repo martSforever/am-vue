@@ -16,6 +16,7 @@
                 <am-button-group size="small" shape="round" v-show="!!editing">
                     <am-button label="保存编辑" icon="fas-save" @click="handleClickSaveEditButton"/>
                     <am-button label="取消编辑" color="error" icon="fas-ban" @click="handleClickCancelEditButton"/>
+                    <am-button label="继续添加" color="success" icon="fas-plus-circle" @click="handleClickCreateButton" v-if="!!multiInsertable"/>
                 </am-button-group>
             </div>
         </div>
@@ -24,11 +25,10 @@
             :row-num="rowNum"
             :list="list"
             :editing.sync="editing"
-            :before-edit="beforeEdit"
-            :before-cancel-edit="beforeCancelEdit"
             :select-index.sync="currentSelectIndex"
 
             @render-columns-change="val=>renderColumns = val"
+            @dblclick="handleDblClick"
         >
             <am-table-column-index v-if="indexing"/>
             <slot></slot>
@@ -56,7 +56,8 @@
 
     const EDIT_STATUS = {
         NORMAL: 'normal',
-        CREATE: 'create'
+        CREATE: 'create',
+        UPDATE: 'update',
     };
 
     export default {
@@ -68,6 +69,9 @@
             title: {type: String},
             selectIndex: {type: Number, default: 0},
             option: {type: Object,},
+
+            multiUpdateable: {type: Boolean},
+            multiInsertable: {type: Boolean},
         },
         watch: {
             selectIndex(val) {
@@ -86,7 +90,7 @@
                 editStatus: EDIT_STATUS.NORMAL,
                 currentSelectIndex: this.selectIndex,
                 list: this.option.list,
-
+                newRows: [],
             };
         },
         mounted() {
@@ -102,9 +106,12 @@
             },
         },
         methods: {
-            beforeEdit() {
-            },
-            beforeCancelEdit() {
+            handleDblClick({row, index}) {
+                if (this.editStatus === EDIT_STATUS.CREATE || (!this.multiUpdateable && this.editStatus === EDIT_STATUS.UPDATE)) return
+                else {
+                    this.table.enableEdit(index)
+                    this.editStatus = EDIT_STATUS.UPDATE
+                }
             },
             handleClickCancelEditButton() {
                 this.cancelEdit();
@@ -114,7 +121,9 @@
             },
             handleClickCreateButton() {
                 this.editStatus = EDIT_STATUS.CREATE;
-                this.list.unshift({});
+                const newRow = {}
+                this.newRows.unshift(newRow)
+                this.list.unshift(newRow);
                 this.$nextTick(() => this.table.enableEdit(0));
             },
             handleClickDeleteButton() {
@@ -129,12 +138,12 @@
                 });
             },
 
-
             cancelEdit(val) {
                 if (this.editStatus === EDIT_STATUS.CREATE) {
-                    this.editStatus = EDIT_STATUS.NORMAL;
-                    this.list.shift();
+                    this.newRows.forEach(() => this.list.shift())
+                    this.newRows.splice(0, this.newRows.length)
                 }
+                this.editStatus = EDIT_STATUS.NORMAL;
                 this.table.cancelEdit(val);
             },
             saveEdit(val) {
@@ -145,6 +154,7 @@
                 this.option[this.editStatus === EDIT_STATUS.CREATE ? 'insert' : 'update'](rows.length === 1 ? rows[0] : rows, () => {
                     this.table.saveEdit(val);
                     this.table.cancelEdit(val);
+                    this.editStatus = EDIT_STATUS.NORMAL;
                 });
             },
 

@@ -86,8 +86,6 @@
             list: {},
             editable: {type: Boolean, default: true},
             rowNum: {type: Number},
-            beforeEdit: {type: Function},
-            beforeCancelEdit: {type: Function},
             editing: {type: Boolean, default: false},
             selectIndex: {type: Number},
         },
@@ -217,12 +215,11 @@
             },
             handleRowClick(row, index) {
                 this.triggerSingleRowMethod(row, index, 'click');
+                this.$emit('click', {row, index})
             },
             handleRowDblClick(row, index) {
                 this.triggerSingleRowMethod(row, index, 'dblClick');
-                !!this.beforeEdit && this.beforeEdit();
-                this.currentEditing = true;
-                !!this.editable && (this.triggerSingleRowMethod(row, index, 'enableEdit'));
+                this.$emit('dblclick', {row, index})
             },
             getEditingRows() {
                 return this.$refs.center.$refs.body.$refs.rows.reduce((ret, rowComponent) => {
@@ -231,7 +228,6 @@
                 }, []);
             },
             cancelEdit(index) {
-                !!this.beforeCancelEdit && this.beforeCancelEdit();
                 this.currentEditing = false;
                 this.triggerMultipleRowMethod(null, index, 'cancelEdit');
             },
@@ -239,6 +235,7 @@
                 this.triggerMultipleRowMethod(null, index, 'saveEdit');
             },
             enableEdit(index) {
+                console.log(index)
                 this.currentEditing = true;
                 index != null && !!this.editable && (this.triggerSingleRowMethod(null, index, 'enableEdit'));
             },
