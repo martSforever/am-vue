@@ -4,7 +4,8 @@
         <div class="am-auto-table-header">
             <div>
                 <am-button icon="fas-cog" icon-only size="small" type="none"/>
-                <am-select size="small" suffix-icon="fas-angle-down" placeholder="搜索类型" :width="60" shape="none" type="none" :data="searchFields" show-key="title"/>
+                <am-select size="small" suffix-icon="fas-angle-down" placeholder="搜索类型" :width="60" shape="none" type="none" :data="searchFields"
+                           show-key="title"/>
                 <am-input size="small" suffix-icon="fas-search" shape="none" type="none" placeholder="搜索关键字"/>
                 <am-button-group size="small" shape="round" v-show="!editing">
                     <am-button label="新建" icon="fas-plus-circle" color="success" @click="handleClickCreateButton"/>
@@ -45,21 +46,21 @@
 </template>
 
 <script>
-    import AmTable from "../am-table/am-table";
-    import AmTableColumnIndex from "../am-table-expansion/am-table-column-index";
-    import AmButtonGroup from "../am-button/am-button-group";
-    import AmButton from "../am-button/am-button";
-    import AmInput from "../am-input/am-input";
-    import AmSelect from "../am-select/am-select";
-    import AmPagination from "../am-pagination/am-pagination";
+    import AmTable from '../am-table/am-table';
+    import AmTableColumnIndex from '../am-table-expansion/am-table-column-index';
+    import AmButtonGroup from '../am-button/am-button-group';
+    import AmButton from '../am-button/am-button';
+    import AmInput from '../am-input/am-input';
+    import AmSelect from '../am-select/am-select';
+    import AmPagination from '../am-pagination/am-pagination';
 
     const EDIT_STATUS = {
         NORMAL: 'normal',
         CREATE: 'create'
-    }
+    };
 
     export default {
-        name: "am-auto-table",
+        name: 'am-auto-table',
         components: {AmPagination, AmSelect, AmInput, AmButton, AmButtonGroup, AmTableColumnIndex, AmTable},
         props: {
             indexing: {type: Boolean, default: true},
@@ -70,10 +71,10 @@
         },
         watch: {
             selectIndex(val) {
-                if (this.currentSelectIndex !== val) this.currentSelectIndex = val
+                if (this.currentSelectIndex !== val) this.currentSelectIndex = val;
             },
             currentSelectIndex(val) {
-                this.$emit('update:selectIndex', val)
+                this.$emit('update:selectIndex', val);
             },
 
         },
@@ -86,18 +87,18 @@
                 currentSelectIndex: this.selectIndex,
                 list: this.option.list,
 
-            }
+            };
         },
         mounted() {
-            this.table = this.$refs.table
+            this.table = this.$refs.table;
         },
         computed: {
             searchFields() {
-                if (!this.renderColumns) return []
+                if (!this.renderColumns) return [];
                 return this.renderColumns.reduce((ret, item) => {
-                    if (!item.noSearch) ret.push(item)
-                    return ret
-                }, [])
+                    if (!item.noSearch) ret.push(item);
+                    return ret;
+                }, []);
             },
         },
         methods: {
@@ -109,12 +110,12 @@
                 this.cancelEdit();
             },
             handleClickSaveEditButton() {
-                this.saveEdit()
+                this.saveEdit();
             },
             handleClickCreateButton() {
-                this.editStatus = EDIT_STATUS.CREATE
-                this.list.unshift({})
-                this.table.enableEdit(0)
+                this.editStatus = EDIT_STATUS.CREATE;
+                this.list.unshift({});
+                this.$nextTick(() => this.table.enableEdit(0));
             },
             handleClickDeleteButton() {
                 this.$modal.show({
@@ -123,24 +124,27 @@
                     confirmButton: true,
                     cancelButton: true,
                     onConfirm: () => {
-                        this.list.splice(this.currentSelectIndex, 1)
+                        this.list.splice(this.currentSelectIndex, 1);
                     },
-                })
+                });
             },
 
 
             cancelEdit(val) {
                 if (this.editStatus === EDIT_STATUS.CREATE) {
-                    this.editStatus = EDIT_STATUS.NORMAL
-                    this.list.shift()
+                    this.editStatus = EDIT_STATUS.NORMAL;
+                    this.list.shift();
                 }
-                this.table.cancelEdit(val)
+                this.table.cancelEdit(val);
             },
             saveEdit(val) {
-                this.table.saveEdit(val)
-                this.table.cancelEdit(val)
+                const rows = this.table.getEditingRow();
+                console.log(rows);
+
+                // this.table.saveEdit(val);
+                // this.table.cancelEdit(val);
             },
 
         },
-    }
+    };
 </script>

@@ -93,16 +93,16 @@
         },
         watch: {
             editing(val) {
-                if (this.currentEditing !== val) this.currentEditing = val
+                if (this.currentEditing !== val) this.currentEditing = val;
             },
             currentEditing(val) {
-                this.$emit('update:editing', val)
+                this.$emit('update:editing', val);
             },
             selectIndex(val) {
-                if (this.currentSelectIndex !== val) this.currentSelectIndex = val
+                if (this.currentSelectIndex !== val) this.currentSelectIndex = val;
             },
             currentSelectIndex(val) {
-                this.$emit('update:selectIndex', val)
+                this.$emit('update:selectIndex', val);
             },
         },
         data() {
@@ -120,10 +120,10 @@
         },
         computed: {
             styles() {
-                const styles = {}
-                !!this.rowNum && (styles.height = `${this.headColumns.length * this.headRowHeight + (this.rowNum) * this.bodyRowHeight}px`)
+                const styles = {};
+                !!this.rowNum && (styles.height = `${this.headColumns.length * this.headRowHeight + (this.rowNum) * this.bodyRowHeight}px`);
                 // console.log(styles)
-                return styles
+                return styles;
             },
             classes() {
                 return {
@@ -152,7 +152,7 @@
                 }
 
                 this.columns.forEach((child) => iterate(child));
-                this.$emit('render-columns-change', ret)
+                this.$emit('render-columns-change', ret);
                 return ret;
             },
             tableWidth() {
@@ -220,20 +220,26 @@
             },
             handleRowDblClick(row, index) {
                 this.triggerSingleRowMethod(row, index, 'dblClick');
-                !!this.beforeEdit && this.beforeEdit()
-                this.currentEditing = true
+                !!this.beforeEdit && this.beforeEdit();
+                this.currentEditing = true;
                 !!this.editable && (this.triggerSingleRowMethod(row, index, 'enableEdit'));
             },
+            getEditingRow() {
+                return this.$refs.center.$refs.body.$refs.rows.reduce((ret, rowComponent) => {
+                    if (!!rowComponent.currentEditable) ret.push(rowComponent.row);
+                    return ret;
+                }, []);
+            },
             cancelEdit(index) {
-                !!this.beforeCancelEdit && this.beforeCancelEdit()
-                this.currentEditing = false
+                !!this.beforeCancelEdit && this.beforeCancelEdit();
+                this.currentEditing = false;
                 this.triggerMultipleRowMethod(null, index, 'cancelEdit');
             },
             saveEdit(index) {
                 this.triggerMultipleRowMethod(null, index, 'saveEdit');
             },
             enableEdit(index) {
-                this.currentEditing = true
+                this.currentEditing = true;
                 index != null && !!this.editable && (this.triggerSingleRowMethod(null, index, 'enableEdit'));
             },
         },

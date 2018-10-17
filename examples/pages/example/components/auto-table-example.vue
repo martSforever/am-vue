@@ -2,6 +2,7 @@
     <div class="auto-table-example example-page">
         <am-auto-table title="客户列表" :option="option">
             <am-table-column title="客户" field="acctName"/>
+            <am-table-column-input title="客户" field="acctName"/>
             <am-table-column title="客户编码" field="acctCode"/>
             <am-table-column title="出生日期" field="birthday" width="220px"/>
             <am-table-column title="客户类型" field="acctType"/>
@@ -12,19 +13,23 @@
 </template>
 
 <script>
-    import {AutoOption} from "../../../../src/components/am-auto-table/auto-option";
+    import {AutoOption} from '../../../../src/components/am-auto-table/auto-option';
 
     export default {
-        name: "auto-table-example",
+        name: 'auto-table-example',
         data() {
             return {
                 option: new AutoOption({
                     url: 'acct/queryPage',
                     countUrl: 'acct/queryCount',
+                    insertUrl: 'acct/insert',
+                    updateUrl: 'acct/update',
+                    delete: 'acct/delete',
+
                 })
-            }
+            };
         },
         mounted() {
         }
-    }
+    };
 </script>

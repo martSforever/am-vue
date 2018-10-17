@@ -6,6 +6,7 @@
                       :scrollbar-size="contentFixed === 'center'?scrollbarSize:0">
             <table>
                 <am-table-row
+                    ref="rows"
                     v-for="(row,rowIndex) in list"
                     :key="rowIndex"
                     :render-columns="renderColumns"
