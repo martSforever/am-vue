@@ -4,11 +4,11 @@
         <div class="body">
             <index-example-nav-menu/>
             <div class="example-wrapper">
-                <keep-alive>
-                    <am-scrollbar :scroll-x="false">
+                <am-scrollbar :scroll-x="false">
+                    <keep-alive>
                         <router-view/>
-                    </am-scrollbar>
-                </keep-alive>
+                    </keep-alive>
+                </am-scrollbar>
             </div>
         </div>
     </div>
