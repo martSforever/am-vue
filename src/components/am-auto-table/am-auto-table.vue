@@ -138,11 +138,14 @@
                 this.table.cancelEdit(val);
             },
             saveEdit(val) {
-                const rows = this.table.getEditingRow();
+                const rows = this.table.getEditingRows();
                 console.log(rows);
-
-                // this.table.saveEdit(val);
-                // this.table.cancelEdit(val);
+                (rows.length > 0)
+                &&
+                this.option[this.editStatus === EDIT_STATUS.CREATE ? 'insert' : 'update'](rows.length === 1 ? rows[0] : rows, () => {
+                    this.table.saveEdit(val);
+                    this.table.cancelEdit(val);
+                });
             },
 
         },

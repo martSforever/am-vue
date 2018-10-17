@@ -33,35 +33,35 @@
 </template>
 
 <script>
-    import AmSelect from "../am-select/am-select";
-    import AmIcon from "../am-icon/am-icon";
+    import AmSelect from '../am-select/am-select';
+    import AmIcon from '../am-icon/am-icon';
 
     export default {
-        name: "am-pagination",
+        name: 'am-pagination',
         components: {AmIcon, AmSelect},
         props: {
             width: {type: Number, default: 40},
             size: {type: String, default: 'small'},
 
             page: {type: Number, default: 1},
-            pageSize: {type: Number | String, default: "10"},
+            pageSize: {type: Number | String, default: '10'},
             totalSize: {type: Number,},
             sizeOption: {type: Array, default: () => [10, 15, 20, 50]},
         },
         watch: {
             page(val) {
-                if (this.page !== val) this.page = val
+                if (this.page !== val) this.page = val;
             },
             currentPage(val) {
                 // console.log('currentPage', val)
-                this.$emit('update:page', val)
+                this.$emit('update:page', val);
             },
             pageSize(val) {
-                if (this.pageSize !== val) this.pageSize = val
+                if (this.pageSize !== val) this.pageSize = val;
             },
             currentPageSize(val) {
-                this.$emit('size-change', val)
-                this.$emit('update:pageSize', val)
+                this.$emit('size-change', val);
+                this.$emit('update:pageSize', val);
                 this.$emit('load');
             },
         },
@@ -69,52 +69,52 @@
             return {
                 currentPage: this.page,
                 currentPageSize: this.pageSize,
-            }
+            };
         },
         computed: {
             classes() {
                 return [
                     `am-pagination-${this.size}`,
-                ]
+                ];
             },
             nums() {
-                if (!this.totalSize) return [0]
-                const ret = []
-                const length = Math.floor(this.totalSize / this.pageSize)
-                let i = 1
+                if (!this.totalSize) return [0];
+                const ret = [];
+                const length = Math.ceil(this.totalSize / this.pageSize);
+                let i = 1;
                 while (i <= length) {
-                    ret.push(i)
-                    i++
+                    ret.push(i);
+                    i++;
                 }
-                return ret
+                return ret;
             },
         },
         methods: {
             handleClickNum(item) {
-                this.currentPage = item
-                this.$nextTick(() => this.$emit('load'))
+                this.currentPage = item;
+                this.$nextTick(() => this.$emit('load'));
             },
             handleClickPrevNumIcon() {
-                if (this.currentPage - 1 < 1) return
-                this.currentPage--
-                this.$nextTick(() => this.$emit('load'))
+                if (this.currentPage - 1 < 1) return;
+                this.currentPage--;
+                this.$nextTick(() => this.$emit('load'));
             },
             handleClickNextNumIcon() {
-                if (this.currentPage + 1 > this.nums.length) return
-                else this.currentPage++
-                this.$nextTick(() => this.$emit('load'))
+                if (this.currentPage + 1 > this.nums.length) return;
+                else this.currentPage++;
+                this.$nextTick(() => this.$emit('load'));
             },
             handleClickFirstNum() {
-                this.currentPage = 1
-                this.$nextTick(() => this.$emit('load'))
+                this.currentPage = 1;
+                this.$nextTick(() => this.$emit('load'));
             },
             handleClickLastNum() {
-                this.currentPage = this.nums.length
-                this.$nextTick(() => this.$emit('load'))
+                this.currentPage = this.nums.length;
+                this.$nextTick(() => this.$emit('load'));
             },
             handleClickRefresh() {
-                this.$emit('refresh')
+                this.$emit('refresh');
             },
         },
-    }
+    };
 </script>

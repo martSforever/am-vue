@@ -4,6 +4,7 @@ import http from '../../../examples/scripts/http';
 const DEFAULT_QUERY_PARAM = {
     page: 1,
     pageSize: 3,
+    orders: [{field: 'createdAt', desc: true}],
 };
 
 export class AutoOption {
@@ -49,19 +50,22 @@ export class AutoOption {
         return data.ret;
     }
 
-    async insert(row) {
+    async insert(row, done) {
         const data = await http.post(this.insertUrl, row);
-        return data.ret;
+        done();
+        return {data: data.ret, done};
     }
 
-    async update(row) {
+    async update(row, done) {
         const data = await http.post(this.updateUrl, row);
-        return data.ret;
+        done();
+        return {data: data.ret, done};
     }
 
-    async delete() {
+    async delete(row, done) {
         const data = await http.post(this.deleteUrl, row);
-        return data.ret;
+        done();
+        return {data: data.ret, done};
     }
 
 }

@@ -80,6 +80,12 @@
                 const editItems = this.findEditItems(this);
                 editItems.forEach((item) => item.save());
             },
+            getEditRowData() {
+                const row = {};
+                const editItems = this.findEditItems(this);
+                editItems.forEach((item) => !!item.field && (row[item.field] = item.currentValue));
+                return Object.assign({}, this.row, row);
+            },
         },
         computed: {
             classes() {

@@ -26,6 +26,9 @@
                     updateUrl: 'acct/update',
                     delete: 'acct/delete',
 
+                    param: {
+                        headId: '123456'
+                    }
                 })
             };
         },

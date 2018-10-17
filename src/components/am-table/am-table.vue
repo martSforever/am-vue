@@ -224,9 +224,9 @@
                 this.currentEditing = true;
                 !!this.editable && (this.triggerSingleRowMethod(row, index, 'enableEdit'));
             },
-            getEditingRow() {
+            getEditingRows() {
                 return this.$refs.center.$refs.body.$refs.rows.reduce((ret, rowComponent) => {
-                    if (!!rowComponent.currentEditable) ret.push(rowComponent.row);
+                    if (!!rowComponent.currentEditable) ret.push(rowComponent.getEditRowData());
                     return ret;
                 }, []);
             },
