@@ -56,8 +56,20 @@ export class AutoOption {
         return {data: data.ret, done};
     }
 
+    async multiInsert(row, done) {
+        const data = await http.post(this.multiInserUrl, row);
+        done();
+        return {data: data.ret, done};
+    }
+
     async update(row, done) {
         const data = await http.post(this.updateUrl, row);
+        done();
+        return {data: data.ret, done};
+    }
+
+    async multiUpdate(row, done) {
+        const data = await http.post(this.multiUpdateUrl, row);
         done();
         return {data: data.ret, done};
     }

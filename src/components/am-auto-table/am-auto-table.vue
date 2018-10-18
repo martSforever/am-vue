@@ -14,7 +14,8 @@
                     <am-button label="导出" icon="fas-upload"/>
                 </am-button-group>
                 <am-button-group size="small" shape="round" v-show="!!editing">
-                    <am-button label="继续添加" color="success" icon="fas-plus-circle" @click="handleClickCreateButton" v-if="!!multiInsertable"/>
+                    <am-button label="继续添加" color="success" icon="fas-plus-circle" @click="handleClickCreateButton"
+                               v-if="!!multiInsertable && editStatus === 'insert'"/>
                     <am-button label="保存编辑" icon="fas-save" @click="handleClickSaveEditButton"/>
                     <am-button label="取消编辑" color="error" icon="fas-ban" @click="handleClickCancelEditButton"/>
                 </am-button-group>
@@ -56,7 +57,7 @@
 
     const EDIT_STATUS = {
         NORMAL: 'normal',
-        CREATE: 'create',
+        INSERT: 'insert',
         UPDATE: 'update',
     };
 
@@ -107,10 +108,10 @@
         },
         methods: {
             handleDblClick({row, index}) {
-                if (this.editStatus === EDIT_STATUS.CREATE || (!this.multiUpdateable && this.editStatus === EDIT_STATUS.UPDATE)) return
+                if ((!this.multiUpdateable && this.editStatus === EDIT_STATUS.UPDATE)) return;
                 else {
-                    this.table.enableEdit(index)
-                    this.editStatus = EDIT_STATUS.UPDATE
+                    this.table.enableEdit(index);
+                    this.editStatus = EDIT_STATUS.UPDATE;
                 }
             },
             handleClickCancelEditButton() {
@@ -120,12 +121,12 @@
                 this.saveEdit();
             },
             handleClickCreateButton() {
-                this.editStatus = EDIT_STATUS.CREATE;
-                const newRow = {}
-                this.newRows.unshift(newRow)
-                newRow._key = -this.newRows.length
+                this.editStatus = EDIT_STATUS.INSERT;
+                const newRow = {};
+                this.newRows.unshift(newRow);
+                newRow._key = -this.newRows.length;
                 this.list.unshift(newRow);
-                this.$nextTick(() => this.table.enableEdit(0))
+                this.$nextTick(() => this.table.enableEdit(0));
             },
             handleClickDeleteButton() {
                 this.$modal.show({
@@ -134,25 +135,33 @@
                     confirmButton: true,
                     cancelButton: true,
                     onConfirm: () => {
-                        this.option.delete(this.list[this.currentSelectIndex], () => this.list.splice(this.currentSelectIndex, 1))
+                        this.option.delete(this.list[this.currentSelectIndex], () => this.list.splice(this.currentSelectIndex, 1));
                     },
                 });
             },
+            getSaveOption(rows) {
+                switch (this.editStatus) {
+                    case EDIT_STATUS.INSERT:
+                        return {operate: this.multiInsertable ? 'multiInsert' : 'insert', data: this.multiInsertable ? rows : rows[0]};
+                    case EDIT_STATUS.UPDATE:
+                        return {operate: this.multiInsertable ? 'multiUpdate' : 'update', data: this.multiInsertable ? rows : rows[0]};
+                    default:
+                        return null;
+                }
+            },
 
             cancelEdit(val) {
-                if (this.editStatus === EDIT_STATUS.CREATE) {
-                    this.newRows.forEach(() => this.list.shift())
-                    this.newRows.splice(0, this.newRows.length)
+                if (this.editStatus === EDIT_STATUS.INSERT) {
+                    this.newRows.forEach(() => this.list.shift());
+                    this.newRows.splice(0, this.newRows.length);
                 }
                 this.editStatus = EDIT_STATUS.NORMAL;
                 this.table.cancelEdit(val);
             },
             saveEdit(val) {
                 const rows = this.table.getEditingRows();
-                console.log(rows);
-                (rows.length > 0)
-                &&
-                this.option[this.editStatus === EDIT_STATUS.CREATE ? 'insert' : 'update'](rows.length === 1 ? rows[0] : rows, () => {
+                const saveOption = this.getSaveOption(rows);
+                this.option[saveOption.operate](saveOption.data, () => {
                     this.table.saveEdit(val);
                     this.table.cancelEdit(val);
                     this.editStatus = EDIT_STATUS.NORMAL;

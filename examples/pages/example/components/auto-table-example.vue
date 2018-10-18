@@ -1,11 +1,12 @@
 <template>
     <div class="auto-table-example example-page">
         <div>
-            <am-radio label="multipleEditable" v-model="multipleEditable"/>
+            <am-radio label="multiUpdateable" v-model="multiUpdateable"/>
+            <am-radio label="multiInsertable" v-model="multiInsertable"/>
         </div>
         <am-auto-table title="客户列表"
                        :option="option"
-                       :multiple-editable="multipleEditable"
+                       :multi-updateable="multiUpdateable"
                        :multi-insertable="multiInsertable"
         >
             <am-table-column title="客户" field="acctName"/>
@@ -26,14 +27,16 @@
         name: 'auto-table-example',
         data() {
             return {
-                multipleEditable: true,
+                multiUpdateable: true,
                 multiInsertable: true,
 
                 option: new AutoOption({
                     url: 'acct/queryPage',
                     countUrl: 'acct/queryCount',
                     insertUrl: 'acct/insert',
+                    multiInserUrl: 'acct/multiInsert',
                     updateUrl: 'acct/update',
+                    multiUpdateUrl: 'acct/multiUpdate',
                     deleteUrl: 'acct/delete',
 
                     param: {

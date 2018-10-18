@@ -186,33 +186,33 @@
                 this.dragingScrollbar = false;
             },
             triggerSingleRowMethod(row, index, methodName) {
-                const target = ['left', 'center', 'right']
+                const target = ['left', 'center', 'right'];
                 target.forEach(position => {
-                    if (!this.$refs[position]) return
-                    const rows = this.$refs[position].$refs.body.$refs.rows
-                    rows.sort((a, b) => a.forKey - b.forKey)
+                    if (!this.$refs[position]) return;
+                    const rows = this.$refs[position].$refs.body.$refs.rows;
+                    rows.sort((a, b) => a.forKey - b.forKey);
                     rows[index][methodName]();
-                })
+                });
             },
             triggerMultipleRowMethod(row, index, methodName) {
                 if (index != null) {
                     this.triggerSingleRowMethod(null, index, methodName);
                 } else {
-                    const target = ['left', 'center', 'right']
+                    const target = ['left', 'center', 'right'];
                     target.forEach(position => {
-                        if (!this.$refs[position]) return
-                        let rows = this.$ref[position].$refs.body.$refs.rows;
+                        if (!this.$refs[position]) return;
+                        let rows = this.$refs[position].$refs.body.$refs.rows;
                         rows.forEach(row => row[methodName]());
-                    })
+                    });
                 }
             },
             handleRowClick(row, index) {
                 this.triggerSingleRowMethod(row, index, 'click');
-                this.$emit('click', {row, index})
+                this.$emit('click', {row, index});
             },
             handleRowDblClick(row, index) {
                 this.triggerSingleRowMethod(row, index, 'dblClick');
-                this.$emit('dblclick', {row, index})
+                this.$emit('dblclick', {row, index});
             },
             getEditingRows() {
                 return this.$refs.center.$refs.body.$refs.rows.reduce((ret, rowComponent) => {
