@@ -1,11 +1,35 @@
 <template>
     <div class="auto-table-lov-example example-page">
-
+        <am-auto-table title="值列表"
+                       :option="option">
+            <am-table-column-input title="显示值" field="label"/>
+            <am-table-column-input title="实际值" field="code"/>
+            <am-table-column-input title="类型" field="type"/>
+        </am-auto-table>
     </div>
 </template>
 
 <script>
+    import {AutoOption} from "../../../../src/components/am-auto-table/auto-option";
+
     export default {
-        name: "auto-table-lov-example"
+        name: "auto-table-lov-example",
+        data() {
+            return {
+                option: new AutoOption({
+                    url: 'lov/queryPage',
+                    countUrl: 'lov/queryCount',
+                    insertUrl: 'lov/insert',
+                    multiInserUrl: 'lov/multiInsert',
+                    updateUrl: 'lov/update',
+                    multiUpdateUrl: 'lov/multiUpdate',
+                    deleteUrl: 'lov/delete',
+
+                    param: {
+                        headId: '123456'
+                    }
+                })
+            }
+        },
     }
 </script>
