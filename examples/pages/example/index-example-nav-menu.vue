@@ -47,8 +47,14 @@
                             {name: 'swiper', icon: 'color-window', url: 'swiper'},
                             {name: 'tree', icon: 'color-tree', url: 'tree'},
                             {name: 'table', icon: 'color-table', url: 'table'},
-                            {name: 'auto-table', icon: 'color-table', url: 'auto-table'},
                             {name: 'pagination', icon: 'color-table', url: 'pagination'},
+                        ]
+                    },
+                    {
+                        name: 'auto-table',
+                        children: [
+                            {name: 'auto-table', icon: 'color-table', url: 'auto-table'},
+                            {name: 'auto-table-lov', icon: 'color-table', url: 'auto-table-lov'},
                         ]
                     },
                     {
