@@ -14,18 +14,23 @@
                 :col-index="colIndex"
                 :field="field"
                 :editable="editable"
+                :format="format"
             />
         </template>
     </am-table-column>
 </template>
 
 <script>
-    import tableColumnMixin from "../table-column-mixin";
-    import AmTableColumnDatepickerItem from "./am-table-column-datepicker-item";
+    import tableColumnMixin from '../table-column-mixin';
+    import AmTableColumnDatepickerItem from './am-table-column-datepicker-item';
+    import AmTableColumn from '../../am-table/am-table-column';
 
     export default {
-        name: "am-table-column-datepicker",
-        components: {AmTableColumnDatepickerItem},
+        name: 'am-table-column-datepicker',
+        components: {AmTableColumn, AmTableColumnDatepickerItem},
         mixins: [tableColumnMixin],
-    }
+        props: {
+            format: {type: String, default: 'yyyy-MM-dd'},
+        },
+    };
 </script>

@@ -11,7 +11,7 @@
             <am-table-column title="客户" field="acctName"/>
             <am-table-column-input title="客户" field="acctName"/>
             <am-table-column-input title="客户编码" field="acctCode"/>
-            <am-table-column title="出生日期" field="birthday" width="220px"/>
+            <am-table-column-datepicker title="出生日期" field="birthday"/>
             <am-table-column title="客户类型" field="acctType"/>
             <am-table-column title="年龄" field="acctAge"/>
             <am-table-column title="所属经销商" field="acctAgency"/>

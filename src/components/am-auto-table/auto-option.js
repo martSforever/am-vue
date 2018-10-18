@@ -12,7 +12,9 @@ export class AutoOption {
     url;
     countUrl;
     insertUrl;
+    multiInserUrl;
     updateUrl;
+    multiUpdateUrl;
     deleteUrl;
 
     param;
