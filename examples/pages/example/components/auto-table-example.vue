@@ -7,11 +7,10 @@
         <am-auto-table title="客户列表"
                        :option="option"
                        :multi-updateable="multiUpdateable"
-                       :multi-insertable="multiInsertable"
-        >
+                       :multi-insertable="multiInsertable">
             <am-table-column title="客户" field="acctName"/>
             <am-table-column-input title="客户" field="acctName"/>
-            <am-table-column title="客户编码" field="acctCode"/>
+            <am-table-column-input title="客户编码" field="acctCode"/>
             <am-table-column title="出生日期" field="birthday" width="220px"/>
             <am-table-column title="客户类型" field="acctType"/>
             <am-table-column title="年龄" field="acctAge"/>

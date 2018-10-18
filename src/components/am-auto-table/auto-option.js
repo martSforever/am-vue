@@ -3,7 +3,7 @@ import http from '../../../examples/scripts/http';
 
 const DEFAULT_QUERY_PARAM = {
     page: 1,
-    pageSize: 3,
+    pageSize: 10,
     orders: [{field: 'createdAt', desc: true}],
 };
 
