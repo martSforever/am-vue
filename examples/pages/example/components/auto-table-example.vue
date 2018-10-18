@@ -1,9 +1,9 @@
 <template>
     <div class="auto-table-example example-page">
-        <div>
+        <am-radio-group size="small" multiple>
             <am-radio label="multiUpdateable" v-model="multiUpdateable"/>
             <am-radio label="multiInsertable" v-model="multiInsertable"/>
-        </div>
+        </am-radio-group>
         <am-auto-table title="客户列表"
                        :option="option"
                        :multi-updateable="multiUpdateable"
