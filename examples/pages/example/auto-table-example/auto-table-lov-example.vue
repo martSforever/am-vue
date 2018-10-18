@@ -5,6 +5,7 @@
             <am-table-column-input title="显示值" field="label"/>
             <am-table-column-input title="实际值" field="code"/>
             <am-table-column-input title="类型" field="type"/>
+            <am-button slot="normalBtn" label="刷新缓存" icon="fas-refresh"/>
         </am-auto-table>
     </div>
 </template>
