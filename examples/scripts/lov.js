@@ -14,7 +14,6 @@ export async function initializedLov() {
     let lovData, lovTime;
     lovData = store.getters['lov/lovData'];
     lovTime = store.getters['lov/lovTime'];
-    console.log(lovData, lovTime);
     if (!!lovData && lovTime > new Date().getTime()) {
         console.info('[缓存] 值列表', lovData);
         return;

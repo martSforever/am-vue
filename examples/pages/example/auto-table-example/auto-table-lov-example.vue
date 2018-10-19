@@ -1,5 +1,10 @@
 <template>
     <div class="auto-table-lov-example example-page">
+        <div>
+            --
+            <am-lov code="self-person" type="ACCT-TYPE"/>
+            --
+        </div>
         <am-auto-table title="值列表"
                        :option="option">
             <am-table-column-input title="显示值" field="label"/>
@@ -11,10 +16,12 @@
 </template>
 
 <script>
-    import {AutoOption} from "../../../../src/components/am-auto-table/auto-option";
+    import {AutoOption} from '../../../../src/components/am-auto-table/auto-option';
+    import AmLov from '../../../components/am-lov';
 
     export default {
-        name: "auto-table-lov-example",
+        name: 'auto-table-lov-example',
+        components: {AmLov},
         data() {
             return {
                 option: new AutoOption({
@@ -30,7 +37,7 @@
                         headId: '123456'
                     }
                 })
-            }
+            };
         },
-    }
+    };
 </script>

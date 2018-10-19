@@ -5,8 +5,6 @@ import createPersistedState from 'vuex-persistedstate';
 import lov from './sub/store.lov';
 import {delay} from '../scripts/utils';
 
-console.log(lov);
-
 Vue.use(Vuex);
 const store = new Vuex.Store({
     modules: {lov},
