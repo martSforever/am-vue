@@ -11,17 +11,18 @@
                     <am-button label="新建" icon="fas-plus-circle" color="success" @click="handleClickCreateButton"/>
                     <am-button label="删除" icon="fas-minus-circle" color="error" @click="handleClickDeleteButton"/>
                 </am-button-group>
-                <am-button-group size="small" shape="round">
-                    <am-button label="导入" icon="fas-download"/>
-                    <am-button label="导出" icon="fas-upload"/>
-                    <slot name="normalBtn"></slot>
-                </am-button-group>
                 <am-button-group size="small" shape="round" v-show="!!editing">
                     <am-button label="继续添加" color="success" icon="fas-plus-circle" @click="handleClickCreateButton"
                                v-if="!!multiInsertable && editStatus === 'insert'"/>
                     <am-button label="保存编辑" icon="fas-save" @click="handleClickSaveEditButton"/>
                     <am-button label="取消编辑" color="error" icon="fas-ban" @click="handleClickCancelEditButton"/>
                 </am-button-group>
+                <am-button-group size="small" shape="round">
+                    <am-button label="导入" icon="fas-download"/>
+                    <am-button label="导出" icon="fas-upload"/>
+                    <slot name="normalBtn"></slot>
+                </am-button-group>
+
             </div>
         </div>
         <am-table

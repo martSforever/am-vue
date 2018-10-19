@@ -16,7 +16,7 @@
         computed: {
             ...lovStore.mapGetters(['lovData']),
             label() {
-                const rets = this.lovData.filter(lov => (lov.code === this.code && lov.type === this.type));
+                const rets = !!this.lovData ? this.lovData.filter(lov => (lov.code === this.code && lov.type === this.type)) : [];
                 return rets.length > 0 ? rets[0].label : null;
             }
         },
