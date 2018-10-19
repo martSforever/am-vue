@@ -5,7 +5,7 @@
             <am-table-column-input title="显示值" field="label"/>
             <am-table-column-input title="实际值" field="code"/>
             <am-table-column-input title="类型" field="type"/>
-            <am-button slot="normalBtn" label="刷新缓存" icon="fas-redo-alt"/>
+            <am-button slot="normalBtn" label="刷新缓存" icon="fas-redo-alt" @click="refreshLov"/>
         </am-auto-table>
         <div class="title">值列表文本显示组件</div>
         <div class="example-row">
@@ -23,6 +23,7 @@
     import {AutoOption} from '../../../../src/components/am-auto-table/auto-option';
     import AmLov from '../../../components/am-lov';
     import AmLovPick from "../../../components/am-lov-pick";
+    import {loadLov} from "../../../scripts/lov";
 
     export default {
         name: 'auto-table-lov-example',
@@ -45,6 +46,11 @@
                     }
                 })
             };
+        },
+        methods: {
+            async refreshLov() {
+                await loadLov();
+            },
         },
     };
 </script>

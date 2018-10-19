@@ -2,7 +2,14 @@
     <am-select :data="list"
                :value="label"
                @select="handleSelect"
-               show-key="label">
+               show-key="label"
+
+               :type="type"
+               :color="color"
+               :size="size"
+               :shape="shape"
+               :height="150"
+    >
         <template slot-scope="data">
             {{data.label}}
         </template>
@@ -12,6 +19,7 @@
 <script>
 
     import {getModuleStore} from "../store";
+    import {oneOf} from "../../src/scripts/utils";
 
     const {mapGetters} = getModuleStore('lov')
 
@@ -20,6 +28,33 @@
         props: {
             lovType: {type: String, required: true},
             value: {},
+
+            type: {
+                type: String, default: 'line', validator(val) {
+                    return oneOf(val, ['fill', 'line', 'none']);
+                },
+            },
+            color: {
+                type: String,
+                default: 'info',
+                validator(val) {
+                    return oneOf(val, ['primary', 'info', 'success', 'warn', 'error', 'none']);
+                },
+            },
+            size: {
+                type: String,
+                default: 'default',
+                validator(val) {
+                    return oneOf(val, ['default', 'large', 'small']);
+                },
+            },
+            shape: {
+                type: String,
+                default: 'fillet',
+                validator(val) {
+                    return oneOf(val, ['fillet', 'round', 'none']);
+                },
+            },
         },
         watch: {
             value(val) {
@@ -37,7 +72,6 @@
         computed: {
             ...mapGetters(['lovData']),
             list() {
-                console.log(this.lovData, this.lovType)
                 return !!this.lovData ? this.lovData.filter(item => item.type === this.lovType) : []
             },
             label() {

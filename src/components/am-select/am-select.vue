@@ -1,6 +1,6 @@
 <template>
     <div class="am-select">
-        <am-dropdown trigger="click" :size-equal="sizeEqual" v-model="currentShow" :width="dropdownWidth">
+        <am-dropdown trigger="click" :size-equal="sizeEqual" v-model="currentShow" :width="dropdownWidth" :height="height">
             <am-input slot="reference"
                       @click="currentShow = true"
                       v-model="currentValue"
@@ -97,6 +97,7 @@
             clearable: {type: Boolean},
             regexp: {type: RegExp},
             width: {type: Number},
+            height: {type: Number},
             sizeEqual: {type: Boolean},
             dropdownWidth: {default: '100px'},
         },

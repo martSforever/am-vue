@@ -18,18 +18,21 @@ export async function initializedLov() {
         console.info('[缓存] 值列表', lovData);
         return;
     }
+    return await loadLov()
+}
 
+export async function getLovByType(type) {
+    return (await getStoreSync('lov/lovData', '值列表'))[type];
+}
+
+export async function loadLov() {
     let data = await http.post('lov/queryAll');
     if (!!data && data.code === 0) {
-        lovData = data.ret;
+        const lovData = data.ret;
         store.commit('lov/setLovData', lovData);
         store.commit('lov/setLovTime', new Date().getTime() + CONST.lov_valid_time);
         console.log('[获取] 值列表', lovData);
     } else {
         console.error('值列表初始化失败！');
     }
-}
-
-export async function getLovByType(type) {
-    return (await getStoreSync('lov/lovData', '值列表'))[type];
 }

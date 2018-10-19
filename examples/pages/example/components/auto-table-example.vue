@@ -1,6 +1,6 @@
 <template>
     <div class="auto-table-example example-page">
-        <am-radio-group size="small" multiple>
+        <am-radio-group size="small" multiple radio-key="k">
             <am-radio label="multiUpdateable" v-model="multiUpdateable"/>
             <am-radio label="multiInsertable" v-model="multiInsertable"/>
         </am-radio-group>
@@ -13,6 +13,7 @@
             <am-table-column-input title="客户编码" field="acctCode"/>
             <am-table-column-datepicker title="出生日期" field="birthday"/>
             <am-table-column title="客户类型" field="acctType"/>
+            <am-table-column-lov-pick title="客户类型" field="acctType" lov-type="ACCT-TYPE"/>
             <am-table-column title="年龄" field="acctAge"/>
             <am-table-column title="所属经销商" field="acctAgency"/>
         </am-auto-table>
@@ -21,9 +22,11 @@
 
 <script>
     import {AutoOption} from '../../../../src/components/am-auto-table/auto-option';
+    import AmTableColumnLovPick from "../../../components/am-table-column-lov-pick";
 
     export default {
         name: 'auto-table-example',
+        components: {AmTableColumnLovPick},
         data() {
             return {
                 multiUpdateable: true,

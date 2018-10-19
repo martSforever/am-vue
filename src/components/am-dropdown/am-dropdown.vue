@@ -36,6 +36,7 @@
     import AmPopover from '../am-popover'
     import {oneOf} from "../../scripts/utils";
     import AmScrollbar from '../am-scrollbar/am-scrollbar'
+    import {typeOf} from "../../scripts/utils";
 
     export default {
         name: "am-dropdown",
@@ -140,9 +141,9 @@
             wrapperStyles() {
                 const styles = {}
                 if (!!this.height)
-                    styles.height = `${this.height}${this.height instanceof String ? 'px' : ''}`
+                    styles.height = `${this.height}${typeOf(this.height) === 'number' ? 'px' : ''}`
                 if (!!this.width)
-                    styles.width = `${this.width}${this.width instanceof Number ? 'px' : ''}`
+                    styles.width = `${this.width}${typeOf(this.width) === 'number' ? 'px' : ''}`
                 return styles
             },
         },
