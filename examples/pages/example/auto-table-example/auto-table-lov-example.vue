@@ -9,20 +9,28 @@
         </am-auto-table>
         <div class="title">值列表文本显示组件</div>
         <div class="example-row">
-            <am-lov code="self-person" type="ACCT-TYPE"/>
+            <am-lov :code="code" type="ACCT-TYPE"/>
         </div>
+        <div class="title">值列表选择组件</div>
+        <div class="example-row">
+            <am-lov-pick lov-type="ACCT-TYPE" v-model="code"/>
+        </div>
+
     </div>
 </template>
 
 <script>
     import {AutoOption} from '../../../../src/components/am-auto-table/auto-option';
     import AmLov from '../../../components/am-lov';
+    import AmLovPick from "../../../components/am-lov-pick";
 
     export default {
         name: 'auto-table-lov-example',
-        components: {AmLov},
+        components: {AmLovPick, AmLov},
         data() {
             return {
+                code: 'self-person',
+
                 option: new AutoOption({
                     url: 'lov/queryPage',
                     countUrl: 'lov/queryCount',
