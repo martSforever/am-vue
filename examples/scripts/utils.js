@@ -50,3 +50,7 @@ export const storage = {
         }
     }
 }
+
+export async function delay(duartion) {
+    return new Promise((rs) => setTimeout(() => rs(), duartion));
+}

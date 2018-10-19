@@ -11,6 +11,8 @@ import Amvue from 'amvue';
 
 import './styles/index.scss';
 import './scripts/start';
+import store from './store';
+import {start} from './scripts/start';
 
 window._ = require('lodash');
 Vue.use(Amvue, {IconfontPrefix: 'ali-icon'});
@@ -18,6 +20,10 @@ Vue.use(Amvue, {IconfontPrefix: 'ali-icon'});
 Vue.config.debug = true;
 
 const app = new Vue({
+    store,
     router,
-    render: h => h(App)
+    render: h => h(App),
+    mounted() {
+        start();
+    }
 }).$mount('#app');

@@ -1,6 +1,5 @@
-import lov from './lov';
+import {initializedLov} from './lov';
 
-(async () => {
-    await lov.init();
-    console.log('lov init');
-})();
+export async function start() {
+    await initializedLov();
+}
