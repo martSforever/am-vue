@@ -10,8 +10,9 @@ import Amvue from 'amvue';
 // import Amvue from 'src';
 
 import './styles/index.scss';
+import './scripts/start';
 
-window._ = require('lodash')
+window._ = require('lodash');
 Vue.use(Amvue, {IconfontPrefix: 'ali-icon'});
 // 开启debug模式
 Vue.config.debug = true;

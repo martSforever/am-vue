@@ -41,14 +41,14 @@ export class AutoOption {
 
     async load() {
         this.list.splice(0, this.list.length);
-        const {data} = await http.post(this.url, this.param);
+        const data = await http.post(this.url, this.param);
         if (!data.ret || data.ret.length < this.param.pageSize) this.noMore = true;
         if (!!data.ret) data.ret.forEach(item => this.list.push(item));
         return data;
     }
 
     async queryCount() {
-        const {data} = await http.post(this.countUrl, this.param);
+        const data = await http.post(this.countUrl, this.param);
         return data.ret;
     }
 
