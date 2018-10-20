@@ -112,8 +112,9 @@
                 currentSelectIndex: this.selectIndex,
                 list: this.option.list,
                 newRows: [],
-                currentSortField: this.sortField,
-                currentSortDesc: this.sortDesc,
+                sortable: {type: Boolean, default: true},
+                currentSortField: this.sortField || this.option.param.query.orders[0].field,
+                currentSortDesc: this.sortDesc || this.option.param.query.orders[0].desc,
             };
         },
         mounted() {
@@ -130,8 +131,7 @@
         },
         methods: {
             handleClickTitle(col) {
-                this.currentSortDesc = col.field === this.currentSortField ? !this.currentSortDesc : true
-                this.currentSortField = col.field
+                this.handleSort(col)
             },
             handleDblClick({row, index}) {
                 if ((!this.multiUpdateable && this.editStatus === EDIT_STATUS.UPDATE)) return;
@@ -164,6 +164,14 @@
                         this.option.delete(this.list[this.currentSelectIndex], () => this.list.splice(this.currentSelectIndex, 1));
                     },
                 });
+            },
+            handleSort(col) {
+                this.currentSortDesc = col.field === this.currentSortField ? !this.currentSortDesc : true
+                this.currentSortField = col.field
+                const queryOrders = this.option.param.query.orders;
+                queryOrders.splice(0, queryOrders.length)
+                queryOrders.push({field: this.currentSortField, desc: this.currentSortDesc})
+                this.option.reload()
             },
             getSaveOption(rows) {
                 switch (this.editStatus) {
