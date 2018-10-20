@@ -31,6 +31,8 @@
             :list="list"
             :editing.sync="editing"
             :select-index.sync="currentSelectIndex"
+            :sort-field="currentSortField"
+            :sort-desc="currentSortDesc"
 
             @render-columns-change="val=>renderColumns = val"
             @dblclick="handleDblClick"
@@ -74,6 +76,8 @@
             title: {type: String},
             selectIndex: {type: Number, default: 0},
             option: {type: Object,},
+            sortField: {type: String},
+            sortDesc: {type: Boolean, default: true},
 
             multiUpdateable: {type: Boolean},
             multiInsertable: {type: Boolean},
@@ -85,7 +89,18 @@
             currentSelectIndex(val) {
                 this.$emit('update:selectIndex', val);
             },
-
+            sortField(val) {
+                if (this.currentSortField !== val) this.currentSortField = val;
+            },
+            currentSortField(val) {
+                this.$emit('update:sortField', val);
+            },
+            sortDesc(val) {
+                if (this.currentSortDesc !== val) this.currentSortDesc = val;
+            },
+            currentSortDesc(val) {
+                this.$emit('update:sortDesc', val);
+            },
         },
         data() {
             return {
@@ -96,6 +111,8 @@
                 currentSelectIndex: this.selectIndex,
                 list: this.option.list,
                 newRows: [],
+                currentSortField: this.sortField,
+                currentSortDesc: this.sortDesc,
             };
         },
         mounted() {

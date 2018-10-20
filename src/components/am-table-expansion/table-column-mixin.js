@@ -15,6 +15,7 @@ const tableColumnMixin = {
                 return oneOf(val, ['left', 'right', 'center']);
             },
         },
+        noSearch: {type: Boolean, default: false},
     },
     watch: {
         order(newval, oldval) {

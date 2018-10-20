@@ -4,6 +4,7 @@
             <rendering-scope-slot v-if="!!scopeSlotFunc" :scope-slot-func="scopeSlotFunc" :data="data"/>
             <rendering-render-func v-else-if="!!renderFcun" :render-func="renderFcun" :data="data"/>
             <div v-else class="am-table-cell-default-text">{{text}}</div>
+            <slot></slot>
         </div>
     </div>
 </template>

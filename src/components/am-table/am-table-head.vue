@@ -16,7 +16,10 @@
                         :border-color="borderColor"
                         :head-row-height="headRowHeight"
                         :col="col"
-                        :content-fixed="contentFixed"/>
+                        :content-fixed="contentFixed"
+                        :sort-field="sortField"
+                        :sort-desc="sortDesc"
+                    />
                 </tr>
             </table>
         </am-scrollbar>
@@ -40,8 +43,9 @@
             tableHeadHeight: {},
             contentFixed: {},
             borderSize: {},
-            borderColor:{},
-
+            borderColor: {},
+            sortField: {type: String},
+            sortDesc: {type: Boolean, default: true},
         },
     }
 </script>

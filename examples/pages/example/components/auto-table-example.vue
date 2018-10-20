@@ -6,9 +6,13 @@
         </am-radio-group>
         <am-auto-table title="客户列表"
                        :option="option"
+                       :indexing="false"
                        :multi-updateable="multiUpdateable"
-                       :multi-insertable="multiInsertable">
-            <am-table-column title="客户" field="acctName"/>
+                       :multi-insertable="multiInsertable"
+                       sort-field="acctAgency"
+                       :sort-desc="true"
+        >
+            <am-table-column title="客户" field="acctName" fixed="left"/>
             <am-table-column-input title="客户" field="acctName"/>
             <am-table-column-input title="客户编码" field="acctCode"/>
             <am-table-column-datepicker title="出生日期" field="birthday"/>

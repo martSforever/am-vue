@@ -1,12 +1,15 @@
 <template>
     <am-table-column ref="column"
+                     :field="field"
                      :title="title"
                      :width.sync="currentWidth"
                      :order="order"
                      :title-render-func="titleRenderFunc"
                      :col-render-func="colRenderFunc"
-                     :fixed.sync="currentFixed">
-        <template slot-scope="{row,rowIndex,col,colIndex}">
+                     :fixed.sync="currentFixed"
+                     :no-search="false">
+
+    <template slot-scope="{row,rowIndex,col,colIndex}">
             <am-table-column-datepicker-item
                 :row="row"
                 :row-index="rowIndex"

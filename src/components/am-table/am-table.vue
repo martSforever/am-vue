@@ -21,6 +21,8 @@
             :border-color="borderColor"
             :row-style-func="rowStyleFunc"
             :cell-style-func="cellStyleFunc"
+            :sort-field="sortField"
+            :sort-desc="sortDesc"
             @scroll="e=>handleContentScroll(e,'center')"
             @mouseenter.native="focusContent = 'center'"/>
 
@@ -40,6 +42,8 @@
             :border-color="borderColor"
             :row-style-func="rowStyleFunc"
             :cell-style-func="cellStyleFunc"
+            :sort-field="sortField"
+            :sort-desc="sortDesc"
             @scroll="e=>handleContentScroll(e,'left')"
             @mouseenter.native="focusContent = 'left'"/>
 
@@ -59,6 +63,8 @@
             :border-color="borderColor"
             :row-style-func="rowStyleFunc"
             :cell-style-func="cellStyleFunc"
+            :sort-field="sortField"
+            :sort-desc="sortDesc"
             @scroll="e=>handleContentScroll(e,'right')"
             @mouseenter.native="focusContent = 'right'"/>
     </div>
@@ -88,6 +94,8 @@
             rowNum: {type: Number},
             editing: {type: Boolean, default: false},
             selectIndex: {type: Number},
+            sortField: {type: String},
+            sortDesc: {type: Boolean, default: true},
         },
         watch: {
             editing(val) {
@@ -102,6 +110,18 @@
             currentSelectIndex(val) {
                 this.$emit('update:selectIndex', val);
             },
+            sortField(val) {
+                if (this.currentSortField !== val) this.currentSortField = val;
+            },
+            currentSortField(val) {
+                this.$emit('update:sortField', val);
+            },
+            sortDesc(val) {
+                if (this.currentSortDesc !== val) this.currentSortDesc = val;
+            },
+            currentSortDesc(val) {
+                this.$emit('update:sortDesc', val);
+            },
         },
         data() {
             return {
@@ -114,6 +134,8 @@
                 hoverIndex: null,
                 currentSelectIndex: this.selectIndex,
                 currentEditing: this.editing,
+                currentSortField: this.sortField,
+                currentSortDesc: this.sortDesc,
             };
         },
         computed: {

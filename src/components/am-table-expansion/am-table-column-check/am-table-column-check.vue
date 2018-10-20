@@ -1,11 +1,14 @@
 <template>
     <am-table-column ref="column"
+                     :field="field"
                      :title="title"
                      :width.sync="currentWidth"
                      :order="order"
                      :title-render-func="titleRenderFunc"
                      :col-render-func="colRenderFunc"
-                     :fixed.sync="currentFixed">
+                     :fixed.sync="currentFixed"
+                     :no-search="false">
+
         <template slot="title" slot-scope="{col,colIndex}">
             <am-radio :value="currentValue"
                       read-only

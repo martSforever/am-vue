@@ -45,13 +45,37 @@
                 align-items: center;
             }
             .am-table-cell-default-text {
-                width: 100%;
                 white-space: nowrap;
                 overflow: hidden;
                 text-overflow: ellipsis;
             }
             .rendering-scope-slot, .rendering-render-func {
                 width: 100%;
+            }
+            .am-table-head-cell-sort {
+                display: inline-block;
+                height: 1em;
+                width: 1em;
+                position: relative;
+                margin-left: 0.5em;
+                .am-icon {
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    right: 0;
+                    bottom: 0;
+                    color: #c2c2c2;
+                }
+                &.am-table-head-cell-sort-desc {
+                    .am-table-head-cell-sort-desc-icon {
+                        color: #2d8df0;
+                    }
+                }
+                &.am-table-head-cell-sort-asc {
+                    .am-table-head-cell-sort-asc-icon {
+                        color: #2d8df0;
+                    }
+                }
             }
         }
     }

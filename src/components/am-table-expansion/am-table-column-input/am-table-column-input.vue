@@ -1,11 +1,13 @@
 <template>
     <am-table-column ref="column"
+                     :field="field"
                      :title="title"
                      :width.sync="currentWidth"
                      :order="order"
                      :title-render-func="titleRenderFunc"
                      :col-render-func="colRenderFunc"
-                     :fixed.sync="currentFixed">
+                     :fixed.sync="currentFixed"
+                     :no-search="false">
         <template slot-scope="{row,rowIndex,col,colIndex}">
             <am-table-column-input-item
                 :row="row"

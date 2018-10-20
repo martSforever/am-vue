@@ -1,13 +1,16 @@
 <template>
     <am-table-column class="am-table-column-collapse"
                      ref="column"
+                     :field="field"
                      :title="title"
                      :width.sync="currentWidth"
                      :order="order"
                      :title-render-func="titleRenderFunc"
                      :col-render-func="colRenderFunc"
-                     :fixed.sync="currentFixed">
-        <template slot="title" slot-scope="{col,colIndex}">
+                     :fixed.sync="currentFixed"
+                     :no-search="false">
+
+    <template slot="title" slot-scope="{col,colIndex}">
             <am-radio :value="currentValue"
                       read-only
                       @click="handleClickTitle"

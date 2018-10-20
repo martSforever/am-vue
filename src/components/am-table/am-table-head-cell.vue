@@ -10,7 +10,12 @@
             :render-fcun="col.titleRenderFunc"
             :scope-slot-func="col.titleScopedSlot"
             :content-fixed="contentFixed"
-            :fixed="col.fixed"/>
+            :fixed="col.fixed">
+            <div class="am-table-head-cell-sort" :class="sortClasses">
+                <am-icon icon="fas-sort-up" class="am-table-head-cell-sort-asc-icon"/>
+                <am-icon icon="fas-sort-down" class="am-table-head-cell-sort-desc-icon"/>
+            </div>
+        </am-table-cell>
         <div v-if="col.fixed === contentFixed"
              class="am-table-head-cell-drag-indicator"
              :style="dragIndicatorStyles"
@@ -25,10 +30,11 @@
     import {findComponentUpward} from "../../scripts/dom";
     import {addClass, removeClass} from "../../scripts/dom";
     import {removePx} from "../../scripts/utils";
+    import AmIcon from "../am-icon/am-icon";
 
     export default {
         name: "am-table-head-cell",
-        components: {AmTableCell, RenderingRenderFunc, RenderingScopeSlot},
+        components: {AmIcon, AmTableCell, RenderingRenderFunc, RenderingScopeSlot},
         props: {
             col: {},
             padding: {},
@@ -36,7 +42,8 @@
             contentFixed: {},
             borderSize: {},
             borderColor: {},
-
+            sortField: {type: String},
+            sortDesc: {type: Boolean, default: true},
         },
         data() {
             return {
@@ -45,6 +52,7 @@
         },
         mounted() {
             this.table = findComponentUpward(this, 'am-table')
+            console.log(this.col.field, this.contentFixed)
         },
         computed: {
             dragIndicatorStyles() {
@@ -63,6 +71,11 @@
                 }
 
                 return iterate(this.col)
+            },
+            sortClasses() {
+                return {
+                    [`am-table-head-cell-sort-${this.sortDesc ? 'desc' : 'asc'}`]: !!this.sortField && this.sortField === this.col.field
+                }
             },
         },
         methods: {

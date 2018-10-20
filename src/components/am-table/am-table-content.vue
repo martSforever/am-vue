@@ -9,6 +9,8 @@
             :content-fixed="contentFixed"
             :border-size="borderSize"
             :border-color="borderColor"
+            :sort-field="sortField"
+            :sort-desc="sortDesc"
             @scroll="handleScroll"
             @mouseenter.native="focusPart = 'head'"
         />
@@ -58,6 +60,8 @@
             borderColor: {},
             rowStyleFunc: {type: Function,},
             cellStyleFunc: {type: Function,},
+            sortField: {type: String},
+            sortDesc: {type: Boolean, default: true},
         },
         data() {
             return {
