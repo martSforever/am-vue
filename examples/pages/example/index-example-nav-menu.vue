@@ -55,6 +55,7 @@
                         children: [
                             {name: 'auto-table', icon: 'color-table', url: 'auto-table'},
                             {name: 'auto-table-lov', icon: 'color-table', url: 'auto-table-lov'},
+                            {name: 'auto-table-filter', icon: 'color-table', url: 'auto-table-filter-example'},
                         ]
                     },
                     {

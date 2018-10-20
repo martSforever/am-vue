@@ -146,5 +146,10 @@ export default {
             name: 'auto-table-lov-example',
             component: resolve => require(['examples/pages/example/auto-table-example/auto-table-lov-example.vue'], resolve),
         },
+        {
+            path: '/auto-table-filter-example',
+            name: 'am-auto-table-filter',
+            component: resolve => require(['examples/pages/example/auto-table-example/am-auto-table-filter-example.vue'], resolve),
+        },
     ]
 };

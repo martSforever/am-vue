@@ -1,6 +1,6 @@
 <template>
     <button class="am-button"
-            v-effect
+            v-effect="clickEffect"
             :disabled="disabled"
             :class="classes"
             @click="handleClick">
@@ -79,6 +79,10 @@
             disabled: {
                 type: Boolean,
             },
+            shadeOnClick: {type: Boolean, default: true},
+            clickEffect: {type: Boolean, default: true},
+            noBorder: {type: Boolean, default: false},
+            noPadding: {type: Boolean, default: false},
         },
         computed: {
             classes() {
@@ -91,6 +95,9 @@
                         'am-button-dashed': !!this.dashed,
                         'am-button-long': !!this.long,
                         'am-button-disabled': !!this.disabled,
+                        'am-button-shade-on-click': !!this.shadeOnClick,
+                        'am-button-no-border': !!this.noBorder,
+                        'am-button-no-padding': !!this.noPadding,
                         [`am-button-icon-only-${this.size}`]: !!this.iconOnly,
                     }
                 ];

@@ -9,6 +9,7 @@
     align-items: center;
     justify-content: center;
     vertical-align: bottom;
+    overflow: hidden;
     .am-button-icon {
         &.am-button-icon-left {
             margin-right: 3px;
@@ -67,14 +68,24 @@
             }
         }
     }
-    /*tap style*/
-    &:active {
-        position: relative;
-        top: 1px;
-        left: 1px;
+    &.am-button-shade-on-click {
+        /*tap style*/
+        &:active {
+            position: relative;
+            top: 1px;
+            left: 1px;
+        }
     }
+
     &.am-button-long {
         width: 100%;
+    }
+    &.am-button-no-border {
+        border: none !important;
+    }
+    &.am-button-no-padding {
+        padding-left: 0 !important;
+        padding-right: 0 !important;
     }
     &.am-button-disabled {
         background-color: $color-normal-disabled !important;
