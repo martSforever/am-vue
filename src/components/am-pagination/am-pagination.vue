@@ -68,7 +68,7 @@
         data() {
             return {
                 currentPage: this.page,
-                currentPageSize: this.pageSize,
+                currentPageSize: this.pageSize,[ ]
             };
         },
         computed: {
