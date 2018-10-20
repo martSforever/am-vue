@@ -144,6 +144,8 @@
     .am-table-head {
         .am-table-head-cell {
             position: relative;
+            user-select: none;
+            cursor: pointer;
             .am-table-head-cell-drag-indicator {
                 position: absolute;
                 height: 100%;

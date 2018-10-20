@@ -36,6 +36,7 @@
 
             @render-columns-change="val=>renderColumns = val"
             @dblclick="handleDblClick"
+            @clickTitle="handleClickTitle"
         >
             <am-table-column-index v-if="indexing"/>
             <slot></slot>
@@ -128,6 +129,10 @@
             },
         },
         methods: {
+            handleClickTitle(col) {
+                this.currentSortDesc = col.field === this.currentSortField ? !this.currentSortDesc : true
+                this.currentSortField = col.field
+            },
             handleDblClick({row, index}) {
                 if ((!this.multiUpdateable && this.editStatus === EDIT_STATUS.UPDATE)) return;
                 else {

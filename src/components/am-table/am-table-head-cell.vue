@@ -10,7 +10,10 @@
             :render-fcun="col.titleRenderFunc"
             :scope-slot-func="col.titleScopedSlot"
             :content-fixed="contentFixed"
-            :fixed="col.fixed">
+            :fixed="col.fixed"
+
+            @click.native="handleClick"
+        >
             <div class="am-table-head-cell-sort" :class="sortClasses">
                 <am-icon icon="fas-sort-up" class="am-table-head-cell-sort-asc-icon"/>
                 <am-icon icon="fas-sort-down" class="am-table-head-cell-sort-desc-icon"/>
@@ -52,7 +55,6 @@
         },
         mounted() {
             this.table = findComponentUpward(this, 'am-table')
-            console.log(this.col.field, this.contentFixed)
         },
         computed: {
             dragIndicatorStyles() {
@@ -109,6 +111,9 @@
                 width = width + durX
                 width = width > 30 ? width : 30
                 this.dragColumn.updateWidth(`${width}px`)
+            },
+            handleClick() {
+                this.table.$emit('clickTitle', this.col)
             },
         },
     }

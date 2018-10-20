@@ -9,7 +9,7 @@
                        :indexing="false"
                        :multi-updateable="multiUpdateable"
                        :multi-insertable="multiInsertable"
-                       sort-field="acctAgency"
+                       sort-field="acctName"
                        :sort-desc="true"
         >
             <am-table-column title="客户" field="acctName" fixed="left"/>
