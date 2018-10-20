@@ -50,7 +50,7 @@
         },
         watch: {
             page(val) {
-                if (this.page !== val) this.page = val;
+                if (this.currentPage !== val) this.currentPage = val;
             },
             currentPage(val) {
                 // console.log('currentPage', val)

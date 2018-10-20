@@ -3,7 +3,9 @@
         <div class="am-auto-table-title" v-if="!!title">{{title}}-{{option.count}}</div>
         <div class="am-auto-table-header">
             <div>
+                <!--设置-->
                 <am-button icon="fas-cog" icon-only size="small" type="none"/>
+                <!--筛选-->
                 <am-select size="small" suffix-icon="fas-angle-down" placeholder="搜索类型" :width="60" shape="none" type="none" :data="searchFields"
                            show-key="title"/>
                 <am-input size="small" suffix-icon="fas-search" shape="none" type="none" placeholder="搜索关键字"/>
@@ -11,6 +13,7 @@
                     <am-button label="新建" icon="fas-plus-circle" color="success" @click="handleClickCreateButton"/>
                     <am-button label="删除" icon="fas-minus-circle" color="error" @click="handleClickDeleteButton"/>
                 </am-button-group>
+                <!--操作按钮-->
                 <am-button-group size="small" shape="round" v-show="!!editing">
                     <am-button label="继续添加" color="success" icon="fas-plus-circle" @click="handleClickCreateButton"
                                v-if="!!multiInsertable && editStatus === 'insert'"/>
