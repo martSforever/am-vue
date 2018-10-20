@@ -1,6 +1,6 @@
 <template>
     <div class="am-auto-table-filter">
-        {{searchCol}}
+        {{queryOrders}}
         <!--筛选-->
         <am-button type="fill" color="info" :size="size" :shade-on-click="false" :click-effect="false" :no-border="true" :no-padding="true">
             <am-select
@@ -18,19 +18,26 @@
                 @select="handleSelect"
             />
 
-            <am-input :size="size" shape="none" type="fill" color="info" placeholder="搜索关键字"/>
-            <am-button icon="fas-search" :icon-ocly="true" color="info" :size="size"/>
+            <keep-alive>
+                <div :is="searchCol.filterComponent" shape="none" type="fill" :color="color" :size="size" :placeholder="placeholder" @confirm="handleFilterConfirm" ref="filter"/>
+            </keep-alive>
+            <am-button icon="fas-search" :icon-only="true" color="info" :size="size" @click="getFilterData"/>
         </am-button>
     </div>
 </template>
 
 <script>
+
+
     export default {
         name: "am-auto-table-filter",
+        components: {},
         props: {
             searchCols: {type: Array, default: () => []},
             size: {type: String, default: 'small'},
-
+            color: {type: String, default: 'info'},
+            placeholder: {type: String, default: '搜索关键字'},
+            queryOrders: {type: Array, default: () => []},
         },
         watch: {},
         data() {
@@ -41,6 +48,20 @@
         methods: {
             handleSelect(cols) {
                 this.searchCol = cols[0]
+            },
+            handleFilterConfirm() {
+                this.getFilterData();
+            },
+            getFilterData() {
+                const filterData = this.$refs.filter.getValue()
+                if (!!filterData) {
+                    this.queryOrders.push(Object.assign({
+                        field: this.searchCol.field,
+                        operator: '=',
+                        dateFormat: false,
+                    }, filterData))
+                    this.$emit('confirm')
+                }
             },
         },
     }

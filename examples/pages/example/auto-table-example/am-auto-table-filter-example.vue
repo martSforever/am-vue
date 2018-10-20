@@ -5,16 +5,15 @@
 </template>
 
 <script>
-    import AmAutoTableFilter from "../../../components/am-auto-table-filter";
 
     export default {
         name: "am-auto-table-filter-example",
-        components: {AmAutoTableFilter},
+        components: {},
         data() {
             return {
                 searchCols: [
-                    {title: '客户', field: 'acctName'},
-                    {title: '经销商', field: 'agencyName',},
+                    {title: '客户', field: 'acctName', filterComponent: 'am-auto-table-filter-input'},
+                    {title: '经销商', field: 'agencyName', filterComponent: 'am-auto-table-filter-input'},
                 ]
             }
         },

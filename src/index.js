@@ -42,6 +42,8 @@ import tableColumnCheck from './components/am-table-expansion/am-table-column-ch
 import tableColumnCollapse from './components/am-table-expansion/am-table-column-collapse/am-table-column-collapse';
 import tableColumnDatepicker from './components/am-table-expansion/am-table-column-datepicker/am-table-column-datepicker'
 import autoTable from './components/am-auto-table/am-auto-table'
+import autoTableFilter from './components/am-auto-table/am-auto-table-filter'
+import autoTableFilterInput from './components/am-auto-table/am-auto-table-filter-input'
 import pagination from './components/am-pagination/am-pagination'
 
 const components = {
@@ -84,6 +86,8 @@ const components = {
     'table-column-collapse': tableColumnCollapse,
     'table-column-datepicker': tableColumnDatepicker,
     'auto-table': autoTable,
+    'auto-table-filter': autoTableFilter,
+    'auto-table-filter-input': autoTableFilterInput,
     pagination,
 };
 

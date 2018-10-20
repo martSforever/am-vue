@@ -16,6 +16,7 @@
             order: {default: 0, desc: '列排序'},
             titleRenderFunc: {type: Function, desc: '自定义列标题渲染函数'},
             colRenderFunc: {type: Function, desc: '自定义列内容渲染函数'},
+            filterComponent: {type: String, default: 'am-auto-table-filter-input'},
             fixed: {
                 type: String, default: 'center', validator(val) {
                     return oneOf(val, ['left', 'right', 'center']);
@@ -84,6 +85,9 @@
                     },
                     get fixed() {
                         return _this.currentFixed;
+                    },
+                    get filterComponent() {
+                        return _this.filterComponent;
                     },
                     get noSearch() {
                         return _this.noSearch;
