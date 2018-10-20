@@ -5,6 +5,7 @@ const DEFAULT_QUERY_PARAM = {
     page: 1,
     pageSize: 10,
     orders: [{field: 'createdAt', desc: true}],
+    filters: [],
 };
 
 export class AutoOption {

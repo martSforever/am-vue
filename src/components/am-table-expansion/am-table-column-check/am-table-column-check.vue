@@ -7,8 +7,8 @@
                      :title-render-func="titleRenderFunc"
                      :col-render-func="colRenderFunc"
                      :fixed.sync="currentFixed"
+                     :filter-component="filterComponent"
                      :no-search="false">
-
         <template slot="title" slot-scope="{col,colIndex}">
             <am-radio :value="currentValue"
                       read-only
@@ -39,10 +39,12 @@
     import tableColumnMixin from '../table-column-mixin';
     import AmRadio from '../../am-radio';
     import AmTableColumnCheckItem from './am-table-column-check-item';
+    import AmTableColumn from "../../am-table/am-table-column";
 
     export default {
         name: 'am-table-column-check',
         components: {
+            AmTableColumn,
             AmTableColumnCheckItem,
             AmRadio,
         },

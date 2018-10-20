@@ -112,7 +112,10 @@
         },
         methods: {
             _handleRemove(index) {
-                if (!this.disabled) this.tags.splice(index, 1);
+                if (!this.disabled) {
+                    const tag = this.tags.splice(index, 1);
+                    this.$emit('delete', tag)
+                }
             },
             _handlerConfirm() {
                 !!this.label && this.$emit('confirm', this.label);

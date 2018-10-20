@@ -9,7 +9,7 @@
                 :width="60"
                 shape="none"
                 type="fill"
-                color="info"
+                :color="color"
                 :data="searchCols"
                 show-key="title"
                 :value="!!searchCol?searchCol.title:null"
@@ -18,7 +18,7 @@
             />
 
             <keep-alive>
-                <div :is="searchCol.filterComponent"
+                <div :is="!!searchCol?searchCol.filterComponent:'am-auto-table-filter-input'"
                      shape="none"
                      type="fill"
                      :color="color"
@@ -27,8 +27,14 @@
                      v-model="searchValue"
                      @confirm="handleFilterConfirm" ref="filter"/>
             </keep-alive>
-            <am-button icon="fas-search" :icon-only="true" color="info" :size="size" @click="getFilterData"/>
-            <am-tag-input :tags="queryOrders" @confirm="handleTagInputConfirm" shape="none" type="none" :size=size>
+            <am-button icon="fas-search" :color="color" :size="size" @click="getFilterData"/>
+            <am-tag-input :tags="queryFilters"
+                          shape="none"
+                          type="fill"
+                          :color="color"
+                          :size="size"
+                          @delete="handleDelete"
+                          @confirm="handleTagInputConfirm">
                 <template slot-scope="{item}">
                     {{item.data.title}}{{item.data.operator}}{{item.data.value}}
                 </template>
@@ -40,17 +46,23 @@
 <script>
 
 
+    import AmTagInput from "../am-tag-input/am-tag-input";
+
     export default {
         name: "am-auto-table-filter",
-        components: {},
+        components: {AmTagInput},
         props: {
             searchCols: {type: Array, default: () => []},
             size: {type: String, default: 'small'},
             color: {type: String, default: 'info'},
             placeholder: {type: String, default: '搜索关键字'},
-            queryOrders: {type: Array, default: () => []},
+            queryFilters: {type: Array, default: () => []},
         },
-        watch: {},
+        watch: {
+            searchCols() {
+                this.searchCol = this.searchCols.length > 0 ? this.searchCols[0] : null
+            },
+        },
         data() {
             return {
                 searchCol: this.searchCols.length > 0 ? this.searchCols[0] : null,
@@ -64,13 +76,17 @@
             handleFilterConfirm() {
                 this.getFilterData();
             },
+            handleDelete(val) {
+                this.$emit('confirm')
+            },
             handleTagInputConfirm() {
 
             },
             getFilterData() {
                 const filterData = this.$refs.filter.getValue()
+                console.log(filterData)
                 if (!!filterData) {
-                    this.queryOrders.push(Object.assign({
+                    this.queryFilters.push(Object.assign({
                         field: this.searchCol.field,
                         operator: '=',
                         dateFormat: false,
@@ -86,6 +102,8 @@
 
 <style lang="scss">
     .am-auto-table-filter {
+        display: inline-block;
+        vertical-align: bottom;
         .am-select, .am-icon {
             cursor: pointer;
         }

@@ -4,28 +4,25 @@
         <div class="am-auto-table-header">
             <div>
                 <!--设置-->
-                <am-button icon="fas-cog" icon-only size="small" type="none"/>
+                <am-button icon="fas-cog" icon-only size="small" type="fill"/>
                 <!--筛选-->
-                <am-select size="small" suffix-icon="fas-angle-down" placeholder="搜索类型" :width="60" shape="none" type="none" :data="searchFields"
-                           show-key="title"/>
-                <am-input size="small" suffix-icon="fas-search" shape="none" type="none" placeholder="搜索关键字"/>
-                <am-button-group size="small" shape="none" v-show="!editing">
-                    <am-button label="新建" icon="fas-plus-circle" color="success" @click="handleClickCreateButton"/>
-                    <am-button label="删除" icon="fas-minus-circle" color="error" @click="handleClickDeleteButton"/>
-                </am-button-group>
+                <am-auto-table-filter :search-cols="searchCols" size="small" color="primary" :query-filters="option.param.query.filters" @confirm="handleFilter"/>
                 <!--操作按钮-->
+                <am-button-group size="small">
+                    <am-button label="导入" icon="fas-download"/>
+                    <am-button label="导出" icon="fas-upload"/>
+                    <slot name="normalBtn"></slot>
+                </am-button-group>
                 <am-button-group size="small" shape="none" v-show="!!editing">
                     <am-button label="继续添加" color="success" icon="fas-plus-circle" @click="handleClickCreateButton"
                                v-if="!!multiInsertable && editStatus === 'insert'"/>
                     <am-button label="保存编辑" icon="fas-save" @click="handleClickSaveEditButton"/>
                     <am-button label="取消编辑" color="error" icon="fas-ban" @click="handleClickCancelEditButton"/>
                 </am-button-group>
-                <am-button-group size="small" shape="none">
-                    <am-button label="导入" icon="fas-download"/>
-                    <am-button label="导出" icon="fas-upload"/>
-                    <slot name="normalBtn"></slot>
+                <am-button-group size="small" v-show="!editing">
+                    <am-button label="新建" icon="fas-plus-circle" color="success" @click="handleClickCreateButton"/>
+                    <am-button label="删除" icon="fas-minus-circle" color="error" @click="handleClickDeleteButton"/>
                 </am-button-group>
-
             </div>
         </div>
         <am-table
@@ -64,6 +61,7 @@
     import AmInput from '../am-input/am-input';
     import AmSelect from '../am-select/am-select';
     import AmPagination from '../am-pagination/am-pagination';
+    import AmAutoTableFilter from "./am-auto-table-filter";
 
     const EDIT_STATUS = {
         NORMAL: 'normal',
@@ -73,7 +71,7 @@
 
     export default {
         name: 'am-auto-table',
-        components: {AmPagination, AmSelect, AmInput, AmButton, AmButtonGroup, AmTableColumnIndex, AmTable},
+        components: {AmAutoTableFilter, AmPagination, AmSelect, AmInput, AmButton, AmButtonGroup, AmTableColumnIndex, AmTable},
         props: {
             indexing: {type: Boolean, default: true},
             rowNum: {type: Number, default: 10},
@@ -124,7 +122,7 @@
             this.table = this.$refs.table;
         },
         computed: {
-            searchFields() {
+            searchCols() {
                 if (!this.renderColumns) return [];
                 return this.renderColumns.reduce((ret, item) => {
                     if (!item.noSearch) ret.push(item);
@@ -174,6 +172,9 @@
                 const queryOrders = this.option.param.query.orders;
                 queryOrders.splice(0, queryOrders.length)
                 queryOrders.push({field: this.currentSortField, desc: this.currentSortDesc})
+                this.option.reload()
+            },
+            handleFilter() {
                 this.option.reload()
             },
             getSaveOption(rows) {

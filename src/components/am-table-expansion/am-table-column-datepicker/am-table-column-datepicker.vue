@@ -7,6 +7,7 @@
                      :title-render-func="titleRenderFunc"
                      :col-render-func="colRenderFunc"
                      :fixed.sync="currentFixed"
+                     :filter-component="filterComponent"
                      :no-search="false">
 
     <template slot-scope="{row,rowIndex,col,colIndex}">

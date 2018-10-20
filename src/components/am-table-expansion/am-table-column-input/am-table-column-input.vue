@@ -7,6 +7,7 @@
                      :title-render-func="titleRenderFunc"
                      :col-render-func="colRenderFunc"
                      :fixed.sync="currentFixed"
+                     :filter-component="filterComponent"
                      :no-search="false">
         <template slot-scope="{row,rowIndex,col,colIndex}">
             <am-table-column-input-item
@@ -39,10 +40,11 @@
     import tableColumnMixin from '../table-column-mixin';
     import AmTableColumnInputItem from './am-table-column-input-item';
     import {oneOf} from '../../../scripts/utils';
+    import AmTableColumn from "../../am-table/am-table-column";
 
     export default {
         name: 'am-table-column-input',
-        components: {AmTableColumnInputItem},
+        components: {AmTableColumn, AmTableColumnInputItem},
         mixins: [
             tableColumnMixin
         ],
