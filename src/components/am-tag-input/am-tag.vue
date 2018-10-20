@@ -33,6 +33,7 @@
             label: {type: String},
             value: {},
             index: {type: Number},
+            data:{},
             color: {
                 type: String,
                 validator(val) {
@@ -87,6 +88,9 @@
                     },
                     get dashed() {
                         return _this.dashed;
+                    },
+                    get data(){
+                        return _this.data
                     },
                 }
             };

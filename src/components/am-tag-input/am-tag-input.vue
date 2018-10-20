@@ -3,9 +3,9 @@
         <am-move-container direction="top">
             <am-tag
                 v-for="(tag,index) in tags"
-                :label="tag.label"
+                :label="tag[labelKey||'label']"
                 :value="tag.value"
-                :color="tag.color"
+                :color="tag[colorKey||'primary']"
                 :deleteable="tag.deleteable"
                 :type="tag.type"
                 :shape="tag.shape"
@@ -13,6 +13,7 @@
                 :renderFunc="renderFunc"
                 :key="tag._tagKey"
                 :index="index"
+                :data="tag"
                 @remove="_handleRemove"
                 :scoped-slot-func="$scopedSlots.default"
             />
@@ -40,6 +41,9 @@
         },
         props: {
             tags: {type: Array, default: () => []},
+            labelKey: {type: String, default: 'label'},
+            colorKey: {type: String, default: 'primary'},
+
             type: {
                 type: String,
                 validator(val) {

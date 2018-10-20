@@ -12,10 +12,19 @@
             size: {type: String,},
             color: {type: String,},
             placeholder: {type: String, default: '搜索关键字...'},
+            value: {},
+        },
+        watch: {
+            value(val) {
+                if (this.searchValue !== val) this.searchValue = val;
+            },
+            searchValue(val) {
+                this.$emit('input', val)
+            },
         },
         data() {
             return {
-                searchValue: null,
+                searchValue: this.value
             }
         },
         methods: {

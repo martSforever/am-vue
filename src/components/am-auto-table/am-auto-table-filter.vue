@@ -1,6 +1,5 @@
 <template>
     <div class="am-auto-table-filter">
-        {{queryOrders}}
         <!--筛选-->
         <am-button type="fill" color="info" :size="size" :shade-on-click="false" :click-effect="false" :no-border="true" :no-padding="true">
             <am-select
@@ -19,9 +18,21 @@
             />
 
             <keep-alive>
-                <div :is="searchCol.filterComponent" shape="none" type="fill" :color="color" :size="size" :placeholder="placeholder" @confirm="handleFilterConfirm" ref="filter"/>
+                <div :is="searchCol.filterComponent"
+                     shape="none"
+                     type="fill"
+                     :color="color"
+                     :size="size"
+                     :placeholder="placeholder"
+                     v-model="searchValue"
+                     @confirm="handleFilterConfirm" ref="filter"/>
             </keep-alive>
             <am-button icon="fas-search" :icon-only="true" color="info" :size="size" @click="getFilterData"/>
+            <am-tag-input :tags="queryOrders" @confirm="handleTagInputConfirm" shape="none" type="none" :size=size>
+                <template slot-scope="{item}">
+                    {{item.data.title}}{{item.data.operator}}{{item.data.value}}
+                </template>
+            </am-tag-input>
         </am-button>
     </div>
 </template>
@@ -43,6 +54,7 @@
         data() {
             return {
                 searchCol: this.searchCols.length > 0 ? this.searchCols[0] : null,
+                searchValue: null,
             }
         },
         methods: {
@@ -52,6 +64,9 @@
             handleFilterConfirm() {
                 this.getFilterData();
             },
+            handleTagInputConfirm() {
+
+            },
             getFilterData() {
                 const filterData = this.$refs.filter.getValue()
                 if (!!filterData) {
@@ -59,7 +74,9 @@
                         field: this.searchCol.field,
                         operator: '=',
                         dateFormat: false,
+                        title: this.searchCol.title,
                     }, filterData))
+                    this.searchValue = null;
                     this.$emit('confirm')
                 }
             },
@@ -69,8 +86,6 @@
 
 <style lang="scss">
     .am-auto-table-filter {
-        display: inline-flex;
-        align-items: center;
         .am-select, .am-icon {
             cursor: pointer;
         }
