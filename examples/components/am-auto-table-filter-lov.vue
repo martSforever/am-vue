@@ -5,6 +5,7 @@
 <script>
 
     import AmLovPick from "./am-lov-pick";
+    import {getLovByNameAndType} from "../scripts/lov";
 
     export default {
         name: "am-auto-table-filter-lov",
@@ -37,6 +38,8 @@
                 return !!this.currentValue ? {operator: '=', value: this.currentValue, tagValue: this.$refs.lovPick.label} : null
             },
             formatFilter({title, value, operator, field, tagValue}) {
+                const lov = getLovByNameAndType(value, this.filterOption.lovType)
+                console.log(lov)
                 return {title, value, operator, field, tagValue}
             },
         },

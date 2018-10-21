@@ -25,8 +25,39 @@ export async function getLovByType(type) {
     return (await getStoreSync('lov/lovData', '值列表'))[type];
 }
 
-export function getLov(code, type) {
+export function getLovsByType(type) {
+    const lovs = store.getters['lov/lovs'];
+    return lovs[type]
+}
 
+export function getLovByCodeAndType(code, type) {
+    let rets = getLovByType(type)
+    if (rets.length > 0) {
+        rets = rets.filter(item => item.code === code)
+        if (rets.length === 0) {
+            console.error(`找不到类型为[${type}],code为[${code}]的值列表对象`)
+        } else {
+            return rets[0]
+        }
+    } else {
+        console.error(`找不到值列表类型[${type}]`)
+    }
+    return null
+}
+
+export function getLovByNameAndType(name, type) {
+    let rets = getLovByType(type)
+    if (rets.length > 0) {
+        rets = rets.filter(item => item.name === name)
+        if (rets.length === 0) {
+            console.error(`找不到类型为[${type}],name为[${name}]的值列表对象`)
+        } else {
+            return rets[0]
+        }
+    } else {
+        console.error(`找不到值列表类型[${type}]`)
+    }
+    return null
 }
 
 export async function loadLov() {

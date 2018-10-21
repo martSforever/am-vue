@@ -111,6 +111,8 @@
 
                         const value = val.slice(operatorIndex + 1, val.length)
                         const filter = {title, value, operator, field, tagValue: value}
+                        console.log(filter, this.$refs.filter.formatFilter(filter))
+
                         this.queryFilters.push(this.$refs.filter.formatFilter(filter))
                         this.confirm()
                         return

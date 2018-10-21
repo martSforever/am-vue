@@ -15,7 +15,7 @@
             <am-table-column-input title="客户编码" field="acctCode"/>
             <am-table-column-datepicker title="出生日期" field="birthday"/>
             <am-table-column-datepicker title="创建时间" field="createdAt" format="yyyy-MM-dd hh:mm:ss" :editable="false"/>
-            <am-table-column title="客户类型" field="acctType"/>
+            <!--<am-table-column title="客户类型" field="acctType"/>-->
             <am-table-column-lov-pick title="客户类型" field="acctType" lov-type="ACCT-TYPE"/>
             <am-table-column title="年龄" field="acctAge"/>
             <am-table-column title="所属经销商" field="acctAgency"/>
