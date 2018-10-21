@@ -7,9 +7,11 @@
                      :title-render-func="titleRenderFunc"
                      :col-render-func="colRenderFunc"
                      :fixed.sync="currentFixed"
-                     :no-search="false">
+                     :no-search="noSearch"
+                     :filter-component="filterComponent"
+    >
 
-    <template slot-scope="{row,rowIndex,col,colIndex}">
+        <template slot-scope="{row,rowIndex,col,colIndex}">
             <am-table-column-lov-pick-item
                 :row="row"
                 :row-index="rowIndex"
@@ -34,6 +36,7 @@
         mixins: [tableColumnMixin],
         props: {
             lovType: {},
+            filterComponent: {default: 'am-auto-table-filter-lov'},
         },
     }
 </script>

@@ -14,10 +14,14 @@ import './scripts/start';
 import store from './store';
 import {start} from './scripts/start';
 
+import AmAutoTableFilterLov from './components/am-auto-table-filter-lov'
+
 window._ = require('lodash');
 Vue.use(Amvue, {IconfontPrefix: 'ali-icon'});
 // 开启debug模式
 Vue.config.debug = true;
+
+Vue.component('am-auto-table-filter-lov', AmAutoTableFilterLov)
 
 const app = new Vue({
     store,

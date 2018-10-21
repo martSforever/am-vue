@@ -1,5 +1,6 @@
 <template>
     <div class="am-auto-table-filter">
+        {{searchCol}}
         <!--筛选-->
         <am-button type="fill" color="info" :size="size" :shade-on-click="false" :click-effect="false" :no-border="true" :no-padding="true">
             <am-select
