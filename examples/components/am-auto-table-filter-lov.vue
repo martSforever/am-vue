@@ -1,5 +1,5 @@
 <template>
-    <am-lov-pick shape="none" type="fill" :color="color" :size="size" lov-type="ACCT-TYPE"/>
+    <am-lov-pick shape="none" type="fill" :color="color" :size="size" :lov-type="filterOption.lovType" v-model="currentValue" ref="lovPick"/>
 </template>
 
 <script>
@@ -14,18 +14,19 @@
             color: {type: String,},
             placeholder: {type: String, default: '搜索关键字...'},
             value: {},
+            filterOption: {},
         },
         watch: {
             value(val) {
-                if (this.searchValue !== val) this.searchValue = val;
+                if (this.currentValue !== val) this.currentValue = val;
             },
-            searchValue(val) {
+            currentValue(val) {
                 this.$emit('input', val)
             },
         },
         data() {
             return {
-                searchValue: this.value
+                currentValue: this.value
             }
         },
         methods: {
@@ -33,7 +34,7 @@
                 this.$emit('confirm')
             },
             getValue() {
-                return !!this.searchValue ? {operator: '~', value: this.searchValue, tagValue: this.searchValue} : null
+                return !!this.currentValue ? {operator: '=', value: this.currentValue, tagValue: this.$refs.lovPick.label} : null
             },
             formatFilter({title, value, operator, field, tagValue}) {
                 return {title, value, operator, field, tagValue}
