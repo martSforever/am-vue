@@ -1,6 +1,6 @@
 <template>
     <div class="am-auto-table">
-        <div class="am-auto-table-title" v-if="!!title">{{title}}-{{option.count}}</div>
+        <div class="am-auto-table-title" v-if="!!title">{{title}}-{{option.count}}-{{multiUpdateable}}</div>
         <div class="am-auto-table-header">
             <div>
                 <!--设置-->
@@ -132,11 +132,10 @@
         },
         methods: {
             handleDblClick({row, index}) {
-                if ((!this.multiUpdateable && this.editStatus === EDIT_STATUS.UPDATE)) return;
-                else {
-                    this.table.enableEdit(index);
-                    this.editStatus = EDIT_STATUS.UPDATE;
-                }
+                if (this.editStatus === EDIT_STATUS.INSERT) return
+                if ((this.editStatus === EDIT_STATUS.UPDATE && !this.multiUpdateable)) return;
+                this.table.enableEdit(index);
+                this.editStatus = EDIT_STATUS.UPDATE
             },
             handleClickCancelEditButton() {
                 this.cancelEdit();
