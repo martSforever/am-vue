@@ -28,13 +28,17 @@
                      @confirm="handleFilterConfirm" ref="filter"/>
             </keep-alive>
             <am-button icon="fas-search" :color="color" :size="size" @click="getFilterData"/>
-            <am-tag-input :tags="queryFilters"
-                          shape="none"
-                          type="fill"
-                          :color="color"
-                          :size="size"
-                          @delete="handleDelete"
-                          @confirm="handleTagInputConfirm">
+            <am-tag-input
+                ref="input"
+                :tags="queryFilters"
+                shape="none"
+                type="fill"
+                :color="color"
+                :size="size"
+                @delete="handleDelete"
+                @confirm="handleTagInputConfirm"
+                @backspace="handleBackSpace"
+            >
                 <template slot-scope="{item}">
                     {{item.data.title}}{{item.data.operator}}{{item.data.value}}
                 </template>
@@ -44,9 +48,9 @@
 </template>
 
 <script>
-
-
     import AmTagInput from "../am-tag-input/am-tag-input";
+
+    const OPERATORS = ['~', '!=#', '=#', '>', '>=', '<', '<=', '=']
 
     export default {
         name: "am-auto-table-filter",
@@ -77,10 +81,39 @@
                 this.getFilterData();
             },
             handleDelete(val) {
-                this.$emit('confirm')
+                this.confirm()
             },
-            handleTagInputConfirm() {
+            handleBackSpace() {
+                if (!this.$refs.input.label) {
+                    this.queryFilters.pop()
+                    this.confirm()
+                }
+            },
+            handleTagInputConfirm(val) {
 
+                if (!val) return
+                for (let i = 0; i < OPERATORS.length; i++) {
+                    const operator = OPERATORS[i];
+                    const operatorIndex = val.indexOf(operator)
+                    if (operatorIndex > -1) {
+                        const title = val.slice(0, operatorIndex)
+                        let field;
+                        const cols = this.searchCols.filter(col => col.title === title)
+                        if (cols.length < 1) {
+                            this.$modal.show({title: '警告', message: `无法找到匹配的列！`,})
+                            return
+                        } else {
+                            field = cols[0].field
+                        }
+
+                        const value = val.slice(operatorIndex + 1, val.length)
+                        const filter = {title, value, operator, field}
+                        this.queryFilters.push(filter)
+                        this.confirm()
+                        return
+                    }
+                }
+                this.$modal.show({title: '警告', message: `筛选操作符不正确！`,})
             },
             getFilterData() {
                 const filterData = this.$refs.filter.getValue()
@@ -93,9 +126,12 @@
                         title: this.searchCol.title,
                     }, filterData))
                     this.searchValue = null;
-                    this.$emit('confirm')
+                    this.confirm()
                 }
             },
+            confirm() {
+                this.$emit('confirm')
+            }
         },
     }
 </script>
