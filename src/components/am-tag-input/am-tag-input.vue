@@ -22,7 +22,9 @@
                    class="am-tag-label-input"
                    key="input"
                    v-if="!notInput && !disabled"
-                   @keyup.enter="_handlerConfirm"/>
+                   @keyup.enter="_handlerConfirm"
+                   @keyup.backspace="_handleBakcspace"
+            />
         </am-move-container>
     </div>
 </template>
@@ -104,10 +106,26 @@
                     }
                 },
             },
+            label(val) {
+                if (!!val) {
+                    this.inputEmpty = false
+                    if (!!this.timer) {
+                        clearTimeout(this.timer)
+                        this.timer = null
+                    }
+                } else {
+                    this.timer = setTimeout(() => {
+                        this.inputEmpty = true
+                        this.timer = null
+                    }, 300)
+                }
+            },
         },
         data() {
             return {
                 label: '',
+                inputEmpty: true,
+                timer: null,
             };
         },
         methods: {
@@ -120,6 +138,11 @@
             _handlerConfirm() {
                 !!this.label && this.$emit('confirm', this.label);
                 this.label = '';
+            },
+            _handleBakcspace() {
+                if (this.inputEmpty) {
+                    this.$emit('backspace')
+                }
             },
         },
         computed: {

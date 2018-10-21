@@ -21,6 +21,7 @@
 
             multiple: {type: Boolean},
             vertical: {type: Boolean},
+            radioKey: {}
         },
         data() {
             return {

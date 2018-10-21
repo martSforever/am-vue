@@ -114,6 +114,7 @@
             return {
                 currentValue: this.value,
                 radioGroup,
+                currentRadioKey: !!radioGroup ? radioGroup.radioKey || this.radioKey : this.radioKey
             };
         },
         methods: {
@@ -128,10 +129,10 @@
                         this.radioGroup.radios.forEach(radio => {
                             if (radio !== this) radio.currentValue = false;
                         });
-                        this.radioGroup.singleValue = !!this.currentValue ? this.radioKey : null;
+                        this.radioGroup.singleValue = !!this.currentValue ? this.currentRadioKey : null;
                     } else {
-                        if (!!this.currentValue) this.radioGroup.multipleValue.push(this.radioKey);
-                        else removeFromArray(this.radioGroup.multipleValue, this.radioKey);
+                        if (!!this.currentValue) this.radioGroup.multipleValue.push(this.currentRadioKey);
+                        else removeFromArray(this.radioGroup.multipleValue, this.currentRadioKey);
                     }
                 }
             },
@@ -140,13 +141,13 @@
             !!this.radioGroup && (this.radioGroup.addRadio(this));
             if (!!this.radioGroup) {
                 if (!!this.radioGroup.multiple) {
-                    if (!this.radioKey) {
+                    if (!this.currentRadioKey) {
                         console.error(`radio must have radio-key when radio-group's multiple is true!`);
                         return;
                     }
-                    this.currentValue = oneOf(this.radioKey, this.radioGroup.multipleValue);
+                    this.currentValue = oneOf(this.currentRadioKey, this.radioGroup.multipleValue);
                 } else {
-                    this.currentValue = this.radioGroup.singleValue === this.radioKey;
+                    this.currentValue = this.radioGroup.singleValue === this.currentRadioKey;
                 }
             }
         },
