@@ -17,6 +17,7 @@ const tableColumnMixin = {
             },
         },
         noSearch: {type: Boolean, default: false},
+        sortable: {type: Boolean, default: true},
     },
     watch: {
         order(newval, oldval) {

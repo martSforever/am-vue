@@ -8,7 +8,8 @@
                      :col-render-func="colRenderFunc"
                      :fixed.sync="currentFixed"
                      :filter-component="filterComponent"
-                     :no-search="false">
+                     :no-search="false"
+                     :sortable="sortable">
         <template slot="title" slot-scope="{col,colIndex}">
             <am-radio :value="currentValue"
                       read-only
@@ -60,6 +61,7 @@
             disabled: {type: Boolean},
 
             color: {type: String, default: 'primary'},
+            sortable: {default: false},
         },
         data() {
             return {

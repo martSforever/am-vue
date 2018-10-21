@@ -14,7 +14,7 @@
 
             @click.native="handleClick"
         >
-            <div class="am-table-head-cell-sort" :class="sortClasses">
+            <div class="am-table-head-cell-sort" :class="sortClasses" v-if="sortable">
                 <am-icon icon="fas-sort-up" class="am-table-head-cell-sort-asc-icon"/>
                 <am-icon icon="fas-sort-down" class="am-table-head-cell-sort-desc-icon"/>
             </div>
@@ -79,6 +79,9 @@
                     [`am-table-head-cell-sort-${this.sortDesc ? 'desc' : 'asc'}`]: !!this.sortField && this.sortField === this.col.field
                 }
             },
+            sortable() {
+                return ((!this.col.children || this.col.children.length === 0) && this.col.sortable)
+            },
         },
         methods: {
             handleMouseDown(e) {
@@ -114,6 +117,8 @@
             },
             handleClick() {
                 this.table.$emit('clickTitle', this.col)
+                if (this.sortable)
+                    this.table.$emit('clickSort', this.col)
             },
         },
     }

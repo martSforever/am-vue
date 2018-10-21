@@ -1,9 +1,7 @@
 <template>
     <div class="auto-table-example example-page">
-        <am-radio-group size="small" multiple radio-key="k">
-            <am-radio label="multiUpdateable" v-model="multiUpdateable"/>
-            <am-radio label="multiInsertable" v-model="multiInsertable"/>
-        </am-radio-group>
+        <am-radio label="multiUpdateable" v-model="multiUpdateable" size="small"/>
+        <am-radio label="multiInsertable" v-model="multiInsertable" size="small"/>
         <am-auto-table title="客户列表"
                        :option="option"
                        :indexing="false"

@@ -117,7 +117,6 @@
             },
             getFilterData() {
                 const filterData = this.$refs.filter.getValue()
-                console.log(filterData)
                 if (!!filterData) {
                     this.queryFilters.push(Object.assign({
                         field: this.searchCol.field,

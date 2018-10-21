@@ -26,6 +26,8 @@
             width: {default: '32px', desc: '列宽度'},
             order: {default: 999, desc: '列排序'},
             noSearch: {type: Boolean, default: true},
+            sortable: {default: false},
+
         }
     };
 </script>

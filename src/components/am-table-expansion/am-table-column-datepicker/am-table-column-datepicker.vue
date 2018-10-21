@@ -8,7 +8,8 @@
                      :col-render-func="colRenderFunc"
                      :fixed.sync="currentFixed"
                      :filter-component="filterComponent"
-                     :no-search="false">
+                     :no-search="false"
+                     :sortable="sortable">
 
     <template slot-scope="{row,rowIndex,col,colIndex}">
             <am-table-column-datepicker-item

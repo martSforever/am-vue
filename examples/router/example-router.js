@@ -134,7 +134,7 @@ export default {
         {
             path: '/auto-table',
             name: 'auto-table-example',
-            component: resolve => require(['examples/pages/example/components/auto-table-example.vue'], resolve),
+            component: resolve => require(['examples/pages/example/auto-table-example/auto-table-example.vue'], resolve),
         },
         {
             path: '/pagination',

@@ -13,7 +13,7 @@
                     <am-button label="导出" icon="fas-upload"/>
                     <slot name="normalBtn"></slot>
                 </am-button-group>
-                <am-button-group size="small" shape="none" v-show="!!editing">
+                <am-button-group size="small" v-show="!!editing">
                     <am-button label="继续添加" color="success" icon="fas-plus-circle" @click="handleClickCreateButton"
                                v-if="!!multiInsertable && editStatus === 'insert'"/>
                     <am-button label="保存编辑" icon="fas-save" @click="handleClickSaveEditButton"/>
@@ -36,7 +36,7 @@
 
             @render-columns-change="val=>renderColumns = val"
             @dblclick="handleDblClick"
-            @clickTitle="handleClickTitle"
+            @clickSort="handleSort"
         >
             <am-table-column-index v-if="indexing"/>
             <slot></slot>
@@ -131,7 +131,7 @@
             },
         },
         methods: {
-            handleClickTitle(col) {
+            handleSort(col) {
                 this.handleSort(col)
             },
             handleDblClick({row, index}) {

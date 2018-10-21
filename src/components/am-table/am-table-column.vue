@@ -23,6 +23,7 @@
                 },
             },
             noSearch: {type: Boolean, default: false},
+            sortable: {type: Boolean, default: true},
         },
         watch: {
             order(newval, oldval) {
@@ -91,6 +92,9 @@
                     },
                     get noSearch() {
                         return _this.noSearch;
+                    },
+                    get sortable() {
+                        return _this.sortable;
                     },
                     updateWidth(width) {
                         _this.currentWidth = width;
