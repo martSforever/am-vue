@@ -131,9 +131,6 @@
             },
         },
         methods: {
-            handleSort(col) {
-                this.handleSort(col)
-            },
             handleDblClick({row, index}) {
                 if ((!this.multiUpdateable && this.editStatus === EDIT_STATUS.UPDATE)) return;
                 else {
