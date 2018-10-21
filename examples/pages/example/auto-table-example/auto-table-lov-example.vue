@@ -26,6 +26,7 @@
     import AmLov from '../../../components/am-lov';
     import AmLovPick from "../../../components/am-lov-pick";
     import {getLovByLabelAndType, getLovByNameAndType, getLovsByType, loadLov} from "../../../scripts/lov";
+    import Vue from 'vue'
 
     export default {
         name: 'auto-table-lov-example',
@@ -54,8 +55,9 @@
                 await loadLov();
             },
             test() {
-                console.log(getLovByLabelAndType('大客户','ACCT-TYPE'))
+                // console.log(getLovByLabelAndType('大客户','ACCT-TYPE'))
                 // console.log(getLovsByType('ACCT-TYPE'))
+                console.dir(this.$options.components)
             },
         },
     };

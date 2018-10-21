@@ -100,21 +100,22 @@
                     const operatorIndex = val.indexOf(operator)
                     if (operatorIndex > -1) {
                         const title = val.slice(0, operatorIndex)
-                        let field;
+                        let col;
                         const cols = this.searchCols.filter(col => col.title === title)
                         if (cols.length < 1) {
                             this.$modal.show({title: '警告', message: `无法找到匹配的列！`,})
                             return
                         } else {
-                            field = cols[0].field
+                            col = cols[0]
                         }
 
                         const value = val.slice(operatorIndex + 1, val.length)
-                        const filter = {title, value, operator, field, tagValue: value}
-                        console.log(filter, this.$refs.filter.formatFilter(filter))
-
-                        this.queryFilters.push(this.$refs.filter.formatFilter(filter))
-                        this.confirm()
+                        const filter = {title, value, operator, field: col.field, tagValue: value}
+                        this.searchCol = col
+                        this.$nextTick(() => {
+                            this.queryFilters.push(this.$refs.filter.formatFilter(filter))
+                            this.confirm()
+                        })
                         return
                     }
                 }
