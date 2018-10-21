@@ -15,6 +15,8 @@
         <div class="example-row">
             <am-lov-pick lov-type="ACCT-TYPE" v-model="code"/>
         </div>
+        <div class="title">测试</div>
+        <am-button label="test" @click="test"/>
 
     </div>
 </template>
@@ -23,7 +25,7 @@
     import {AutoOption} from '../../../../src/components/am-auto-table/auto-option';
     import AmLov from '../../../components/am-lov';
     import AmLovPick from "../../../components/am-lov-pick";
-    import {loadLov} from "../../../scripts/lov";
+    import {getLovByLabelAndType, getLovByNameAndType, getLovsByType, loadLov} from "../../../scripts/lov";
 
     export default {
         name: 'auto-table-lov-example',
@@ -50,6 +52,10 @@
         methods: {
             async refreshLov() {
                 await loadLov();
+            },
+            test() {
+                console.log(getLovByLabelAndType('大客户','ACCT-TYPE'))
+                // console.log(getLovsByType('ACCT-TYPE'))
             },
         },
     };

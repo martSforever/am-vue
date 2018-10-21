@@ -9,10 +9,11 @@ const lov = {
     namespaced: true,
     state,
     getters: Object.assign(getDefaultGetters(state), {
-        lovs() {
-            return !!this.lovData ? this.lovData.reduce((ret, item) => {
+        lovs(state) {
+            return !!state.lovData ? state.lovData.reduce((ret, item) => {
                 if (!ret[item.type]) ret[item.type] = []
                 ret[item.type].push(item)
+                return ret
             }, {}) : []
         }
     }),

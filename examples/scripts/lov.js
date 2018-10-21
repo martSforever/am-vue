@@ -45,12 +45,12 @@ export function getLovByCodeAndType(code, type) {
     return null
 }
 
-export function getLovByNameAndType(name, type) {
-    let rets = getLovByType(type)
+export function getLovByLabelAndType(label, type) {
+    let rets = getLovsByType(type)
     if (rets.length > 0) {
-        rets = rets.filter(item => item.name === name)
+        rets = rets.filter(item => item.label === label)
         if (rets.length === 0) {
-            console.error(`找不到类型为[${type}],name为[${name}]的值列表对象`)
+            console.error(`找不到类型为[${type}],name为[${label}]的值列表对象`)
         } else {
             return rets[0]
         }
