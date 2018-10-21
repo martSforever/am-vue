@@ -18,14 +18,16 @@
             />
 
             <keep-alive>
-                <div :is="!!searchCol?searchCol.filterComponent:'am-auto-table-filter-input'"
-                     shape="none"
-                     type="fill"
-                     :color="color"
-                     :size="size"
-                     :placeholder="placeholder"
-                     v-model="searchValue"
-                     @confirm="handleFilterConfirm" ref="filter"/>
+                <div
+                    ref="filter"
+                    :is="!!searchCol?searchCol.filterComponent:'am-auto-table-filter-input'"
+                    shape="none"
+                    type="fill"
+                    :color="color"
+                    :size="size"
+                    :placeholder="placeholder"
+                    v-model="searchValue"
+                    @confirm="handleFilterConfirm"/>
             </keep-alive>
             <am-button icon="fas-search" :color="color" :size="size" @click="getFilterData"/>
             <am-tag-input
@@ -35,12 +37,12 @@
                 type="fill"
                 :color="color"
                 :size="size"
-                @delete="handleDelete"
+                @delete="handleFilterDelete"
                 @confirm="handleTagInputConfirm"
                 @backspace="handleBackSpace"
             >
                 <template slot-scope="{item}">
-                    {{item.data.title}}{{item.data.operator}}{{item.data.value}}
+                    {{item.data.title}}{{item.data.operator}}{{item.data.tagValue}}
                 </template>
             </am-tag-input>
         </am-button>
@@ -80,7 +82,7 @@
             handleFilterConfirm() {
                 this.getFilterData();
             },
-            handleDelete(val) {
+            handleFilterDelete(val) {
                 this.confirm()
             },
             handleBackSpace() {
@@ -107,8 +109,8 @@
                         }
 
                         const value = val.slice(operatorIndex + 1, val.length)
-                        const filter = {title, value, operator, field}
-                        this.queryFilters.push(filter)
+                        const filter = {title, value, operator, field, tagValue: value}
+                        this.queryFilters.push(this.$refs.filter.formatFilter(filter))
                         this.confirm()
                         return
                     }

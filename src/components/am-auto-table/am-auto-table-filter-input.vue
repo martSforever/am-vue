@@ -32,7 +32,10 @@
                 this.$emit('confirm')
             },
             getValue() {
-                return !!this.searchValue ? {operator: '~', value: this.searchValue} : null
+                return !!this.searchValue ? {operator: '~', value: this.searchValue, tagValue: this.searchValue} : null
+            },
+            formatFilter({title, value, operator, field, tagValue}) {
+                return {title, value, operator, field, tagValue}
             },
         },
     }
