@@ -15,6 +15,7 @@
                   :suffixIcon="suffixIcon"
                   :placeholder="placeholder"
                   :disabled="disabled"
+                  :width="width"
         />
         <am-popover parent-name="am-datepicker"
                     reference-name="input"
@@ -137,10 +138,11 @@
             readonly: {type: Boolean},
             clearable: {type: Boolean},
             regexp: {type: RegExp},
+            width: {},
         },
         watch: {
             value(val) {
-                this.currentValue = this.valueIsString ? !!val ? new Date(val.replace(/-/g, '/')) : new Date() : val
+                this.currentValue = !!val ? this.valueIsString ? new Date(val.replace(/-/g, '/')) : new Date() : null
                 this.reset()
             },
             currentValue(val) {

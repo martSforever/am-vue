@@ -1,12 +1,16 @@
 <template>
-    <am-input shape="none" type="fill" :color="color" :size="size" v-model="currentValue" @enter="handleEnter"/>
+    <div style="display: flex;align-items: center">
+        <am-datepicker shape="none" type="fill" :color="color" :size="size" v-model="startValue" :width="90"/>
+        ----
+        <am-datepicker shape="none" type="fill" :color="color" :size="size" v-model="endValue" :width="90"/>
+    </div>
 </template>
 
 <script>
     import AmInput from "../am-input/am-input";
 
     export default {
-        name: "am-auto-table-filter-input",
+        name: "am-auto-table-filter-datepicker",
         components: {AmInput},
         props: {
             size: {type: String,},
@@ -24,7 +28,9 @@
         },
         data() {
             return {
-                currentValue: this.value
+                currentValue: this.value,
+                startValue: null,
+                endValue: null,
             }
         },
         methods: {
@@ -32,13 +38,17 @@
                 this.$emit('confirm')
             },
             getValue() {
-                return !!this.currentValue ? {operator: '~', value: this.currentValue, tagValue: this.currentValue} : null
+                const ret = []
+                !!this.startValue && ret.push({operator: '>=', value: this.startValue, tagValue: this.startValue})
+                !!this.endValue && ret.push({operator: '<=', value: this.endValue, tagValue: this.endValue})
+                return ret
             },
             formatFilter({title, value, operator, field, tagValue}) {
                 return {title, value, operator, field, tagValue}
             },
-            clearValue(){
-                this.currentValue = null
+            clearValue() {
+                this.startValue = null
+                this.endValue = null
             },
         },
     }

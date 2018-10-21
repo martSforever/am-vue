@@ -41,6 +41,9 @@
                 const lov = getLovByLabelAndType(value, this.filterOption.lovType)
                 return {title, value: lov.code, operator: '=', field, tagValue: value}
             },
+            clearValue(){
+                this.currentValue = null
+            },
         },
     }
 </script>

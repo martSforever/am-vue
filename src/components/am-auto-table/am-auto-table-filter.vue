@@ -1,7 +1,7 @@
 <template>
     <div class="am-auto-table-filter">
         <!--筛选-->
-        <am-button type="fill" color="info" :size="size" :shade-on-click="false" :click-effect="false" :no-border="true" :no-padding="true">
+        <am-button type="fill" :color="color" :size="size" :shade-on-click="false" :click-effect="false" :no-border="true" :no-padding="true">
             <am-select
                 :size="size"
                 suffix-icon="fas-angle-down"
@@ -52,6 +52,7 @@
 
 <script>
     import AmTagInput from "../am-tag-input/am-tag-input";
+    import {typeOf} from "../../../examples/scripts/utils";
 
     const OPERATORS = ['~', '!=#', '=#', '>', '>=', '<', '<=', '=']
 
@@ -122,15 +123,18 @@
                 this.$modal.show({title: '警告', message: `筛选操作符不正确！`,})
             },
             getFilterData() {
-                const filterData = this.$refs.filter.getValue()
-                if (!!filterData) {
-                    this.queryFilters.push(Object.assign({
-                        field: this.searchCol.field,
-                        operator: '=',
-                        dateFormat: false,
-                        title: this.searchCol.title,
-                    }, filterData))
-                    this.searchValue = null;
+                let filterDatas = this.$refs.filter.getValue()
+                if (!!filterDatas) {
+                    if (typeOf(filterDatas) === 'object') filterDatas = [filterDatas]
+                    filterDatas.forEach(filterData => {
+                        this.queryFilters.push(Object.assign({
+                            field: this.searchCol.field,
+                            operator: '=',
+                            dateFormat: false,
+                            title: this.searchCol.title,
+                        }, filterData))
+                    })
+                    this.$refs.filter.clearValue()
                     this.confirm()
                 }
             },

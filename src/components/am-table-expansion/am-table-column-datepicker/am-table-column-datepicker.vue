@@ -12,7 +12,7 @@
                      :sortable="sortable"
                      :filter-option="filterOption">
 
-    <template slot-scope="{row,rowIndex,col,colIndex}">
+        <template slot-scope="{row,rowIndex,col,colIndex}">
             <am-table-column-datepicker-item
                 :row="row"
                 :row-index="rowIndex"
@@ -37,6 +37,7 @@
         mixins: [tableColumnMixin],
         props: {
             format: {type: String, default: 'yyyy-MM-dd'},
+            filterComponent: {default: 'am-auto-table-filter-datepicker'},
         },
     };
 </script>
