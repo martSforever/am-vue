@@ -9,7 +9,6 @@ const tableColumnMixin = {
         order: {default: 0, desc: '列排序'},
         titleRenderFunc: {type: Function, desc: '自定义列标题渲染函数'},
         colRenderFunc: {type: Function, desc: '自定义列内容渲染函数'},
-        filterComponent: {type: String, default: 'am-auto-table-filter-input'},
         editable: {type: Boolean, default: true},
         fixed: {
             type: String, default: 'center', validator(val) {
@@ -18,6 +17,8 @@ const tableColumnMixin = {
         },
         noSearch: {type: Boolean, default: false},
         sortable: {type: Boolean, default: true},
+        filterComponent: {type: String, default: 'am-auto-table-filter-input'},
+        filterOption: {},
     },
     watch: {
         order(newval, oldval) {

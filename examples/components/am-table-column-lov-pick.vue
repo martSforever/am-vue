@@ -9,7 +9,7 @@
                      :fixed.sync="currentFixed"
                      :no-search="noSearch"
                      :filter-component="filterComponent"
-    >
+                     :filter-option="{lovType}">
 
         <template slot-scope="{row,rowIndex,col,colIndex}">
             <am-table-column-lov-pick-item

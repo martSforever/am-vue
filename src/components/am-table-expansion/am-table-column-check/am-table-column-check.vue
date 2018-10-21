@@ -9,7 +9,8 @@
                      :fixed.sync="currentFixed"
                      :filter-component="filterComponent"
                      :no-search="false"
-                     :sortable="sortable">
+                     :sortable="sortable"
+                     :filter-option="filterOption">
         <template slot="title" slot-scope="{col,colIndex}">
             <am-radio :value="currentValue"
                       read-only

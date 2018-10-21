@@ -25,6 +25,10 @@ export async function getLovByType(type) {
     return (await getStoreSync('lov/lovData', '值列表'))[type];
 }
 
+export function getLov(code, type) {
+
+}
+
 export async function loadLov() {
     let data = await http.post('lov/queryAll');
     if (!!data && data.code === 0) {
