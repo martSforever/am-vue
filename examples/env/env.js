@@ -1,5 +1,5 @@
 const env = {
-    ip: 'http://localhost/amvue-server'
+    ip: 'http://localhost:8888'
 }
 
 export default env

@@ -6,7 +6,8 @@
                 <!--设置-->
                 <am-button icon="fas-cog" icon-only size="small" type="fill"/>
                 <!--筛选-->
-                <am-auto-table-filter :search-cols="searchCols" size="small" color="primary" :query-filters="option.param.query.filters" @confirm="handleFilter"/>
+                <am-auto-table-filter :search-cols="searchCols" size="small" color="primary" :query-filters="option.param.query.filters"
+                                      @confirm="handleFilter"/>
                 <!--操作按钮-->
                 <am-button-group size="small">
                     <am-button label="导入" icon="fas-download"/>
@@ -61,7 +62,8 @@
     import AmInput from '../am-input/am-input';
     import AmSelect from '../am-select/am-select';
     import AmPagination from '../am-pagination/am-pagination';
-    import AmAutoTableFilter from "./am-auto-table-filter";
+    import AmAutoTableFilter from './am-auto-table-filter';
+    import AutoTableController from './index';
 
     const EDIT_STATUS = {
         NORMAL: 'normal',
@@ -80,6 +82,8 @@
             option: {type: Object,},
             sortField: {type: String},
             sortDesc: {type: Boolean, default: true},
+            tableId: {type: String,},
+            parentId: {type: String},
 
             multiUpdateable: {type: Boolean},
             multiInsertable: {type: Boolean},
@@ -118,6 +122,12 @@
                 currentSortDesc: this.sortDesc || this.option.param.query.orders[0].desc,
             };
         },
+        beforeMount() {
+            AutoTableController.add(this);
+        },
+        beforeDestroy() {
+            AutoTableController.remove(this);
+        },
         mounted() {
             this.table = this.$refs.table;
         },
@@ -132,10 +142,10 @@
         },
         methods: {
             handleDblClick({row, index}) {
-                if (this.editStatus === EDIT_STATUS.INSERT) return
+                if (this.editStatus === EDIT_STATUS.INSERT) return;
                 if ((this.editStatus === EDIT_STATUS.UPDATE && !this.multiUpdateable)) return;
                 this.table.enableEdit(index);
-                this.editStatus = EDIT_STATUS.UPDATE
+                this.editStatus = EDIT_STATUS.UPDATE;
             },
             handleClickCancelEditButton() {
                 this.cancelEdit();
@@ -163,15 +173,15 @@
                 });
             },
             handleSort(col) {
-                this.currentSortDesc = col.field === this.currentSortField ? !this.currentSortDesc : true
-                this.currentSortField = col.field
+                this.currentSortDesc = col.field === this.currentSortField ? !this.currentSortDesc : true;
+                this.currentSortField = col.field;
                 const queryOrders = this.option.param.query.orders;
-                queryOrders.splice(0, queryOrders.length)
-                queryOrders.push({field: this.currentSortField, desc: this.currentSortDesc})
-                this.option.reload()
+                queryOrders.splice(0, queryOrders.length);
+                queryOrders.push({field: this.currentSortField, desc: this.currentSortDesc});
+                this.option.reload();
             },
             handleFilter() {
-                this.option.reload()
+                this.option.reload();
             },
             getSaveOption(rows) {
                 switch (this.editStatus) {
