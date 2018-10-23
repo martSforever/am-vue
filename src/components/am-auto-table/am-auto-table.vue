@@ -1,6 +1,6 @@
 <template>
     <div class="am-auto-table">
-        <div class="am-auto-table-title" v-if="!!title">{{title}}-{{option.count}}</div>
+        <div class="am-auto-table-title" v-if="!!title">{{title}}</div>
         <div class="am-auto-table-header">
             <div>
                 <!--设置-->

@@ -1,8 +1,10 @@
 <template>
     <div class="auto-table-example example-page">
-        <am-radio label="multiUpdateable" v-model="multiUpdateable" size="small"/>
-        <am-radio label="multiInsertable" v-model="multiInsertable" size="small"/>
-        <am-auto-table title="客户列表"
+        <div class="example-row">
+            <am-radio label="multiUpdateable" v-model="multiUpdateable" size="small"/>
+            <am-radio label="multiInsertable" v-model="multiInsertable" size="small"/>
+        </div>
+        <am-auto-table title="负责人列表"
                        :option="option"
                        :indexing="true"
                        :multi-updateable="multiUpdateable"
