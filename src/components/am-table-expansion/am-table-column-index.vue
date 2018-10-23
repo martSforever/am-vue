@@ -6,6 +6,7 @@
                      :no-search="noSearch"
                      :title-render-func="titleRenderFunc"
                      :col-render-func="colRenderFunc"
+                     :sortable="sortable"
                      :fixed.sync="currentFixed">
         <template slot-scope="{rowIndex}">{{rowIndex+1}}</template>
     </am-table-column>

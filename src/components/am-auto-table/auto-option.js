@@ -19,6 +19,7 @@ export class AutoOption {
     deleteUrl;
 
     param;
+
     loadOnStart = true;
 
     list = [];

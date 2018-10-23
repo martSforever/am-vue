@@ -10,8 +10,11 @@ const AutoTableController = {
     remove(autoTable) {
         tables.splice(tables.indexOf(autoTable), 1);
     },
-    getChildren(autoTable) {
-        return tables.filter(table => table.parentId = autoTable.tableId);
+    getChildren(parent) {
+        return tables.filter(table => table.parentId = parent.tableId);
+    },
+    getParents(child) {
+        return tables.filter(table => table.tableId = child.parentId);
     },
 };
 
