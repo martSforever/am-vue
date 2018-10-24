@@ -183,6 +183,7 @@
             },
         },
         methods: {
+            /*basic*/
             handleContentScroll(e, focusContent) {
                 if (focusContent !== (this.dragingScrollbar ? 'center' : this.focusContent)) return;
                 if (focusContent === 'center') {
@@ -190,16 +191,10 @@
                     this.shadowRight = (e.target.scrollLeft < (e.target.scrollWidth - e.target.offsetWidth + 17));
                     // console.log(e.target.scrollWidth, e.target.offsetWidth, e.target.scrollWidth - e.target.offsetWidth, e.target.scrollLeft)
                 }
-
-                if (!!this.$refs.left && this.$refs.left.$refs.body.$refs.scrollbar.$refs.wrapper !== e.target) {
-                    this.$refs.left.$refs.body.$refs.scrollbar.$refs.wrapper.scrollTop = e.target.scrollTop;
-                }
-                if (!!this.$refs.center && this.$refs.center.$refs.body.$refs.scrollbar.$refs.wrapper !== e.target) {
-                    this.$refs.center.$refs.body.$refs.scrollbar.$refs.wrapper.scrollTop = e.target.scrollTop;
-                }
-                if (!!this.$refs.right && this.$refs.right.$refs.body.$refs.scrollbar.$refs.wrapper !== e.target) {
-                    this.$refs.right.$refs.body.$refs.scrollbar.$refs.wrapper.scrollTop = e.target.scrollTop;
-                }
+                const target = ['left', 'center', 'right'];
+                target.forEach(position => {
+                    if (!!this.$refs[position] && this.$refs[position].$refs.body.$refs.scrollbar.$refs.wrapper !== e.target) this.$refs[position].$refs.body.$refs.scrollbar.$refs.wrapper.scrollTop = e.target.scrollTop;
+                });
             },
             handleVerticalIndicatorMousedown() {
                 this.dragingScrollbar = true;
@@ -207,6 +202,8 @@
             handleVerticalIndicatorMouseup() {
                 this.dragingScrollbar = false;
             },
+
+            /*util*/
             triggerSingleRowMethod(row, index, methodName) {
                 const target = ['left', 'center', 'right'];
                 target.forEach(position => {
@@ -228,6 +225,8 @@
                     });
                 }
             },
+
+            /*extension*/
             handleRowClick(row, index) {
                 this.triggerSingleRowMethod(row, index, 'click');
                 this.$emit('click', {row, index});
@@ -236,6 +235,8 @@
                 this.triggerSingleRowMethod(row, index, 'dblClick');
                 this.$emit('dblclick', {row, index});
             },
+
+            /*methods*/
             getEditingRows() {
                 return this.$refs.center.$refs.body.$refs.rows.reduce((ret, rowComponent) => {
                     if (!!rowComponent.currentEditable) ret.push(rowComponent.getEditRowData());
