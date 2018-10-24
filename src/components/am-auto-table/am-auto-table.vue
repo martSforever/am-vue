@@ -82,8 +82,6 @@
             option: {type: Object,},
             sortField: {type: String},
             sortDesc: {type: Boolean, default: true},
-            tableId: {type: String,},
-            parentId: {type: String},
 
             multiUpdateable: {type: Boolean},
             multiInsertable: {type: Boolean},
@@ -141,6 +139,8 @@
             },
         },
         methods: {
+
+            /*basic*/
             handleDblClick({row, index}) {
                 if (this.editStatus === EDIT_STATUS.INSERT) return;
                 if ((this.editStatus === EDIT_STATUS.UPDATE && !this.multiUpdateable)) return;
@@ -153,6 +153,9 @@
             handleClickSaveEditButton() {
                 this.saveEdit();
             },
+
+
+            /*extension*/
             handleClickCreateButton() {
                 this.editStatus = EDIT_STATUS.INSERT;
                 const newRow = {};
@@ -183,6 +186,8 @@
             handleFilter() {
                 this.option.reload();
             },
+
+            /*util*/
             getSaveOption(rows) {
                 switch (this.editStatus) {
                     case EDIT_STATUS.INSERT:
@@ -194,6 +199,7 @@
                 }
             },
 
+            /*method*/
             cancelEdit(val) {
                 if (this.editStatus === EDIT_STATUS.INSERT) {
                     this.newRows.forEach(() => this.list.shift());

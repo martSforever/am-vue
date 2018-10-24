@@ -1,5 +1,6 @@
 import {deepCopy} from '../../scripts/utils';
 import http from '../../../examples/scripts/http';
+import AutoTableController from './index';
 
 const DEFAULT_QUERY_PARAM = {
     page: 1,
@@ -19,8 +20,10 @@ export class AutoOption {
     deleteUrl;
 
     param;
-
     loadOnStart = true;
+
+    tableId;
+    parentId;
 
     list = [];
     noMore = false;
@@ -47,6 +50,11 @@ export class AutoOption {
         if (!data.ret || data.ret.length < this.param.pageSize) this.noMore = true;
         if (!!data.ret) data.ret.forEach(item => this.list.push(item));
         return data;
+    }
+
+    reloadChildren() {
+        const tableChildren = AutoTableController.getChildren(this);
+        tableChildren.forEach(table => table.option.reload());
     }
 
     async queryCount() {
