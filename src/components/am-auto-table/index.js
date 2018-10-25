@@ -2,7 +2,7 @@ const tables = [];
 
 const AutoTableController = {
     add(autoTable) {
-        if (tables.filter(table => table.tableId === autoTable.tableId).length > 0) {
+        if (tables.filter(table => !!table.tableId && table.tableId === autoTable.tableId).length > 0) {
             console.error(`id:${autoTable.tableId} has been used...`);
         }
         tables.push(autoTable);

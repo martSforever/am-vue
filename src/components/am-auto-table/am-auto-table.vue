@@ -2,18 +2,12 @@
     <div class="am-auto-table">
         <div class="am-auto-table-title" v-if="!!title">{{title}}</div>
         <div class="am-auto-table-header">
-            <div>
+            <div class="am-auto-table-header-left-side">
                 <!--设置-->
                 <am-button icon="fas-cog" icon-only size="small" type="fill"/>
                 <!--筛选-->
                 <am-auto-table-filter :search-cols="searchCols" size="small" color="primary" :query-filters="option.param.query.filters"
                                       @confirm="handleFilter"/>
-                <!--操作按钮-->
-                <am-button-group size="small">
-                    <am-button label="导入" icon="fas-download"/>
-                    <am-button label="导出" icon="fas-upload"/>
-                    <slot name="normalBtn"></slot>
-                </am-button-group>
                 <am-button-group size="small" v-show="!!editing">
                     <am-button label="继续添加" color="success" icon="fas-plus-circle" @click="handleClickCreateButton"
                                v-if="!!multiInsertable && editStatus === 'insert'"/>
@@ -25,6 +19,12 @@
                     <am-button label="删除" icon="fas-minus-circle" color="error" @click="handleClickDeleteButton"/>
                 </am-button-group>
             </div>
+            <!--操作按钮-->
+            <am-button-group size="small">
+                <am-button label="导入" icon="fas-download"/>
+                <am-button label="导出" icon="fas-upload"/>
+                <slot name="normalBtn"></slot>
+            </am-button-group>
         </div>
         <am-table
             ref="table"
