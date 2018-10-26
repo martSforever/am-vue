@@ -8,19 +8,22 @@
         background-color: #f2f2f2;
         color: $color-normal-title;
     }
-    .am-auto-table-header {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        padding: 12px;
-    }
-    .am-auto-table-footer {
-        padding: 0 1em;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        .am-auto-table-page-select {
-            line-height: 24px;
+    .am-auto-table-content {
+        padding: 0 12px 12px;
+        .am-auto-table-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 12px 0;
+        }
+        .am-auto-table-footer {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            .am-auto-table-page-select {
+                line-height: 24px;
+            }
         }
     }
+
 }

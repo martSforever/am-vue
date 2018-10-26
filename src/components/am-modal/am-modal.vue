@@ -118,6 +118,7 @@
             confirmButton: {type: Boolean},
             cancelButton: {type: Boolean},
             closeIcon: {type: Boolean, default: true},
+            modalClass: {type: String},
             vertical: {
                 type: String,
                 default: 'start'
@@ -178,6 +179,7 @@
             },
             bodyClasses() {
                 return [
+                    {[this.modalClass]: !!this.modalClass},
                     `am-modal-body-shape-${this.shape}`
                 ];
             },

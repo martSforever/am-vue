@@ -5,6 +5,7 @@
               :confirm-button="true"
               :cancel-button="true"
               title="请选择..."
+              modal-class="am-object-pick-modal"
     >
         <am-auto-table :option="option"
                        :setting-config="false"
@@ -44,5 +45,7 @@
 </script>
 
 <style lang="scss">
+    .am-object-pick-modal {
 
+    }
 </style>

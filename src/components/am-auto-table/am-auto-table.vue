@@ -1,54 +1,56 @@
 <template>
     <div class="am-auto-table">
         <div class="am-auto-table-title" v-if="!!title">{{title}}</div>
-        <div class="am-auto-table-header">
-            <div class="am-auto-table-header-left-side">
-                <!--设置-->
-                <am-button icon="fas-cog" icon-only size="small" type="fill" v-if="!!settingConfig"/>
-                <!--筛选-->
-                <am-auto-table-filter :search-cols="searchCols" size="small" color="primary" :query-filters="option.param.query.filters"
-                                      @confirm="handleFilter"/>
-                <am-button-group size="small" v-show="!!editing">
-                    <am-button label="继续添加" color="success" icon="fas-plus-circle" @click="handleClickCreateButton"
-                               v-if="!!multiInsertable && editStatus === 'insert'"/>
-                    <am-button label="保存编辑" icon="fas-save" @click="handleClickSaveEditButton"/>
-                    <am-button label="取消编辑" color="error" icon="fas-ban" @click="handleClickCancelEditButton"/>
-                </am-button-group>
-                <am-button-group size="small" v-show="!editing">
-                    <am-button label="新建" icon="fas-plus-circle" color="success" @click="handleClickCreateButton" v-if="!!insertable"/>
-                    <am-button label="删除" icon="fas-minus-circle" color="error" @click="handleClickDeleteButton" v-if="!!deleteable"/>
+        <div class="am-auto-table-content">
+            <div class="am-auto-table-header">
+                <div class="am-auto-table-header-left-side">
+                    <!--设置-->
+                    <am-button icon="fas-cog" icon-only size="small" type="fill" v-if="!!settingConfig"/>
+                    <!--筛选-->
+                    <am-auto-table-filter :search-cols="searchCols" size="small" color="primary" :query-filters="option.param.query.filters"
+                                          @confirm="handleFilter"/>
+                    <am-button-group size="small" v-show="!!editing">
+                        <am-button label="继续添加" color="success" icon="fas-plus-circle" @click="handleClickCreateButton"
+                                   v-if="!!multiInsertable && editStatus === 'insert'"/>
+                        <am-button label="保存编辑" icon="fas-save" @click="handleClickSaveEditButton"/>
+                        <am-button label="取消编辑" color="error" icon="fas-ban" @click="handleClickCancelEditButton"/>
+                    </am-button-group>
+                    <am-button-group size="small" v-show="!editing">
+                        <am-button label="新建" icon="fas-plus-circle" color="success" @click="handleClickCreateButton" v-if="!!insertable"/>
+                        <am-button label="删除" icon="fas-minus-circle" color="error" @click="handleClickDeleteButton" v-if="!!deleteable"/>
+                    </am-button-group>
+                </div>
+                <!--操作按钮-->
+                <am-button-group size="small">
+                    <am-button label="导入" icon="fas-download" v-if="importable"/>
+                    <am-button label="导出" icon="fas-upload" v-if="exportable"/>
+                    <slot name="normalBtn"></slot>
                 </am-button-group>
             </div>
-            <!--操作按钮-->
-            <am-button-group size="small">
-                <am-button label="导入" icon="fas-download" v-if="importable"/>
-                <am-button label="导出" icon="fas-upload" v-if="exportable"/>
-                <slot name="normalBtn"></slot>
-            </am-button-group>
-        </div>
-        <am-table
-            ref="table"
-            :row-num="rowNum"
-            :list="list"
-            :editing.sync="editing"
-            :select-index.sync="currentSelectIndex"
-            :sort-field="currentSortField"
-            :sort-desc="currentSortDesc"
+            <am-table
+                ref="table"
+                :row-num="rowNum"
+                :list="list"
+                :editing.sync="editing"
+                :select-index.sync="currentSelectIndex"
+                :sort-field="currentSortField"
+                :sort-desc="currentSortDesc"
 
-            @render-columns-change="val=>renderColumns = val"
-            @dblclick="handleDblClick"
-            @clickSort="handleSort"
-        >
-            <am-table-column-index v-if="indexing" :page="!!option?option.param.query.page:0" :page-size="!!option?option.param.query.pageSize:1"/>
-            <slot></slot>
-        </am-table>
-        <div class="am-auto-table-footer">
-            <div>
-                <am-pagination :page.sync="option.param.query.page"
-                               :page-size.sync="option.param.query.pageSize"
-                               :total-size="option.count"
-                               @load="option.load()"
-                               @refresh="option.load()"/>
+                @render-columns-change="val=>renderColumns = val"
+                @dblclick="handleDblClick"
+                @clickSort="handleSort"
+            >
+                <am-table-column-index v-if="indexing" :page="!!option?option.param.query.page:0" :page-size="!!option?option.param.query.pageSize:1"/>
+                <slot></slot>
+            </am-table>
+            <div class="am-auto-table-footer">
+                <div>
+                    <am-pagination :page.sync="option.param.query.page"
+                                   :page-size.sync="option.param.query.pageSize"
+                                   :total-size="option.count"
+                                   @load="option.load()"
+                                   @refresh="option.load()"/>
+                </div>
             </div>
         </div>
     </div>
