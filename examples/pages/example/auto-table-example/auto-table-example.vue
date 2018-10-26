@@ -5,7 +5,7 @@
             <am-radio label="multiInsertable" v-model="multiInsertable" size="small"/>
         </div>
         <am-auto-table title="负责人列表"
-                       :option="option"
+                       :option="chargersOption"
                        :indexing="true"
                        :multi-updateable="multiUpdateable"
                        :multi-insertable="multiInsertable"
@@ -19,6 +19,18 @@
             <am-table-column-lov-pick title="客户类型" field="acctType" lov-type="ACCT-TYPE"/>
             <am-table-column title="年龄" field="acctAge"/>
             <am-table-column title="所属经销商" field="acctAgency"/>
+        </am-auto-table>
+
+        <am-auto-table title="门店列表"
+                       :option="storesOption"
+                       :indexing="true"
+                       :multi-updateable="multiUpdateable"
+                       :multi-insertable="multiInsertable"
+        >
+            <am-table-column-input title="名称" field="name"/>
+            <am-table-column-input title="编码" field="code"/>
+            <am-table-column-lov-pick title="类型" field="type" lov-type="STORE-TYPE"/>
+            <am-table-column-input title="经销商" field="agencyId"/>
         </am-auto-table>
     </div>
 </template>
@@ -35,7 +47,7 @@
                 multiUpdateable: true,
                 multiInsertable: true,
 
-                option: new AutoOption({
+                chargersOption: new AutoOption({
                     url: 'acct/queryPage',
                     countUrl: 'acct/queryCount',
                     insertUrl: 'acct/insert',
@@ -47,7 +59,18 @@
                     param: {
                         headId: '123456'
                     }
-                })
+                }),
+
+                storesOption: new AutoOption({
+                    url: 'store/queryPage',
+                    countUrl: 'store/queryCount',
+                    insertUrl: 'store/insert',
+                    multiInserUrl: 'store/multiInsert',
+                    updateUrl: 'store/update',
+                    multiUpdateUrl: 'store/multiUpdate',
+                    deleteUrl: 'store/delete',
+                }),
+
             };
         },
         mounted() {

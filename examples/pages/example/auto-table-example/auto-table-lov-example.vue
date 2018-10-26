@@ -1,6 +1,8 @@
 <template>
     <div class="auto-table-lov-example example-page">
         <am-auto-table title="值列表"
+                       :multi-insertable="true"
+                       :multi-updateable="true"
                        :option="option">
             <am-table-column-input title="显示值" field="label"/>
             <am-table-column-input title="实际值" field="code"/>
