@@ -14,7 +14,7 @@ body {
         z-index: 2;
         @include transition-all;
         .am-modal-body {
-            position: relative;
+            position: absolute;
             display: flex;
             flex-direction: column;
             overflow: hidden;

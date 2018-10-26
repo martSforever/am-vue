@@ -5,7 +5,6 @@
               :confirm-button="true"
               :cancel-button="true"
               title="请选择..."
-              :hide-on-click-outside="false"
     >
         <am-auto-table :option="option"
                        :setting-config="false"
