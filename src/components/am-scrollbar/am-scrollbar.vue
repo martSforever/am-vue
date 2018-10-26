@@ -1,7 +1,7 @@
 <template>
     <div class="am-scrollbar"
          ref="host"
-         :class="{'am-scrollbar-hover':hover}"
+         :class="{'am-scrollbar-hover':true}"
          @mouseenter="_mouseenter"
          @mouseleave="_mouseleave"
     >
@@ -28,14 +28,14 @@
 </template>
 
 <script>
-    import {addClass, removeClass} from "../../scripts/dom";
+    import {addClass, removeClass} from '../../scripts/dom';
 
-    const scroll = require('scroll')
-    const elementResizeDetectorMaker = require("element-resize-detector");
-    let erdUltraFast = elementResizeDetectorMaker({strategy: "scroll"});
+    const scroll = require('scroll');
+    const elementResizeDetectorMaker = require('element-resize-detector');
+    let erdUltraFast = elementResizeDetectorMaker({strategy: 'scroll'});
 
     export default {
-        name: "am-scrollbar",
+        name: 'am-scrollbar',
         props: {
             scrollbarSize: {type: Number, default: 9},
             scrollbarColor: {type: String, default: 'rgba(0,0,0,0.4)'},
@@ -56,7 +56,7 @@
                 dragStartLeft: 0,
                 dragStartX: 0,
                 hover: false,
-            }
+            };
         },
         mounted() {
             erdUltraFast.listenTo(this.$refs.content, this._contentResize);
@@ -64,16 +64,16 @@
         },
         computed: {
             indicatorHeight() {
-                return (this.contentHeight > this.hostHeight) ? this.hostHeight * this.hostHeight / this.contentHeight : 0
+                return (this.contentHeight > this.hostHeight + 1) ? this.hostHeight * this.hostHeight / this.contentHeight : 0;
             },
             indicatorTop() {
-                return (this.hostHeight - this.indicatorHeight) * this.contentWrapperScrollTop / (this.contentHeight - this.hostHeight)
+                return (this.hostHeight - this.indicatorHeight) * this.contentWrapperScrollTop / (this.contentHeight - this.hostHeight);
             },
             indicatorWidth() {
-                return (this.contentWidth > this.hostWidth) ? this.hostWidth * this.hostWidth / this.contentWidth : 0
+                return (this.contentWidth > this.hostWidth + 1) ? this.hostWidth * this.hostWidth / this.contentWidth : 0;
             },
             indicatorLeft() {
-                return (this.hostWidth - this.indicatorWidth) * this.contentWrapperScrollLeft / (this.contentWidth - this.hostWidth)
+                return (this.hostWidth - this.indicatorWidth) * this.contentWrapperScrollLeft / (this.contentWidth - this.hostWidth);
             },
             verticalIndicatorStyles() {
                 return {
@@ -81,7 +81,7 @@
                     width: `${this.scrollbarSize}px`,
                     top: `${this.indicatorTop}px`,
                     backgroundColor: this.scrollbarColor,
-                }
+                };
             },
             horizontalIndicatorStyles() {
                 return {
@@ -89,25 +89,25 @@
                     width: `${this.indicatorWidth}px`,
                     left: `${this.indicatorLeft}px`,
                     backgroundColor: this.scrollbarColor,
-                }
+                };
             },
             contentStyles() {
-                let styles = {}
-                if (!this.scrollX) styles.width = `${this.contentWidth}px`
-                if (!this.scrollY) styles.height = `${this.contentHeight}px`
-                return styles
+                let styles = {};
+                if (!this.scrollX) styles.width = `${this.contentWidth}px`;
+                if (!this.scrollY) styles.height = `${this.contentHeight}px`;
+                return styles;
             },
             wrapperStyles() {
-                let styles = {}
+                let styles = {};
                 if (!this.scrollX) {
-                    styles.overflowX = 'hidden'
-                    styles.height = '100%'
+                    styles.overflowX = 'hidden';
+                    styles.height = '100%';
                 }
                 if (!this.scrollY) {
-                    styles.overflowY = 'hidden'
-                    styles.width = '100%'
+                    styles.overflowY = 'hidden';
+                    styles.width = '100%';
                 }
-                return styles
+                return styles;
             },
         },
         methods: {
@@ -120,67 +120,67 @@
                 this.hostHeight = el.offsetHeight;
             },
             _handleScroll(e) {
-                this.contentWrapperScrollTop = e.target.scrollTop
-                this.contentWrapperScrollLeft = e.target.scrollLeft
-                this.$emit('scroll', e)
-                if (this.contentWrapperScrollTop === (this.contentHeight - this.hostHeight)) this.$emit('vertical-scroll-bottom')
-                if (this.contentWrapperScrollTop === 0) this.$emit('vertical-scroll-top')
+                this.contentWrapperScrollTop = e.target.scrollTop;
+                this.contentWrapperScrollLeft = e.target.scrollLeft;
+                this.$emit('scroll', e);
+                if (this.contentWrapperScrollTop === (this.contentHeight - this.hostHeight)) this.$emit('vertical-scroll-bottom');
+                if (this.contentWrapperScrollTop === 0) this.$emit('vertical-scroll-top');
             },
             vIndicatorDragStart(e) {
-                this.dragStartTop = this.indicatorTop
-                this.dragStartY = e.clientY
-                document.addEventListener('mousemove', this.vIndicatorDragMove)
-                document.addEventListener('mouseup', this.vIndicatorDragEnd)
-                addClass(document.body, 'am-body-user-select-none')
+                this.dragStartTop = this.indicatorTop;
+                this.dragStartY = e.clientY;
+                document.addEventListener('mousemove', this.vIndicatorDragMove);
+                document.addEventListener('mouseup', this.vIndicatorDragEnd);
+                addClass(document.body, 'am-body-user-select-none');
             },
             vIndicatorDragMove(e) {
-                let deltaY = e.clientY - this.dragStartY
-                const targetTop = this.dragStartTop + deltaY
-                this.$refs.wrapper.scrollTop = `${targetTop * (this.contentHeight - this.hostHeight) / (this.hostHeight - this.indicatorHeight)}`
+                let deltaY = e.clientY - this.dragStartY;
+                const targetTop = this.dragStartTop + deltaY;
+                this.$refs.wrapper.scrollTop = `${targetTop * (this.contentHeight - this.hostHeight) / (this.hostHeight - this.indicatorHeight)}`;
             },
             vIndicatorDragEnd(e) {
-                document.removeEventListener('mousemove', this.vIndicatorDragMove)
-                document.removeEventListener('mouseup', this.vIndicatorDragEnd)
-                document.body.style.userSelect = 'unset'
-                removeClass(document.body, 'am-body-user-select-none')
+                document.removeEventListener('mousemove', this.vIndicatorDragMove);
+                document.removeEventListener('mouseup', this.vIndicatorDragEnd);
+                document.body.style.userSelect = 'unset';
+                removeClass(document.body, 'am-body-user-select-none');
             },
             hIndicatorDragStart(e) {
-                this.dragStartLeft = this.indicatorLeft
-                this.dragStartX = e.clientX
-                document.addEventListener('mousemove', this.hIndicatorDragMove)
-                document.addEventListener('mouseup', this.hIndicatorDragEnd)
-                addClass(document.body, 'am-body-user-select-none')
+                this.dragStartLeft = this.indicatorLeft;
+                this.dragStartX = e.clientX;
+                document.addEventListener('mousemove', this.hIndicatorDragMove);
+                document.addEventListener('mouseup', this.hIndicatorDragEnd);
+                addClass(document.body, 'am-body-user-select-none');
             },
             hIndicatorDragMove(e) {
-                let deltaX = e.clientX - this.dragStartX
-                const targetLeft = this.dragStartLeft + deltaX
-                this.$refs.wrapper.scrollLeft = `${targetLeft * (this.contentWidth - this.hostWidth) / (this.hostWidth - this.indicatorWidth)}`
+                let deltaX = e.clientX - this.dragStartX;
+                const targetLeft = this.dragStartLeft + deltaX;
+                this.$refs.wrapper.scrollLeft = `${targetLeft * (this.contentWidth - this.hostWidth) / (this.hostWidth - this.indicatorWidth)}`;
             },
             hIndicatorDragEnd(e) {
-                document.removeEventListener('mousemove', this.hIndicatorDragMove)
-                document.removeEventListener('mouseup', this.hIndicatorDragEnd)
-                removeClass(document.body, 'am-body-user-select-none')
+                document.removeEventListener('mousemove', this.hIndicatorDragMove);
+                document.removeEventListener('mouseup', this.hIndicatorDragEnd);
+                removeClass(document.body, 'am-body-user-select-none');
             },
             _mouseenter() {
-                this.hover = true
+                this.hover = true;
             },
             _mouseleave() {
-                this.hover = false
+                this.hover = false;
             },
             scrollTop(pos = 0, dur = 400, done) {
-                scroll.top(this.$refs.wrapper, pos)
+                scroll.top(this.$refs.wrapper, pos);
             },
             scrollLeft(pos = 0, dur = 400, done) {
-                scroll.left(this.$refs.wrapper, pos)
+                scroll.left(this.$refs.wrapper, pos);
             },
             scrollTo({x, y}) {
-                x != null && (this.scrollLeft(x))
-                y != null && (this.scrollTop(y))
+                x != null && (this.scrollLeft(x));
+                y != null && (this.scrollTop(y));
             },
         },
         beforeDestroy() {
             erdUltraFast.removeListener(this.$refs.content, this._contentResize);
             erdUltraFast.removeListener(this.$refs.host, this._hostResize);
         },
-    }
+    };
 </script>
