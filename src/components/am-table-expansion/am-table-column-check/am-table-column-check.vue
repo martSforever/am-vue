@@ -27,6 +27,7 @@
                 :col-index="colIndex"
                 :field="field"
                 :editable="editable"
+                :toggle-on-click-row="toggleOnClickRow"
 
                 @mounted="handleItemMounted"
                 @beforeDestroy="handleItemBeforeDestroyed"
@@ -41,7 +42,7 @@
     import tableColumnMixin from '../table-column-mixin';
     import AmRadio from '../../am-radio';
     import AmTableColumnCheckItem from './am-table-column-check-item';
-    import AmTableColumn from "../../am-table/am-table-column";
+    import AmTableColumn from '../../am-table/am-table-column';
 
     export default {
         name: 'am-table-column-check',
@@ -54,15 +55,14 @@
             tableColumnMixin
         ],
         props: {
-
             width: {type: String, default: '32px'},
-
             confirm: {type: Boolean, default: true},
             singleSelect: {type: Boolean},
             disabled: {type: Boolean},
-
             color: {type: String, default: 'primary'},
             sortable: {default: false},
+
+            toggleOnClickRow: {type: Boolean, default: false},
         },
         data() {
             return {

@@ -63,9 +63,11 @@
             },
             click() {
                 // console.log('click', this.row, this.rowIndex, this.contentFixed);
+                this.$emit('click', {row: this.row, rowIndex: this.rowIndex, contentFixed: this.contentFixed});
             },
             dblClick() {
                 // console.log('dblClick', this.row, this.rowIndex, this.contentFixed);
+                this.$emit('dblclick', {row: this.row, rowIndex: this.rowIndex, contentFixed: this.contentFixed});
             },
             enableEdit() {
                 const editItems = this.findEditItems(this);

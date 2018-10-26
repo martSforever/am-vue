@@ -5,6 +5,7 @@
               :confirm-button="true"
               :cancel-button="true"
               title="请选择..."
+              :hide-on-click-outside="false"
     >
         <am-auto-table :option="option"
                        :setting-config="false"
@@ -14,6 +15,7 @@
                        :updateable="false"
                        :deleteable="false"
         >
+            <am-table-column-check :toggle-on-click-row="true"/>
             <slot></slot>
         </am-auto-table>
     </am-modal>

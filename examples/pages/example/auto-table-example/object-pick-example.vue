@@ -4,7 +4,6 @@
         <am-button label="pick object" @click="show = !show"/>
 
         <am-object-pick v-model="show" :option="chargersOption">
-            <am-table-column-check/>
             <am-table-column title="客户" field="acctName"/>
             <am-table-column title="客户编码" field="acctCode"/>
             <am-table-column title="出生日期" field="birthday"/>
