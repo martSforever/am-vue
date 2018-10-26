@@ -1,7 +1,7 @@
 <template>
     <div class="am-scrollbar"
          ref="host"
-         :class="{'am-scrollbar-hover':true}"
+         :class="{'am-scrollbar-hover':hover}"
          @mouseenter="_mouseenter"
          @mouseleave="_mouseleave"
     >
