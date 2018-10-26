@@ -4,7 +4,7 @@
         <div class="am-auto-table-header">
             <div class="am-auto-table-header-left-side">
                 <!--设置-->
-                <am-button icon="fas-cog" icon-only size="small" type="fill"/>
+                <am-button icon="fas-cog" icon-only size="small" type="fill" v-if="!!settingConfig"/>
                 <!--筛选-->
                 <am-auto-table-filter :search-cols="searchCols" size="small" color="primary" :query-filters="option.param.query.filters"
                                       @confirm="handleFilter"/>
@@ -82,6 +82,7 @@
             option: {type: Object,},
             sortField: {type: String},
             sortDesc: {type: Boolean, default: true},
+            settingConfig: {type: Boolean, default: true},
 
             multiUpdateable: {type: Boolean},
             multiInsertable: {type: Boolean},
