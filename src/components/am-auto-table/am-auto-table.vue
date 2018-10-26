@@ -15,14 +15,14 @@
                     <am-button label="取消编辑" color="error" icon="fas-ban" @click="handleClickCancelEditButton"/>
                 </am-button-group>
                 <am-button-group size="small" v-show="!editing">
-                    <am-button label="新建" icon="fas-plus-circle" color="success" @click="handleClickCreateButton"/>
-                    <am-button label="删除" icon="fas-minus-circle" color="error" @click="handleClickDeleteButton"/>
+                    <am-button label="新建" icon="fas-plus-circle" color="success" @click="handleClickCreateButton" v-if="!!insertable"/>
+                    <am-button label="删除" icon="fas-minus-circle" color="error" @click="handleClickDeleteButton" v-if="!!deleteable"/>
                 </am-button-group>
             </div>
             <!--操作按钮-->
             <am-button-group size="small">
-                <am-button label="导入" icon="fas-download"/>
-                <am-button label="导出" icon="fas-upload"/>
+                <am-button label="导入" icon="fas-download" v-if="importable"/>
+                <am-button label="导出" icon="fas-upload" v-if="exportable"/>
                 <slot name="normalBtn"></slot>
             </am-button-group>
         </div>
@@ -39,7 +39,7 @@
             @dblclick="handleDblClick"
             @clickSort="handleSort"
         >
-            <am-table-column-index v-if="indexing"/>
+            <am-table-column-index v-if="indexing" :page="!!option?option.param.query.page:0" :page-size="!!option?option.param.query.pageSize:1"/>
             <slot></slot>
         </am-table>
         <div class="am-auto-table-footer">
@@ -84,8 +84,13 @@
             sortDesc: {type: Boolean, default: true},
             settingConfig: {type: Boolean, default: true},
 
+            updateable: {type: Boolean, default: true},
+            insertable: {type: Boolean, default: true},
+            deleteable: {type: Boolean, default: true},
             multiUpdateable: {type: Boolean},
             multiInsertable: {type: Boolean},
+            exportable: {type: Boolean, default: true},
+            importable: {type: Boolean, default: true},
         },
         watch: {
             selectIndex(val) {
@@ -145,6 +150,7 @@
             handleDblClick({row, index}) {
                 if (this.editStatus === EDIT_STATUS.INSERT) return;
                 if ((this.editStatus === EDIT_STATUS.UPDATE && !this.multiUpdateable)) return;
+                if (!this.updateable) return;
                 this.table.enableEdit(index);
                 this.editStatus = EDIT_STATUS.UPDATE;
             },

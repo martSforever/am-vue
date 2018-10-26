@@ -80,7 +80,7 @@
             nums() {
                 if (!this.totalSize) return [0];
                 const ret = [];
-                const length = Math.floor(this.totalSize / this.pageSize);
+                const length = Math.ceil(this.totalSize / this.pageSize);
                 let i = 1;
                 while (i <= length) {
                     ret.push(i);

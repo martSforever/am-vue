@@ -151,5 +151,10 @@ export default {
             name: 'am-auto-table-filter',
             component: resolve => require(['examples/pages/example/auto-table-example/am-auto-table-filter-example.vue'], resolve),
         },
+        {
+            path: '/object-pick-example',
+            name: 'object-pick-example',
+            component: resolve => require(['examples/pages/example/auto-table-example/object-pick-example.vue'], resolve),
+        },
     ]
 };

@@ -14,14 +14,16 @@ import './scripts/start';
 import store from './store';
 import {start} from './scripts/start';
 
-import AmAutoTableFilterLov from './components/am-auto-table-filter-lov'
+import AmAutoTableFilterLov from './components/am-auto-table-filter-lov';
+import AmTableColumnLovPick from './components/am-table-column-lov-pick';
 
 window._ = require('lodash');
 Vue.use(Amvue, {IconfontPrefix: 'ali-icon'});
 // 开启debug模式
 Vue.config.debug = true;
 
-Vue.component('am-auto-table-filter-lov', AmAutoTableFilterLov)
+Vue.component('am-auto-table-filter-lov', AmAutoTableFilterLov);
+Vue.component('am-table-column-lov-pick', AmTableColumnLovPick);
 
 const app = new Vue({
     store,

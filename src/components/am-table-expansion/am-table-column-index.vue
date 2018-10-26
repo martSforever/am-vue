@@ -8,7 +8,7 @@
                      :col-render-func="colRenderFunc"
                      :sortable="sortable"
                      :fixed.sync="currentFixed">
-        <template slot-scope="{rowIndex}">{{rowIndex+1}}</template>
+        <template slot-scope="{rowIndex}">{{(page-1)*pageSize + rowIndex+1}}</template>
     </am-table-column>
 </template>
 
@@ -28,7 +28,8 @@
             order: {default: 999, desc: '列排序'},
             noSearch: {type: Boolean, default: true},
             sortable: {default: false},
-
+            page: {type: Number, default: 0},
+            pageSize: {type: Number, default: 1},
         }
     };
 </script>
