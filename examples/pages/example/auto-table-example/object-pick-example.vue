@@ -2,6 +2,7 @@
     <div class="object-pick-example example-page">
 
         <am-button label="pick object" @click="show = !show"/>
+        <am-radio v-model="singleSelect" :label="'singleSelect:'+singleSelect"/>
 
         <am-object-pick v-model="show" :option="chargersOption">
             <am-table-column title="客户" field="acctName"/>
@@ -25,7 +26,7 @@
         data() {
             return {
                 show: false,
-
+                singleSelect: true,
                 chargersOption: new AutoOption({
                     url: 'acct/queryPage',
                     countUrl: 'acct/queryCount',

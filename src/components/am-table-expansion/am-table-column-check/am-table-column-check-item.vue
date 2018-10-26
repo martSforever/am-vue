@@ -1,6 +1,6 @@
 <template>
     <am-radio v-model="currentValue"
-              @change="val=>$emit('change',val,row,rowIndex)"
+              @change="emitChange"
               :color="color"
     />
 </template>
@@ -34,8 +34,16 @@
         mounted() {
             if (!!this.toggleOnClickRow) {
                 this.tableRow = findComponentUpward(this, 'am-table-row');
-                !!this.tableRow && this.tableRow.$on('click', () => this.currentValue = !this.currentValue);
+                !!this.tableRow && this.tableRow.$on('click', () => {
+                    this.currentValue = !this.currentValue
+                    this.emitChange(this.currentValue)
+                });
             }
+        },
+        methods: {
+            emitChange(val) {
+                this.$emit('change', val, this.row, this.rowIndex)
+            },
         },
     };
 </script>

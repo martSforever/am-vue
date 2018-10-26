@@ -154,6 +154,7 @@
             noHeader: {type: Boolean},
             noFooter: {type: Boolean},
             removeable: {type: Boolean},
+            hideOnClickConfirmOrCancel: {tyoe: Boolean, default: true},
         },
         watch: {
             value(val) {
@@ -211,11 +212,11 @@
         methods: {
             _handleConfirm() {
                 this.$emit('on-confirm');
-                this.currentValue = false;
+                !!this.hideOnClickConfirmOrCancel && (this.currentValue = false);
             },
             _handleCancel() {
                 this.$emit('on-cancel');
-                this.currentValue = false;
+                !!this.hideOnClickConfirmOrCancel && (this.currentValue = false);
             },
             _handleClickOutside() {
                 if (!!this.currentValue && !!this.hideOnClickOutside && !this.minimize) {

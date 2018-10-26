@@ -6,6 +6,9 @@
               :cancel-button="true"
               title="请选择..."
               modal-class="am-object-pick-modal"
+              @on-confirm="handleConfirm"
+              @on-cancel="handleCancel"
+              :hide-on-click-confirm-or-cancel="false"
     >
         <am-auto-table :option="option"
                        :setting-config="false"
@@ -15,7 +18,7 @@
                        :updateable="false"
                        :deleteable="false"
         >
-            <am-table-column-check :toggle-on-click-row="true"/>
+            <am-table-column-check :toggle-on-click-row="true" :single-select="singleSelect" ref="checkColumn"/>
             <slot></slot>
         </am-auto-table>
     </am-modal>
@@ -27,6 +30,7 @@
         props: {
             value: {},
             option: {},
+            singleSelect: {type: Boolean, default: false},
         },
         watch: {
             value(val) {
@@ -40,6 +44,17 @@
             return {
                 currentValue: this.value,
             };
+        },
+        methods: {
+            handleConfirm() {
+                const rows = this.$refs.checkColumn.getSelectRow()
+                this.currentValue = false
+                console.log('confirm', rows)
+            },
+            handleCancel() {
+                console.log('cancel')
+                this.currentValue = false
+            },
         },
     };
 </script>
