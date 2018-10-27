@@ -140,10 +140,12 @@
         computed: {
             searchCols() {
                 if (!this.renderColumns) return [];
-                return this.renderColumns.reduce((ret, item) => {
+                const result = this.renderColumns.reduce((ret, item) => {
                     if (!item.noSearch) ret.push(item);
                     return ret;
-                }, []);
+                }, [])
+                console.log('result', result)
+                return result;
             },
         },
         methods: {

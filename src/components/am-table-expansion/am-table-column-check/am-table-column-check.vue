@@ -8,7 +8,7 @@
                      :col-render-func="colRenderFunc"
                      :fixed.sync="currentFixed"
                      :filter-component="filterComponent"
-                     :no-search="false"
+                     :no-search="noSearch"
                      :sortable="sortable"
                      :filter-option="filterOption">
         <template slot="title" slot-scope="{col,colIndex}">
@@ -61,7 +61,7 @@
             disabled: {type: Boolean},
             color: {type: String, default: 'primary'},
             sortable: {default: false},
-
+            noSearch: {default: true},
             toggleOnClickRow: {type: Boolean, default: false},
         },
         data() {
