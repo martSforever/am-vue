@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        button {
+            border: none;
+            outline: none;
+            padding: 6px 12px;
+            color: white;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        button:active {
+            position: relative;
+            top: 2px;
+            left: 2px;
+        }
+    </style>
+</head>
+<body>
+
+<div id="app">
+    <h3>基本用法</h3>
+    <div>
+        <am-button></am-button>
+    </div>
+    <h3>不绑定</h3>
+    <div>
+        <am-button color="#0f0" label="gracy" @click.native="handleClick('#0f0','gracy')"></am-button>
+        <am-button color="#f00" label="brand" @click.native="handleClick('#f00','brand')"></am-button>
+        <am-button color="#00f" label="rose" @click.native="handleClick('#00f','rose')"></am-button>
+    </div>
+    <h3>单项绑定</h3>
+    <div>
+        <am-button :color="color" :label="label"></am-button>
+    </div>
+
+</div>
+<script src="https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.js"></script>
+<script>
+
+    Vue.component('am-button', {
+        template: `
+            <button :style="{backgroundColor:color}">{{label}}</button>
+        `,
+        props: {
+            color: {type: String, default: '#00f'},
+            label: {type: String, default: 'hello world'},
+        }
+    })
+
+    new Vue({
+        el: '#app',
+        data: function () {
+            return {
+                color: '#0f0',
+                label: 'gracy',
+            }
+        },
+        methods: {
+            handleClick(color, label) {
+                this.color = color;
+                this.label = label
+            }
+        }
+    })
+</script>
+</body>
+</html>
