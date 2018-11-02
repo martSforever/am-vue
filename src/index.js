@@ -46,6 +46,8 @@ import autoTableFilter from './components/am-auto-table/am-auto-table-filter'
 import autoTableFilterInput from './components/am-auto-table/am-auto-table-filter-input'
 import autoTableFilterDatepicker from './components/am-auto-table/am-auto-table-filter-datepicker'
 import pagination from './components/am-pagination/am-pagination'
+import renderingRenderFunc from './components/am-render/rendering-render-func';
+import renderingScopeSlot from './components/am-render/rendering-scope-slot';
 
 const components = {
     icon,
@@ -91,6 +93,8 @@ const components = {
     'auto-table-filter-input': autoTableFilterInput,
     'auto-table-filter-datepicker': autoTableFilterDatepicker,
     pagination,
+    'rendering-render-func': renderingRenderFunc,
+    'rendering-scope-slot': renderingScopeSlot,
 };
 
 let $amvue = {};

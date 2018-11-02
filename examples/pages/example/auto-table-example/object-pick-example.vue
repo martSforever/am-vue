@@ -1,16 +1,23 @@
 <template>
     <div class="object-pick-example example-page">
 
-        <am-button label="pick object" @click="show = !show"/>
-        <am-radio v-model="singleSelect" :label="'singleSelect:'+singleSelect"/>
+        <!--<div class="example-row">
+            <am-button label="pick object" @click="show = !show"/>
+            <am-radio v-model="singleSelect" :label="'singleSelect:'+singleSelect"/>
 
-        <am-object-pick v-model="show" :option="chargersOption">
-            <am-table-column title="客户" field="acctName"/>
-            <am-table-column title="客户编码" field="acctCode"/>
-            <am-table-column title="出生日期" field="birthday"/>
-            <am-table-column-lov-pick title="客户类型" field="acctType" lov-type="ACCT-TYPE"/>
-            <am-table-column title="年龄" field="acctAge"/>
-        </am-object-pick>
+            <am-object-pick v-model="show" :option="chargersOption">
+                <am-table-column title="客户" field="acctName"/>
+                <am-table-column title="客户编码" field="acctCode"/>
+                <am-table-column title="出生日期" field="birthday"/>
+                <am-table-column-lov-pick title="客户类型" field="acctType" lov-type="ACCT-TYPE"/>
+                <am-table-column title="年龄" field="acctAge"/>
+            </am-object-pick>
+        </div>-->
+
+        <div class="example-row">
+            <am-button @click="testObjectPick">ObjectPick</am-button>
+        </div>
+
     </div>
 </template>
 
@@ -18,11 +25,11 @@
 
     import AmObjectPick from '../../../components/am-object-pick';
     import {AutoOption} from '../../../../src/components/am-auto-table/auto-option';
+    import ObjectPick from "../../../components/object-pick";
 
     export default {
         name: 'object-pick-example',
         components: {AmObjectPick},
-        methods: {},
         data() {
             return {
                 show: false,
@@ -42,5 +49,20 @@
                 }),
             };
         },
+        methods: {
+            renderFunc(h) {
+                return (
+                    <div>
+                        <am-table-column title="客户" field="acctName"/>
+                        <am-table-column title="客户编码" field="acctCode"/>
+                        <am-table-column title="出生日期" field="birthday"/>
+                        <am-table-column title="年龄" field="acctAge"/>
+                    </div>
+                )
+            },
+            testObjectPick() {
+                ObjectPick.pick(this.renderFunc, this.chargersOption)
+            },
+        }
     };
 </script>
