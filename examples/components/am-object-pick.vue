@@ -10,13 +10,15 @@
               @on-cancel="handleCancel"
               :hide-on-click-confirm-or-cancel="false"
     >
-        <am-auto-table :option="option"
-                       :setting-config="false"
-                       :exportable="false"
-                       :importable="false"
-                       :insertable="false"
-                       :updateable="false"
-                       :deleteable="false"
+        <am-auto-table
+            ref="table"
+            :option="option"
+            :setting-config="false"
+            :exportable="false"
+            :importable="false"
+            :insertable="false"
+            :updateable="false"
+            :deleteable="false"
         >
             <am-table-column-check :toggle-on-click-row="true" :single-select="singleSelect" ref="checkColumn"/>
             <slot></slot>
@@ -46,6 +48,9 @@
             };
         },
         methods: {
+            refreshRender() {
+                this.$refs.table.refreshRender();
+            },
             handleConfirm() {
                 const rows = this.$refs.checkColumn.getSelectRow()
                 this.currentValue = false

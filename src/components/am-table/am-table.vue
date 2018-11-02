@@ -1,6 +1,7 @@
 <template>
     <div class="am-table" :class="classes" :style="styles">
         <am-table-column-controller
+            ref="columnController"
             :columns.sync="columns"
             :head-columns.sync="headColumns">
             <slot></slot>
@@ -237,6 +238,9 @@
             },
 
             /*methods*/
+            refreshRender() {
+                this.$refs.columnController.collectColumns();
+            },
             getEditingRows() {
                 return this.$refs.center.$refs.body.$refs.rows.reduce((ret, rowComponent) => {
                     if (!!rowComponent.currentEditable) ret.push(rowComponent.getEditRowData());

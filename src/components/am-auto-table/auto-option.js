@@ -30,10 +30,11 @@ export class AutoOption {
     count = 0;
 
     constructor(option) {
+        option = option || {};
         Object.assign(this, option);
         this.param = Object.assign({}, {query: deepCopy(DEFAULT_QUERY_PARAM)}, option.param);
 
-        if (!!this.loadOnStart) {
+        if (!!this.loadOnStart && !!this.url) {
             this.reload();
         }
     }
@@ -43,7 +44,6 @@ export class AutoOption {
         this.count = await this.queryCount();
         return this.load();
     }
-
     async load() {
         this.list.splice(0, this.list.length);
         const data = await http.post(this.url, this.param);
@@ -51,7 +51,6 @@ export class AutoOption {
         if (!!data.ret) data.ret.forEach(item => this.list.push(item));
         return data;
     }
-
     reloadChildren() {
         const tableChildren = AutoTableController.getChildren(this);
         tableChildren.forEach(table => table.option.reload());

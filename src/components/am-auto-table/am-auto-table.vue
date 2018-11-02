@@ -121,11 +121,8 @@
                 table: null,
                 editStatus: EDIT_STATUS.NORMAL,
                 currentSelectIndex: this.selectIndex,
-                list: this.option.list,
                 newRows: [],
                 sortable: {type: Boolean, default: true},
-                currentSortField: this.sortField || this.option.param.query.orders[0].field,
-                currentSortDesc: this.sortDesc || this.option.param.query.orders[0].desc,
             };
         },
         beforeMount() {
@@ -147,6 +144,17 @@
                 console.log('result', result)
                 return result;
             },
+
+            list() {
+                return this.option.list;
+            },
+            currentSortField() {
+                return this.sortField || this.option.param.query.orders[0].field;
+            },
+            currentSortDesc() {
+                return this.sortDesc || this.option.param.query.orders[0].desc;
+            },
+
         },
         methods: {
 
@@ -211,6 +219,9 @@
             },
 
             /*method*/
+            refreshRender() {
+                this.$refs.table.refreshRender();
+            },
             cancelEdit(val) {
                 if (this.editStatus === EDIT_STATUS.INSERT) {
                     this.newRows.forEach(() => this.list.shift());
