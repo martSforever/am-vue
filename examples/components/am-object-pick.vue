@@ -63,9 +63,3 @@
         },
     };
 </script>
-
-<style lang="scss">
-    .am-object-pick-modal {
-
-    }
-</style>
