@@ -19,6 +19,21 @@
             <am-radio v-model="singleSelect" label="单选"/>
         </div>
 
+        <div class="example-row">
+            <am-object-pick-input :render-func="renderFunc"
+                                  :option="chargersOption"
+                                  :single-select="true"
+
+                                  :row="rowData"
+                                  show-key="name"
+                                  :map="{name:'acctName'}"
+
+                                  color="primary"
+                                  shape="fillet"
+                                  type="fill"
+            />
+        </div>
+
     </div>
 </template>
 
@@ -48,6 +63,9 @@
                         headId: '123456'
                     }
                 }),
+
+                rowData: {},
+
             };
         },
         methods: {
