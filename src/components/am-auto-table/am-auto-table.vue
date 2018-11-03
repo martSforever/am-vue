@@ -141,10 +141,8 @@
                     if (!item.noSearch) ret.push(item);
                     return ret;
                 }, [])
-                console.log('result', result)
                 return result;
             },
-
             list() {
                 return this.option.list;
             },

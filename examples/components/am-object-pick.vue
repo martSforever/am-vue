@@ -54,11 +54,11 @@
             handleConfirm() {
                 const rows = this.$refs.checkColumn.getSelectRow()
                 this.currentValue = false
-                console.log('confirm', rows)
+                this.$emit('confirm', rows)
             },
             handleCancel() {
-                console.log('cancel')
                 this.currentValue = false
+                this.$emit('cancel')
             },
         },
     };

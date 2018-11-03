@@ -16,6 +16,7 @@
 
         <div class="example-row">
             <am-button @click="testObjectPick">ObjectPick</am-button>
+            <am-radio v-model="singleSelect" label="单选"/>
         </div>
 
     </div>
@@ -61,7 +62,24 @@
                 )
             },
             testObjectPick() {
-                ObjectPick.pick(this.renderFunc, this.chargersOption)
+                ObjectPick.pick({
+                    renderFunc: this.renderFunc,
+                    option: this.chargersOption,
+                    singleSelect: this.singleSelect,
+                    onConfirm: (ret) => {
+                        console.log('confirm')
+                        if (!!this.singleSelect) {
+                            console.log(ret.acctName)
+                        } else {
+                            ret.forEach(item => {
+                                console.log(item.acctName)
+                            })
+                        }
+                    },
+                    onCancel: () => {
+                        console.log('cancel')
+                    },
+                })
             },
         }
     };
