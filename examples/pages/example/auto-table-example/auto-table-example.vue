@@ -30,7 +30,11 @@
             <am-table-column-input title="名称" field="name"/>
             <am-table-column-input title="编码" field="code"/>
             <am-table-column-lov-pick title="类型" field="type" lov-type="STORE-TYPE"/>
-            <am-table-column-input title="经销商" field="agencyId"/>
+            <am-table-column-object-pick title="经销商" field="agencyName"
+                                         :render-func="renderFunc"
+                                         :option="chargersOption"
+                                         show-key="agencyName"
+                                         :map="{agencyId:'id',agencyName:'acctName'}"/>
         </am-auto-table>
     </div>
 </template>
@@ -74,6 +78,18 @@
             };
         },
         mounted() {
+        },
+        methods: {
+            renderFunc(h) {
+                return (
+                    <div>
+                        <am-table-column title="客户" field="acctName"/>
+                        <am-table-column title="客户编码" field="acctCode"/>
+                        <am-table-column title="出生日期" field="birthday"/>
+                        <am-table-column title="年龄" field="acctAge"/>
+                    </div>
+                )
+            },
         }
     };
 </script>

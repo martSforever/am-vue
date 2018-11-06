@@ -18,6 +18,7 @@ import AmAutoTableFilterLov from './components/am-auto-table-filter-lov';
 import AmTableColumnLovPick from './components/am-table-column-lov-pick';
 import AmObjectPick from './components/am-object-pick';
 import AmObjectPickInput from './components/am-object-pick-input';
+import AmTableColumnObjectPick from './components/am-table-column-object-pick';
 
 window._ = require('lodash');
 Vue.use(Amvue, {IconfontPrefix: 'ali-icon'});
@@ -28,6 +29,7 @@ Vue.component('am-auto-table-filter-lov', AmAutoTableFilterLov);
 Vue.component('am-table-column-lov-pick', AmTableColumnLovPick);
 Vue.component('am-object-pick', AmObjectPick);
 Vue.component('am-object-pick-input', AmObjectPickInput);
+Vue.component('am-table-column-object-pick', AmTableColumnObjectPick);
 
 const app = new Vue({
     store,
