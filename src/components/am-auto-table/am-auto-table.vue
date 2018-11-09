@@ -147,10 +147,10 @@
                 return this.option.list;
             },
             currentSortField() {
-                return this.sortField || this.option.param.query.orders[0].field;
+                return this.sortField || !!this.option.param.query.orders[0] ? this.option.param.query.orders[0].field : null;
             },
             currentSortDesc() {
-                return this.sortDesc || this.option.param.query.orders[0].desc;
+                return this.sortDesc || !!this.option.param.query.orders[0] ? this.option.param.query.orders[0].desc : null;
             },
 
         },

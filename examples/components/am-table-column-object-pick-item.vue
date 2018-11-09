@@ -21,6 +21,7 @@
 
 <script>
     import tableEditItemMixin from "../../src/components/am-table-expansion/table-edit-item-mixin";
+    import {deepCopy} from "../../src/scripts/utils";
 
     export default {
         name: "am-table-column-object-pick-item",
@@ -33,12 +34,16 @@
         },
         data() {
             return {
-                tempRow: this.row
+                tempRow: deepCopy(this.row)
             }
         },
         methods: {
             save() {
                 Object.assign(this.row, this.tempRow);
+                this.tempRow = {}
+            },
+            disableEdit() {
+                this.currentEditable = false;
                 this.tempRow = {}
             },
         }
