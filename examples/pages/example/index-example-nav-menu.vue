@@ -5,7 +5,6 @@
                 <div v-for="(urlGroup,groupIndex) in urlGroups"
                      :key="groupIndex">
                     <div class="menu-group">
-                        <span class="group-name">{{urlGroup.name}}</span>
                         <div v-for="(item,itemIndex) in urlGroup.children"
                              :key="itemIndex"
                              @click="handleClick(item)"
@@ -33,62 +32,62 @@
                     {
                         name: 'base',
                         children: [
-                            {name: 'color', icon: 'color-board', url: 'color'},
-                            {name: 'icon', icon: 'color-drink', url: 'icon'},
-                            {name: 'button', icon: 'color-play', url: 'button'},
-                            {name: 'i18n', icon: 'color-net', url: 'i18n'},
+                            {name: 'color', icon: 'fas-palette', url: 'color'},
+                            {name: 'icon', icon: 'fab-fonticons', url: 'icon'},
+                            {name: 'button', icon: 'fab-youtube', url: 'button'},
+                            {name: 'i18n', icon: 'fas-globe', url: 'i18n'},
 
                         ]
                     },
                     {
                         name: 'layout',
                         children: [
-                            {name: 'grid', icon: 'color-grid', url: 'grid'},
-                            {name: 'swiper', icon: 'color-window', url: 'swiper'},
-                            {name: 'tree', icon: 'color-tree', url: 'tree'},
-                            {name: 'table', icon: 'color-table', url: 'table'},
-                            {name: 'pagination', icon: 'color-table', url: 'pagination'},
+                            {name: 'grid', icon: 'fas-th', url: 'grid'},
+                            {name: 'swiper', icon: 'fas-hand-paper', url: 'swiper'},
+                            {name: 'tree', icon: 'fas-tree', url: 'tree'},
+                            {name: 'table', icon: 'fas-table', url: 'table'},
+                            {name: 'pagination', icon: 'fab-list-ol', url: 'pagination'},
                         ]
                     },
                     {
                         name: 'auto-table',
                         children: [
-                            {name: 'auto-table', icon: 'color-table', url: 'auto-table'},
-                            {name: 'auto-table-lov', icon: 'color-table', url: 'auto-table-lov'},
-                            {name: 'auto-table-filter', icon: 'color-table', url: 'auto-table-filter-example'},
-                            {name: 'object-pick', icon: 'color-table', url: 'object-pick-example'},
+                            {name: 'auto-table', icon: 'fas-table', url: 'auto-table'},
+                            {name: 'auto-table-lov', icon: 'fas-font', url: 'auto-table-lov'},
+                            {name: 'auto-table-filter', icon: 'fas-filter', url: 'auto-table-filter-example'},
+                            {name: 'object-pick', icon: 'fab-elementor', url: 'object-pick-example'},
                         ]
                     },
                     {
                         name: 'navigation',
                         children: [
-                            {name: 'tab', icon: 'color-tabs', url: 'tab'},
-                            {name: 'scrollbar', icon: 'color-swip', url: 'scrolbar'},
+                            {name: 'tab', icon: 'fas-map', url: 'tab'},
+                            {name: 'scrollbar', icon: 'line', url: 'scrolbar'},
                         ]
                     },
                     {
                         name: 'form',
                         children: [
-                            {name: 'input', icon: 'color-keyboard', url: 'input'},
-                            {name: 'number input', icon: 'number-nine', url: 'number-input'},
-                            {name: 'switch', icon: 'color-switch', url: 'switch'},
-                            {name: 'radio', icon: 'color-checked', url: 'radio'},
-                            {name: 'select', icon: 'color-select', url: 'select'},
-                            {name: 'timepicker', icon: 'color-time', url: 'timepicker'},
-                            {name: 'datepicker', icon: 'color-date', url: 'datepicker'},
+                            {name: 'input', icon: 'fas-keyboard', url: 'input'},
+                            {name: 'number input', icon: 'fas-sort-numeric-down', url: 'number-input'},
+                            {name: 'switch', icon: 'fas-toggle-on', url: 'switch'},
+                            {name: 'radio', icon: 'fas-check-square', url: 'radio'},
+                            {name: 'select', icon: 'fas-caret-square-down', url: 'select'},
+                            {name: 'timepicker', icon: 'fas-clock', url: 'timepicker'},
+                            {name: 'datepicker', icon: 'fas-calendar-alt', url: 'datepicker'},
                         ]
                     },
                     {
                         name: 'view',
                         children: [
-                            {name: 'popover', icon: 'color-popover', url: 'popover'},
-                            {name: 'dropdown', icon: 'color-droplet', url: 'dropdown'},
-                            {name: 'collapse', icon: 'color-collapse', url: 'collapse'},
-                            {name: 'tag', icon: 'color-tag', url: 'tag'},
-                            {name: 'move', icon: 'color-run', url: 'move'},
-                            {name: 'notice', icon: 'color-notice', url: 'notice'},
-                            {name: 'modal', icon: 'color-modal', url: 'modal'},
-                            {name: 'avatar', icon: 'color-avatar', url: 'avatar'},
+                            {name: 'popover', icon: 'far-comment-alt', url: 'popover'},
+                            {name: 'dropdown', icon: 'fas-comment-alt', url: 'dropdown'},
+                            {name: 'collapse', icon: 'fas-chevron-down', url: 'collapse'},
+                            {name: 'tag', icon: 'fas-tags', url: 'tag'},
+                            {name: 'move', icon: 'fas-running', url: 'move'},
+                            {name: 'notice', icon: 'fas-comment', url: 'notice'},
+                            {name: 'modal', icon: 'fas-window-restore', url: 'modal'},
+                            {name: 'avatar', icon: 'fas-user-circle', url: 'avatar'},
                         ]
                     },
                 ]
@@ -119,10 +118,9 @@
         overflow-x: hidden;
         border-right: solid 1px #ddd;
         .index-example-nav-menu-content {
-            padding: 24px 0;
+            padding: 12px 0;
         }
         .menu-group {
-            padding: 0 0 0 12px;
             .group-name {
                 color: $color-normal-title;
                 height: 36px;
@@ -139,6 +137,7 @@
                 align-items: center;
                 justify-content: space-between;
                 color: $color-normal-sub-color;
+                border-bottom: solid 1px #f2f2f2;
                 @include transition-all();
                 .left-side {
                     & > .am-icon {
